@@ -1350,6 +1350,43 @@
   </g>
 </svg></div>
 <p class="note">Dark Forest — a really foresty forest at night, with a crescent moon and firefly lights.</p>
+<div style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" style="width:100%;max-width:520px;display:block;margin:0 auto 10px;border:4px solid #2b2340;border-radius:18px">
+  <defs>
+    <style>
+      .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
+      .thick { stroke-width:9; }
+      .lbl { font-family:'Comic Sans MS','Chalkboard SE','Segoe Print',cursive; font-size:27px; font-weight:bold; fill:#fff6e0; text-anchor:middle; }
+    </style>
+    <marker id="farrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 1 1 L 11 6 L 1 11 Z" fill="#fff6e0"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="700" height="700" fill="#3a3160"/>
+  <g fill="#fff6e0"><circle cx="80" cy="70" r="4"/><circle cx="620" cy="90" r="4"/><circle cx="90" cy="620" r="4"/><circle cx="640" cy="600" r="4"/><circle cx="350" cy="660" r="3"/></g>
+  <text x="350" y="42" class="lbl" font-size="30">WHO BEATS WHO — DARK FOREST</text>
+
+  <!-- circle: Dark -> Fairy -> Tree -> Moss -> Dark -->
+  <g fill="none" stroke="#fff6e0" stroke-width="8" marker-end="url(#farrow)">
+    <path d="M 415 205 Q 540 235 570 320"/>
+    <path d="M 570 460 Q 540 545 415 575"/>
+    <path d="M 285 575 Q 160 545 130 460"/>
+    <path d="M 130 320 Q 160 235 285 205"/>
+    <!-- cross arrows: Fairy -> Moss, Tree -> Dark -->
+    <path d="M 505 385 Q 350 360 195 388" stroke="#b39ddb"/>
+    <path d="M 362 542 Q 396 390 356 248" stroke="#b39ddb"/>
+  </g>
+
+  <text x="350" y="98" class="lbl">Dark</text>
+  <path transform="translate(350,170)" d="M 0 -56 q 41 -5 52 33 q 10 34 -19 52 q -32 21 -62 2 q -28 -18 -18 -52 q 10 -34 47 -35 Z" fill="#3a3160" class="outline thick"/><circle cx="332" cy="166" r="8" fill="#b39ddb"/><circle cx="368" cy="166" r="8" fill="#b39ddb"/>
+  <text x="660" y="330" class="lbl">Fairy</text>
+  <path transform="translate(565,390)" d="M 0 -56 q 41 -5 52 33 q 10 34 -19 52 q -32 21 -62 2 q -28 -18 -18 -52 q 10 -34 47 -35 Z" fill="#c74fa3" class="outline thick"/><circle cx="547" cy="386" r="8" fill="#2b2340"/><circle cx="583" cy="386" r="8" fill="#2b2340"/>
+  <text x="350" y="688" class="lbl">Tree</text>
+  <path transform="translate(350,610)" d="M 0 -56 q 41 -5 52 33 q 10 34 -19 52 q -32 21 -62 2 q -28 -18 -18 -52 q 10 -34 47 -35 Z" fill="#d0a97f" class="outline thick"/><circle cx="332" cy="606" r="8" fill="#2b2340"/><circle cx="368" cy="606" r="8" fill="#2b2340"/>
+  <text x="40" y="330" class="lbl">Moss</text>
+  <path transform="translate(135,390)" d="M 0 -56 q 41 -5 52 33 q 10 34 -19 52 q -32 21 -62 2 q -28 -18 -18 -52 q 10 -34 47 -35 Z" fill="#57a05c" class="outline thick"/><circle cx="117" cy="386" r="8" fill="#2b2340"/><circle cx="153" cy="386" r="8" fill="#2b2340"/>
+</svg></div>
+<p class="note">The Dark Forest matchup circle — follow the arrows to see who beats who!</p>
 <h3 class="element">Dark Blob <span>1★ · 2★ · 3★</span></h3>
 <div class="grid3">
   <div class="card">
@@ -3988,7 +4025,7 @@
     <path d="M 92 190 q 14 -14 34 -16"/>
     <path d="M 430 400 q -12 14 -30 18"/>
   </g>
-</svg><p>Dark Blob</p><p class="match">💪 beats Fairy & Tree<br>😬 loses to Moss</p></div><div class="pick" id="fpick-fairy" data-name="fairy" role="button" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" style="width:100%;height:auto;display:block">
+</svg><p>Dark Blob</p><p class="match">💪 beats Fairy<br>😬 loses to Moss & Tree</p></div><div class="pick" id="fpick-fairy" data-name="fairy" role="button" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" style="width:100%;height:auto;display:block">
   <defs>
     <style>
       .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
@@ -4038,7 +4075,7 @@
     <path d="M 92 190 q 14 -14 34 -16"/>
     <path d="M 430 400 q -12 14 -30 18"/>
   </g>
-</svg><p>Moss Blob</p><p class="match">💪 beats Dark<br>😬 loses to Fairy & Tree</p></div><div class="pick" id="fpick-tree" data-name="tree" role="button" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" style="width:100%;height:auto;display:block">
+</svg><p>Moss Blob</p><p class="match">💪 beats Dark<br>😬 loses to Tree & Fairy</p></div><div class="pick" id="fpick-tree" data-name="tree" role="button" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" style="width:100%;height:auto;display:block">
   <defs>
     <style>
       .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
@@ -4065,7 +4102,7 @@
     <path d="M 92 190 q 14 -14 34 -16"/>
     <path d="M 430 400 q -12 14 -30 18"/>
   </g>
-</svg><p>Tree Blob</p><p class="match">💪 beats Moss<br>😬 loses to Dark & Fairy</p></div></div>
+</svg><p>Tree Blob</p><p class="match">💪 beats Moss & Dark<br>😬 loses to Fairy</p></div></div>
 </div>
 
 <div id="coinBadge" style="position:fixed;top:14px;right:14px;z-index:10;background:#ffe9a8;border:4px solid #2b2340;border-radius:14px;padding:6px 14px;font-weight:bold;font-size:1.1rem;box-shadow:0 3px 0 rgba(43,35,64,0.3)"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#ffb703" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#ffd166" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#ffb703" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCount">0</span> &nbsp;<svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#5d4a8a" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#8f7cc0" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#5d4a8a" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCountF">0</span></div>
@@ -4133,7 +4170,7 @@
     lv.addEventListener('click', function () { levelTap('forest', +lv.dataset.n); });
   });
   // --- game rules ---
-  var BEATS = { water: ['fire'], fire: ['earth'], earth: ['wind', 'water'], wind: ['water', 'fire'], tree: ['moss'], moss: ['dark'], dark: ['fairy', 'tree'], fairy: ['tree', 'moss'] };  // William's charts (Grassy + Dark Forest)
+  var BEATS = { water: ['fire'], fire: ['earth'], earth: ['wind', 'water'], wind: ['water', 'fire'], tree: ['moss', 'dark'], moss: ['dark'], dark: ['fairy'], fairy: ['tree', 'moss'] };  // William's charts (corrected 2026-07-30: TREE beats DARK)
   var NAMES = { fire: 'Fire Blob', water: 'Water Blob', earth: 'Earth Blob', wind: 'Wind Blob', dark: 'Dark Blob', fairy: 'Fairy Blob', moss: 'Moss Blob', tree: 'Tree Blob' };
   var chosenBlob = null, enemyBlob = null;
   var playerName = '';
