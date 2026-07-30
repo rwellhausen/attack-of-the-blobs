@@ -125,7 +125,8 @@
   .authorrow .inventor { max-width:110px; margin:0; }
   .authorrow .inventor-caption { margin:0; text-align:left; font-size:1.2rem; }
   .authorrow .inventor-caption span { text-align:left; }
-  .bigplay { font:inherit; font-weight:bold; font-size:1.8rem; padding:14px 70px; background:#ffd166; border:5px solid #2b2340; border-radius:24px; cursor:pointer; box-shadow:0 6px 0 rgba(43,35,64,0.3); transition:transform .15s; }
+  .bigplay { font:inherit; font-weight:bold; font-size:1.8rem; padding:14px 70px; background:#ffd166; border:5px solid #2b2340; border-radius:24px; cursor:pointer; box-shadow:0 6px 0 rgba(43,35,64,0.3); transition:transform .15s; animation: playpulse 1.6s ease-in-out infinite; }
+  @keyframes playpulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
   .bigplay:hover { transform: translateY(-3px); }
   .bigplay:active { transform: translateY(2px); box-shadow:none; }
   #profileBox { margin-top: 4px !important; }
@@ -146,18 +147,18 @@
     .chooser { max-width: 900px; }
   }
 
-  .bgblob { position:absolute; z-index:0; opacity:0.16; pointer-events:none; animation: blobbob 8s ease-in-out infinite alternate; }
+  .bgblob { position:absolute; z-index:0; opacity:0.35; pointer-events:none; animation: blobbob 5s ease-in-out infinite alternate; }
   #screen-home > *:not(.bgblob) { position:relative; z-index:1; }
-  @keyframes blobbob { from { transform: translateY(0) rotate(-3deg); } to { transform: translateY(-22px) rotate(3deg); } }
+  @keyframes blobbob { from { transform: translateY(0) rotate(-7deg) scale(1); } to { transform: translateY(-55px) rotate(7deg) scale(1.08); } }
   #screen-home h1 { animation: titleboing 3.2s ease-in-out infinite; transform-origin: bottom center; }
-  @keyframes titleboing { 0%,100% { transform: scale(1,1); } 50% { transform: scale(1.03,0.965); } }
+  @keyframes titleboing { 0%,100% { transform: scale(1,1) rotate(0deg); } 50% { transform: scale(1.07,0.93) rotate(-1deg); } }
   h1 .dot { display:inline-block; animation: dotjump 3.2s ease-in-out infinite; }
-  @keyframes dotjump { 0%,55%,100% { transform: translateY(0); } 72% { transform: translateY(-12px); } }
+  @keyframes dotjump { 0%,55%,100% { transform: translateY(0) rotate(0deg); } 72% { transform: translateY(-26px) rotate(14deg); } }
   .iconlabels { display:grid; grid-template-columns:1fr 1fr; gap:2px 14px; max-width:300px; margin:8px auto 4px; text-align:center; font-weight:bold; font-size:1.25rem; color:#2b2340; }
   .iconlabels span { cursor:pointer; padding:4px 0; border-radius:10px; transition: transform .15s; }
   .iconlabels span:hover { transform: translateY(-2px); text-decoration: underline; }
   @media (min-width: 940px) { .iconlabels { max-width: 340px; } }
-  @media (prefers-reduced-motion: reduce) { .bgblob, #screen-home h1, h1 .dot { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .bgblob, #screen-home h1, h1 .dot, .bigplay { animation: none; } }
 </style>
 </head>
 <body>
