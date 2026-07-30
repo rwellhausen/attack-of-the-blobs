@@ -241,8 +241,17 @@
     <p class="note" id="playerLine" style="display:none"></p>
     <div class="profrow" id="profileList"></div>
     <div id="nameEntry" hidden>
+      <p class="note" style="font-weight:bold">Type your name to start a brand-new game:</p>
       <input id="nameInput" maxlength="20" placeholder="Type your name!" style="font:inherit;font-weight:bold;text-align:center;border:4px solid #2b2340;border-radius:14px;padding:8px 12px;width:210px;background:#fffdf5">
       <button id="nameBtn" class="back" style="position:static">✅ That's me!</button>
+      <div style="margin-top:16px;border-top:3px dashed #2b2340;padding-top:12px">
+        <p class="note" style="font-weight:bold">…or bring your game from another device:</p>
+        <p class="note">📱 On your OLD device, open "💾 Move my game" and tap "Show my QR code" — then point THIS device's camera at the square and tap the link. That's it!</p>
+        <p class="note">Or paste a save code:</p>
+        <textarea id="importBox" rows="3" style="width:95%;font-size:0.8rem;border:3px solid #2b2340;border-radius:10px" placeholder="Paste the save code here"></textarea>
+        <p style="margin:6px 0"><button id="importBtn" class="back" style="position:static">📥 Load my game</button></p>
+        <p class="note" id="importMsg"></p>
+      </div>
     </div>
   </div>
   <p style="text-align:center;margin:16px 0 2px"><button id="playBtn" class="bigplay">▶ PLAY!</button></p>
@@ -368,8 +377,7 @@
       <p style="margin:8px 0"><button id="qrBtn" class="back" style="position:static">📱 Show my QR code</button></p>
       <div id="qrBox" style="display:flex;justify-content:center;margin:8px 0"></div>
       <p class="note" id="qrHint" hidden>Point the OTHER device\u2019s camera at the square, tap the link that pops up — your game loads there automatically!</p>
-      <p style="margin:8px 0"><button id="exportBtn" class="back" style="position:static">📤 Get my save code</button>
-      <button id="importBtn" class="back" style="position:static">📥 Load this code</button></p>
+      <p style="margin:8px 0"><button id="exportBtn" class="back" style="position:static">📤 Get my save code</button></p>
       <textarea id="saveCodeBox" rows="4" style="width:95%;font-size:0.8rem;border:3px solid #2b2340;border-radius:10px" placeholder="Your save code appears here — or paste a code and tap Load."></textarea>
       <p class="note" id="saveCodeMsg"></p>
     </details>
@@ -7988,15 +7996,14 @@ var qrcode = function() {
   });
   tappable(document.getElementById('importBtn'), function () {
     try {
-      var s = JSON.parse(decodeURIComponent(escape(atob(document.getElementById('saveCodeBox').value.trim()))));
+      var s = JSON.parse(decodeURIComponent(escape(atob(document.getElementById('importBox').value.trim()))));
       if (!s || s.v !== 2) throw new Error('bad');
-      s.name = playerName || s.name || 'Player 1';
-      playerName = s.name;
+      playerName = s.name || 'Player';
       applyState(s);
       saveGame();
-      document.getElementById('saveCodeMsg').textContent = '📥 Loaded! ' + playerName + '\u2019s game is now on this device.';
+      document.getElementById('importMsg').textContent = '📥 Welcome, ' + playerName + '! Your game is now on this device.';
     } catch (e) {
-      document.getElementById('saveCodeMsg').textContent = '❌ That code didn\u2019t work — make sure you copied ALL of it.';
+      document.getElementById('importMsg').textContent = '❌ That code didn\u2019t work — make sure you copied ALL of it.';
     }
   });
   document.getElementById('nameInput').addEventListener('keydown', function (e) {
