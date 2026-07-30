@@ -7813,16 +7813,21 @@ var qrcode = function() {
       }).join('');
     });
   }
+  function pvpLabel(p) {
+    var n1 = pvp.prof1 || 'Player 1', n2 = pvp.prof2 || 'Player 2';
+    if (n1 === n2) return p === 1 ? n1 + ' (P1)' : n2 + ' (P2)';
+    return p === 1 ? n1 : n2;
+  }
   function pvpStartBattle() {
     pvp.turn = 1; pvp.sel = null; pvp.busy = false; pvp.over = false;
     pvp.mode = (WORLD_OF[pvp.p1[0].fam] === WORLD_OF[pvp.p2[0].fam]) ? 'type' : 'star';
     pvpRender();
     document.getElementById('pvpTitle').textContent = pvp.mode === 'star' ? '⭐ STAR BATTLE!' : '⚔️ Player vs Player';
     if (pvp.mode === 'star') {
-      pvpSetMsg('⭐ STAR BATTLE — teams from different worlds, so STARS decide! 🟥 ' + (pvp.prof1 || 'Player 1') + ' goes first.');
+      pvpSetMsg('⭐ STAR BATTLE — teams from different worlds, so STARS decide! 🟥 ' + pvpLabel(1) + ' goes first.');
       document.getElementById('pvpNote').textContent = '⭐ Star Battle rules: bigger star beats smaller · equal stars ALWAYS hit · big blobs devolve before they poof!';
     } else {
-      pvpSetMsg('🟥 ' + (pvp.prof1 || 'Player 1') + ' goes first! Tap one of YOUR blobs.');
+      pvpSetMsg('🟥 ' + pvpLabel(1) + ' goes first! Tap one of YOUR blobs.');
       document.getElementById('pvpNote').textContent = 'Rules: type advantage always hits · bigger star beats smaller · big blobs devolve before they poof!';
     }
     goTo('screen-pvp');
@@ -7842,12 +7847,12 @@ var qrcode = function() {
   }
   function pvpEndTurn() {
     if (!pvp.busy || pvp.over) return;   // only one turn-switch per attack
-    if (!pvpAlive(2).length) { pvpSetMsg('🏆 ' + (pvp.prof1 || 'Player 1').toUpperCase() + ' WINS!! All of ' + (pvp.prof2 || 'Player 2') + '\u2019s blobs went poof! Tap "New PvP battle"!'); pvp.over = true; return; }
-    if (!pvpAlive(1).length) { pvpSetMsg('🏆 ' + (pvp.prof2 || 'Player 2').toUpperCase() + ' WINS!! All of ' + (pvp.prof1 || 'Player 1') + '\u2019s blobs went poof! Tap "New PvP battle"!'); pvp.over = true; return; }
+    if (!pvpAlive(2).length) { pvpSetMsg('🏆 ' + pvpLabel(1).toUpperCase() + ' WINS!! All of ' + pvpLabel(2) + '\u2019s blobs went poof! Tap "New PvP battle"!'); pvp.over = true; return; }
+    if (!pvpAlive(1).length) { pvpSetMsg('🏆 ' + pvpLabel(2).toUpperCase() + ' WINS!! All of ' + pvpLabel(1) + '\u2019s blobs went poof! Tap "New PvP battle"!'); pvp.over = true; return; }
     if (pvpStalemate()) { pvpSetMsg('🤝 STALEMATE! No one can win — this battle is done. Tap "New PvP battle"!'); pvp.over = true; return; }
     pvp.turn = pvp.turn === 1 ? 2 : 1;
     pvp.sel = null; pvp.busy = false;
-    pvpSetMsg((pvp.turn === 1 ? '🟥 ' + (pvp.prof1 || 'Player 1') : '🟦 ' + (pvp.prof2 || 'Player 2')) + '\u2019s turn! Tap one of YOUR blobs.');
+    pvpSetMsg((pvp.turn === 1 ? '🟥 ' + pvpLabel(1) : '🟦 ' + pvpLabel(2)) + '\u2019s turn! Tap one of YOUR blobs.');
   }
   function pvpBlobEl(p, i) { return document.querySelector('.pvpblob[data-player="' + p + '"][data-idx="' + i + '"]'); }
   function pvpHit(att, def, defEl, done) {
@@ -7884,7 +7889,7 @@ var qrcode = function() {
     var teamArr = p === 1 ? pvp.p1 : pvp.p2;
     if (!teamArr[i].alive) return;
     if (p !== pvp.turn && !pvp.sel) {
-      pvpSetMsg('It\u2019s ' + (pvp.turn === 1 ? '🟥 ' + (pvp.prof1 || 'Player 1') : '🟦 ' + (pvp.prof2 || 'Player 2')) + '\u2019s turn — they tap one of THEIR blobs first!');
+      pvpSetMsg('It\u2019s ' + (pvp.turn === 1 ? '🟥 ' + pvpLabel(1) : '🟦 ' + pvpLabel(2)) + '\u2019s turn — they tap one of THEIR blobs first!');
       return;
     }
     if (p === pvp.turn) {          // selecting your attacker
