@@ -6854,7 +6854,7 @@ var qrcode = function() {
     el.addEventListener('click', fn);
     el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); } });
   }
-  tappable(document.getElementById('worldIcon') || document.querySelector('.hero-icon'), function () { goTo('screen-worlds'); });
+  tappable(document.getElementById('worldIcon') || document.querySelector('.hero-icon'), function () { if (needName()) return; goTo('screen-worlds'); });
   tappable(document.getElementById('bookIcon'), function () { goTo('screen-blobdex'); });
   tappable(document.getElementById('enter-grassy'), function () { switchWorld('grassy'); goTo('screen-levels'); });
 
@@ -6924,8 +6924,9 @@ var qrcode = function() {
     return { v: 2, cur: curWorld, worlds: worldsData, coins: coins, coinsF: coinsF, accs: ownedAccs, equip: equip, name: playerName };
   }
   function saveGame() {
+    if (!playerName) return;   // no ghost profiles — name first!
     var all = loadAll() || { profiles: {}, current: '' };
-    var key = playerName || all.current || 'Player 1';
+    var key = playerName;
     all.profiles[key] = currentSaveObj();
     all.current = key;
     saveAll(all);
@@ -7522,7 +7523,16 @@ var qrcode = function() {
       return icons[w] + (worldBeaten(w) ? '✅' : '·');
     }).join(' ');
   }
-  tappable(document.getElementById('playBtn'), function () { goTo('screen-worlds'); });
+  function needName() {
+    if (playerName) return false;
+    var entry = document.getElementById('nameEntry');
+    entry.hidden = false;
+    document.getElementById('nameInput').focus();
+    document.getElementById('nameInput').placeholder = 'Type your name first!';
+    entry.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return true;
+  }
+  tappable(document.getElementById('playBtn'), function () { if (needName()) return; goTo('screen-worlds'); });
   tappable(document.getElementById('rulesBtn'), function () { goTo('screen-rules'); });
   tappable(document.getElementById('rechooseBtn'), function () { goTo(WCONF[curWorld].chooser); });
   // ----- shop -----
@@ -7806,7 +7816,7 @@ var qrcode = function() {
       }
     }
   });
-  tappable(document.getElementById('battleIcon'), function () { pvpStartPick(1); });
+  tappable(document.getElementById('battleIcon'), function () { if (needName()) return; pvpStartPick(1); });
   tappable(document.getElementById('pvpRematchBtn'), function () { pvpStartPick(1); });
 
   // ➕ dress-up buttons in the blob-dex
@@ -8012,6 +8022,18 @@ var qrcode = function() {
       }
       saveAll(all);
     }
+    // sweep ghost profiles (no progress, no coins, placeholder names)
+    Object.keys(all.profiles).forEach(function (nm) {
+      var p = all.profiles[nm] || {};
+      var w = p.worlds || {};
+      var hasStuff = (p.coins || 0) > 0 || (p.coinsF || 0) > 0 || (p.accs || []).length ||
+        Object.keys(w).some(function (k) { return ((w[k] || {}).gold || []).length || ((w[k] || {}).team || []).length; });
+      if (!hasStuff && nm === 'Player 1') {
+        delete all.profiles[nm];
+        if (all.current === nm) all.current = Object.keys(all.profiles)[0] || '';
+      }
+    });
+    saveAll(all);
     if (window.__pendingImport) {
       var imp = window.__pendingImport;
       var iname = imp.name || 'Player 1';
