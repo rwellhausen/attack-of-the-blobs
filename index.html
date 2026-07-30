@@ -587,6 +587,7 @@
   <path d="M 25 80 q 10 -24 36 -21 q 12 -18 35 -12 q 20 6 22 24 q 19 4 17 22 q -3 18 -24 18 l -66 0 q -22 -4 -20 -31 Z" fill="#ffffff" class="outline thick"/>
   <path d="M 790 60 q 10 -24 36 -21 q 12 -18 35 -12 q 20 6 22 24 q 19 4 17 22 q -3 18 -24 18 l -66 0 q -22 -4 -20 -31 Z" fill="#ffffff" class="outline thick"/>
 </svg><p class="note">Cloth · Heart · new blobs soon!</p></div>
+<div id="enter-mystery" role="button" tabindex="0" style="cursor:pointer"><h2 class="world">❓ ???</h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="width:100%;max-width:760px;display:block;margin:0 auto 10px;border:4px solid #2b2340;border-radius:18px"><rect x="0" y="0" width="900" height="420" fill="#8d8798"/><g fill="none" stroke="#6f6a7d" stroke-width="16" stroke-linecap="round" opacity="0.6"><path d="M 60 90 q 120 -30 260 -10"/><path d="M 560 350 q 150 20 300 -6"/></g><text x="450" y="255" text-anchor="middle" font-family="'Comic Sans MS','Chalkboard SE',cursive" font-size="150" font-weight="bold" fill="#2b2340">???</text></svg><p class="note">? · ? · ?</p></div>
 </div>
 </div>
 
@@ -4678,6 +4679,11 @@
       });
     }
   });
+  tappable(document.getElementById('enter-mystery'), function () {
+    refreshWorldLocks();
+    var b = document.getElementById('worldlock-mystery');
+    if (b) b.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
   tappable(document.getElementById('rechooseBtn'), function () { goTo('screen-choose'); });
   // ----- shop -----
   function updateShop() {
@@ -4924,10 +4930,11 @@
     if (wid === 'skies') return worldBeaten('forest') ? null : 'Beat TINY (Dark Forest level 50) to unlock!';
     if (wid === 'underground') return 'Beat the Sunny Skies boss to unlock!';
     if (wid === 'city') return 'Beat the Deep Underground boss to unlock!';
+    if (wid === 'mystery') return 'Beat the Bustling Buildings boss to unlock!';
     return null;
   }
   function refreshWorldLocks() {
-    ['forest','skies','underground','city'].forEach(function (wid) {
+    ['forest','skies','underground','city','mystery'].forEach(function (wid) {
       var card = document.getElementById('enter-' + wid);
       if (!card) return;
       var badge = document.getElementById('worldlock-' + wid);
