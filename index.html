@@ -129,8 +129,15 @@
     .battlebar { font-size: 1rem; padding: 6px 10px; }
   }
 
-  .authorrow { display:flex; align-items:center; justify-content:center; gap:18px; margin:2px 0 6px; }
-  .authorrow .inventor { max-width:110px; margin:0; }
+  .authorrow { display:flex; align-items:center; justify-content:center; gap:16px; margin:6px 0 2px; }
+  .testerpill { text-align:center; color:#e63946; font-weight:bold; font-size:0.8rem; margin:0; }
+  .whoplay { text-align:center; font-weight:bold; font-size:1.3rem; margin:14px 0 2px; }
+  .profchip { font-size:1.05rem; }
+  .quietbtn { font-size:0.95rem; opacity:0.9; }
+  .homefooter { display:flex; flex-direction:column; align-items:center; gap:12px; margin-top:34px; }
+  .homefooter details { max-width:420px; text-align:center; }
+  .homefooter summary { cursor:pointer; font-weight:bold; color:var(--muted); font-size:0.95rem; }
+  .authorrow .inventor { max-width:92px; margin:0; }
   .authorrow .inventor-caption { margin:0; text-align:left; font-size:1.2rem; }
   .authorrow .inventor-caption span { text-align:left; }
   .bigplay { font:inherit; font-weight:bold; font-size:1.8rem; padding:14px 70px; background:#ffd166; border:5px solid #2b2340; border-radius:24px; cursor:pointer; box-shadow:0 6px 0 rgba(43,35,64,0.3); transition:transform .15s; animation: playpulse 1.6s ease-in-out infinite; }
@@ -229,28 +236,17 @@
     <path d="M 70 350 q -12 10 -14 26"/>
   </g>
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-  <div id="profileBox" style="max-width:460px;margin:22px auto 0;text-align:center">
-    <p class="note" id="playerLine" style="font-weight:bold;cursor:pointer"></p>
+  <div id="profileBox">
+    <p class="whoplay">👤 Who's playing?</p>
+    <p class="note" id="playerLine" style="display:none"></p>
     <div class="profrow" id="profileList"></div>
-    <div id="nameEntry">
-      <p class="note" style="font-weight:bold">👤 Who's playing? Type your name:</p>
-      <input id="nameInput" maxlength="20" style="font:inherit;font-weight:bold;text-align:center;border:4px solid #2b2340;border-radius:14px;padding:8px 12px;width:200px;background:#fffdf5">
+    <div id="nameEntry" hidden>
+      <input id="nameInput" maxlength="20" placeholder="Type your name!" style="font:inherit;font-weight:bold;text-align:center;border:4px solid #2b2340;border-radius:14px;padding:8px 12px;width:210px;background:#fffdf5">
       <button id="nameBtn" class="back" style="position:static">✅ That's me!</button>
     </div>
-    <details style="margin:14px auto 0;max-width:420px">
-      <summary class="note" style="cursor:pointer;font-weight:bold">💾 Save codes (move your game between devices)</summary>
-      <p style="margin:8px 0"><button id="qrBtn" class="back" style="position:static">📱 Show my QR code</button></p>
-      <div id="qrBox" style="display:flex;justify-content:center;margin:8px 0"></div>
-      <p class="note" id="qrHint" hidden>Point the OTHER device\u2019s camera at the square, tap the link that pops up — your game loads there automatically!</p>
-      <p style="margin:8px 0"><button id="exportBtn" class="back" style="position:static">📤 Get my save code</button>
-      <button id="importBtn" class="back" style="position:static">📥 Load this code</button></p>
-      <textarea id="saveCodeBox" rows="4" style="width:95%;font-size:0.8rem;border:3px solid #2b2340;border-radius:10px" placeholder="Your save code appears here — or paste a code and tap Load."></textarea>
-      <p class="note" id="saveCodeMsg"></p>
-    </details>
   </div>
-  <p style="text-align:center;margin:18px 0 4px"><button id="playBtn" class="bigplay">▶ PLAY!</button></p>
+  <p style="text-align:center;margin:16px 0 2px"><button id="playBtn" class="bigplay">▶ PLAY!</button></p>
   <p class="note">Pick a world, choose your blob, and battle to the boss!</p>
-  <p style="text-align:center;margin:2px 0 8px"><button id="rulesBtn" class="back" style="position:static">📜 How to Play</button></p>
   <div class="hero-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" >
   <defs>
     <style>
@@ -365,6 +361,19 @@
     <text x="240" y="452" font-family="'Comic Sans MS','Chalkboard SE',cursive" font-size="58" font-weight="bold" fill="#2b2340" text-anchor="middle" style="paint-order:stroke" stroke="#fff6e0" stroke-width="12" stroke-linejoin="round">2-Player</text>
   </g>
 </svg></div>
+  <div class="homefooter">
+    <button id="rulesBtn" class="back quietbtn" style="position:static">📜 How to Play</button>
+    <details style="margin:14px auto 0;max-width:420px">
+      <summary class="note" style="cursor:pointer;font-weight:bold">💾 Move my game to another device</summary>
+      <p style="margin:8px 0"><button id="qrBtn" class="back" style="position:static">📱 Show my QR code</button></p>
+      <div id="qrBox" style="display:flex;justify-content:center;margin:8px 0"></div>
+      <p class="note" id="qrHint" hidden>Point the OTHER device\u2019s camera at the square, tap the link that pops up — your game loads there automatically!</p>
+      <p style="margin:8px 0"><button id="exportBtn" class="back" style="position:static">📤 Get my save code</button>
+      <button id="importBtn" class="back" style="position:static">📥 Load this code</button></p>
+      <textarea id="saveCodeBox" rows="4" style="width:95%;font-size:0.8rem;border:3px solid #2b2340;border-radius:10px" placeholder="Your save code appears here — or paste a code and tap Load."></textarea>
+      <p class="note" id="saveCodeMsg"></p>
+    </details>
+  </div>
 </div>
 
 <!-- ============ SCREEN 2 : WORLD MAP ============ -->
@@ -7898,7 +7907,6 @@ var qrcode = function() {
 
   // --- player profile ---
   function refreshProfile() {
-    var line = document.getElementById('playerLine');
     var entry = document.getElementById('nameEntry');
     var list = document.getElementById('profileList');
     var all = loadAll() || { profiles: {} };
@@ -7906,20 +7914,19 @@ var qrcode = function() {
     list.innerHTML = '';
     names.forEach(function (nm) {
       var b = document.createElement('button');
-      b.className = 'back' + (nm === playerName ? ' current' : '');
+      b.className = 'back profchip' + (nm === playerName ? ' current' : '');
       b.style.position = 'static';
-      b.textContent = '👤 ' + nm;
+      b.textContent = (nm === playerName ? '✓ ' : '') + nm;
       b.addEventListener('click', function () { if (nm !== playerName) switchProfile(nm); });
       list.appendChild(b);
     });
-    if (playerName) {
-      line.textContent = '👤 Playing as: ' + playerName + ' — tap a name to switch, or add a new player:';
-      line.hidden = false;
-      entry.hidden = false;
-    } else {
-      line.hidden = true;
-      entry.hidden = false;
-    }
+    var add = document.createElement('button');
+    add.className = 'back profchip';
+    add.style.position = 'static';
+    add.textContent = '➕ New player';
+    add.addEventListener('click', function () { entry.hidden = false; document.getElementById('nameInput').focus(); });
+    list.appendChild(add);
+    entry.hidden = names.length > 0;
   }
   tappable(document.getElementById('nameBtn'), function () {
     var v = document.getElementById('nameInput').value.trim();
