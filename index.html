@@ -4533,7 +4533,7 @@
   function levelTap(w, n) {
     switchWorld(w);
     var unlocked = maxGold() + 1;
-    if (n > unlocked) {
+    if (!SANDBOX && n > unlocked) {
       document.getElementById(WCONF[w].lockEl).textContent = '🔒 Level ' + n + ' is locked — beat level ' + unlocked + ' first!';
       return;
     }
@@ -4562,7 +4562,7 @@
     if (st) return st.innerHTML;
     return document.querySelector('#pick-' + name + ' svg').outerHTML;
   }
-  function myStar() { var mg = maxGold(); return mg >= 40 ? 3 : (mg >= 15 ? 2 : 1); }
+  function myStar() { if (SANDBOX) return battleLevel > 40 ? 3 : (battleLevel > 15 ? 2 : 1); var mg = maxGold(); return mg >= 40 ? 3 : (mg >= 15 ? 2 : 1); }
   function enemyStar() { return battleLevel > 40 ? 3 : (battleLevel > 15 ? 2 : 1); }
   function formSvg(fam, star) {
     var st = document.querySelector('#formstore [data-form="' + fam + '-' + star + '"]');
@@ -4754,6 +4754,7 @@
   // ================= THE BATTLE ENGINE =================
   var PROJ = { fire: '🔥', water: '💧', earth: '🪨', wind: '🌪️', dark: '🌑', fairy: '✨', moss: '🍄', tree: '🌰' };
   var battleState = 'idle';   // ready -> selected -> busy -> over
+  var SANDBOX = false;   // tester build: everything unlocked. The real build sets this false.
   var curWorld = 'grassy';
   var WCONF = {
     grassy: { name: 'Grassy Plains', fams: ['earth','fire','water','wind'], screen: 'screen-levels', chooser: 'screen-choose', lockEl: 'lockMsg', arenaBg: '#8fce7f', arenaSweep: '#57a05c', bossName: 'MOMO', winText: 'GRASSY PLAINS IS COMPLETE', secs: ['fire','water','earth','wind'] },
@@ -5261,6 +5262,7 @@
     goTo('screen-pvp-pick');
   }
   function pvpAllowed(fam, star) {
+    if (SANDBOX) return null;
     var w = WORLD_OF[fam];
     var d = (w === curWorld) ? { team: team, gold: goldLevels } : (worldsData[w] || {});
     var t = d.team || [], g = d.gold || [];
@@ -5447,6 +5449,7 @@
 
   // world locks: you must beat the previous world's boss
   function worldLocked(wid) {
+    if (SANDBOX) return null;
     if (wid === 'forest') return worldBeaten('grassy') ? null : 'Beat MOMO (Grassy Plains level 50) to unlock!';
     if (wid === 'skies') return worldBeaten('forest') ? null : 'Beat TINY (Dark Forest level 50) to unlock!';
     if (wid === 'underground') return 'Beat the Sunny Skies boss to unlock!';
