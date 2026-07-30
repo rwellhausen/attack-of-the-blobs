@@ -91,6 +91,8 @@
   .acc-wand { top:34%; left:88%; }
   .acc-cane { top:36%; left:12%; }
   .worldlock { background:#2b2340; color:#ffe9a8; border-radius:12px; padding:8px 14px; text-align:center; font-weight:bold; margin:6px auto 0; max-width:420px; }
+  .profrow { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:6px 0; }
+  .profrow button.current { background:#ffd166; }
   .accbtn { font-size:0.85rem !important; padding:4px 12px !important; margin-left:10px; vertical-align:middle; }
   .pvpcard.chosen { outline:5px solid #ffb703; transform:translateY(-4px); }
   #p1Side, #p2Side { display:flex; flex-direction:row; flex-wrap:wrap; align-items:flex-end; align-content:flex-end; justify-content:center; gap:4px; width:45%; }
@@ -227,13 +229,21 @@
     <path d="M 70 350 q -12 10 -14 26"/>
   </g>
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-  <div id="profileBox" style="max-width:420px;margin:22px auto 0;text-align:center">
+  <div id="profileBox" style="max-width:460px;margin:22px auto 0;text-align:center">
     <p class="note" id="playerLine" style="font-weight:bold;cursor:pointer"></p>
+    <div class="profrow" id="profileList"></div>
     <div id="nameEntry">
       <p class="note" style="font-weight:bold">👤 Who's playing? Type your name:</p>
       <input id="nameInput" maxlength="20" style="font:inherit;font-weight:bold;text-align:center;border:4px solid #2b2340;border-radius:14px;padding:8px 12px;width:200px;background:#fffdf5">
       <button id="nameBtn" class="back" style="position:static">✅ That's me!</button>
     </div>
+    <details style="margin:14px auto 0;max-width:420px">
+      <summary class="note" style="cursor:pointer;font-weight:bold">💾 Save codes (move your game between devices)</summary>
+      <p style="margin:8px 0"><button id="exportBtn" class="back" style="position:static">📤 Get my save code</button>
+      <button id="importBtn" class="back" style="position:static">📥 Load this code</button></p>
+      <textarea id="saveCodeBox" rows="4" style="width:95%;font-size:0.8rem;border:3px solid #2b2340;border-radius:10px" placeholder="Your save code appears here — or paste a code and tap Load."></textarea>
+      <p class="note" id="saveCodeMsg"></p>
+    </details>
   </div>
   <p style="text-align:center;margin:18px 0 4px"><button id="playBtn" class="bigplay">▶ PLAY!</button></p>
   <p class="note">Pick a world, choose your blob, and battle to the boss!</p>
@@ -3212,6 +3222,8 @@
 <div id="screen-pvp-pick" class="screen" hidden>
 <h2 class="world" id="pvpPickTitle">🟥 PLAYER 1 — build your team!</h2>
 <p class="note" style="font-weight:bold" id="pvpPickMsg">Tap up to 3 blobs — ONE world per team! Then tap READY.</p>
+<p class="note" style="font-weight:bold" id="pvpWhoLine">Whose blobs are you using? Tap your name:</p>
+<div class="profrow" id="pvpProfRow"></div>
 <div class="rules" style="max-width:560px;margin-bottom:14px">
   <p style="font-size:0.98rem">🔒 <b>Locked blobs?</b> Earn them in the story: own the blob (pick it at level 1 or buy it at the Shop), beat <b>level 15</b> for ⭐⭐ forms, <b>level 40</b> for ⭐⭐⭐.</p>
   <p style="font-size:0.98rem">🌍 <b>Same world vs same world</b> = classic type battle. <b>Different worlds</b> = ⭐ STAR BATTLE — stars decide, equal stars always hit!</p>
@@ -4480,7 +4492,9 @@
   <p><b>⭐ Evolving:</b> beat level 15 and your blobs grow to two-star ⭐⭐. Beat level 40 → THREE-star ⭐⭐⭐! Big blobs are tough — hits shrink them before they poof.</p>
   <p><b>👑 The boss:</b> level 50! The boss has four colored sections — each one falls ONLY to its matching blob, and takes three hits. Bring all four blobs or you cannot win!</p>
   <p><b>😎 Dress up:</b> buy accessories at the Shop, then tap the ➕ buttons in the Blobdex to put them on your blobs. They wear them into battle!</p>
-  <p><b>⚔️ 2-Player:</b> tap the swords to battle a friend on the same screen — build teams, take turns, best blobs win!</p>
+  <p><b>⚔️ 2-Player:</b> tap the swords to battle a friend on the same screen! Each player taps THEIR name, then builds a team from their OWN blobs — one world per team. Same world = type battle · different worlds = ⭐ STAR BATTLE (stars decide, equal stars always hit).</p>
+  <p><b>👥 Players:</b> every name on the home page is a whole separate game — own coins, own blobs, own levels! Tap a name to switch players, or type a new name to add someone. (Each device keeps its own players.)</p>
+  <p><b>💾 Moving devices:</b> to bring your game to another device: on the OLD device tap "📤 Get my save code" and copy the code. On the NEW device, add your player name, paste the code, and tap "📥 Load this code". Your whole game comes with you!</p>
 </div>
 </div>
 
@@ -4588,11 +4602,42 @@
   }
 
   // --- saving (architecture: all progress lives in one save object) ---
-  function saveGame() {
-    try { stashWorld(); localStorage.setItem('aotb-save', JSON.stringify({ v: 2, cur: curWorld, worlds: worldsData, coins: coins, coinsF: coinsF, accs: ownedAccs, equip: equip, name: playerName })); } catch (e) {}
+  var PROFILES_KEY = 'aotb-profiles';
+  function loadAll() { try { return JSON.parse(localStorage.getItem(PROFILES_KEY)); } catch (e) { return null; } }
+  function saveAll(all) { try { localStorage.setItem(PROFILES_KEY, JSON.stringify(all)); } catch (e) {} }
+  function currentSaveObj() {
+    stashWorld();
+    return { v: 2, cur: curWorld, worlds: worldsData, coins: coins, coinsF: coinsF, accs: ownedAccs, equip: equip, name: playerName };
   }
-  function loadGame() {
-    try { return JSON.parse(localStorage.getItem('aotb-save')) || {}; } catch (e) { return {}; }
+  function saveGame() {
+    var all = loadAll() || { profiles: {}, current: '' };
+    var key = playerName || all.current || 'Player 1';
+    all.profiles[key] = currentSaveObj();
+    all.current = key;
+    saveAll(all);
+  }
+  function applyState(s) {
+    s = s || {};
+    worldsData = (s.worlds && s.v === 2) ? s.worlds : { grassy: null, forest: null };
+    ['grassy', 'forest'].forEach(function (w) { worldsData[w] = worldsData[w] || { team: [], gold: [], chosen: null, enemyTeam: [] }; });
+    curWorld = s.cur || 'grassy';
+    var d = worldsData[curWorld];
+    team = d.team || []; goldLevels = d.gold || []; chosenBlob = d.chosen || null; enemyTeam = d.enemyTeam || [];
+    coins = s.coins || 0; coinsF = s.coinsF || 0;
+    ownedAccs = s.accs || []; equip = s.equip || {};
+    if (s.name) playerName = s.name;
+    applyGold(); refreshWorldLocks(); showCoins(); refreshAccBtns(); refreshProfile();
+    if (team.length && enemyTeam.length) startBattle(); else setFighters();
+  }
+  function switchProfile(name) {
+    if (playerName) saveGame();
+    var all = loadAll() || { profiles: {}, current: '' };
+    var s = all.profiles[name] || { name: name };
+    playerName = name;
+    all.current = name;
+    saveAll(all);
+    applyState(s);
+    saveGame();
   }
 
   document.querySelectorAll('#screen-choose-forest .pick').forEach(function (card) {
@@ -4912,6 +4957,7 @@
   }
   function applyGold() {
     Object.keys(WCONF).forEach(function (w) {
+      document.querySelectorAll('#' + WCONF[w].screen + ' .lvlInner').forEach(function (i) { i.setAttribute('fill', '#5d4a36'); });
       var g = (w === curWorld) ? goldLevels : ((worldsData[w] || {}).gold || []);
       g.forEach(function (n) {
         var inner = document.querySelector('#' + WCONF[w].screen + ' .lvl[data-n="' + n + '"] .lvlInner');
@@ -5254,23 +5300,54 @@
 
   function pvpStartPick(player) {
     pvp.stage = player;
-    document.getElementById('pvpPickTitle').textContent = (player === 1 ? '🟥 PLAYER 1' : '🟦 PLAYER 2') + ' — build your team!';
+    if (player === 1) { saveGame(); pvp.prof1 = pvp.prof1 || playerName || 'Player 1'; }
+    else { pvp.prof2 = pvp.prof2 || playerName || 'Player 2'; }
+    refreshPvpProfRow();
+    document.getElementById('pvpPickTitle').textContent = (player === 1 ? '🟥 ' : '🟦 ') + (player === 1 ? pvp.prof1 : pvp.prof2).toUpperCase() + ' — build your team!';
     document.getElementById('pvpPickMsg').textContent = 'Tap up to 3 blobs — any family, any star form! Then tap READY.';
     document.querySelectorAll('.pvpcard').forEach(function (c) { c.classList.remove('chosen'); });
     refreshPvpCards();
     (player === 1 ? pvp.p1 : pvp.p2).length = 0;
     goTo('screen-pvp-pick');
   }
+  function pvpProfName() { return pvp.stage === 1 ? (pvp.prof1 || playerName) : (pvp.prof2 || playerName); }
   function pvpAllowed(fam, star) {
     if (SANDBOX) return null;
+    var pname = pvpProfName();
+    if (pname === playerName) saveGame();
+    var all = loadAll() || { profiles: {} };
+    var s = all.profiles[pname] || {};
     var w = WORLD_OF[fam];
-    var d = (w === curWorld) ? { team: team, gold: goldLevels } : (worldsData[w] || {});
+    var d = (s.worlds || {})[w] || {};
     var t = d.team || [], g = d.gold || [];
-    if (t.indexOf(fam) < 0) return '🔒 You don\u2019t own ' + NAMES[fam] + ' yet — earn it in ' + WCONF[w].name + '!';
+    if (t.indexOf(fam) < 0) return '🔒 ' + pname + ' doesn\u2019t own ' + NAMES[fam] + ' yet — earn it in ' + WCONF[w].name + '!';
     var mg = g.length ? Math.max.apply(null, g) : 0;
-    if (star === 2 && mg < 15) return '🔒 Beat level 15 in ' + WCONF[w].name + ' to use two-star blobs!';
-    if (star === 3 && mg < 40) return '🔒 Beat level 40 in ' + WCONF[w].name + ' to use three-star blobs!';
+    if (star === 2 && mg < 15) return '🔒 ' + pname + ' must beat level 15 in ' + WCONF[w].name + ' for two-star blobs!';
+    if (star === 3 && mg < 40) return '🔒 ' + pname + ' must beat level 40 in ' + WCONF[w].name + ' for three-star blobs!';
     return null;
+  }
+  function refreshPvpProfRow() {
+    var row = document.getElementById('pvpProfRow');
+    var all = loadAll() || { profiles: {} };
+    var names = Object.keys(all.profiles);
+    if (!names.length) names = [playerName || 'Player 1'];
+    row.innerHTML = '';
+    var active = pvpProfName();
+    names.forEach(function (nm) {
+      var b = document.createElement('button');
+      b.className = 'back' + (nm === active ? ' current' : '');
+      b.style.position = 'static';
+      b.textContent = '👤 ' + nm;
+      b.addEventListener('click', function () {
+        if (pvp.stage === 1) pvp.prof1 = nm; else pvp.prof2 = nm;
+        (pvp.stage === 1 ? pvp.p1 : pvp.p2).length = 0;
+        document.querySelectorAll('.pvpcard').forEach(function (c) { c.classList.remove('chosen'); });
+        refreshPvpProfRow();
+        refreshPvpCards();
+        document.getElementById('pvpPickTitle').textContent = (pvp.stage === 1 ? '🟥 ' : '🟦 ') + nm.toUpperCase() + ' — build your team!';
+      });
+      row.appendChild(b);
+    });
   }
   function refreshPvpCards() {
     document.querySelectorAll('.pvpcard').forEach(function (c) {
@@ -5316,10 +5393,10 @@
     pvpRender();
     document.getElementById('pvpTitle').textContent = pvp.mode === 'star' ? '⭐ STAR BATTLE!' : '⚔️ Player vs Player';
     if (pvp.mode === 'star') {
-      pvpSetMsg('⭐ STAR BATTLE — teams from different worlds, so STARS decide! 🟥 Player 1 goes first.');
+      pvpSetMsg('⭐ STAR BATTLE — teams from different worlds, so STARS decide! 🟥 ' + (pvp.prof1 || 'Player 1') + ' goes first.');
       document.getElementById('pvpNote').textContent = '⭐ Star Battle rules: bigger star beats smaller · equal stars ALWAYS hit · big blobs devolve before they poof!';
     } else {
-      pvpSetMsg('🟥 Player 1 goes first! Tap one of YOUR blobs.');
+      pvpSetMsg('🟥 ' + (pvp.prof1 || 'Player 1') + ' goes first! Tap one of YOUR blobs.');
       document.getElementById('pvpNote').textContent = 'Rules: type advantage always hits · bigger star beats smaller · big blobs devolve before they poof!';
     }
     goTo('screen-pvp');
@@ -5339,12 +5416,12 @@
   }
   function pvpEndTurn() {
     if (!pvp.busy || pvp.over) return;   // only one turn-switch per attack
-    if (!pvpAlive(2).length) { pvpSetMsg('🏆 PLAYER 1 WINS!! All of Player 2\u2019s blobs went poof! Tap "New PvP battle"!'); pvp.over = true; return; }
-    if (!pvpAlive(1).length) { pvpSetMsg('🏆 PLAYER 2 WINS!! All of Player 1\u2019s blobs went poof! Tap "New PvP battle"!'); pvp.over = true; return; }
+    if (!pvpAlive(2).length) { pvpSetMsg('🏆 ' + (pvp.prof1 || 'Player 1').toUpperCase() + ' WINS!! All of ' + (pvp.prof2 || 'Player 2') + '\u2019s blobs went poof! Tap "New PvP battle"!'); pvp.over = true; return; }
+    if (!pvpAlive(1).length) { pvpSetMsg('🏆 ' + (pvp.prof2 || 'Player 2').toUpperCase() + ' WINS!! All of ' + (pvp.prof1 || 'Player 1') + '\u2019s blobs went poof! Tap "New PvP battle"!'); pvp.over = true; return; }
     if (pvpStalemate()) { pvpSetMsg('🤝 STALEMATE! No one can win — this battle is done. Tap "New PvP battle"!'); pvp.over = true; return; }
     pvp.turn = pvp.turn === 1 ? 2 : 1;
     pvp.sel = null; pvp.busy = false;
-    pvpSetMsg((pvp.turn === 1 ? '🟥 Player 1' : '🟦 Player 2') + '\u2019s turn! Tap one of YOUR blobs.');
+    pvpSetMsg((pvp.turn === 1 ? '🟥 ' + (pvp.prof1 || 'Player 1') : '🟦 ' + (pvp.prof2 || 'Player 2')) + '\u2019s turn! Tap one of YOUR blobs.');
   }
   function pvpBlobEl(p, i) { return document.querySelector('.pvpblob[data-player="' + p + '"][data-idx="' + i + '"]'); }
   function pvpHit(att, def, defEl, done) {
@@ -5381,7 +5458,7 @@
     var teamArr = p === 1 ? pvp.p1 : pvp.p2;
     if (!teamArr[i].alive) return;
     if (p !== pvp.turn && !pvp.sel) {
-      pvpSetMsg('It\u2019s ' + (pvp.turn === 1 ? '🟥 Player 1' : '🟦 Player 2') + '\u2019s turn — they tap one of THEIR blobs first!');
+      pvpSetMsg('It\u2019s ' + (pvp.turn === 1 ? '🟥 ' + (pvp.prof1 || 'Player 1') : '🟦 ' + (pvp.prof2 || 'Player 2')) + '\u2019s turn — they tap one of THEIR blobs first!');
       return;
     }
     if (p === pvp.turn) {          // selecting your attacker
@@ -5518,10 +5595,22 @@
   function refreshProfile() {
     var line = document.getElementById('playerLine');
     var entry = document.getElementById('nameEntry');
+    var list = document.getElementById('profileList');
+    var all = loadAll() || { profiles: {} };
+    var names = Object.keys(all.profiles);
+    list.innerHTML = '';
+    names.forEach(function (nm) {
+      var b = document.createElement('button');
+      b.className = 'back' + (nm === playerName ? ' current' : '');
+      b.style.position = 'static';
+      b.textContent = '👤 ' + nm;
+      b.addEventListener('click', function () { if (nm !== playerName) switchProfile(nm); });
+      list.appendChild(b);
+    });
     if (playerName) {
-      line.textContent = '👤 Player: ' + playerName + ' (tap to change)';
+      line.textContent = '👤 Playing as: ' + playerName + ' — tap a name to switch, or add a new player:';
       line.hidden = false;
-      entry.hidden = true;
+      entry.hidden = false;
     } else {
       line.hidden = true;
       entry.hidden = false;
@@ -5530,49 +5619,58 @@
   tappable(document.getElementById('nameBtn'), function () {
     var v = document.getElementById('nameInput').value.trim();
     if (!v) return;
-    playerName = v;
+    document.getElementById('nameInput').value = '';
+    switchProfile(v);
+  });
+  tappable(document.getElementById('exportBtn'), function () {
     saveGame();
-    refreshProfile();
+    var code = btoa(unescape(encodeURIComponent(JSON.stringify(currentSaveObj()))));
+    document.getElementById('saveCodeBox').value = code;
+    document.getElementById('saveCodeBox').select();
+    document.getElementById('saveCodeMsg').textContent = '📤 That\u2019s ' + playerName + '\u2019s whole game! Copy it and paste it on the other device.';
+  });
+  tappable(document.getElementById('importBtn'), function () {
+    try {
+      var s = JSON.parse(decodeURIComponent(escape(atob(document.getElementById('saveCodeBox').value.trim()))));
+      if (!s || s.v !== 2) throw new Error('bad');
+      s.name = playerName || s.name || 'Player 1';
+      playerName = s.name;
+      applyState(s);
+      saveGame();
+      document.getElementById('saveCodeMsg').textContent = '📥 Loaded! ' + playerName + '\u2019s game is now on this device.';
+    } catch (e) {
+      document.getElementById('saveCodeMsg').textContent = '❌ That code didn\u2019t work — make sure you copied ALL of it.';
+    }
   });
   document.getElementById('nameInput').addEventListener('keydown', function (e) {
     if (e.key === 'Enter') document.getElementById('nameBtn').click();
   });
   tappable(document.getElementById('playerLine'), function () {
-    document.getElementById('nameEntry').hidden = false;
-    document.getElementById('nameInput').value = playerName;
-    document.getElementById('playerLine').hidden = true;
+    document.getElementById('nameInput').focus();
   });
   refreshProfile();
 
-  // --- restore saved game on startup ---
+  // --- restore saved games on startup (profile system) ---
   (function () {
-    var s = loadGame();
-    if (s.v === 2 && s.worlds) {
-      worldsData = s.worlds;
-      curWorld = s.cur || 'grassy';
-      var d = worldsData[curWorld] || {};
-      team = d.team || []; goldLevels = d.gold || []; chosenBlob = d.chosen || null; enemyTeam = d.enemyTeam || [];
-    } else {
-      // migrate the old single-world save into Grassy Plains
-      if (s.chosen) chosenBlob = s.chosen;
-      if (s.team) team = s.team;
-      if (chosenBlob && !team.length) team = [chosenBlob];
-      if (s.enemyTeam) enemyTeam = s.enemyTeam;
-      else if (s.enemy) enemyTeam = [s.enemy];
-      if (s.gold) goldLevels = s.gold;
-      worldsData.grassy = { team: team, gold: goldLevels, chosen: chosenBlob, enemyTeam: enemyTeam };
+    var all = loadAll();
+    if (!all) {
+      var legacy = null;
+      try { legacy = JSON.parse(localStorage.getItem('aotb-save')); } catch (e) {}
+      all = { profiles: {}, current: '' };
+      if (legacy) {
+        var k = legacy.name || 'Player 1';
+        legacy.name = k;
+        all.profiles[k] = legacy;
+        all.current = k;
+      }
+      saveAll(all);
     }
-    applyGold();
-    if (s.coins) coins = s.coins;
-    if (s.coinsF) coinsF = s.coinsF;
-    if (s.accs) ownedAccs = s.accs;
-    if (s.equip) equip = s.equip;
-    if (s.name) playerName = s.name;
-    refreshProfile();
-    refreshAccBtns();
-    showCoins();
-    if (team.length && enemyTeam.length) startBattle();
-    setFighters();
+    if (all.current && all.profiles[all.current]) {
+      playerName = all.current;
+      applyState(all.profiles[all.current]);
+    } else {
+      refreshProfile();
+    }
   })();
 </script>
 </body>
