@@ -247,10 +247,7 @@
       <div style="margin-top:16px;border-top:3px dashed #2b2340;padding-top:12px">
         <p class="note" style="font-weight:bold">…or bring your game from another device:</p>
         <p class="note">📱 On your OLD device, open "💾 Move my game" and tap "Show my QR code" — then point THIS device's camera at the square and tap the link. That's it!</p>
-        <p class="note">Or paste a save code:</p>
-        <textarea id="importBox" rows="3" style="width:95%;font-size:0.8rem;border:3px solid #2b2340;border-radius:10px" placeholder="Paste the save code here"></textarea>
-        <p style="margin:6px 0"><button id="importBtn" class="back" style="position:static">📥 Load my game</button></p>
-        <p class="note" id="importMsg"></p>
+        
       </div>
     </div>
   </div>
@@ -377,9 +374,7 @@
       <p style="margin:8px 0"><button id="qrBtn" class="back" style="position:static">📱 Show my QR code</button></p>
       <div id="qrBox" style="display:flex;justify-content:center;margin:8px 0"></div>
       <p class="note" id="qrHint" hidden>Point the OTHER device\u2019s camera at the square, tap the link that pops up — your game loads there automatically!</p>
-      <p style="margin:8px 0"><button id="exportBtn" class="back" style="position:static">📤 Get my save code</button></p>
-      <textarea id="saveCodeBox" rows="4" style="width:95%;font-size:0.8rem;border:3px solid #2b2340;border-radius:10px" placeholder="Your save code appears here — or paste a code and tap Load."></textarea>
-      <p class="note" id="saveCodeMsg"></p>
+      
     </details>
   </div>
 </div>
@@ -4514,7 +4509,7 @@
   <p><b>😎 Dress up:</b> buy accessories at the Shop, then tap the ➕ buttons in the Blobdex to put them on your blobs. They wear them into battle!</p>
   <p><b>⚔️ 2-Player:</b> tap the swords to battle a friend on the same screen! Each player taps THEIR name, then builds a team from their OWN blobs — one world per team. Same world = type battle · different worlds = ⭐ STAR BATTLE (stars decide, equal stars always hit).</p>
   <p><b>👥 Players:</b> every name on the home page is a whole separate game — own coins, own blobs, own levels! Tap a name to switch players, or type a new name to add someone. (Each device keeps its own players.)</p>
-  <p><b>📱 Moving devices (the easy way):</b> on the OLD device, open "💾 Save codes" on the home page and tap "📱 Show my QR code". Point the NEW device’s camera at the square, tap the link that pops up — done! Your whole game appears there. (The long copy-paste code still works too, as a backup.)</p>
+  <p><b>📱 Moving devices (the easy way):</b> on the OLD device, open "💾 Save codes" on the home page and tap "📱 Show my QR code". Point the NEW device’s camera at the square, tap the link that pops up — done! Your whole game appears there.</p>
 </div>
 </div>
 
@@ -7969,9 +7964,8 @@ var qrcode = function() {
       document.getElementById('qrBox').firstChild.style.maxWidth = '260px';
       document.getElementById('qrBox').firstChild.style.height = 'auto';
       document.getElementById('qrHint').hidden = false;
-      document.getElementById('saveCodeMsg').textContent = '📱 That square is ' + playerName + '\u2019s whole game!';
     } catch (e) {
-      document.getElementById('saveCodeMsg').textContent = '❌ Could not make the QR code: ' + e.message;
+      var qh = document.getElementById('qrHint'); qh.hidden = false; qh.textContent = '❌ Could not make the QR code: ' + e.message;
     }
   });
   // arriving with #save=... in the address = a QR was scanned
@@ -7987,25 +7981,8 @@ var qrcode = function() {
       try { history.replaceState(null, '', location.pathname); } catch (e) {}
     }
   })();
-  tappable(document.getElementById('exportBtn'), function () {
-    saveGame();
-    var code = btoa(unescape(encodeURIComponent(JSON.stringify(currentSaveObj()))));
-    document.getElementById('saveCodeBox').value = code;
-    document.getElementById('saveCodeBox').select();
-    document.getElementById('saveCodeMsg').textContent = '📤 That\u2019s ' + playerName + '\u2019s whole game! Copy it and paste it on the other device.';
-  });
-  tappable(document.getElementById('importBtn'), function () {
-    try {
-      var s = JSON.parse(decodeURIComponent(escape(atob(document.getElementById('importBox').value.trim()))));
-      if (!s || s.v !== 2) throw new Error('bad');
-      playerName = s.name || 'Player';
-      applyState(s);
-      saveGame();
-      document.getElementById('importMsg').textContent = '📥 Welcome, ' + playerName + '! Your game is now on this device.';
-    } catch (e) {
-      document.getElementById('importMsg').textContent = '❌ That code didn\u2019t work — make sure you copied ALL of it.';
-    }
-  });
+
+
   document.getElementById('nameInput').addEventListener('keydown', function (e) {
     if (e.key === 'Enter') document.getElementById('nameBtn').click();
   });
@@ -8050,8 +8027,6 @@ var qrcode = function() {
       playerName = iname;
       applyState(imp);
       saveGame();
-      document.getElementById('saveCodeMsg').textContent = '📥 ' + iname + '\u2019s game arrived by QR code!';
-      setMsg && null;
       alertBanner(iname);
     } else if (all.current && all.profiles[all.current]) {
       playerName = all.current;
