@@ -3296,9 +3296,10 @@
 
 <div id="screen-pvp-pick" class="screen" hidden>
 <h2 class="world" id="pvpPickTitle">🟥 PLAYER 1 — build your team!</h2>
-<p class="note" style="font-weight:bold" id="pvpPickMsg">Tap up to 3 blobs — ONE world per team! Then tap READY.</p>
+<p class="note" style="font-weight:bold" id="pvpPickMsg">Tap YOUR name, then build a team from YOUR blobs — up to 3, one world per team!</p>
 <p class="note" style="font-weight:bold" id="pvpWhoLine">Whose blobs are you using? Tap your name:</p>
 <div class="profrow" id="pvpProfRow"></div>
+<p class="note">These are the players on THIS device. Is your opponent's game on their own device? They can bring it here first: Home → PLAY → "📱 From another device".</p>
 <div class="rules" style="max-width:560px;margin-bottom:14px">
   <p style="font-size:0.98rem">🔒 <b>Locked blobs?</b> Earn them in the story: own the blob (pick it at level 1 or buy it at the Shop), beat <b>level 15</b> for ⭐⭐ forms, <b>level 40</b> for ⭐⭐⭐.</p>
   <p style="font-size:0.98rem">🌍 <b>Same world vs same world</b> = classic type battle. <b>Different worlds</b> = ⭐ STAR BATTLE — stars decide, equal stars always hit!</p>
@@ -7729,7 +7730,7 @@ var qrcode = function() {
     else { pvp.prof2 = pvp.prof2 || playerName || 'Player 2'; }
     refreshPvpProfRow();
     document.getElementById('pvpPickTitle').textContent = (player === 1 ? '🟥 ' : '🟦 ') + (player === 1 ? pvp.prof1 : pvp.prof2).toUpperCase() + ' — build your team!';
-    document.getElementById('pvpPickMsg').textContent = 'Tap up to 3 blobs — any family, any star form! Then tap READY.';
+    document.getElementById('pvpPickMsg').textContent = 'Tap YOUR name, then build a team from YOUR blobs — up to 3, one world per team!';
     document.querySelectorAll('.pvpcard').forEach(function (c) { c.classList.remove('chosen'); });
     refreshPvpCards();
     (player === 1 ? pvp.p1 : pvp.p2).length = 0;
