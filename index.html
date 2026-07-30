@@ -131,7 +131,12 @@
 
   .authorrow { display:flex; align-items:center; justify-content:center; gap:16px; margin:6px 0 2px; }
   .testerpill { text-align:center; color:#e63946; font-weight:bold; font-size:0.8rem; margin:0; }
-  .whoplay { text-align:center; font-weight:bold; font-size:1.3rem; margin:14px 0 2px; }
+  .whocards { display:flex; flex-wrap:wrap; gap:16px; justify-content:center; max-width:640px; margin:10px auto; }
+  .whocard { width:150px; background:#fffdf5; border:4px solid #2b2340; border-radius:20px; padding:14px 8px; cursor:pointer; box-shadow:0 5px 0 rgba(43,35,64,0.25); text-align:center; font:inherit; font-weight:bold; font-size:1.15rem; transition:transform .15s; }
+  .whocard:hover { transform:translateY(-4px); }
+  .whocard svg { width:80%; height:auto; display:block; margin:0 auto 6px; }
+  .whocard.addcard { border-style:dashed; background:transparent; }
+  .hubhi { text-align:center; font-weight:bold; font-size:1.7rem; margin:16px 0 10px; }
   .profchip { font-size:1.05rem; }
   .actionchip { background:transparent; border-style:dashed; opacity:0.8; font-size:0.95rem; }
   .quietbtn { font-size:0.95rem; opacity:0.9; }
@@ -184,7 +189,8 @@
 <div class="bgblob" style="left:-70px;top:12%;width:180px;animation-delay:0s;animation-duration:7s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#e63946" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div><div class="bgblob" style="left:82%;top:6%;width:150px;animation-delay:1.5s;animation-duration:8s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#3d6fb4" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div><div class="bgblob" style="left:-50px;top:68%;width:140px;animation-delay:3s;animation-duration:9s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#57a05c" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div><div class="bgblob" style="left:88%;top:62%;width:170px;animation-delay:2s;animation-duration:7.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#8ecbf2" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div><div class="bgblob" style="left:45%;top:82%;width:110px;animation-delay:4s;animation-duration:10s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#ffd166" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div>
   <h1>Attack of the Blobs<span class="dot">!</span></h1>
   <p class="byline">The game · by William</p>
-  <div class="authorrow"><div class="inventor"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" >
+  <p style="text-align:center;margin:60px 0 10px"><button id="playBtn" class="bigplay">▶ PLAY!</button></p>
+  <div class="authorrow" style="margin-top:70px;opacity:0.9"><div class="inventor"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" >
   <defs>
     <style>
       .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
@@ -237,23 +243,26 @@
     <path d="M 70 350 q -12 10 -14 26"/>
   </g>
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-  <div id="profileBox">
-    <p class="whoplay">👤 Who's playing?</p>
-    <p class="note" id="playerLine" style="display:none"></p>
-    <div class="profrow" id="profileList"></div>
-    <div id="nameEntry" hidden>
-      <p class="note" style="font-weight:bold">Type your name to start a brand-new game:</p>
-      <input id="nameInput" maxlength="20" placeholder="Type your name!" style="font:inherit;font-weight:bold;text-align:center;border:4px solid #2b2340;border-radius:14px;padding:8px 12px;width:210px;background:#fffdf5">
-      <button id="nameBtn" class="back" style="position:static">✅ That's me!</button>
-    </div>
-    <div id="portPanel" hidden>
-      <p class="note" style="font-weight:bold">📱 Already playing on another device? Bring your game here:</p>
-      <p class="note">1️⃣ On your OLD device, open the game and tap "💾 Move my game" → "Show my QR code".</p>
-      <p class="note">2️⃣ Point THIS device's camera at the square.</p>
-      <p class="note">3️⃣ Tap the link that pops up — your game appears here, name and all! ✨</p>
-    </div>
+</div>
+
+<div id="screen-who" class="screen" hidden>
+  <h2 class="world">👤 Who's playing?</h2>
+  <div id="whoCards" class="whocards"></div>
+  <div id="nameEntry" hidden style="text-align:center;margin-top:14px">
+    <p class="note" style="font-weight:bold">Type your name to start a brand-new game:</p>
+    <input id="nameInput" maxlength="20" placeholder="Type your name!" style="font:inherit;font-weight:bold;text-align:center;border:4px solid #2b2340;border-radius:14px;padding:10px 12px;width:230px;background:#fffdf5;font-size:1.2rem">
+    <button id="nameBtn" class="back" style="position:static">✅ That's me!</button>
   </div>
-  <p style="text-align:center;margin:16px 0 2px"><button id="playBtn" class="bigplay">▶ PLAY!</button></p>
+  <div id="portPanel" hidden style="margin-top:14px">
+    <p class="note" style="font-weight:bold">📱 Bring your game from another device — 3 steps:</p>
+    <p class="note">1️⃣ On your OLD device, tap "Move my game" on its menu and show the QR code.</p>
+    <p class="note">2️⃣ Point THIS device's camera at the square.</p>
+    <p class="note">3️⃣ Tap the link that pops up — your game appears here! ✨</p>
+  </div>
+</div>
+
+<div id="screen-hub" class="screen" hidden>
+  <p class="hubhi" id="hubGreeting">Hi!</p>
   <div class="hero-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" >
   <defs>
     <style>
@@ -369,6 +378,7 @@
   </g>
 </svg></div>
   <div class="homefooter">
+    <button id="switchBtn" class="back quietbtn" style="position:static">👤 Switch player</button>
     <button id="rulesBtn" class="back quietbtn" style="position:static">📜 How to Play</button>
     <details style="margin:14px auto 0;max-width:420px">
       <summary class="note" style="cursor:pointer;font-weight:bold">💾 Move my game to another device</summary>
@@ -6820,20 +6830,22 @@ var qrcode = function() {
 </script>
 
 <script>
-  var screens = ['screen-home', 'screen-worlds', 'screen-levels', 'screen-battle', 'screen-blobdex', 'screen-choose', 'screen-shop', 'screen-pvp-pick', 'screen-pvp', 'screen-levels-forest', 'screen-levels-skies', 'screen-levels-underground', 'screen-levels-city', 'screen-choose-forest', 'screen-rules'];
+  var screens = ['screen-home', 'screen-who', 'screen-hub', 'screen-worlds', 'screen-levels', 'screen-battle', 'screen-blobdex', 'screen-choose', 'screen-shop', 'screen-pvp-pick', 'screen-pvp', 'screen-levels-forest', 'screen-levels-skies', 'screen-levels-underground', 'screen-levels-city', 'screen-choose-forest', 'screen-rules'];
   // back always goes UP one level in the game, never ping-pongs through history
   var PARENT = {
-    'screen-worlds': 'screen-home',
-    'screen-blobdex': 'screen-home',
+    'screen-who': 'screen-home',
+    'screen-hub': 'screen-who',
+    'screen-worlds': 'screen-hub',
+    'screen-blobdex': 'screen-hub',
     'screen-levels': 'screen-worlds',
     'screen-choose': 'screen-levels',
     'screen-battle': 'screen-levels',
-    'screen-shop': 'screen-home',
-    'screen-pvp-pick': 'screen-home',
-    'screen-pvp': 'screen-home',
+    'screen-shop': 'screen-hub',
+    'screen-pvp-pick': 'screen-hub',
+    'screen-pvp': 'screen-hub',
     'screen-levels-forest': 'screen-worlds',
     'screen-choose-forest': 'screen-levels-forest',
-    'screen-rules': 'screen-home',
+    'screen-rules': 'screen-hub',
     'screen-levels-skies': 'screen-worlds',
     'screen-levels-underground': 'screen-worlds',
     'screen-levels-city': 'screen-worlds'
@@ -6844,7 +6856,7 @@ var qrcode = function() {
     screens.forEach(function (s) { document.getElementById(s).hidden = (s !== id); });
     backBtn.hidden = (id === 'screen-home');
     var cb = document.getElementById('coinBadge');
-    if (cb) cb.style.display = (id === 'screen-home') ? 'none' : '';
+    if (cb) cb.style.display = (id === 'screen-home' || id === 'screen-who') ? 'none' : '';
     window.scrollTo(0, 0);
   }
   function goTo(id) { show(id); }
@@ -6858,7 +6870,7 @@ var qrcode = function() {
     el.addEventListener('click', fn);
     el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); } });
   }
-  tappable(document.getElementById('worldIcon') || document.querySelector('.hero-icon'), function () { if (needName()) return; goTo('screen-worlds'); });
+  tappable(document.getElementById('worldIcon') || document.querySelector('.hero-icon'), function () { goTo('screen-worlds'); });
   tappable(document.getElementById('bookIcon'), function () { goTo('screen-blobdex'); });
   tappable(document.getElementById('enter-grassy'), function () { switchWorld('grassy'); goTo('screen-levels'); });
 
@@ -7527,16 +7539,8 @@ var qrcode = function() {
       return icons[w] + (worldBeaten(w) ? '✅' : '·');
     }).join(' ');
   }
-  function needName() {
-    if (playerName) return false;
-    var entry = document.getElementById('nameEntry');
-    entry.hidden = false;
-    document.getElementById('nameInput').focus();
-    document.getElementById('nameInput').placeholder = 'Type your name first!';
-    entry.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    return true;
-  }
-  tappable(document.getElementById('playBtn'), function () { if (needName()) return; goTo('screen-worlds'); });
+  tappable(document.getElementById('playBtn'), function () { refreshProfile(); goTo('screen-who'); });
+  tappable(document.getElementById('switchBtn'), function () { refreshProfile(); goTo('screen-who'); });
   tappable(document.getElementById('rulesBtn'), function () { goTo('screen-rules'); });
   tappable(document.getElementById('rechooseBtn'), function () { goTo(WCONF[curWorld].chooser); });
   // ----- shop -----
@@ -7820,7 +7824,7 @@ var qrcode = function() {
       }
     }
   });
-  tappable(document.getElementById('battleIcon'), function () { if (needName()) return; pvpStartPick(1); });
+  tappable(document.getElementById('battleIcon'), function () { pvpStartPick(1); });
   tappable(document.getElementById('pvpRematchBtn'), function () { pvpStartPick(1); });
 
   // ➕ dress-up buttons in the blob-dex
@@ -7920,41 +7924,52 @@ var qrcode = function() {
   });
 
   // --- player profile ---
+  var AVATAR_COLORS = ['#e63946', '#3d6fb4', '#57a05c', '#8ecbf2', '#c74fa3', '#ffd166'];
+  function avatarSvg(nm) {
+    var h = 0;
+    for (var i = 0; i < nm.length; i++) h = (h * 31 + nm.charCodeAt(i)) % 9973;
+    var col = AVATAR_COLORS[h % AVATAR_COLORS.length];
+    return '<svg viewBox="0 0 520 600"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="' + col + '" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg>';
+  }
   function refreshProfile() {
+    var cards = document.getElementById('whoCards');
     var entry = document.getElementById('nameEntry');
-    var list = document.getElementById('profileList');
+    var port = document.getElementById('portPanel');
     var all = loadAll() || { profiles: {} };
     var names = Object.keys(all.profiles);
-    list.innerHTML = '';
+    cards.innerHTML = '';
     names.forEach(function (nm) {
-      var b = document.createElement('button');
-      b.className = 'back profchip' + (nm === playerName ? ' current' : '');
-      b.style.position = 'static';
-      b.textContent = (nm === playerName ? '✓ ' : '') + nm;
-      b.addEventListener('click', function () { if (nm !== playerName) switchProfile(nm); });
-      list.appendChild(b);
+      var c = document.createElement('button');
+      c.className = 'whocard';
+      c.innerHTML = avatarSvg(nm) + nm;
+      c.addEventListener('click', function () {
+        if (nm !== playerName) switchProfile(nm);
+        document.getElementById('hubGreeting').textContent = 'Hi, ' + nm + '! What are we doing today?';
+        goTo('screen-hub');
+      });
+      cards.appendChild(c);
     });
-    var port = document.getElementById('portPanel');
     var add = document.createElement('button');
-    add.className = 'back profchip actionchip';
-    add.style.position = 'static';
-    add.textContent = '➕ New player';
+    add.className = 'whocard addcard';
+    add.innerHTML = '<div style="font-size:2.6rem;line-height:1.4">➕</div>New player';
     add.addEventListener('click', function () { entry.hidden = false; port.hidden = true; document.getElementById('nameInput').focus(); });
-    list.appendChild(add);
+    cards.appendChild(add);
     var bring = document.createElement('button');
-    bring.className = 'back profchip actionchip';
-    bring.style.position = 'static';
-    bring.textContent = '📱 From another device';
-    bring.addEventListener('click', function () { port.hidden = false; entry.hidden = true; port.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
-    list.appendChild(bring);
+    bring.className = 'whocard addcard';
+    bring.innerHTML = '<div style="font-size:2.6rem;line-height:1.4">📱</div>From another device';
+    bring.addEventListener('click', function () { port.hidden = false; entry.hidden = true; });
+    cards.appendChild(bring);
     entry.hidden = names.length > 0;
     port.hidden = true;
+    document.getElementById('hubGreeting').textContent = playerName ? 'Hi, ' + playerName + '! What are we doing today?' : 'Hi!';
   }
   tappable(document.getElementById('nameBtn'), function () {
     var v = document.getElementById('nameInput').value.trim();
     if (!v) return;
     document.getElementById('nameInput').value = '';
     switchProfile(v);
+    document.getElementById('hubGreeting').textContent = 'Hi, ' + v + '! What are we doing today?';
+    goTo('screen-hub');
   });
   var SITE_URL = 'https://rwellhausen.github.io/attack-of-the-blobs/';
   function compactSave() {
@@ -7995,9 +8010,7 @@ var qrcode = function() {
   document.getElementById('nameInput').addEventListener('keydown', function (e) {
     if (e.key === 'Enter') document.getElementById('nameBtn').click();
   });
-  tappable(document.getElementById('playerLine'), function () {
-    document.getElementById('nameInput').focus();
-  });
+
   refreshProfile();
 
   // --- restore saved games on startup (profile system) ---
@@ -8036,6 +8049,8 @@ var qrcode = function() {
       playerName = iname;
       applyState(imp);
       saveGame();
+      document.getElementById('hubGreeting').textContent = 'Welcome, ' + iname + '! Your game traveled here by QR code! 📱✨';
+      show('screen-hub');
       alertBanner(iname);
     } else if (all.current && all.profiles[all.current]) {
       playerName = all.current;
