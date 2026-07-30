@@ -74,6 +74,8 @@
   .pick:hover { transform:translateY(-4px); }
   .pick p { text-align:center; font-weight:bold; margin:4px 0 6px; }
   .shopitem.owned { opacity:0.45; }
+  .rules { max-width:640px; margin:0 auto; display:flex; flex-direction:column; gap:10px; }
+  .rules p { background:#fffdf5; border:3px solid #2b2340; border-radius:14px; padding:10px 16px; margin:0; font-size:1.1rem; line-height:1.5; }
   .shoptabs { display:flex; gap:12px; justify-content:center; margin:0 0 14px; }
   .shoptab { opacity:0.55; }
   .shoptab.active { opacity:1; background:#ffd166; }
@@ -234,6 +236,7 @@
   </div>
   <p style="text-align:center;margin:18px 0 4px"><button id="playBtn" class="bigplay">▶ PLAY!</button></p>
   <p class="note">Pick a world, choose your blob, and battle to the boss!</p>
+  <p style="text-align:center;margin:2px 0 8px"><button id="rulesBtn" class="back" style="position:static">📜 How to Play</button></p>
   <div class="hero-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" >
   <defs>
     <style>
@@ -4105,11 +4108,27 @@
 </svg><p>Tree Blob</p><p class="match">💪 beats Moss & Dark<br>😬 loses to Fairy</p></div></div>
 </div>
 
+<div id="screen-rules" class="screen" hidden>
+<h2 class="world">📜 How to Play</h2>
+<div class="rules">
+  <p><b>🎯 The goal:</b> battle through all 50 levels of a world and defeat its BOSS at the end!</p>
+  <p><b>🚩 Starting out:</b> tap PLAY, pick a world, tap level 1, and choose your very first blob. Choose wisely — every blob beats some blobs and loses to others!</p>
+  <p><b>⚔️ Battles take turns:</b> on your turn, tap YOUR blob, then tap the enemy you want to attack. Then the enemy team strikes back. Last team standing wins!</p>
+  <p><b>🔄 Who beats who:</b> a strong hit makes the enemy go POOF 💨 — a weak hit does nothing! Check the arrow circle posters in the 📖 Blobdex to learn the matchups.</p>
+  <p><b>🪙 Coins:</b> beat a level for the FIRST time = <b>+3 coins</b>. Beat it again = +1. Lose = −1. Each world pays its own coins — the Dark Forest pays purple ones! 🟣</p>
+  <p><b>🏪 Buy teammates:</b> from level 5 the enemies come in TEAMS, so you need teammates too! A new blob costs 5 coins at the Shop and joins your team right away. Short on coins? Replay levels you already beat!</p>
+  <p><b>⭐ Evolving:</b> beat level 15 and your blobs grow to two-star ⭐⭐. Beat level 40 → THREE-star ⭐⭐⭐! Big blobs are tough — hits shrink them before they poof.</p>
+  <p><b>👑 The boss:</b> level 50! The boss has four colored sections — each one falls ONLY to its matching blob, and takes three hits. Bring all four blobs or you cannot win!</p>
+  <p><b>😎 Dress up:</b> buy accessories at the Shop, then tap the ➕ buttons in the Blobdex to put them on your blobs. They wear them into battle!</p>
+  <p><b>⚔️ 2-Player:</b> tap the swords to battle a friend on the same screen — build teams, take turns, best blobs win!</p>
+</div>
+</div>
+
 <div id="coinBadge" style="position:fixed;top:14px;right:14px;z-index:10;background:#ffe9a8;border:4px solid #2b2340;border-radius:14px;padding:6px 14px;font-weight:bold;font-size:1.1rem;box-shadow:0 3px 0 rgba(43,35,64,0.3)"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#ffb703" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#ffd166" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#ffb703" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCount">0</span> &nbsp;<svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#5d4a8a" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#8f7cc0" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#5d4a8a" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCountF">0</span></div>
 <button id="backBtn" class="back" hidden>⬅ Back</button>
 
 <script>
-  var screens = ['screen-home', 'screen-worlds', 'screen-levels', 'screen-battle', 'screen-blobdex', 'screen-choose', 'screen-shop', 'screen-pvp-pick', 'screen-pvp', 'screen-levels-forest', 'screen-levels-skies', 'screen-levels-underground', 'screen-levels-city', 'screen-choose-forest'];
+  var screens = ['screen-home', 'screen-worlds', 'screen-levels', 'screen-battle', 'screen-blobdex', 'screen-choose', 'screen-shop', 'screen-pvp-pick', 'screen-pvp', 'screen-levels-forest', 'screen-levels-skies', 'screen-levels-underground', 'screen-levels-city', 'screen-choose-forest', 'screen-rules'];
   // back always goes UP one level in the game, never ping-pongs through history
   var PARENT = {
     'screen-worlds': 'screen-home',
@@ -4122,6 +4141,7 @@
     'screen-pvp': 'screen-home',
     'screen-levels-forest': 'screen-worlds',
     'screen-choose-forest': 'screen-levels-forest',
+    'screen-rules': 'screen-home',
     'screen-levels-skies': 'screen-worlds',
     'screen-levels-underground': 'screen-worlds',
     'screen-levels-city': 'screen-worlds'
@@ -4203,7 +4223,8 @@
     var note = document.getElementById('matchNote');
     note.textContent = '👾 Enemy team: ' + enemyTeam.map(function (n) { return NAMES[n]; }).join(' + ') +
       (es > 1 ? ' — they are ' + es + ' star now!' : '') +
-      (ms > 1 ? ' (Your blobs are ' + ms + ' star!)' : '');
+      (ms > 1 ? ' (Your blobs are ' + ms + ' star!)' : '') +
+      (enemyTeam.length > team.length ? ' 💡 Outnumbered? The Shop sells teammates for 5 coins!' : '');
   }
 
   // --- saving (architecture: all progress lives in one save object) ---
@@ -4538,11 +4559,13 @@
     });
   }
   function winLevel(n) {
-    if (goldLevels.indexOf(n) < 0) goldLevels.push(n);
+    var first = goldLevels.indexOf(n) < 0;
+    if (first) goldLevels.push(n);
     applyGold();
     refreshWorldLocks();
-    addCoins(1);
+    addCoins(first ? 3 : 1);
     saveGame();
+    return first;
   }
 
   var attacker = null, attackerEl = null;
@@ -4561,8 +4584,8 @@
   function elBlob(el) { return { fam: el.dataset.name, star: +el.dataset.star || 1 }; }
   function canHitEls(aEl, dEl) { return pvpCanHit(elBlob(aEl), elBlob(dEl)); }
   function youWin() {
-    winLevel(battleLevel);
-    setMsg('💥 POOF! Level ' + battleLevel + ' is GOLD! +1 coin 🪙 — tap Back, then level ' + (battleLevel + 1) + '!');
+    var first = winLevel(battleLevel);
+    setMsg('💥 POOF! Level ' + battleLevel + ' is GOLD! +' + (first ? 3 : 1) + (curWorld === 'forest' ? ' purple' : '') + ' coin' + (first ? 's' : '') + ' 🪙 — tap Back, then level ' + (battleLevel + 1) + '!');
     battleState = 'over';
   }
   function youLose() {
@@ -4779,6 +4802,7 @@
     }).join(' ');
   }
   tappable(document.getElementById('playBtn'), function () { goTo('screen-worlds'); });
+  tappable(document.getElementById('rulesBtn'), function () { goTo('screen-rules'); });
   tappable(document.getElementById('rechooseBtn'), function () { goTo(WCONF[curWorld].chooser); });
   // ----- shop -----
   function updateShop() {
