@@ -756,7 +756,7 @@
     
   </div>
   <p class="note" id="matchNote" style="font-weight:bold"></p>
-  <p style="text-align:center;margin:14px 0"><button id="againBtn" class="back" style="position:static" hidden>🔄 Battle again</button> <button id="rechooseBtn" class="back" style="position:static" hidden>🔁 Choose a different blob</button></p>
+  <p style="text-align:center;margin:14px 0"><button id="nextBtn" class="back" style="position:static;background:#ffd166" hidden>➡️ Next level!</button> <button id="againBtn" class="back" style="position:static" hidden>🔄 Battle again</button> <button id="rechooseBtn" class="back" style="position:static" hidden>🔁 Choose a different blob</button></p>
 
 </div>
 
@@ -6862,7 +6862,7 @@ var qrcode = function() {
   function goTo(id) { show(id); }
   backBtn.addEventListener('click', function () {
     var c = current();
-    if (c === 'screen-battle' && curWorld !== 'grassy') { show(WCONF[curWorld].screen); return; }
+    if (c === 'screen-battle') { show(WCONF[curWorld].screen); scrollToFrontier(curWorld); return; }
     show(PARENT[c] || 'screen-home');
   });
 
@@ -6872,8 +6872,16 @@ var qrcode = function() {
   }
   tappable(document.getElementById('worldIcon') || document.querySelector('.hero-icon'), function () { goTo('screen-worlds'); });
   tappable(document.getElementById('bookIcon'), function () { goTo('screen-blobdex'); });
-  tappable(document.getElementById('enter-grassy'), function () { switchWorld('grassy'); goTo('screen-levels'); });
+  tappable(document.getElementById('enter-grassy'), function () { switchWorld('grassy'); goTo('screen-levels'); scrollToFrontier('grassy'); });
 
+  function scrollToFrontier(w) {
+    var sc = document.querySelector('#' + WCONF[w].screen + ' [id$="Scroll"], #' + WCONF[w].screen + ' .lvlscroll');
+    if (!sc) return;
+    var g = (w === curWorld) ? goldLevels : ((worldsData[w] || {}).gold || []);
+    var frontier = Math.min(g.length ? Math.max.apply(null, g) + 1 : 1, 50);
+    var lv = document.querySelector('#' + WCONF[w].screen + ' .lvl[data-n="' + frontier + '"]');
+    if (lv) sc.scrollLeft = Math.max(0, (+lv.dataset.x) - sc.clientWidth / 2);
+  }
   function levelTap(w, n) {
     switchWorld(w);
     var unlocked = maxGold() + 1;
@@ -7216,6 +7224,7 @@ var qrcode = function() {
   function startBattle() {
     bossMode = (battleLevel === 50);
     document.getElementById('againBtn').hidden = true;   // reroll only allowed after a loss or stalemate
+    document.getElementById('nextBtn').hidden = true;
     attacker = null; attackerEl = null;
     var bgR = document.getElementById('arenaBgRect'); if (bgR) bgR.setAttribute('fill', WCONF[curWorld].arenaBg);
     var swp = document.getElementById('arenaSweeps'); if (swp) swp.setAttribute('stroke', WCONF[curWorld].arenaSweep);
@@ -7323,8 +7332,9 @@ var qrcode = function() {
   function canHitEls(aEl, dEl) { return pvpCanHit(elBlob(aEl), elBlob(dEl)); }
   function youWin() {
     var first = winLevel(battleLevel);
-    setMsg('💥 POOF! Level ' + battleLevel + ' is GOLD! +' + (first ? 3 : 1) + (curWorld === 'forest' ? ' purple' : '') + ' coin' + (first ? 's' : '') + ' 🪙 — tap Back, then level ' + (battleLevel + 1) + '!');
+    setMsg('💥 POOF! Level ' + battleLevel + ' is GOLD! +' + (first ? 3 : 1) + (curWorld === 'forest' ? ' purple' : '') + ' coin' + (first ? 's' : '') + ' 🪙');
     battleState = 'over';
+    if (battleLevel < 50) document.getElementById('nextBtn').hidden = false;
   }
   function youLose() {
     addCoins(-1); saveGame();
@@ -7607,6 +7617,7 @@ var qrcode = function() {
       msg.textContent = '🎉 ' + NAMES[name] + ' joins your ' + WCONF[w].name + ' team!';
     });
   });
+  tappable(document.getElementById('nextBtn'), function () { levelTap(curWorld, battleLevel + 1); });
   tappable(document.getElementById('againBtn'), function () {
     newEnemy();
     startBattle();
@@ -7891,6 +7902,7 @@ var qrcode = function() {
     if (why) { refreshWorldLocks(); document.getElementById('worldlock-forest').scrollIntoView({behavior:'smooth', block:'center'}); return; }
     switchWorld('forest');
     goTo('screen-levels-forest');
+    scrollToFrontier('forest');
   });
   tappable(document.getElementById('enter-skies'), function () {
     var why = worldLocked('skies');
