@@ -133,6 +133,7 @@
   .testerpill { text-align:center; color:#e63946; font-weight:bold; font-size:0.8rem; margin:0; }
   .whoplay { text-align:center; font-weight:bold; font-size:1.3rem; margin:14px 0 2px; }
   .profchip { font-size:1.05rem; }
+  .actionchip { background:transparent; border-style:dashed; opacity:0.8; font-size:0.95rem; }
   .quietbtn { font-size:0.95rem; opacity:0.9; }
   .homefooter { display:flex; flex-direction:column; align-items:center; gap:12px; margin-top:34px; }
   .homefooter details { max-width:420px; text-align:center; }
@@ -7935,13 +7936,13 @@ var qrcode = function() {
     });
     var port = document.getElementById('portPanel');
     var add = document.createElement('button');
-    add.className = 'back profchip';
+    add.className = 'back profchip actionchip';
     add.style.position = 'static';
     add.textContent = '➕ New player';
     add.addEventListener('click', function () { entry.hidden = false; port.hidden = true; document.getElementById('nameInput').focus(); });
     list.appendChild(add);
     var bring = document.createElement('button');
-    bring.className = 'back profchip';
+    bring.className = 'back profchip actionchip';
     bring.style.position = 'static';
     bring.textContent = '📱 From another device';
     bring.addEventListener('click', function () { port.hidden = false; entry.hidden = true; port.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
