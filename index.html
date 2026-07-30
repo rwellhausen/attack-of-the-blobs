@@ -3956,7 +3956,7 @@
 </div>
 
 <div id="screen-pvp" class="screen" hidden>
-<h2 class="world">⚔️ Player vs Player</h2>
+<h2 class="world" id="pvpTitle">⚔️ Player vs Player</h2>
 <div class="battlebar" id="pvpMsg">Player 1 goes first!</div>
 <div class="arena" id="pvpArena">
   <svg class="bg" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
@@ -5274,6 +5274,10 @@
       var fam = card.dataset.fam, star = +card.dataset.star;
       var why = pvpAllowed(fam, star);
       if (why) { document.getElementById('pvpPickMsg').textContent = why; return; }
+      if (teamArr.length && WORLD_OF[teamArr[0].fam] !== WORLD_OF[fam]) {
+        document.getElementById('pvpPickMsg').textContent = '🌍 One world per team! This team is ' + WCONF[WORLD_OF[teamArr[0].fam]].name + ' blobs only — tap your picks to remove them if you want to switch worlds.';
+        return;
+      }
       var i = teamArr.findIndex(function (b) { return b.fam === fam && b.star === star; });
       if (i > -1) { teamArr.splice(i, 1); card.classList.remove('chosen'); return; }
       if (teamArr.length >= 3) { document.getElementById('pvpPickMsg').textContent = 'Team is full (3)! Tap a chosen blob to remove it.'; return; }
@@ -5299,13 +5303,21 @@
   }
   function pvpStartBattle() {
     pvp.turn = 1; pvp.sel = null; pvp.busy = false; pvp.over = false;
+    pvp.mode = (WORLD_OF[pvp.p1[0].fam] === WORLD_OF[pvp.p2[0].fam]) ? 'type' : 'star';
     pvpRender();
-    pvpSetMsg('🟥 Player 1 goes first! Tap one of YOUR blobs.');
-    document.getElementById('pvpNote').textContent = 'Rules: higher star beats lower star · equal stars use the element circle · big blobs devolve before they poof!';
+    document.getElementById('pvpTitle').textContent = pvp.mode === 'star' ? '⭐ STAR BATTLE!' : '⚔️ Player vs Player';
+    if (pvp.mode === 'star') {
+      pvpSetMsg('⭐ STAR BATTLE — teams from different worlds, so STARS decide! 🟥 Player 1 goes first.');
+      document.getElementById('pvpNote').textContent = '⭐ Star Battle rules: bigger star beats smaller · equal stars ALWAYS hit · big blobs devolve before they poof!';
+    } else {
+      pvpSetMsg('🟥 Player 1 goes first! Tap one of YOUR blobs.');
+      document.getElementById('pvpNote').textContent = 'Rules: type advantage always hits · bigger star beats smaller · big blobs devolve before they poof!';
+    }
     goTo('screen-pvp');
   }
   function pvpAlive(p) { return (p === 1 ? pvp.p1 : pvp.p2).filter(function (b) { return b.alive; }); }
   function pvpCanHit(a, d) {
+    if (pvp.mode === 'star') return a.star >= d.star;            // STAR BATTLE: bigger wins, equal always hits
     if ((BEATS[a.fam] || []).indexOf(d.fam) > -1) return true;   // TYPE IS KING: type-strong always hits, even when smaller!
     if ((BEATS[d.fam] || []).indexOf(a.fam) > -1) return false;  // type-weak never hits, even when bigger
     if (a.star > d.star) return true;   // neutral or mirror: bigger wins
