@@ -227,7 +227,7 @@
   <!-- ============ CARD 1 : BOOK (top-left) ============ -->
   <g id="bookIcon" role="button" tabindex="0" aria-label="Open the blob-dex" style="cursor:pointer"><g transform="translate(75,75)">
     <rect x="0" y="0" width="480" height="480" rx="60" fill="#ffd166" class="outline thick"/>
-    <g transform="translate(240,250) rotate(-18)">
+    <g transform="translate(240,218) rotate(-18)">
       <!-- page block (side) -->
       <path d="M -130 -150 L 150 -150 L 175 -120 L 175 160 L -105 160 L -130 130 Z" fill="#fff6e0" class="outline thick"/>
       <!-- page lines -->
@@ -242,7 +242,7 @@
   </g>
 
   <!-- ============ CARD 2 : SHOP SIGN (top-right) ============ -->
-  </g><g id="shopIcon" role="button" tabindex="0" style="cursor:pointer" transform="translate(645,75)">
+  <text x="315" y="527" font-family="'Comic Sans MS','Chalkboard SE',cursive" font-size="58" font-weight="bold" fill="#2b2340" text-anchor="middle" style="paint-order:stroke" stroke="#fff6e0" stroke-width="12" stroke-linejoin="round">Blobdex</text></g><g id="shopIcon" role="button" tabindex="0" style="cursor:pointer" transform="translate(645,75)">
     <rect x="0" y="0" width="480" height="480" rx="60" fill="#8ecae6" class="outline thick"/>
     <!-- hanging chains -->
     <path d="M 240 60 L 130 150 M 240 60 L 350 150" fill="none" class="outline mid"/>
@@ -285,6 +285,7 @@
     <path d="M 150 130 q 30 -32 72 -34" fill="none" stroke="#dff2ff" stroke-width="12" stroke-linecap="round" opacity="0.9"/>
     <!-- sparkles -->
     <path d="M 388 120 l 0 -30 M 388 105 l -15 0 l 30 0 M 92 400 l 0 -22 M 92 389 l -11 0 l 22 0" fill="none" class="outline thin"/>
+    <text x="240" y="452" font-family="'Comic Sans MS','Chalkboard SE',cursive" font-size="58" font-weight="bold" fill="#2b2340" text-anchor="middle" style="paint-order:stroke" stroke="#fff6e0" stroke-width="12" stroke-linejoin="round">Worlds</text>
   </g>
 
   <!-- ============ CARD 4 : SWORD & PENCIL (bottom-right) ============ -->
@@ -321,14 +322,10 @@
     <g class="outline thin" fill="none">
       <path d="M 240 150 l 0 -20 M 240 330 l 0 20 M 150 240 l -20 0 M 330 240 l 20 0"/>
     </g>
+    <text x="240" y="452" font-family="'Comic Sans MS','Chalkboard SE',cursive" font-size="58" font-weight="bold" fill="#2b2340" text-anchor="middle" style="paint-order:stroke" stroke="#fff6e0" stroke-width="12" stroke-linejoin="round">2-Player</text>
   </g>
 </svg></div>
-  <div class="iconlabels">
-    <span id="chip-dex" role="button" tabindex="0">📖 Blobdex</span>
-    <span id="chip-shop" role="button" tabindex="0">🏪 Shop</span>
-    <span id="chip-worlds" role="button" tabindex="0">🌍 Worlds</span>
-    <span id="chip-pvp" role="button" tabindex="0">⚔️ 2-Player</span>
-  </div>
+  
   <p class="note" id="conqueredLine" style="font-weight:bold"></p>
   <div id="profileBox" style="max-width:420px;margin:22px auto 0;text-align:center">
     <p class="note" id="playerLine" style="font-weight:bold;cursor:pointer"></p>
@@ -4702,10 +4699,6 @@
     var b = document.getElementById('worldlock-mystery');
     if (b) b.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
-  tappable(document.getElementById('chip-worlds'), function () { goTo('screen-worlds'); });
-  tappable(document.getElementById('chip-dex'), function () { goTo('screen-blobdex'); });
-  tappable(document.getElementById('chip-shop'), function () { updateShop(); goTo('screen-shop'); });
-  tappable(document.getElementById('chip-pvp'), function () { pvpStartPick(1); });
   function updateHomeStats() {
     var icons = { grassy: '🌄', forest: '🌲', skies: '☀️', underground: '⛏️', city: '🏙️', mystery: '❓' };
     var el = document.getElementById('conqueredLine');
