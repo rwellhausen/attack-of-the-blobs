@@ -717,7 +717,7 @@
   </div>
   <p class="note" id="matchNote" style="font-weight:bold"></p>
   <p style="text-align:center;margin:14px 0"><button id="againBtn" class="back" style="position:static" hidden>🔄 Battle again</button> <button id="rechooseBtn" class="back" style="position:static" hidden>🔁 Choose a different blob</button></p>
-<p class="note">The grassy battlefield of Grassy Plains.</p>
+
 </div>
 
 <div id="screen-blobdex" class="screen" hidden>
@@ -4157,7 +4157,7 @@
     var ms = myStar(), es = enemyStar();
     var w = team.length === 1 ? 90 : (team.length === 2 ? 60 : 46);
     document.getElementById('yourBlob').innerHTML = team.map(function (n) {
-      return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '" style="width:' + w + '%">' + formSvg(n, ms) + accHtml(n) + '</div>';
+      return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '" style="width:' + w + '%">' + formSvg(n, ms) + accHtml(n, ms) + '</div>';
     }).join('');
     var we = enemyTeam.length === 1 ? 90 : (enemyTeam.length === 2 ? 60 : 46);
     document.getElementById('enemyBlob').innerHTML = enemyTeam.map(function (n) {
@@ -4359,7 +4359,18 @@
   var ACCS = { shades: { emoji: '🕶️', name: 'Sunglasses' }, tophat: { emoji: '🎩', name: 'Top Hat' }, bow: { emoji: '🎀', name: 'Bow' }, crown: { emoji: '👑', name: 'Crown' }, wand: { emoji: '🪄', name: 'Magic Wand' }, cane: { emoji: '🦯', name: 'Cane' } };
   var ownedAccs = [];
   var equip = {};
-  function accHtml(fam) { return equip[fam] ? '<div class="accessory acc-' + equip[fam] + '">' + ACCS[equip[fam]].emoji + '</div>' : ''; }
+  var EYE = {"fire-1": [50.0, 48.3], "fire-2": [49.5, 50.0], "fire-3": [50.0, 55.0], "water-1": [50.0, 48.3], "water-2": [50.0, 44.2], "water-3": [35.6, 43.8], "earth-1": [50.0, 48.3], "earth-2": [50.0, 49.2], "earth-3": [50.0, 41.3], "wind-1": [50.0, 48.3], "wind-2": [50.2, 35.3], "wind-3": [48.1, 29.2], "dark-1": [50.0, 48.3], "dark-2": [50.0, 47.5], "dark-3": [23.1, 44.5], "fairy-1": [50.0, 48.3], "fairy-2": [50.2, 36.7], "fairy-3": [50.2, 35.5], "moss-1": [50.0, 48.3], "moss-2": [50.0, 55.0], "moss-3": [50.5, 50.0], "tree-1": [50.0, 54.2], "tree-2": [50.0, 42.5], "tree-3": [50.3, 35.8]};  // eye midpoint of every blob form, % of art box
+  function accHtml(fam, star) {
+    var a = equip[fam];
+    if (!a) return '';
+    var e = EYE[fam + '-' + (star || 1)] || [50, 45];
+    var x = e[0], y = e[1], pos;
+    if (a === 'shades') pos = 'left:' + x + '%;top:' + y + '%;transform:translate(-50%,-55%);';
+    else if (a === 'wand') pos = 'left:' + Math.min(x + 26, 86) + '%;top:' + (y + 8) + '%;transform:translate(-50%,-50%);';
+    else if (a === 'cane') pos = 'left:' + Math.max(x - 26, 14) + '%;top:' + (y + 8) + '%;transform:translate(-50%,-50%);';
+    else pos = 'left:' + x + '%;top:' + Math.max(y - 12, 3) + '%;transform:translate(-50%,-92%);';
+    return '<div class="accessory" style="' + pos + '">' + ACCS[a].emoji + '</div>';
+  }
   var battleLevel = 1;
   function maxGold() { return goldLevels.length ? Math.max.apply(null, goldLevels) : 0; }
   function wouldStalemate(cand) {
@@ -4420,7 +4431,7 @@
       var ms = myStar();
       var w = team.length === 1 ? 90 : (team.length === 2 ? 60 : 46);
       yourSpan.innerHTML = team.map(function (n) {
-        return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '" style="width:' + w + '%">' + formSvg(n, ms) + accHtml(n) + '</div>';
+        return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '" style="width:' + w + '%">' + formSvg(n, ms) + accHtml(n, ms) + '</div>';
       }).join('');
       renderMomo();
       var bn = WCONF[curWorld].bossName;
@@ -4731,7 +4742,7 @@
     }).join(' ');
   }
   tappable(document.getElementById('playBtn'), function () { goTo('screen-worlds'); });
-  tappable(document.getElementById('rechooseBtn'), function () { goTo('screen-choose'); });
+  tappable(document.getElementById('rechooseBtn'), function () { goTo(WCONF[curWorld].chooser); });
   // ----- shop -----
   function updateShop() {
     document.querySelectorAll('.shopitem').forEach(function (item) {
@@ -4956,14 +4967,14 @@
 
   // ➕ dress-up buttons in the blob-dex
   function refreshAccBtns() {
-    ['fire','water','earth','wind'].forEach(function (fam) {
+    ['fire','water','earth','wind','dark','fairy','moss','tree'].forEach(function (fam) {
       var b = document.getElementById('accbtn-' + fam);
       if (!b) return;
       b.textContent = equip[fam] ? '➕ ' + ACCS[equip[fam]].emoji : (ownedAccs.length ? '➕ dress up' : '➕');
     });
   }
   document.querySelectorAll('#screen-blobdex h3.element').forEach(function (h) {
-    ['fire','water','earth','wind'].forEach(function (fam) {
+    ['fire','water','earth','wind','dark','fairy','moss','tree'].forEach(function (fam) {
       if (h.textContent.indexOf(NAMES[fam]) !== 0) return;
       var btn = document.createElement('button');
       btn.className = 'back accbtn';
