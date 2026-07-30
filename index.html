@@ -140,9 +140,12 @@
   .profchip { font-size:1.05rem; }
   .actionchip { background:transparent; border-style:dashed; opacity:0.8; font-size:0.95rem; }
   .quietbtn { font-size:0.95rem; opacity:0.9; }
-  .homefooter { display:flex; flex-direction:column; align-items:center; gap:12px; margin-top:34px; }
+  .homefooter { display:flex; flex-direction:row; flex-wrap:wrap; align-items:baseline; justify-content:center; gap:8px 30px; margin-top:34px; }
+  .quietlink { font:inherit; font-weight:bold; font-size:0.98rem; color:var(--muted); background:transparent; border:none; cursor:pointer; padding:4px; }
+  .quietlink:hover { text-decoration:underline; color:#2b2340; }
   .homefooter details { max-width:420px; text-align:center; }
-  .homefooter summary { cursor:pointer; font-weight:bold; color:var(--muted); font-size:0.95rem; }
+  .homefooter summary { cursor:pointer; font-weight:bold; color:var(--muted); font-size:0.98rem; padding:4px; list-style-position:inside; }
+  .homefooter summary:hover { text-decoration:underline; color:#2b2340; }
   .authorrow .inventor { max-width:92px; margin:0; }
   .authorrow .inventor-caption { margin:0; text-align:left; font-size:1.2rem; }
   .authorrow .inventor-caption span { text-align:left; }
@@ -380,7 +383,7 @@
   </g>
 </svg></div>
   <div class="homefooter">
-    <button id="switchBtn" class="back quietbtn" style="position:static">👤 Switch player</button>
+    <button id="switchBtn" class="quietlink">👤 Switch player</button>
     <details style="margin:14px auto 0;max-width:420px">
       <summary class="note" style="cursor:pointer;font-weight:bold">💾 Move my game to another device</summary>
       <p style="margin:8px 0"><button id="qrBtn" class="back" style="position:static">📱 Show my QR code</button></p>
