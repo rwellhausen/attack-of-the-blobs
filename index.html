@@ -115,6 +115,20 @@
   @keyframes iproj { from { transform:translate(0,0) scale(1); opacity:1; } to { transform:translate(var(--dx,-20vw),34vh) scale(1.4); opacity:0.9; } }
   @keyframes iflee { to { transform:translateX(-130vw); } }
   @media (prefers-reduced-motion: reduce) { #introScene * { animation:none !important; } }
+  #outroScene { position:fixed; inset:0; z-index:60; background:#8fce7f; overflow:hidden; cursor:pointer; }
+  #outroScene .oblob { position:absolute; bottom:10%; width:17%; animation: ojump 0.45s ease-in-out infinite alternate; }
+  #outroScene .ohooray { position:absolute; bottom:36%; width:17%; text-align:center; font-size:clamp(24px,5vw,42px); animation: ojump 0.45s ease-in-out infinite alternate; }
+  #outroScene .omomo { position:absolute; bottom:26%; left:58%; width:26%; animation: owalkoff 3.2s ease-in 0.8s forwards; }
+  #outroScene .otiny { position:absolute; bottom:24%; right:-45%; width:30%; animation: otinyin 1.4s ease-out forwards; }
+  #outroScene .oguard { position:absolute; bottom:8%; width:13%; right:-20%; animation: oguardin 1.2s ease-out forwards; }
+  #outroScene.thump { animation: othump 0.45s ease-in-out 2; }
+  #outroScene .ocaption { position:absolute; top:7%; left:50%; transform:translateX(-50%); width:min(560px,92%); background:#fffdf5; border:4px solid #2b2340; border-radius:16px; padding:10px 16px; font-weight:800; font-size:clamp(1rem,3.6vw,1.3rem); text-align:center; box-shadow:0 4px 0 rgba(43,35,64,0.25); }
+  @keyframes ojump { from { transform:translateY(0); } to { transform:translateY(-16%); } }
+  @keyframes owalkoff { to { transform:translateX(70vw); } }
+  @keyframes otinyin { to { right:4%; } }
+  @keyframes oguardin { to { right:var(--gr,30%); } }
+  @keyframes othump { 0%,100% { transform:translateX(0); } 25% { transform:translateX(-14px); } 75% { transform:translateX(14px); } }
+  @media (prefers-reduced-motion: reduce) { #outroScene * { animation:none !important; } }
   .pvpworld-h { text-align:center; font-weight:bold; font-size:1.2rem; margin:16px 0 4px; color:#2b2340; }
   .accitem .emoji { font-size:56px; text-align:center; padding:12px 0 0; }
   .teammate { position:relative; container-type: inline-size; }
@@ -376,7 +390,7 @@
   </g>
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
   <div class="parade"><div class="walker" style="width:72px;animation-duration:16s;animation-delay:0s"><div class="hopper" style="animation-delay:0s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#e63946" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(180,88) scale(0.32)" stroke="#2b2340" stroke-width="14" fill="#ffd166"><path d="M 20 160 L 20 40 L 90 100 L 160 20 L 230 100 L 300 40 L 300 160 Z"/></g></svg></div></div><div class="walker" style="width:56px;animation-duration:14s;animation-delay:2.5s"><div class="hopper" style="animation-delay:2.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#3d6fb4" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:64px;animation-duration:17s;animation-delay:5s"><div class="hopper" style="animation-delay:5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#57a05c" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g stroke="#2b2340" stroke-width="8" fill="#141020"><circle cx="225" cy="290" r="26"/><circle cx="295" cy="290" r="26"/><path d="M 251 290 L 269 290 M 199 284 L 175 274 M 321 284 L 345 274" fill="none"/></g></svg></div></div><div class="walker" style="width:48px;animation-duration:13s;animation-delay:8s"><div class="hopper" style="animation-delay:8s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#c74fa3" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:60px;animation-duration:15s;animation-delay:10.5s"><div class="hopper" style="animation-delay:10.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#d0a97f" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(155,60) scale(1.6)"><rect x="20" y="30" width="90" height="14" rx="7" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="-28" width="54" height="60" rx="8" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="16" width="54" height="12" fill="#b8860b"/></g></svg></div></div><div class="walker" style="width:52px;animation-duration:16s;animation-delay:13s"><div class="hopper" style="animation-delay:13s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#8ecbf2" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div></div>
-  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-07-31 12:54</p>
+  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-07-31 12:57</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -15129,6 +15143,7 @@ var qrcode = function() {
             setMsg('💚 MAD ' + WCONF[curWorld].bossName + ' IS FREED FROM THE MAD-RAY!! ' + (rushProgress >= 6 ? 'ALL SIX BOSSES ARE FREE — only the SCIENTIST remains…' : 'Tap Back to face the next mad boss!'));
           } else {
             setMsg('🏆👑 ' + WCONF[curWorld].bossName + ' IS DEFEATED!! ' + WCONF[curWorld].winText + '! +5 ' + CNAME[curWorld] + ' ' + CEMOJI[curWorld] + '! You are the CHAMPION' + (playerName ? ', ' + playerName : '') + '!');
+            if (curWorld === 'grassy') setTimeout(momoOutro, 1300);
           }
           battleState = 'over';
         } else {
@@ -15268,6 +15283,53 @@ var qrcode = function() {
       if (c) c.insertAdjacentHTML('afterend', '<div class="icaption" style="top:auto;bottom:16%;background:#ffe9a8">▶ Tap to START!</div>');
     }, 11200));
     timers.push(setTimeout(finish, 16000));
+  }
+  function momoOutro() {
+    if (document.getElementById('outroScene')) return;
+    var O = document.createElement('div');
+    O.id = 'outroScene';
+    var fams = team.length ? team : ['fire', 'water', 'earth', 'wind'];
+    var party = fams.map(function (f, i) {
+      return '<div class="oblob" style="left:' + (5 + i * 13) + '%;animation-delay:' + (i * 0.12) + 's">' + uniqueSvg(formSvg(f, 3)) + '</div>' +
+        '<div class="ohooray" style="left:' + (5 + i * 13) + '%;animation-delay:' + (i * 0.12) + 's">🎉</div>';
+    }).join('');
+    O.innerHTML = party +
+      '<div class="omomo">' + uniqueSvg(MOMO_SVG) + '</div>' +
+      '<div class="ocaption" id="ocap">MOMO IS FREE! HOORAY! 🎉</div>' +
+      '<div class="iskip">⏭️ tap to skip</div>';
+    document.body.appendChild(O);
+    var timers = [];
+    var done = false;
+    function finish() {
+      if (done) return;
+      done = true;
+      timers.forEach(clearTimeout);
+      if (O.parentNode) O.remove();
+    }
+    var armed = false;
+    setTimeout(function () { armed = true; }, 800);
+    O.addEventListener('click', function () { if (armed) finish(); });
+    var cap = function (t) { var c = document.getElementById('ocap'); if (c) c.textContent = t; };
+    try { playSound('fairy'); } catch (e) {}
+    timers.push(setTimeout(function () {
+      cap('…wait. What was that THUMP?! 👂');
+      O.classList.add('thump');
+      try { playSound('earth'); } catch (e) {}
+      [].forEach.call(O.querySelectorAll('.ohooray'), function (h) { h.textContent = '❗'; });
+    }, 4600));
+    timers.push(setTimeout(function () {
+      cap('TINY: “You\u2019re not getting past us. We\u2019re gonna STOP you!”');
+      O.insertAdjacentHTML('beforeend', '<div class="otiny">' + uniqueSvg(TINY_SVG) + '</div>');
+      ['dark', 'fairy', 'moss', 'tree'].forEach(function (f, i) {
+        O.insertAdjacentHTML('beforeend', '<div class="oguard" style="--gr:' + (18 + i * 10) + '%;animation-delay:' + (0.2 + i * 0.15) + 's">' + uniqueSvg(formSvg(f, 1)) + '</div>');
+      });
+      try { playSound('dark'); } catch (e) {}
+    }, 6400));
+    timers.push(setTimeout(function () {
+      var c = document.getElementById('ocap');
+      if (c) c.insertAdjacentHTML('afterend', '<div class="ocaption" style="top:auto;bottom:4%;background:#ffe9a8">🌲 The DARK FOREST awaits… tap to continue!</div>');
+    }, 8600));
+    timers.push(setTimeout(finish, 14000));
   }
   tappable(document.getElementById('playBtn'), function () {
     refreshProfile();
