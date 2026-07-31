@@ -343,7 +343,7 @@
   </g>
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
   <div class="parade"><div class="walker" style="width:72px;animation-duration:16s;animation-delay:0s"><div class="hopper" style="animation-delay:0s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#e63946" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(180,88) scale(0.32)" stroke="#2b2340" stroke-width="14" fill="#ffd166"><path d="M 20 160 L 20 40 L 90 100 L 160 20 L 230 100 L 300 40 L 300 160 Z"/></g></svg></div></div><div class="walker" style="width:56px;animation-duration:14s;animation-delay:2.5s"><div class="hopper" style="animation-delay:2.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#3d6fb4" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:64px;animation-duration:17s;animation-delay:5s"><div class="hopper" style="animation-delay:5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#57a05c" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g stroke="#2b2340" stroke-width="8" fill="#141020"><circle cx="225" cy="290" r="26"/><circle cx="295" cy="290" r="26"/><path d="M 251 290 L 269 290 M 199 284 L 175 274 M 321 284 L 345 274" fill="none"/></g></svg></div></div><div class="walker" style="width:48px;animation-duration:13s;animation-delay:8s"><div class="hopper" style="animation-delay:8s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#c74fa3" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:60px;animation-duration:15s;animation-delay:10.5s"><div class="hopper" style="animation-delay:10.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#d0a97f" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(155,60) scale(1.6)"><rect x="20" y="30" width="90" height="14" rx="7" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="-28" width="54" height="60" rx="8" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="16" width="54" height="12" fill="#b8860b"/></g></svg></div></div><div class="walker" style="width:52px;animation-duration:16s;animation-delay:13s"><div class="hopper" style="animation-delay:13s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#8ecbf2" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div></div>
-  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-07-31 11:45</p>
+  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-07-31 11:50</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -14411,7 +14411,7 @@ var qrcode = function() {
   var battleLevel = 1;
   var madRush = false;
   var sciFight = false;
-  var sciShields = 0;
+  var sciHelpers = [];
   var sciProgress = 0;
   var rushProgress = 0;
   var RUSH_ORDER = ['grassy', 'forest', 'skies', 'underground', 'city', 'solar'];
@@ -14519,13 +14519,21 @@ var qrcode = function() {
   function renderMomo() {
     var svg = curWorld === 'forest' ? TINY_SVG : (curWorld === 'skies' ? JERRY_SVG : (curWorld === 'underground' ? BUB_SVG : (curWorld === 'city' ? FATSO_SVG : (curWorld === 'solar' ? DOOFUS_SVG : MOMO_SVG))));
     if (sciFight) {
-      var overlay = '<g><path d="M 186 218 l 52 16 M 334 218 l -52 16" stroke="#4a3f70" stroke-width="11" stroke-linecap="round"/><circle cx="215" cy="245" r="12" fill="#b39ddb"/><circle cx="305" cy="245" r="12" fill="#b39ddb"/><path d="M 232 292 q 28 17 56 0" fill="none" stroke="#4a3f70" stroke-width="9" stroke-linecap="round"/><g transform="translate(398,70) rotate(18) scale(0.8)"><rect x="-8" y="-6" width="104" height="36" rx="16" fill="#fffdf5" stroke="#2b2340" stroke-width="8"/><rect x="88" y="-2" width="18" height="28" rx="5" fill="#6f6a7d" stroke="#2b2340" stroke-width="7"/><rect x="104" y="2" width="12" height="20" rx="4" fill="#ff5fa2" stroke="#2b2340" stroke-width="6"/><g stroke="#ff5fa2" stroke-width="7" fill="none" stroke-linecap="round"><path d="M 124 0 l 22 -14"/><path d="M 128 12 l 26 0"/><path d="M 124 24 l 22 10"/></g></g></g>';
+      if (curWorld === 'city') svg = svg.replace(/<g><path d="M 30 372[\s\S]*?stroke-width="9" stroke-linecap="round"\/><\/g>/, '');   // no tutu for HIM
+      var overlay = '<g>' +
+        '<path d="M 96 462 Q 260 428 424 462 L 430 560 Q 260 612 90 560 Z" fill="#f7f1e3" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/>' +
+        '<path d="M 96 462 Q 260 428 424 462 L 419 486 Q 260 454 101 486 Z" fill="#fffdf5" stroke="#2b2340" stroke-width="6" stroke-linejoin="round"/>' +
+        '<path d="M 260 450 L 260 596" stroke="#d8d2c2" stroke-width="6" stroke-linecap="round"/>' +
+        '<circle cx="274" cy="505" r="6" fill="#2b2340"/><circle cx="274" cy="548" r="6" fill="#2b2340"/>' +
+        '<rect x="146" y="502" width="46" height="40" rx="8" fill="#fffdf5" stroke="#2b2340" stroke-width="5"/>' +
+        '<path d="M 158 506 l 0 -16 M 170 506 l 0 -19" stroke="#c74fa3" stroke-width="5" stroke-linecap="round"/>' +
+        '</g><g><path d="M 186 218 l 52 16 M 334 218 l -52 16" stroke="#4a3f70" stroke-width="11" stroke-linecap="round"/><circle cx="215" cy="245" r="12" fill="#b39ddb"/><circle cx="305" cy="245" r="12" fill="#b39ddb"/><path d="M 232 292 q 28 17 56 0" fill="none" stroke="#4a3f70" stroke-width="9" stroke-linecap="round"/><g transform="translate(398,70) rotate(18) scale(0.8)"><rect x="-8" y="-6" width="104" height="36" rx="16" fill="#fffdf5" stroke="#2b2340" stroke-width="8"/><rect x="88" y="-2" width="18" height="28" rx="5" fill="#6f6a7d" stroke="#2b2340" stroke-width="7"/><rect x="104" y="2" width="12" height="20" rx="4" fill="#ff5fa2" stroke="#2b2340" stroke-width="6"/><g stroke="#ff5fa2" stroke-width="7" fill="none" stroke-linecap="round"><path d="M 124 0 l 22 -14"/><path d="M 128 12 l 26 0"/><path d="M 124 24 l 22 10"/></g></g></g>';
       svg = svg.replace('</svg>', overlay + '</svg>');
-      sciShields = 6;
+      sciHelpers = RUSH_ORDER.map(function (w) { return WCONF[w].bossName; });
     }
     enemySpan.innerHTML = '<div id="momoEl" style="width:100%;max-width:300px;cursor:pointer">' + svg + '</div>';
     bossAlive = {};
-    WCONF[curWorld].secs.forEach(function (s) { bossAlive[s] = (madRush || sciFight) ? 4 : 3; });  // mad bosses wear FOUR-hit armor
+    WCONF[curWorld].secs.forEach(function (s) { bossAlive[s] = sciFight ? 6 : (madRush ? 4 : 3); });  // mad bosses wear FOUR-hit armor
     if (madRush) {
       var mo = document.getElementById('momoEl'), msvg = mo && mo.querySelector('svg');
       if (msvg) msvg.insertAdjacentHTML('beforeend',
@@ -14880,11 +14888,35 @@ var qrcode = function() {
   }
   function momoTurn() {
     if (battleState === 'over') return;
-    if (sciFight && sciShields > 0) {
-      sciShields--;
-      var blocker = WCONF[RUSH_ORDER[sciShields % 6]].bossName;
-      setMsg('💚 ' + blocker + ' LEAPS IN and blocks the mad-ray! (' + sciShields + ' blocks left)', 'left');
-      setTimeout(bossBackToYou, 900);
+    if (sciFight && sciHelpers.length && Math.random() < 0.5) {
+      var hIx = Math.floor(Math.random() * sciHelpers.length);
+      var blocker = sciHelpers.splice(hIx, 1)[0];
+      var aliveSecs = Object.keys(bossAlive).filter(function (x) { return bossAlive[x] > 0; });
+      var smash = aliveSecs[Math.floor(Math.random() * aliveSecs.length)];
+      bossAlive[smash]--;
+      var srect = document.getElementById('sec-' + smash);
+      if (bossAlive[smash] > 0) {
+        if (srect) srect.setAttribute('fill-opacity', ({ 5: '0.92', 4: '0.86', 3: '0.78', 2: '0.65', 1: '0.4' })[bossAlive[smash]] || '0.4');
+        setMsg('💚 ' + blocker + ' LEAPS IN — blocks the mad-ray AND smashes the ' + NAMES[smash].split(' ')[0] + ' section! (' + sciHelpers.length + ' friends left)', 'left');
+        setTimeout(bossBackToYou, 1000);
+      } else {
+        if (srect) { srect.setAttribute('fill', '#bdb5a8'); srect.setAttribute('fill-opacity', '1'); }
+        var leftS = Object.keys(bossAlive).filter(function (x) { return bossAlive[x] > 0; }).length;
+        if (!leftS) {
+          sciProgress++;
+          saveGame();
+          if (sciProgress >= 6) {
+            setMsg('🏆🏆🏆 ' + blocker + ' lands the FINAL BLOW! THE SCIENTIST IS DEFEATED — THE END… for now!');
+            try { blobParty(); } catch (e) {}
+          } else {
+            setMsg('💥 ' + blocker + ' SHATTERS his last section — but he SHAPESHIFTS! Skin ' + (sciProgress + 1) + ' of 6! Tap Back!');
+          }
+          battleState = 'over';
+        } else {
+          setMsg('💚 ' + blocker + ' LEAPS IN — blocks the ray and SHATTERS the ' + NAMES[smash].split(' ')[0] + ' section! ' + leftS + ' left!', 'left');
+          setTimeout(bossBackToYou, 1000);
+        }
+      }
       return;
     }
     if (madRush && Math.random() < 0.18) {
@@ -14948,7 +14980,7 @@ var qrcode = function() {
         bossAlive[attacker] -= 1;
         var rect = document.getElementById('sec-' + attacker);
         if (bossAlive[attacker] > 0) {
-          if (rect) rect.setAttribute('fill-opacity', ({ 3: '0.85', 2: '0.7', 1: '0.4' })[bossAlive[attacker]] || '0.4');
+          if (rect) rect.setAttribute('fill-opacity', ({ 5: '0.92', 4: '0.86', 3: '0.78', 2: '0.65', 1: '0.4' })[bossAlive[attacker]] || '0.4');
           setMsg(bossAlive[attacker] === 1
             ? '💥 The ' + NAMES[attacker].split(' ')[0] + ' section is CRUMBLING — one more hit!'
             : '💥 The ' + NAMES[attacker].split(' ')[0] + ' section CRACKS! (' + bossAlive[attacker] + ' more hits)');
