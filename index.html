@@ -7784,11 +7784,11 @@
       .mid { stroke-width:7; }
       .thin { stroke-width:5; }
     </style>
-  <clipPath id="acornClip"><path d="M 260 148 q 116 -12 148 94 q 28 94 -54 150 q -92 60 -178 6 q -82 -54 -56 -148 q 26 -94 140 -102 Z"/></clipPath></defs>
+  <clipPath id="acornClip-ch-fpick-tree"><path d="M 260 148 q 116 -12 148 94 q 28 94 -54 150 q -92 60 -178 6 q -82 -54 -56 -148 q 26 -94 140 -102 Z"/></clipPath></defs>
 
   <!-- jiggly acorn blob -->
   <path d="M 260 148 q 116 -12 148 94 q 28 94 -54 150 q -92 60 -178 6 q -82 -54 -56 -148 q 26 -94 140 -102 Z" fill="#d0a97f" class="outline thick"/>
-  <g clip-path="url(#acornClip)">
+  <g clip-path="url(#acornClip-ch-fpick-tree)">
     <path d="M 70 268 Q 95 145 260 138 Q 425 145 450 268 Q 350 242 260 246 Q 170 242 70 268 Z" fill="#8d5a2b"/>
     <g fill="none" stroke="#5a3218" stroke-width="6" stroke-linecap="round">
       <path d="M 168 198 q 22 -12 48 -14 M 252 176 q 26 0 50 10 M 192 232 q 32 -10 66 -8"/>
@@ -8146,14 +8146,14 @@
       .mid { stroke-width:7; }
       .thin { stroke-width:5; }
     </style>
-    <clipPath id="patClip_1"><circle cx="260" cy="300" r="160"/></clipPath>
+    <clipPath id="patClip_1-ch-cpick-cloth"><circle cx="260" cy="300" r="160"/></clipPath>
   </defs>
 
   <!-- round blob base -->
   <circle cx="260" cy="300" r="165" fill="#e63946" class="outline thick"/>
 
   <!-- a bunch of patterns -->
-  <g clip-path="url(#patClip_1)">
+  <g clip-path="url(#patClip_1-ch-cpick-cloth)">
     <!-- plaid: green verticals + red horizontals -->
     <rect x="140" y="120" width="18" height="200" fill="#3e8948"/>
     <rect x="215" y="110" width="18" height="210" fill="#3e8948"/>
@@ -10716,17 +10716,25 @@ var qrcode = function() {
   var team = [];
   var enemyTeam = [];
 
+  var svgUid = 0;
+  function uniqueSvg(html) {
+    if (!html || html.indexOf('id="') < 0) return html;
+    var tag = '-u' + (++svgUid);
+    return html.replace(/id="([^"]+)"/g, function (_, x) { return 'id="' + x + tag + '"'; })
+               .replace(/url\(#([^)]+)\)/g, function (_, x) { return 'url(#' + x + tag + ')'; })
+               .replace(/href="#([^"]+)"/g, function (_, x) { return 'href="#' + x + tag + '"'; });
+  }
   function svgOf(name) {
     var st = document.querySelector('#formstore [data-form="' + name + '-1"]');
-    if (st) return st.innerHTML;
-    return document.querySelector('#pick-' + name + ' svg').outerHTML;
+    if (st) return uniqueSvg(st.innerHTML);
+    return uniqueSvg(document.querySelector('#pick-' + name + ' svg').outerHTML);
   }
   function myStar() { if (SANDBOX) return battleLevel > 40 ? 3 : (battleLevel > 15 ? 2 : 1); var mg = maxGold(); return mg >= 40 ? 3 : (mg >= 15 ? 2 : 1); }
   function starOf(fam) { return Math.max(myStar(), teamStars[fam] || 1); }
   function enemyStar() { return battleLevel > 40 ? 3 : (battleLevel > 15 ? 2 : 1); }
   function formSvg(fam, star) {
     var st = document.querySelector('#formstore [data-form="' + fam + '-' + star + '"]');
-    if (st) return st.innerHTML;
+    if (st) return uniqueSvg(st.innerHTML);
     return star === 1 ? svgOf(fam) : pvpFormSvg(pvpCardFor(fam, star));
   }
   function setFighters() {
@@ -11620,7 +11628,7 @@ var qrcode = function() {
       if (stamp && !stamp.innerHTML) stamp.innerHTML = svgOf(name);
       var owned = teamOfWorld(WORLD_OF[name]).indexOf(name) > -1;
       item.classList.toggle('owned', owned);
-      item.querySelector('.match').textContent = owned ? '✅ on your team!' : (WORLD_OF[name] === 'forest' ? '🟣 5 coins' : '🟢 5 coins');
+      item.querySelector('.match').textContent = owned ? '✅ on your team!' : CEMOJI[WORLD_OF[name]] + ' 5 coins';
     });
     document.querySelectorAll('.shopevo').forEach(function (item) {
       var fam = item.dataset.name, star = +item.dataset.star;
@@ -11767,7 +11775,7 @@ var qrcode = function() {
   var pvpArena = document.getElementById('pvpArena');
   var pvpMsg = document.getElementById('pvpMsg');
   function pvpSetMsg(t) { pvpMsg.textContent = t; }
-  function pvpFormSvg(card) { return card.querySelector('svg').outerHTML; }
+  function pvpFormSvg(card) { return uniqueSvg(card.querySelector('svg').outerHTML); }
   function pvpCardFor(fam, star) { return document.querySelector('.pvpcard[data-fam="' + fam + '"][data-star="' + star + '"]'); }
 
   function pvpStartPick(player) {
