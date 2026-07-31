@@ -836,8 +836,8 @@
   <p class="note" id="matchNote" style="font-weight:bold"></p>
   <p style="text-align:center;margin:14px 0"><button id="nextBtn" class="back" style="position:static;background:#ffd166" hidden>➡️ Next level!</button> <button id="againBtn" class="back" style="position:static" hidden>🔄 Battle again</button> <button id="rechooseBtn" class="back" style="position:static" hidden>🔁 Choose a different blob</button></p>
 
+<div id="battlePoster" style="max-width:420px;margin:12px auto 0"></div>
 </div>
-
 <div id="screen-blobdex" class="screen" hidden>
 
 <h2>The blob families</h2>
@@ -3551,12 +3551,12 @@
 <div id="screen-shop" class="screen" hidden>
 <div class="shopsticky">
 <h2 class="world" style="margin-top:6px">🏪 The Shop</h2>
-<div class="shoptabs"><button id="tab-gold" class="back shoptab" style="position:static">🟢 Grassy Coins</button><button id="tab-forest" class="back shoptab" style="position:static">🟣 Forest Coins</button><button id="tab-skies" class="back shoptab" style="position:static">🟡 Sky Coins</button></div>
+<div class="shoptabs"><button id="tab-gold" class="back shoptab" style="position:static">🟢 Grassy Coins</button><button id="tab-forest" class="back shoptab" style="position:static">🟣 Forest Coins</button><button id="tab-skies" class="back shoptab" style="position:static">🔵 Sky Coins</button></div>
 <p class="note" style="font-weight:bold" id="shopMsg">Blobs join your team right away — accessories get equipped with the ➕ in the blob-dex!</p>
 <p style="text-align:center;margin:4px 0"><button id="undoBtn" class="back" style="position:static" hidden>↩️ Undo that purchase</button></p>
 </div>
 <div id="shopTabGold"><div class="chooser"><div class="pick shopitem" id="shop-fire" data-name="fire" role="button" tabindex="0"><div class="shopstamp" data-for="fire"></div><p>Fire Blob</p><p class="match">🟢 5 coins</p></div><div class="pick shopitem" id="shop-water" data-name="water" role="button" tabindex="0"><div class="shopstamp" data-for="water"></div><p>Water Blob</p><p class="match">🟢 5 coins</p></div><div class="pick shopitem" id="shop-earth" data-name="earth" role="button" tabindex="0"><div class="shopstamp" data-for="earth"></div><p>Earth Blob</p><p class="match">🟢 5 coins</p></div><div class="pick shopitem" id="shop-wind" data-name="wind" role="button" tabindex="0"><div class="shopstamp" data-for="wind"></div><p>Wind Blob</p><p class="match">🟢 5 coins</p></div><div class="pick accitem" id="acc-shades" data-acc="shades" data-cur="gold" role="button" tabindex="0"><div class="emoji">🕶️</div><p>Sunglasses</p><p class="match">🟢 5 coins</p></div><div class="pick accitem" id="acc-tophat" data-acc="tophat" data-cur="gold" role="button" tabindex="0"><div class="emoji">🎩</div><p>Top Hat</p><p class="match">🟢 5 coins</p></div><div class="pick accitem" id="acc-bow" data-acc="bow" data-cur="gold" role="button" tabindex="0"><div class="emoji">🎀</div><p>Bow</p><p class="match">🟢 5 coins</p></div><div class="pick accitem" id="acc-crown" data-acc="crown" data-cur="gold" role="button" tabindex="0"><div class="emoji">👑</div><p>Crown</p><p class="match">🟢 5 coins</p></div><div class="pick accitem" id="acc-wand" data-acc="wand" data-cur="gold" role="button" tabindex="0"><div class="emoji">🪄</div><p>Magic Wand</p><p class="match">🟢 5 coins</p></div><div class="pick accitem" id="acc-cane" data-acc="cane" data-cur="gold" role="button" tabindex="0"><div class="emoji">🦯</div><p>Cane</p><p class="match">🟢 5 coins</p></div><p class="pvpworld-h" style="width:100%">⭐ Evolutions</p><div class="pick shopevo" data-name="fire" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="fire-2"></div><p>Fire ⭐⭐</p><p class="match">🟢 15 coins</p></div><div class="pick shopevo" data-name="fire" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="fire-3"></div><p>Fire ⭐⭐⭐</p><p class="match">🟢 40 coins</p></div><div class="pick shopevo" data-name="water" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="water-2"></div><p>Water ⭐⭐</p><p class="match">🟢 15 coins</p></div><div class="pick shopevo" data-name="water" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="water-3"></div><p>Water ⭐⭐⭐</p><p class="match">🟢 40 coins</p></div><div class="pick shopevo" data-name="earth" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="earth-2"></div><p>Earth ⭐⭐</p><p class="match">🟢 15 coins</p></div><div class="pick shopevo" data-name="earth" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="earth-3"></div><p>Earth ⭐⭐⭐</p><p class="match">🟢 40 coins</p></div><div class="pick shopevo" data-name="wind" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="wind-2"></div><p>Wind ⭐⭐</p><p class="match">🟢 15 coins</p></div><div class="pick shopevo" data-name="wind" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="wind-3"></div><p>Wind ⭐⭐⭐</p><p class="match">🟢 40 coins</p></div></div></div>
-<div id="shopTabForest" hidden><div class="chooser"><div class="pick shopitem" id="shop-dark" data-name="dark" role="button" tabindex="0"><div class="shopstamp" data-for="dark"></div><p>Dark Blob</p><p class="match">🟢 5 coins</p></div><div class="pick shopitem" id="shop-fairy" data-name="fairy" role="button" tabindex="0"><div class="shopstamp" data-for="fairy"></div><p>Fairy Blob</p><p class="match">🟢 5 coins</p></div><div class="pick shopitem" id="shop-moss" data-name="moss" role="button" tabindex="0"><div class="shopstamp" data-for="moss"></div><p>Moss Blob</p><p class="match">🟢 5 coins</p></div><div class="pick shopitem" id="shop-tree" data-name="tree" role="button" tabindex="0"><div class="shopstamp" data-for="tree"></div><p>Tree Blob</p><p class="match">🟢 5 coins</p></div><div class="pick accitem" id="facc-shades" data-acc="shades" data-cur="forest" role="button" tabindex="0"><div class="emoji">🕶️</div><p>Sunglasses</p><p class="match">🟣 5 forest coins</p></div><div class="pick accitem" id="facc-tophat" data-acc="tophat" data-cur="forest" role="button" tabindex="0"><div class="emoji">🎩</div><p>Top Hat</p><p class="match">🟣 5 forest coins</p></div><div class="pick accitem" id="facc-bow" data-acc="bow" data-cur="forest" role="button" tabindex="0"><div class="emoji">🎀</div><p>Bow</p><p class="match">🟣 5 forest coins</p></div><div class="pick accitem" id="facc-crown" data-acc="crown" data-cur="forest" role="button" tabindex="0"><div class="emoji">👑</div><p>Crown</p><p class="match">🟣 5 forest coins</p></div><div class="pick accitem" id="facc-wand" data-acc="wand" data-cur="forest" role="button" tabindex="0"><div class="emoji">🪄</div><p>Magic Wand</p><p class="match">🟣 5 forest coins</p></div><div class="pick accitem" id="facc-cane" data-acc="cane" data-cur="forest" role="button" tabindex="0"><div class="emoji">🦯</div><p>Cane</p><p class="match">🟣 5 forest coins</p></div><p class="pvpworld-h" style="width:100%">⭐ Evolutions</p><div class="pick shopevo" data-name="dark" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="dark-2"></div><p>Dark ⭐⭐</p><p class="match">🟣 15 coins</p></div><div class="pick shopevo" data-name="dark" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="dark-3"></div><p>Dark ⭐⭐⭐</p><p class="match">🟣 40 coins</p></div><div class="pick shopevo" data-name="fairy" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="fairy-2"></div><p>Fairy ⭐⭐</p><p class="match">🟣 15 coins</p></div><div class="pick shopevo" data-name="fairy" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="fairy-3"></div><p>Fairy ⭐⭐⭐</p><p class="match">🟣 40 coins</p></div><div class="pick shopevo" data-name="moss" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="moss-2"></div><p>Moss ⭐⭐</p><p class="match">🟣 15 coins</p></div><div class="pick shopevo" data-name="moss" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="moss-3"></div><p>Moss ⭐⭐⭐</p><p class="match">🟣 40 coins</p></div><div class="pick shopevo" data-name="tree" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="tree-2"></div><p>Tree ⭐⭐</p><p class="match">🟣 15 coins</p></div><div class="pick shopevo" data-name="tree" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="tree-3"></div><p>Tree ⭐⭐⭐</p><p class="match">🟣 40 coins</p></div></div></div><div id="shopTabSkies" hidden><div class="chooser"><div class="pick shopitem" id="shop-cloud" data-name="cloud" role="button" tabindex="0"><div class="shopstamp" data-for="cloud"></div><p>Cloud Blob</p><p class="match">🟡 5 coins</p></div><div class="pick shopitem" id="shop-light" data-name="light" role="button" tabindex="0"><div class="shopstamp" data-for="light"></div><p>Light Blob</p><p class="match">🟡 5 coins</p></div><div class="pick shopitem" id="shop-firework" data-name="firework" role="button" tabindex="0"><div class="shopstamp" data-for="firework"></div><p>Firework Blob</p><p class="match">🟡 5 coins</p></div><div class="pick shopitem" id="shop-rain" data-name="rain" role="button" tabindex="0"><div class="shopstamp" data-for="rain"></div><p>Rain Blob</p><p class="match">🟡 5 coins</p></div><div class="pick accitem" id="sacc-shades" data-acc="shades" data-cur="skies" role="button" tabindex="0"><div class="emoji">🕶️</div><p>Sunglasses</p><p class="match">🟡 5 Sky Coins</p></div><div class="pick accitem" id="sacc-tophat" data-acc="tophat" data-cur="skies" role="button" tabindex="0"><div class="emoji">🎩</div><p>Top Hat</p><p class="match">🟡 5 Sky Coins</p></div><div class="pick accitem" id="sacc-bow" data-acc="bow" data-cur="skies" role="button" tabindex="0"><div class="emoji">🎀</div><p>Bow</p><p class="match">🟡 5 Sky Coins</p></div><div class="pick accitem" id="sacc-crown" data-acc="crown" data-cur="skies" role="button" tabindex="0"><div class="emoji">👑</div><p>Crown</p><p class="match">🟡 5 Sky Coins</p></div><div class="pick accitem" id="sacc-wand" data-acc="wand" data-cur="skies" role="button" tabindex="0"><div class="emoji">🪄</div><p>Magic Wand</p><p class="match">🟡 5 Sky Coins</p></div><div class="pick accitem" id="sacc-cane" data-acc="cane" data-cur="skies" role="button" tabindex="0"><div class="emoji">🦯</div><p>Cane</p><p class="match">🟡 5 Sky Coins</p></div><p class="pvpworld-h" style="width:100%">⭐ Evolutions</p><div class="pick shopevo" data-name="cloud" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="cloud-2"></div><p>Cloud ⭐⭐</p><p class="match">🟡 15 coins</p></div><div class="pick shopevo" data-name="cloud" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="cloud-3"></div><p>Cloud ⭐⭐⭐</p><p class="match">🟡 40 coins</p></div><div class="pick shopevo" data-name="light" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="light-2"></div><p>Light ⭐⭐</p><p class="match">🟡 15 coins</p></div><div class="pick shopevo" data-name="light" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="light-3"></div><p>Light ⭐⭐⭐</p><p class="match">🟡 40 coins</p></div><div class="pick shopevo" data-name="firework" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="firework-2"></div><p>Firework ⭐⭐</p><p class="match">🟡 15 coins</p></div><div class="pick shopevo" data-name="firework" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="firework-3"></div><p>Firework ⭐⭐⭐</p><p class="match">🟡 40 coins</p></div><div class="pick shopevo" data-name="rain" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="rain-2"></div><p>Rain ⭐⭐</p><p class="match">🟡 15 coins</p></div><div class="pick shopevo" data-name="rain" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="rain-3"></div><p>Rain ⭐⭐⭐</p><p class="match">🟡 40 coins</p></div></div></div>
+<div id="shopTabForest" hidden><div class="chooser"><div class="pick shopitem" id="shop-dark" data-name="dark" role="button" tabindex="0"><div class="shopstamp" data-for="dark"></div><p>Dark Blob</p><p class="match">🟢 5 coins</p></div><div class="pick shopitem" id="shop-fairy" data-name="fairy" role="button" tabindex="0"><div class="shopstamp" data-for="fairy"></div><p>Fairy Blob</p><p class="match">🟢 5 coins</p></div><div class="pick shopitem" id="shop-moss" data-name="moss" role="button" tabindex="0"><div class="shopstamp" data-for="moss"></div><p>Moss Blob</p><p class="match">🟢 5 coins</p></div><div class="pick shopitem" id="shop-tree" data-name="tree" role="button" tabindex="0"><div class="shopstamp" data-for="tree"></div><p>Tree Blob</p><p class="match">🟢 5 coins</p></div><div class="pick accitem" id="facc-shades" data-acc="shades" data-cur="forest" role="button" tabindex="0"><div class="emoji">🕶️</div><p>Sunglasses</p><p class="match">🟣 5 forest coins</p></div><div class="pick accitem" id="facc-tophat" data-acc="tophat" data-cur="forest" role="button" tabindex="0"><div class="emoji">🎩</div><p>Top Hat</p><p class="match">🟣 5 forest coins</p></div><div class="pick accitem" id="facc-bow" data-acc="bow" data-cur="forest" role="button" tabindex="0"><div class="emoji">🎀</div><p>Bow</p><p class="match">🟣 5 forest coins</p></div><div class="pick accitem" id="facc-crown" data-acc="crown" data-cur="forest" role="button" tabindex="0"><div class="emoji">👑</div><p>Crown</p><p class="match">🟣 5 forest coins</p></div><div class="pick accitem" id="facc-wand" data-acc="wand" data-cur="forest" role="button" tabindex="0"><div class="emoji">🪄</div><p>Magic Wand</p><p class="match">🟣 5 forest coins</p></div><div class="pick accitem" id="facc-cane" data-acc="cane" data-cur="forest" role="button" tabindex="0"><div class="emoji">🦯</div><p>Cane</p><p class="match">🟣 5 forest coins</p></div><p class="pvpworld-h" style="width:100%">⭐ Evolutions</p><div class="pick shopevo" data-name="dark" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="dark-2"></div><p>Dark ⭐⭐</p><p class="match">🟣 15 coins</p></div><div class="pick shopevo" data-name="dark" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="dark-3"></div><p>Dark ⭐⭐⭐</p><p class="match">🟣 40 coins</p></div><div class="pick shopevo" data-name="fairy" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="fairy-2"></div><p>Fairy ⭐⭐</p><p class="match">🟣 15 coins</p></div><div class="pick shopevo" data-name="fairy" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="fairy-3"></div><p>Fairy ⭐⭐⭐</p><p class="match">🟣 40 coins</p></div><div class="pick shopevo" data-name="moss" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="moss-2"></div><p>Moss ⭐⭐</p><p class="match">🟣 15 coins</p></div><div class="pick shopevo" data-name="moss" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="moss-3"></div><p>Moss ⭐⭐⭐</p><p class="match">🟣 40 coins</p></div><div class="pick shopevo" data-name="tree" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="tree-2"></div><p>Tree ⭐⭐</p><p class="match">🟣 15 coins</p></div><div class="pick shopevo" data-name="tree" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="tree-3"></div><p>Tree ⭐⭐⭐</p><p class="match">🟣 40 coins</p></div></div></div><div id="shopTabSkies" hidden><div class="chooser"><div class="pick shopitem" id="shop-cloud" data-name="cloud" role="button" tabindex="0"><div class="shopstamp" data-for="cloud"></div><p>Cloud Blob</p><p class="match">🔵 5 coins</p></div><div class="pick shopitem" id="shop-light" data-name="light" role="button" tabindex="0"><div class="shopstamp" data-for="light"></div><p>Light Blob</p><p class="match">🔵 5 coins</p></div><div class="pick shopitem" id="shop-firework" data-name="firework" role="button" tabindex="0"><div class="shopstamp" data-for="firework"></div><p>Firework Blob</p><p class="match">🔵 5 coins</p></div><div class="pick shopitem" id="shop-rain" data-name="rain" role="button" tabindex="0"><div class="shopstamp" data-for="rain"></div><p>Rain Blob</p><p class="match">🔵 5 coins</p></div><div class="pick accitem" id="sacc-shades" data-acc="shades" data-cur="skies" role="button" tabindex="0"><div class="emoji">🕶️</div><p>Sunglasses</p><p class="match">🔵 5 Sky Coins</p></div><div class="pick accitem" id="sacc-tophat" data-acc="tophat" data-cur="skies" role="button" tabindex="0"><div class="emoji">🎩</div><p>Top Hat</p><p class="match">🔵 5 Sky Coins</p></div><div class="pick accitem" id="sacc-bow" data-acc="bow" data-cur="skies" role="button" tabindex="0"><div class="emoji">🎀</div><p>Bow</p><p class="match">🔵 5 Sky Coins</p></div><div class="pick accitem" id="sacc-crown" data-acc="crown" data-cur="skies" role="button" tabindex="0"><div class="emoji">👑</div><p>Crown</p><p class="match">🔵 5 Sky Coins</p></div><div class="pick accitem" id="sacc-wand" data-acc="wand" data-cur="skies" role="button" tabindex="0"><div class="emoji">🪄</div><p>Magic Wand</p><p class="match">🔵 5 Sky Coins</p></div><div class="pick accitem" id="sacc-cane" data-acc="cane" data-cur="skies" role="button" tabindex="0"><div class="emoji">🦯</div><p>Cane</p><p class="match">🔵 5 Sky Coins</p></div><p class="pvpworld-h" style="width:100%">⭐ Evolutions</p><div class="pick shopevo" data-name="cloud" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="cloud-2"></div><p>Cloud ⭐⭐</p><p class="match">🔵 15 coins</p></div><div class="pick shopevo" data-name="cloud" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="cloud-3"></div><p>Cloud ⭐⭐⭐</p><p class="match">🔵 40 coins</p></div><div class="pick shopevo" data-name="light" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="light-2"></div><p>Light ⭐⭐</p><p class="match">🔵 15 coins</p></div><div class="pick shopevo" data-name="light" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="light-3"></div><p>Light ⭐⭐⭐</p><p class="match">🔵 40 coins</p></div><div class="pick shopevo" data-name="firework" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="firework-2"></div><p>Firework ⭐⭐</p><p class="match">🔵 15 coins</p></div><div class="pick shopevo" data-name="firework" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="firework-3"></div><p>Firework ⭐⭐⭐</p><p class="match">🔵 40 coins</p></div><div class="pick shopevo" data-name="rain" data-star="2" role="button" tabindex="0"><div class="shopstamp" data-form="rain-2"></div><p>Rain ⭐⭐</p><p class="match">🔵 15 coins</p></div><div class="pick shopevo" data-name="rain" data-star="3" role="button" tabindex="0"><div class="shopstamp" data-form="rain-3"></div><p>Rain ⭐⭐⭐</p><p class="match">🔵 40 coins</p></div></div></div>
 </div>
 
 <div id="screen-pvp-pick" class="screen" hidden>
@@ -4313,6 +4313,435 @@
     <path d="M 450 330 q -8 16 -26 22"/>
   </g>
 </svg><p>Tree ⭐⭐⭐</p></div></div>
+<p class="pvpworld-h">☀️ Sunny Skies</p>
+<div class="chooser"><div class="pick pvpcard" data-fam="cloud" data-star="1" role="button" tabindex="0"><svg style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" >
+  <defs>
+    <style>
+      .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
+      .thick { stroke-width:10; }
+      .mid { stroke-width:7; }
+      .thin { stroke-width:5; }
+    </style>
+  </defs>
+
+  <!-- jiggly cloud blob -->
+  <path d="M 260 146 q 120 -10 146 98 q 24 98 -60 148 q -92 56 -174 2 q -78 -56 -52 -146 q 28 -94 140 -102 Z" fill="#ffffff" class="outline thick"/>
+  <path d="M 168 210 q 25 -32 66 -40" fill="none" stroke="#dfe8f2" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="225" cy="290" r="13" fill="#2b2340"/>
+  <circle cx="295" cy="290" r="13" fill="#2b2340"/>
+  <g fill="none" class="outline thin">
+    <path d="M 92 190 q 14 -14 34 -16"/>
+    <path d="M 430 400 q -12 14 -30 18"/>
+  </g>
+</svg><p>Cloud ⭐</p></div><div class="pick pvpcard" data-fam="cloud" data-star="2" role="button" tabindex="0"><svg style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" >
+  <defs>
+    <style>
+      .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
+      .thick { stroke-width:10; }
+      .mid { stroke-width:7; }
+      .thin { stroke-width:5; }
+    </style>
+    <path id="puff_clm-pv-cloud2" d="M -105 55 q -40 -8 -36 -44 q 4 -34 40 -36 q 2 -36 40 -42 q 30 -5 48 16 q 14 -26 48 -22 q 34 4 40 34 q 36 -2 46 30 q 10 34 -22 50 q 12 26 -18 34 q -22 6 -38 -4 l -110 0 q -24 8 -38 -16 Z"/>
+  </defs>
+
+  <!-- one big puffy cloud -->
+  <use href="#puff_clm-pv-cloud2" transform="translate(260,300) scale(1.55)" fill="#ffffff" class="outline mid"/>
+
+  <!-- soft shine -->
+  <path d="M 138 235 q 26 -28 66 -32" fill="none" stroke="#dfe8f2" stroke-width="13" stroke-linecap="round"/>
+
+  <!-- dot eyes -->
+  <circle cx="222" cy="295" r="14" fill="#2b2340"/>
+  <circle cx="300" cy="295" r="14" fill="#2b2340"/>
+
+  <!-- float lines -->
+  <g fill="none" class="outline thin">
+    <path d="M 70 200 q 14 -14 34 -16"/>
+    <path d="M 448 380 q -12 14 -30 18"/>
+    <path d="M 250 470 q 16 8 34 4"/>
+  </g>
+</svg><p>Cloud ⭐⭐</p></div><div class="pick pvpcard" data-fam="cloud" data-star="3" role="button" tabindex="0"><svg style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" >
+  <defs>
+    <style>
+      .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
+      .thick { stroke-width:10; }
+      .mid { stroke-width:7; }
+      .thin { stroke-width:5; }
+    </style>
+    <path id="puff_clf-pv-cloud3" d="M -105 55 q -40 -8 -36 -44 q 4 -34 40 -36 q 2 -36 40 -42 q 30 -5 48 16 q 14 -26 48 -22 q 34 4 40 34 q 36 -2 46 30 q 10 34 -22 50 q 12 26 -18 34 q -22 6 -38 -4 l -110 0 q -24 8 -38 -16 Z"/>
+  </defs>
+
+  <!-- three big puffy clouds all together -->
+  <use href="#puff_clf-pv-cloud3" transform="translate(148,385) scale(1.0)" fill="#ffffff" class="outline mid"/>
+  <use href="#puff_clf-pv-cloud3" transform="translate(372,385) scale(1.0)" fill="#ffffff" class="outline mid"/>
+  <use href="#puff_clf-pv-cloud3" transform="translate(260,235) scale(1.1)" fill="#ffffff" class="outline mid"/>
+
+  <!-- shines -->
+  <path d="M 178 172 q 20 -22 52 -26" fill="none" stroke="#dfe8f2" stroke-width="11" stroke-linecap="round"/>
+  <path d="M 72 340 q 18 -20 46 -24" fill="none" stroke="#dfe8f2" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- dot eyes only, no emotions -->
+  <circle cx="230" cy="230" r="13" fill="#2b2340"/>
+  <circle cx="292" cy="230" r="13" fill="#2b2340"/>
+  <circle cx="120" cy="380" r="12" fill="#2b2340"/>
+  <circle cx="178" cy="380" r="12" fill="#2b2340"/>
+  <circle cx="344" cy="380" r="12" fill="#2b2340"/>
+  <circle cx="402" cy="380" r="12" fill="#2b2340"/>
+
+  <!-- float lines -->
+  <g fill="none" class="outline thin">
+    <path d="M 68 180 q 14 -14 34 -16"/>
+    <path d="M 452 200 q -12 14 -30 18"/>
+    <path d="M 250 500 q 16 8 34 4"/>
+  </g>
+</svg><p>Cloud ⭐⭐⭐</p></div><div class="pick pvpcard" data-fam="light" data-star="1" role="button" tabindex="0"><svg style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" >
+  <defs>
+    <style>
+      .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
+      .thick { stroke-width:10; }
+      .mid { stroke-width:7; }
+      .thin { stroke-width:5; }
+    </style>
+  </defs>
+
+  <!-- baby blob: simple wobbly circle -->
+  <path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#ffe94d" class="outline thick"/>
+
+  <!-- shine -->
+  <path d="M 168 218 q 26 -34 68 -42" fill="none" stroke="#fff6b0" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- dot eyes -->
+  <circle cx="225" cy="290" r="13" fill="#2b2340"/>
+  <circle cx="295" cy="290" r="13" fill="#2b2340"/>
+
+  <!-- bounce lines -->
+  <g fill="none" class="outline thin">
+    <path d="M 92 190 q 14 -14 34 -16"/>
+    <path d="M 430 400 q -12 14 -30 18"/>
+  </g>
+</svg><p>Light ⭐</p></div><div class="pick pvpcard" data-fam="light" data-star="2" role="button" tabindex="0"><svg style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" >
+  <defs>
+    <style>
+      .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
+      .thick { stroke-width:10; }
+      .mid { stroke-width:7; }
+      .thin { stroke-width:5; }
+    </style>
+  </defs>
+
+  <!-- diagonal beam of light -->
+  <g transform="translate(260,300) rotate(35)">
+    <path d="M -70 -230 L 70 -230 L 52 235 L -52 235 Z" fill="#ffe94d" class="outline thick"/>
+    <!-- inner glow stripe -->
+    <path d="M -18 -195 L 6 -195 L 0 200 L -14 200 Z" fill="#fff6b0" stroke="none"/>
+    <!-- dot eyes -->
+    <circle cx="-26" cy="-60" r="13" fill="#2b2340"/>
+    <circle cx="30" cy="-60" r="13" fill="#2b2340"/>
+  </g>
+
+  <!-- glow ticks -->
+  <g fill="none" class="outline thin">
+    <path d="M 95 110 l 0 -28 M 95 96 l -14 0 l 28 0"/>
+    <path d="M 440 200 l 0 -24 M 440 188 l -12 0 l 24 0"/>
+    <path d="M 100 460 q -12 10 -14 26"/>
+    <path d="M 430 480 l 0 -24 M 430 468 l -12 0 l 24 0"/>
+  </g>
+</svg><p>Light ⭐⭐</p></div><div class="pick pvpcard" data-fam="light" data-star="3" role="button" tabindex="0"><svg style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" >
+  <defs>
+    <style>
+      .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
+      .thick { stroke-width:10; }
+      .mid { stroke-width:7; }
+      .thin { stroke-width:5; }
+    </style>
+  </defs>
+
+  <!-- three yellow beams shining down -->
+  <path d="M 218 205 L 122 490 L 205 490 L 246 210 Z" fill="#ffe94d" class="outline mid"/>
+  <path d="M 246 212 L 232 505 L 292 505 L 276 212 Z" fill="#ffe94d" class="outline mid"/>
+  <path d="M 276 210 L 318 490 L 400 490 L 304 205 Z" fill="#ffe94d" class="outline mid"/>
+  <!-- inner glow stripes -->
+  <path d="M 228 230 L 175 470 M 261 235 L 261 485 M 294 230 L 348 470" fill="none" stroke="#fff6b0" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- white fluffy cloud on top -->
+  <path d="M 150 210 q -40 -8 -36 -44 q 4 -34 40 -36 q 2 -36 40 -42 q 30 -5 48 16 q 14 -26 48 -22 q 34 4 40 34 q 36 -2 46 30 q 10 34 -22 50 q 12 26 -18 34 q -22 6 -38 -4 l -110 0 q -24 8 -38 -16 Z" fill="#ffffff" class="outline thick"/>
+  <path d="M 165 105 q 16 -16 40 -16" fill="none" stroke="#dfe8f2" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- dot eyes on the cloud -->
+  <circle cx="228" cy="150" r="13" fill="#2b2340"/>
+  <circle cx="292" cy="150" r="13" fill="#2b2340"/>
+
+  <!-- sparkle ticks -->
+  <g fill="none" class="outline thin">
+    <path d="M 105 130 l 0 -28 M 105 116 l -14 0 l 28 0"/>
+    <path d="M 425 150 l 0 -24 M 425 138 l -12 0 l 24 0"/>
+    <path d="M 85 400 q -12 10 -14 26"/>
+    <path d="M 445 400 q 12 10 14 26"/>
+  </g>
+</svg><p>Light ⭐⭐⭐</p></div><div class="pick pvpcard" data-fam="firework" data-star="1" role="button" tabindex="0"><svg style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" >
+  <defs>
+    <style>
+      .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
+      .thick { stroke-width:10; }
+      .mid { stroke-width:7; }
+      .thin { stroke-width:5; }
+    </style>
+  </defs>
+
+  <!-- short wooden stick -->
+  <path d="M 236 400 L 284 400 L 280 545 L 240 545 Z" fill="#e8b06e" class="outline thick"/>
+  <path d="M 256 425 l -2 95" fill="none" stroke="#c98a4b" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- big round blobby match head (same wobbly blob as the other babies) -->
+  <path d="M 260 118 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#e63946" class="outline thick"/>
+
+  <!-- burnt smudge on top -->
+  <path d="M 208 138 q 24 -26 58 -18 q 26 6 30 30 q -32 18 -62 8 q -20 -6 -26 -20 Z" fill="#5a3040" class="outline mid"/>
+
+  <!-- shine -->
+  <path d="M 168 188 q 26 -34 68 -42" fill="none" stroke="#ff7b86" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- dot eyes -->
+  <circle cx="225" cy="260" r="13" fill="#2b2340"/>
+  <circle cx="295" cy="260" r="13" fill="#2b2340"/>
+
+  <!-- bounce lines -->
+  <g fill="none" class="outline thin">
+    <path d="M 92 160 q 14 -14 34 -16"/>
+    <path d="M 430 370 q -12 14 -30 18"/>
+  </g>
+</svg><p>Firework ⭐</p></div><div class="pick pvpcard" data-fam="firework" data-star="2" role="button" tabindex="0"><svg style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" >
+  <defs>
+    <style>
+      .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
+      .thick { stroke-width:10; }
+      .mid { stroke-width:7; }
+      .thin { stroke-width:5; }
+    </style>
+    <clipPath id="bodyClip_v3-pv-firework2"><path d="M 185 210 L 335 210 L 335 442 Q 335 462 315 462 L 205 462 Q 185 462 185 442 Z"/></clipPath>
+  </defs>
+
+  <!-- one-piece rocket silhouette: cone flows straight into the body -->
+  <path d="M 260 65 L 335 210 L 335 442 Q 335 462 315 462 L 205 462 Q 185 462 185 442 L 185 210 Z" fill="#ffd166" class="outline thick"/>
+
+  <!-- teal diagonal stripes on the body -->
+  <g clip-path="url(#bodyClip_v3-pv-firework2)" stroke="#3fb8af" stroke-width="22" fill="none">
+    <path d="M 160 265 L 360 205 M 160 335 L 360 275 M 160 405 L 360 345 M 160 475 L 360 415"/>
+  </g>
+
+  <!-- teal nose cone, sharing the same edges as the body -->
+  <path d="M 260 65 L 335 210 L 185 210 Z" fill="#3fb8af" class="outline thick"/>
+
+  <!-- re-stroke the silhouette so it reads as one piece -->
+  <path d="M 260 65 L 335 210 L 335 442 Q 335 462 315 462 L 205 462 Q 185 462 185 442 L 185 210 Z" fill="none" class="outline thick"/>
+
+  <!-- dot eyes on the body -->
+  <circle cx="230" cy="385" r="13" fill="#2b2340"/>
+  <circle cx="290" cy="385" r="13" fill="#2b2340"/>
+
+  <!-- fuse at the bottom, lit and sparking -->
+  <path d="M 260 464 q 10 45 60 55" fill="none" stroke="#6b6b7a" stroke-width="12" stroke-linecap="round"/>
+  <g stroke="#f4913b" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M 340 525 l 24 8 M 332 540 l 16 20 M 342 508 l 22 -12 M 318 542 l 2 26"/>
+  </g>
+  <circle cx="328" cy="522" r="11" fill="#f4913b" class="outline thin"/>
+
+  <!-- ready-to-launch ticks -->
+  <g fill="none" class="outline thin">
+    <path d="M 120 170 q 14 -12 34 -12"/>
+    <path d="M 425 240 q -12 12 -30 14"/>
+    <path d="M 110 420 q -12 10 -14 26"/>
+  </g>
+</svg><p>Firework ⭐⭐</p></div><div class="pick pvpcard" data-fam="firework" data-star="3" role="button" tabindex="0"><svg style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" >
+  <defs>
+    <style>
+      .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
+      .thick { stroke-width:10; }
+      .mid { stroke-width:7; }
+      .thin { stroke-width:5; }
+    </style>
+    <path id="rayT_15-pv-firework3" d="M 92 -11 L 232 0 L 92 11 Z"/>
+    <path id="rayO_15-pv-firework3" d="M 92 -10 L 198 0 L 92 10 Z"/>
+  </defs>
+
+  <!-- striped sparkler stick, held out the bottom-right of the burst -->
+  <g transform="translate(240,230) rotate(52)">
+    <rect x="70" y="-14" width="205" height="28" rx="12" fill="#3fb8af" class="outline mid"/>
+    <path d="M 110 -14 l 0 28 M 150 -14 l 0 28 M 190 -14 l 0 28 M 230 -14 l 0 28" stroke="#f4913b" stroke-width="18"/>
+    <rect x="70" y="-14" width="205" height="28" rx="12" fill="none" class="outline mid"/>
+  </g>
+
+  <!-- bursting rays: alternating teal and orange -->
+  <g class="outline mid">
+    <use href="#rayT_15-pv-firework3" fill="#3fb8af" transform="translate(240,230) rotate(-90)"/>
+    <use href="#rayO_15-pv-firework3" fill="#f4913b" transform="translate(240,230) rotate(-60)"/>
+    <use href="#rayT_15-pv-firework3" fill="#3fb8af" transform="translate(240,230) rotate(-25)"/>
+    <use href="#rayO_15-pv-firework3" fill="#f4913b" transform="translate(240,230) rotate(8)"/>
+    <use href="#rayT_15-pv-firework3" fill="#3fb8af" transform="translate(240,230) rotate(95)"/>
+    <use href="#rayO_15-pv-firework3" fill="#f4913b" transform="translate(240,230) rotate(125)"/>
+    <use href="#rayT_15-pv-firework3" fill="#3fb8af" transform="translate(240,230) rotate(155)"/>
+    <use href="#rayO_15-pv-firework3" fill="#f4913b" transform="translate(240,230) rotate(-170)"/>
+    <use href="#rayT_15-pv-firework3" fill="#3fb8af" transform="translate(240,230) rotate(-135)"/>
+    <use href="#rayO_15-pv-firework3" fill="#f4913b" transform="translate(240,230) rotate(-115)"/>
+  </g>
+
+  <!-- thin crackle sparks between the rays -->
+  <g fill="none" class="outline thin">
+    <path d="M 240 230 m 120 -85 l 30 -22 M 240 230 m -125 -75 l -32 -20 M 240 230 m -130 65 l -34 18 M 240 230 m 55 135 l 12 36 M 240 230 m -40 138 l -10 36 M 240 230 m 142 30 l 38 8"/>
+  </g>
+
+  <!-- spark dots at the tips -->
+  <g stroke="none">
+    <circle cx="240" cy="-35" r="0"/>
+    <circle cx="404" cy="90" r="9" fill="#f4913b"/>
+    <circle cx="72" cy="112" r="9" fill="#3fb8af"/>
+    <circle cx="52" cy="330" r="8" fill="#f4913b"/>
+    <circle cx="318" cy="428" r="8" fill="#3fb8af"/>
+    <circle cx="240" cy="52" r="9" fill="#f4913b"/>
+  </g>
+
+  <!-- glowing core -->
+  <circle cx="240" cy="230" r="82" fill="#3fb8af" class="outline thick"/>
+  <circle cx="240" cy="230" r="52" fill="#fff6e0" class="outline mid"/>
+
+  <!-- dot eyes -->
+  <circle cx="222" cy="225" r="11" fill="#2b2340"/>
+  <circle cx="258" cy="225" r="11" fill="#2b2340"/>
+</svg><p>Firework ⭐⭐⭐</p></div><div class="pick pvpcard" data-fam="rain" data-star="1" role="button" tabindex="0"><svg style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" >
+  <defs>
+    <style>
+      .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
+      .thick { stroke-width:10; }
+      .mid { stroke-width:7; }
+      .thin { stroke-width:5; }
+    </style>
+  </defs>
+
+  <!-- jiggly rain blob, fresh rain-blue -->
+  <path d="M 260 150 q 112 -18 150 90 q 30 92 -50 152 q -90 62 -176 8 q -84 -52 -58 -146 q 24 -92 134 -104 Z" fill="#6ea3d8" class="outline thick"/>
+
+  <!-- darker wet patches -->
+  <g fill="#4d7fb6">
+    <circle cx="200" cy="360" r="18"/>
+    <circle cx="320" cy="330" r="13"/>
+  </g>
+
+  <!-- one shine stripe -->
+  <path d="M 168 205 q 25 -30 66 -36" fill="none" stroke="#b7d4ef" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- two dot eyes -->
+  <circle cx="225" cy="290" r="13" fill="#2b2340"/>
+  <circle cx="295" cy="290" r="13" fill="#2b2340"/>
+
+  <!-- little raindrops dripping off it -->
+  <g fill="#4d7fb6" stroke="#2b2340" stroke-width="5" stroke-linejoin="round">
+    <path d="M 130 412 q 12 22 0 30 q -14 8 -14 -8 q 0 -10 14 -22 Z"/>
+    <path d="M 400 398 q 11 20 0 27 q -13 7 -13 -7 q 0 -9 13 -20 Z"/>
+  </g>
+
+  <!-- tiny puddle under it -->
+  <path d="M 195 512 q 65 18 130 0" fill="none" stroke="#4d7fb6" stroke-width="8" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- jiggle lines -->
+  <g fill="none" class="outline thin">
+    <path d="M 92 190 q 14 -14 34 -16"/>
+    <path d="M 430 400 q -12 14 -30 18"/>
+  </g>
+</svg><p>Rain ⭐</p></div><div class="pick pvpcard" data-fam="rain" data-star="2" role="button" tabindex="0"><svg style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" >
+  <defs>
+    <style>
+      .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
+      .thick { stroke-width:10; }
+      .mid { stroke-width:7; }
+      .thin { stroke-width:5; }
+    </style>
+  </defs>
+
+  <!-- its very own raincloud, sitting on its head like a hat -->
+  <path d="M 165 150 q -30 -6 -27 -33 q 3 -26 30 -27 q 2 -27 30 -31 q 22 -4 36 12 q 10 -20 36 -16 q 26 3 30 25 q 27 -2 34 22 q 8 26 -16 38 q 8 20 -14 26 q -17 4 -28 -3 l -82 0 q -18 6 -29 -13 Z" fill="#c9d3de" class="outline mid" transform="translate(38,26)"/>
+
+  <!-- rain streaks from the cloud onto the blob -->
+  <g fill="none" stroke="#4d7fb6" stroke-width="7" stroke-linecap="round">
+    <path d="M 205 190 l -8 30"/>
+    <path d="M 260 195 l -6 28"/>
+    <path d="M 315 188 l -8 30"/>
+  </g>
+
+  <!-- jiggly rain blob, deeper blue now -->
+  <path d="M 260 240 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#5b8fc9" class="outline thick"/>
+
+  <!-- darker wet patches -->
+  <g fill="#3d6fa8">
+    <circle cx="190" cy="420" r="20"/>
+    <circle cx="330" cy="390" r="14"/>
+    <circle cx="290" cy="480" r="16"/>
+  </g>
+
+  <!-- one shine stripe -->
+  <path d="M 172 300 q 26 -32 70 -38" fill="none" stroke="#b7d4ef" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- two dot eyes -->
+  <circle cx="228" cy="370" r="14" fill="#2b2340"/>
+  <circle cx="298" cy="370" r="14" fill="#2b2340"/>
+
+  <!-- puddle with a drip ring -->
+  <path d="M 175 560 q 85 22 170 0" fill="none" stroke="#4d7fb6" stroke-width="9" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- jiggle lines -->
+  <g fill="none" class="outline thin">
+    <path d="M 82 300 q 14 -14 34 -16"/>
+    <path d="M 442 480 q -12 14 -30 18"/>
+  </g>
+</svg><p>Rain ⭐⭐</p></div><div class="pick pvpcard" data-fam="rain" data-star="3" role="button" tabindex="0"><svg style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" >
+  <defs>
+    <style>
+      .outline { stroke:#2b2340; stroke-linejoin:round; stroke-linecap:round; }
+      .thick { stroke-width:10; }
+      .mid { stroke-width:7; }
+      .thin { stroke-width:5; }
+    </style>
+  </defs>
+
+  <!-- THE GIANT RAINDROP: the whole blob became one huge jiggly raindrop -->
+  <path d="M 260 80
+           q 26 62 74 128
+           q 52 74 52 150
+           q -2 104 -126 112
+           q -124 -8 -126 -112
+           q 0 -76 52 -150
+           q 48 -66 74 -128 Z"
+        fill="#3d6fa8" class="outline thick"/>
+
+  <!-- deep-water belly -->
+  <path d="M 260 300 q 66 10 74 78 q 6 66 -74 72 q -80 -6 -74 -72 q 8 -68 74 -78 Z" fill="#2f5a8c"/>
+
+  <!-- one big shine stripe -->
+  <path d="M 176 260 q 18 -58 58 -96" fill="none" stroke="#b7d4ef" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- two dot eyes -->
+  <circle cx="225" cy="330" r="15" fill="#2b2340"/>
+  <circle cx="295" cy="330" r="15" fill="#2b2340"/>
+
+  <!-- rain falling all around its majesty -->
+  <g fill="none" stroke="#4d7fb6" stroke-width="7" stroke-linecap="round">
+    <path d="M 95 190 l -10 36"/>
+    <path d="M 60 320 l -10 36"/>
+    <path d="M 435 210 l -10 36"/>
+    <path d="M 465 350 l -10 36"/>
+  </g>
+
+  <!-- rippling puddle beneath -->
+  <g fill="none" stroke="#4d7fb6" stroke-linecap="round" opacity="0.75">
+    <path d="M 150 540 q 110 26 220 0" stroke-width="10"/>
+    <path d="M 195 570 q 65 16 130 0" stroke-width="7"/>
+  </g>
+
+  <!-- jiggle lines -->
+  <g fill="none" class="outline thin">
+    <path d="M 108 420 q 12 16 32 20"/>
+    <path d="M 412 420 q -12 16 -32 20"/>
+  </g>
+</svg><p>Rain ⭐⭐⭐</p></div></div>
 <p style="text-align:center;margin:16px 0"><button id="pvpReadyBtn" class="back" style="position:static">✅ READY!</button></p>
 </div>
 
@@ -5449,7 +5878,7 @@
   <p><b>🚩 Starting out:</b> tap PLAY, pick a world, tap level 1, and choose your very first blob. Choose wisely — every blob beats some blobs and loses to others!</p>
   <p><b>⚔️ Battles take turns:</b> on your turn, tap YOUR blob, then tap the enemy you want to attack. Then the enemy team strikes back. Last team standing wins!</p>
   <p><b>🔄 Who beats who:</b> a strong hit makes the enemy go POOF 💨 — a weak hit does nothing! Check the arrow circle posters in the 📖 Blobdex to learn the matchups.</p>
-  <p><b>🟢 Coins:</b> beat a level for the FIRST time = <b>+3 coins</b>. Beat it again = +1. Lose = −1. Each world pays its own coins — Grassy Plains pays green <b>Grassy Coins</b>, the Dark Forest pays purple <b>Forest Coins</b>, and Sunny Skies pays yellow <b>Sky Coins</b>!</p>
+  <p><b>🟢 Coins:</b> beat a level for the FIRST time = <b>+3 coins</b>. Beat it again = +1. Lose = −1. Each world pays its own coins — Grassy Plains pays green <b>Grassy Coins</b>, the Dark Forest pays purple <b>Forest Coins</b>, and Sunny Skies pays light-blue <b>Sky Coins</b>!</p>
   <p><b>⭐ Buy evolutions:</b> the Shop also sells bigger forms of blobs you own — two-star for 15 coins, three-star for 40! Each world’s shop takes its own coins.</p>
   <p><b>🏪 Buy teammates:</b> from level 5 the enemies come in TEAMS, so you need teammates too! A new blob costs 5 coins at the Shop and joins your team right away. Short on coins? Replay levels you already beat!</p>
   <p><b>⭐ Evolving:</b> beat level 15 and your blobs grow to two-star ⭐⭐. Beat level 40 → THREE-star ⭐⭐⭐! Big blobs are tough — hits shrink them before they poof.</p>
@@ -5461,7 +5890,7 @@
 </div>
 </div>
 
-<div id="coinBadge" style="position:fixed;top:14px;right:14px;z-index:10;background:#ffe9a8;border:4px solid #2b2340;border-radius:14px;padding:6px 14px;font-weight:bold;font-size:1.1rem;box-shadow:0 3px 0 rgba(43,35,64,0.3)"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#7fbf6f" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#b5e0a5" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#7fbf6f" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCount">0</span> &nbsp;<svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#5d4a8a" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#8f7cc0" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#5d4a8a" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCountF">0</span> &nbsp;<svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#f4b942" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#ffe08a" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#f4b942" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCountS">0</span></div>
+<div id="coinBadge" style="position:fixed;top:14px;right:14px;z-index:10;background:#ffe9a8;border:4px solid #2b2340;border-radius:14px;padding:6px 14px;font-weight:bold;font-size:1.1rem;box-shadow:0 3px 0 rgba(43,35,64,0.3)"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#7fbf6f" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#b5e0a5" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#7fbf6f" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCount">0</span> &nbsp;<svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#5d4a8a" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#8f7cc0" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#5d4a8a" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCountF">0</span> &nbsp;<svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#8fc7ef" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#d4eafc" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#8fc7ef" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCountS">0</span></div>
 <button id="backBtn" class="back" hidden>⬅ Back</button>
 
 <script>
@@ -8190,7 +8619,7 @@ var qrcode = function() {
   var coins = 0;
   var coinsF = 0;
   var coinsS = 0;
-  var CEMOJI = { grassy: '\ud83d\udfe2', forest: '\ud83d\udfe3', skies: '\ud83d\udfe1' };
+  var CEMOJI = { grassy: '🟢', forest: '🟣', skies: '🔵' };
   var CNAME = { grassy: 'Grassy Coins', forest: 'FOREST coins', skies: 'SKY coins' };
   function walletOf(w) { return w === 'forest' ? coinsF : (w === 'skies' ? coinsS : coins); }
   function walletAdd(w, d) {
@@ -8261,6 +8690,20 @@ var qrcode = function() {
     bossAlive = {};
     WCONF[curWorld].secs.forEach(function (s) { bossAlive[s] = 3; });  // THREE matching hits per section
   }
+  function showBattlePoster() {
+    var bp = document.getElementById('battlePoster');
+    if (!bp) return;
+    if (bossMode) { bp.style.display = 'none'; return; }
+    bp.style.display = '';
+    if (bp.dataset.world === curWorld) return;
+    var title = 'WHO BEATS WHO — ' + WCONF[curWorld].name.toUpperCase();
+    var src = [].filter.call(document.querySelectorAll('svg text'), function (t) { return t.textContent === title; })[0];
+    bp.innerHTML = '';
+    if (!src) return;
+    bp.innerHTML = '<p class="note" style="font-weight:bold">🧠 Forgot who beats who? Here\u2019s the chart:</p>';
+    bp.appendChild(src.closest('svg').cloneNode(true));
+    bp.dataset.world = curWorld;
+  }
   function startBattle() {
     bossMode = (battleLevel === 50);
     document.getElementById('againBtn').hidden = true;   // reroll only allowed after a loss or stalemate
@@ -8284,8 +8727,10 @@ var qrcode = function() {
       var missing = WCONF[curWorld].secs.filter(function (f) { return team.indexOf(f) < 0; });
       if (missing.length) setMsg('⚠️ You are missing ' + missing.map(function (m) { return NAMES[m]; }).join(', ') + ' — visit the Shop, or this fight can\u2019t be won!');
       else setMsg('👑 ' + bn + ' RISES! Tap one of your blobs!');
+      showBattlePoster();
       return;
     }
+    showBattlePoster();
     setFighters();
     yourSpan.querySelectorAll('.teammate').forEach(function (m) { m.style.visibility = 'visible'; });
     document.getElementById('battleTitle').textContent = '⚔️ ' + WCONF[curWorld].name + ' — Level ' + battleLevel;
