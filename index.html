@@ -207,6 +207,12 @@
   #screen-home .flyball { position: absolute !important; top: 16% !important; left: -60px; font-size: 2.2rem; z-index: 2; pointer-events: none; animation: flyby 9s ease-in-out infinite; opacity: 0; }
   @keyframes flyby { 0%, 62% { opacity: 0; transform: translateX(0) translateY(0) rotate(0deg); } 65% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; transform: translateX(115vw) translateY(-40px) rotate(360deg); } }
   @media (prefers-reduced-motion: reduce) { .bgblob circle, .hopper, .walker, .flyball { animation: none; } .flyball { display: none; } }
+
+  .pophint { text-align:center; font-weight:bold; color:var(--muted); font-size:1.02rem; margin:2px 0 0; animation: hintpulse 2.4s ease-in-out infinite; }
+  @keyframes hintpulse { 0%,100% { opacity:0.65; } 50% { opacity:1; } }
+  .bgblob svg { transition: transform 0.15s; }
+  .bgblob:hover svg { transform: scale(1.18) rotate(4deg); }
+  @media (prefers-reduced-motion: reduce) { .pophint { animation:none; } }
 </style>
 </head>
 <body>
@@ -217,6 +223,7 @@
 
   <h1>Attack of the Blobs<span class="dot">!</span></h1>
   <p class="byline">The game · by William</p>
+  <p class="pophint">🫧 psst… the blobs are poppable — tap one!</p>
   <p style="text-align:center;margin:60px 0 10px"><button id="playBtn" class="bigplay">▶ PLAY!</button></p>
   
   <div class="authorrow" style="margin-top:70px;opacity:0.9"><div class="inventor"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" >
