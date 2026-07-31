@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="color-scheme" content="light only">
+  <meta name="color-scheme" content="only light">
+  <meta name="supported-color-schemes" content="light">
 <title>Attack of the Blobs</title>
 <style>
   @font-face {
@@ -96,7 +97,9 @@
   .teammate { position:relative; container-type: inline-size; }
   .teambar { display:flex; gap:10px; justify-content:center; align-items:flex-end; flex-wrap:wrap; margin:2px auto 12px; font-weight:bold; }
   .teambar .tblabel { align-self:center; font-size:1.05rem; }
-  :root { color-scheme: light only; }
+  :root { color-scheme: only light; }
+  html { forced-color-adjust: none; }
+  @media (prefers-color-scheme: dark) { body { background: #f7f1e3; color: #2b2340; } }
   .note { font-size: 1.05rem; }
   .card p { font-size: 0.85rem; }
   #coinBadge { cursor: pointer; }
