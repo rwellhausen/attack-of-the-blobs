@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light only">
 <title>Attack of the Blobs</title>
 <style>
   @font-face {
@@ -95,6 +96,13 @@
   .teammate { position:relative; container-type: inline-size; }
   .teambar { display:flex; gap:10px; justify-content:center; align-items:flex-end; flex-wrap:wrap; margin:2px auto 12px; font-weight:bold; }
   .teambar .tblabel { align-self:center; font-size:1.05rem; }
+  :root { color-scheme: light only; }
+  .note { font-size: 1.05rem; }
+  .card p { font-size: 0.85rem; }
+  #coinBadge { cursor: pointer; }
+  #coinBadge .coinSet { display: none; }
+  #coinBadge .coinSet.on { display: inline; }
+  h2.world { margin-top: 58px; }
   .tbblob { width:58px; text-align:center; background:#d9eecb; border:3px solid #2b2340; border-radius:12px; padding:4px 4px 2px; }
   .tbblob svg { width:100%; height:auto; display:block; }
   .tbblob span { font-size:0.66rem; letter-spacing:-1px; }
@@ -8307,6 +8315,33 @@
 <g><path d="M 575 333 L 555 313 L 577 305 Z" fill="#2b2340"/><path d="M 401 578 L 424 561 L 429 584 Z" fill="#2b2340"/><path d="M 125 447 L 145 467 L 123 475 Z" fill="#2b2340"/><path d="M 299 202 L 276 219 L 271 196 Z" fill="#2b2340"/><path d="M 518 387 L 503 396 L 507 374 Z" fill="#e26fa0"/><path d="M 359 555 L 373 544 L 351 540 Z" fill="#e26fa0"/></g></svg>
 <p class="note" style="font-weight:bold">🏙️ Bustling Buildings: follow the arrows — Brick beats Cloth, Cloth beats Glass, Glass beats Heart, Heart beats Brick! Pink arrows are the extra crossings: Heart also charms Cloth, and Brick also smashes Glass.</p></div>
 </div>
+<div id="screen-mystery" class="screen" hidden>
+<h2 class="world">❓ The Secret World</h2>
+<p class="note" style="font-weight:bold;max-width:640px;margin:0 auto 6px">🧪 THE TRUTH: an evil SCIENTIST BLOB has a mad-ray — HIS ray is what made all the blobs go bad! The bosses you beat were his victims. Now they are MADDER THAN EVER. Free all five… then face the scientist himself.</p>
+<div class="chooser" id="rushCards"></div>
+<p class="note" id="rushMsg" style="font-weight:bold"></p>
+<div style="text-align:center"><button class="back" id="rushBtn" style="position:static;font-size:1.15rem">⚔️ FIGHT!</button></div>
+<div style="text-align:center;margin-top:14px">
+<svg id="scientistArt" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 700" style="width:100%;max-width:340px;display:block;margin:0 auto;border:4px solid #2b2340;border-radius:18px;background:#8d8798">
+  <path d="M 260 120 q 170 -20 214 134 q 40 136 -78 214 q -132 84 -254 8 q -116 -78 -78 -212 q 38 -136 196 -144 Z" fill="#141020" stroke="#2b2340" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M 120 300 q -14 190 24 330 l 66 0 q -10 -160 4 -260 Z" fill="#f7f1e3" stroke="#2b2340" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M 400 300 q 14 190 -24 330 l -66 0 q 10 -160 -4 -260 Z" fill="#f7f1e3" stroke="#2b2340" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M 214 360 q 46 12 92 0 l 10 268 l -112 0 Z" fill="#fffdf5" stroke="#2b2340" stroke-width="9" stroke-linejoin="round"/>
+  <circle cx="260" cy="420" r="7" fill="#2b2340"/><circle cx="260" cy="480" r="7" fill="#2b2340"/><circle cx="260" cy="540" r="7" fill="#2b2340"/>
+  <circle cx="215" cy="260" r="15" fill="#fff6e0"/><circle cx="305" cy="260" r="15" fill="#fff6e0"/>
+  <circle cx="215" cy="260" r="9" fill="#c74fa3"/><circle cx="305" cy="260" r="9" fill="#c74fa3"/>
+  <path d="M 205 320 q 55 26 110 0" fill="none" stroke="#fff6e0" stroke-width="8" stroke-linecap="round"/>
+  <g transform="translate(408,430) rotate(-20)">
+    <rect x="0" y="0" width="86" height="34" rx="10" fill="#6f6a7d" stroke="#2b2340" stroke-width="8"/>
+    <rect x="78" y="4" width="26" height="26" rx="6" fill="#c74fa3" stroke="#2b2340" stroke-width="7"/>
+    <path d="M 14 34 l 0 30 q 0 12 -14 12" fill="none" stroke="#2b2340" stroke-width="8" stroke-linecap="round"/>
+    <g stroke="#c74fa3" stroke-width="6" fill="none" stroke-linecap="round"><path d="M 108 6 l 18 -10"/><path d="M 112 17 l 22 0"/><path d="M 108 28 l 18 10"/></g>
+  </g>
+  <text x="260" y="60" text-anchor="middle" font-family="'Baloo 2','Comic Sans MS',cursive" font-size="34" font-weight="bold" fill="#fff6e0">THE SCIENTIST BLOB</text>
+</svg>
+<p class="note" style="font-weight:bold">🧪 The Scientist Blob — black, lab coat, his mad-ray, and BIGGER than any boss. What he does in battle is still William’s secret… TO BE CONTINUED!</p>
+</div>
+</div>
 <div id="screen-rules" class="screen" hidden>
 <h2 class="world">📜 How to Play</h2>
 <div class="rules">
@@ -8326,7 +8361,7 @@
 </div>
 </div>
 
-<div id="coinBadge" style="position:fixed;top:14px;right:14px;z-index:10;background:#ffe9a8;border:4px solid #2b2340;border-radius:14px;padding:6px 14px;font-weight:bold;font-size:1.1rem;box-shadow:0 3px 0 rgba(43,35,64,0.3)"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#7fbf6f" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#b5e0a5" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#7fbf6f" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCount">0</span> &nbsp;<svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#5d4a8a" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#8f7cc0" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#5d4a8a" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCountF">0</span> &nbsp;<svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#8fc7ef" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#d4eafc" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#8fc7ef" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCountS">0</span> &nbsp;<svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#5c7fd6" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#a8c1f0" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#5c7fd6" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/><path d="M 120 150 q 30 -40 85 -48" fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round" opacity="0.95"/></svg> <span id="coinCountU">0</span> &nbsp;<svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#9a9aa5" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#cfcfd8" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#9a9aa5" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCountC">0</span></div>
+<div id="coinBadge" style="position:fixed;top:14px;right:14px;z-index:10;background:#ffe9a8;border:4px solid #2b2340;border-radius:14px;padding:6px 14px;font-weight:bold;font-size:1.1rem;box-shadow:0 3px 0 rgba(43,35,64,0.3)"><span class="coinSet" data-w="grassy"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#7fbf6f" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#b5e0a5" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#7fbf6f" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCount">0</span></span><span class="coinSet" data-w="forest"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#5d4a8a" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#8f7cc0" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#5d4a8a" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCountF">0</span></span><span class="coinSet" data-w="skies"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#8fc7ef" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#d4eafc" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#8fc7ef" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCountS">0</span></span><span class="coinSet" data-w="underground"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#5c7fd6" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#a8c1f0" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#5c7fd6" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/><path d="M 120 150 q 30 -40 85 -48" fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round" opacity="0.95"/></svg> <span id="coinCountU">0</span></span><span class="coinSet" data-w="city"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#9a9aa5" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#cfcfd8" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#9a9aa5" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCountC">0</span></span> <span style="font-size:0.9em">🏪</span></div>
 <button id="backBtn" class="back" hidden>⬅ Back</button>
 
 <script>
@@ -10632,7 +10667,7 @@ var qrcode = function() {
 </script>
 
 <script>
-  var screens = ['screen-home', 'screen-who', 'screen-hub', 'screen-worlds', 'screen-levels', 'screen-battle', 'screen-blobdex', 'screen-choose', 'screen-shop', 'screen-pvp-pick', 'screen-pvp', 'screen-levels-forest', 'screen-levels-skies', 'screen-levels-underground', 'screen-levels-city', 'screen-choose-forest', 'screen-choose-skies', 'screen-choose-underground', 'screen-choose-city', 'screen-rules'];
+  var screens = ['screen-home', 'screen-who', 'screen-hub', 'screen-worlds', 'screen-levels', 'screen-battle', 'screen-blobdex', 'screen-choose', 'screen-shop', 'screen-pvp-pick', 'screen-pvp', 'screen-levels-forest', 'screen-levels-skies', 'screen-levels-underground', 'screen-levels-city', 'screen-choose-forest', 'screen-choose-skies', 'screen-choose-underground', 'screen-choose-city', 'screen-mystery', 'screen-rules'];
   // back always goes UP one level in the game, never ping-pongs through history
   var PARENT = {
     'screen-who': 'screen-home',
@@ -10653,7 +10688,8 @@ var qrcode = function() {
     'screen-levels-underground': 'screen-worlds',
     'screen-choose-underground': 'screen-levels-underground',
     'screen-levels-city': 'screen-worlds',
-    'screen-choose-city': 'screen-levels-city'
+    'screen-choose-city': 'screen-levels-city',
+    'screen-mystery': 'screen-worlds'
   };
   var backBtn = document.getElementById('backBtn');
   function current() { return screens.filter(function (s) { return !document.getElementById(s).hidden; })[0]; }
@@ -10667,10 +10703,20 @@ var qrcode = function() {
     window.scrollTo(0, 0);
   }
   function goTo(id) { show(id); }
+  var shopReturn = null;
   backBtn.addEventListener('click', function () {
     var c = current();
-    if (c === 'screen-battle') { show(WCONF[curWorld].screen); scrollToFrontier(curWorld); return; }
+    if (c === 'screen-shop' && shopReturn) { var r = shopReturn; shopReturn = null; show(r); return; }
+    if (c === 'screen-battle') { if (madRush) { renderMystery(); show('screen-mystery'); } else { show(WCONF[curWorld].screen); scrollToFrontier(curWorld); } return; }
     show(PARENT[c] || 'screen-home');
+  });
+  tappable(document.getElementById('coinBadge'), function () {
+    var c = current();
+    if (c === 'screen-shop') return;
+    shopReturn = c;
+    goTo('screen-shop');
+    showShopTab({ grassy: 'gold', forest: 'forest', skies: 'skies', underground: 'underground', city: 'city' }[curWorld] || 'gold');
+    if (typeof updateShop === 'function') updateShop();
   });
 
   function tappable(el, fn) {
@@ -10690,6 +10736,7 @@ var qrcode = function() {
     if (lv) sc.scrollLeft = Math.max(0, (+lv.dataset.x) - sc.clientWidth / 2);
   }
   function levelTap(w, n) {
+    madRush = false;
     switchWorld(w);
     var unlocked = maxGold() + 1;
     if (!SANDBOX && n > unlocked) {
@@ -10740,12 +10787,12 @@ var qrcode = function() {
   function setFighters() {
     if (!team.length || !enemyTeam.length) return;
     var es = enemyStar();
-    var w = team.length === 1 ? 90 : (team.length === 2 ? 60 : 46);
+    var w = team.length === 1 ? 90 : (team.length === 2 ? 60 : (team.length === 3 ? 30 : 22));
     document.getElementById('yourBlob').innerHTML = team.map(function (n) {
       var ms = starOf(n);
       return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '" style="width:' + w + '%">' + formSvg(n, ms) + accHtml(n, ms) + '</div>';
     }).join('');
-    var we = enemyTeam.length === 1 ? 90 : (enemyTeam.length === 2 ? 60 : 46);
+    var we = enemyTeam.length === 1 ? 90 : (enemyTeam.length === 2 ? 60 : (enemyTeam.length === 3 ? 30 : 22));
     // William's rule: SOME enemy blobs dress up — any shop accessory
     var FOE_ACCS = ['tophat', 'shades', 'cane', 'bow', 'crown', 'wand'];
     var foeAcc = function (n, i) {
@@ -10769,7 +10816,7 @@ var qrcode = function() {
   function saveAll(all) { try { localStorage.setItem(PROFILES_KEY, JSON.stringify(all)); } catch (e) {} }
   function currentSaveObj() {
     stashWorld();
-    return { v: 2, cur: curWorld, worlds: worldsData, coins: coins, coinsF: coinsF, coinsS: coinsS, coinsU: coinsU, coinsC: coinsC, accs: ownedAccs, equip: equip, name: playerName, pops: popped };
+    return { v: 2, cur: curWorld, worlds: worldsData, coins: coins, coinsF: coinsF, coinsS: coinsS, coinsU: coinsU, coinsC: coinsC, rush: rushProgress, accs: ownedAccs, equip: equip, name: playerName, pops: popped };
   }
   function saveGame() {
     if (!playerName) return;   // no ghost profiles — name first!
@@ -10792,6 +10839,8 @@ var qrcode = function() {
     ownedAccs = s.accs || []; equip = s.equip || {};
     if (s.name) playerName = s.name;
     popped = s.pops || 0;
+    rushProgress = s.rush || 0;
+    madRush = false;
     var pc = document.getElementById('popCount');
     if (pc) { pc.style.display = popped > 0 ? 'block' : 'none'; document.getElementById('popN').textContent = popped; }
     applyGold(); refreshWorldLocks(); showCoins(); refreshAccBtns(); refreshProfile();
@@ -11188,6 +11237,39 @@ var qrcode = function() {
     return '<div class="accessory" style="' + pos + '">' + ACCS[a].emoji + '</div>';
   }
   var battleLevel = 1;
+  var madRush = false;
+  var rushProgress = 0;
+  var RUSH_ORDER = ['grassy', 'forest', 'skies', 'underground', 'city'];
+  function renderMystery() {
+    var cards = document.getElementById('rushCards');
+    if (!cards) return;
+    cards.innerHTML = RUSH_ORDER.map(function (w, i) {
+      var done = i < rushProgress;
+      var next = i === rushProgress;
+      return '<div class="pick" style="width:110px;opacity:' + (done || next ? 1 : 0.55) + ';background:' + (done ? '#dff2d8' : '#fffdf5') + '"><p style="font-size:1.6rem;margin:4px 0">' + (done ? '✅' : '😡') + '</p><p><b>MAD ' + WCONF[w].bossName + '</b></p><p class="match">' + WCONF[w].name + '</p></div>';
+    }).join('');
+    var btn = document.getElementById('rushBtn');
+    var msg = document.getElementById('rushMsg');
+    if (rushProgress >= 5) {
+      btn.hidden = true;
+      msg.textContent = '🏆 ALL FIVE BOSSES FREED FROM THE MAD-RAY! Only the Scientist Blob remains… and his battle arrives once William reveals his powers!';
+    } else {
+      btn.hidden = false;
+      var w = RUSH_ORDER[rushProgress];
+      btn.textContent = '⚔️ FIGHT MAD ' + WCONF[w].bossName + '! (' + WCONF[w].name + ' team)';
+      msg.textContent = '🌀 Mad bosses have FOUR-hit armor but wild aim. Your team is fully rested for each fight. Lose? Just try that boss again!';
+    }
+  }
+  function startRushFight() {
+    if (rushProgress >= 5) return;
+    var w = RUSH_ORDER[rushProgress];
+    switchWorld(w);
+    if (!team.length) { document.getElementById('rushMsg').textContent = '⚠️ Your ' + WCONF[w].name + ' team is missing — beat that world first!'; return; }
+    madRush = true;
+    battleLevel = 50;
+    startBattle();
+    goTo('screen-battle');
+  }
   function maxGold() { return goldLevels.length ? Math.max.apply(null, goldLevels) : 0; }
   function wouldStalemate(cand) {
     if (!team.length) return false;
@@ -11215,6 +11297,7 @@ var qrcode = function() {
     var cs = document.getElementById('coinCountS'); if (cs) cs.textContent = coinsS;
     var cu = document.getElementById('coinCountU'); if (cu) cu.textContent = coinsU;
     var cc = document.getElementById('coinCountC'); if (cc) cc.textContent = coinsC;
+    document.querySelectorAll('#coinBadge .coinSet').forEach(function (cs) { cs.classList.toggle('on', cs.dataset.w === curWorld); });
   }
   function addCoins(d) {
     walletAdd(curWorld, d);
@@ -11237,7 +11320,14 @@ var qrcode = function() {
     var svg = curWorld === 'forest' ? TINY_SVG : (curWorld === 'skies' ? JERRY_SVG : (curWorld === 'underground' ? BUB_SVG : (curWorld === 'city' ? FATSO_SVG : MOMO_SVG)));
     enemySpan.innerHTML = '<div id="momoEl" style="width:100%;max-width:300px;cursor:pointer">' + svg + '</div>';
     bossAlive = {};
-    WCONF[curWorld].secs.forEach(function (s) { bossAlive[s] = 3; });  // THREE matching hits per section
+    WCONF[curWorld].secs.forEach(function (s) { bossAlive[s] = madRush ? 4 : 3; });  // mad bosses wear FOUR-hit armor
+    if (madRush) {
+      var mo = document.getElementById('momoEl'), msvg = mo && mo.querySelector('svg');
+      if (msvg) msvg.insertAdjacentHTML('beforeend',
+        '<g fill="none" stroke="#c74fa3" stroke-width="6" stroke-linecap="round">' +
+        '<path d="M 215 245 m 10 0 a 10 10 0 1 1 -10 -10 a 16 16 0 1 1 16 16"/>' +
+        '<path d="M 305 245 m 10 0 a 10 10 0 1 1 -10 -10 a 16 16 0 1 1 16 16"/></g>');
+    }
   }
   function showBattlePoster() {
     var bp = document.getElementById('battlePoster');
@@ -11264,7 +11354,7 @@ var qrcode = function() {
     enemySpan.style.visibility = 'visible';
     battleState = 'ready';
     if (bossMode) {
-      var w = team.length === 1 ? 90 : (team.length === 2 ? 60 : 46);
+      var w = team.length === 1 ? 90 : (team.length === 2 ? 60 : (team.length === 3 ? 30 : 22));
       yourSpan.innerHTML = team.map(function (n) {
         var ms = starOf(n);
         return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '" style="width:' + w + '%">' + formSvg(n, ms) + accHtml(n, ms) + '</div>';
@@ -11489,6 +11579,12 @@ var qrcode = function() {
   }
   function momoTurn() {
     if (battleState === 'over') return;
+    if (madRush && Math.random() < 0.25) {
+      var bn0 = WCONF[curWorld].bossName;
+      setMsg('🌀 MAD ' + bn0 + ' goes TOTALLY BONKERS and attacks the sky! The mad-ray scrambled the aim!');
+      setTimeout(bossBackToYou, 900);
+      return;
+    }
     var secs = WCONF[curWorld].secs;  // the boss attacks with ANY element, even destroyed sections
     var mates = aliveMates();
     if (!mates.length) return;
@@ -11544,10 +11640,10 @@ var qrcode = function() {
         bossAlive[attacker] -= 1;
         var rect = document.getElementById('sec-' + attacker);
         if (bossAlive[attacker] > 0) {
-          if (rect) rect.setAttribute('fill-opacity', bossAlive[attacker] === 2 ? '0.7' : '0.4');
-          setMsg(bossAlive[attacker] === 2
-            ? '💥 The ' + NAMES[attacker].split(' ')[0] + ' section CRACKS! (2 more hits)'
-            : '💥 The ' + NAMES[attacker].split(' ')[0] + ' section is CRUMBLING — one more hit!');
+          if (rect) rect.setAttribute('fill-opacity', ({ 3: '0.85', 2: '0.7', 1: '0.4' })[bossAlive[attacker]] || '0.4');
+          setMsg(bossAlive[attacker] === 1
+            ? '💥 The ' + NAMES[attacker].split(' ')[0] + ' section is CRUMBLING — one more hit!'
+            : '💥 The ' + NAMES[attacker].split(' ')[0] + ' section CRACKS! (' + bossAlive[attacker] + ' more hits)');
           setTimeout(momoTurn, 900);
           return;
         }
@@ -11559,7 +11655,14 @@ var qrcode = function() {
           refreshWorldLocks();
           addCoins(5);
           saveGame();
-          setMsg('🏆👑 ' + WCONF[curWorld].bossName + ' IS DEFEATED!! ' + WCONF[curWorld].winText + '! +5 ' + CNAME[curWorld] + ' ' + CEMOJI[curWorld] + '! You are the CHAMPION' + (playerName ? ', ' + playerName : '') + '!');
+          if (madRush) {
+            var wIdx = RUSH_ORDER.indexOf(curWorld);
+            if (wIdx > -1 && wIdx === rushProgress) rushProgress = wIdx + 1;
+            saveGame();
+            setMsg('💚 MAD ' + WCONF[curWorld].bossName + ' IS FREED FROM THE MAD-RAY!! ' + (rushProgress >= 5 ? 'ALL FIVE BOSSES ARE FREE — only the SCIENTIST remains…' : 'Tap Back to face the next mad boss!'));
+          } else {
+            setMsg('🏆👑 ' + WCONF[curWorld].bossName + ' IS DEFEATED!! ' + WCONF[curWorld].winText + '! +5 ' + CNAME[curWorld] + ' ' + CEMOJI[curWorld] + '! You are the CHAMPION' + (playerName ? ', ' + playerName : '') + '!');
+          }
           battleState = 'over';
         } else {
           setMsg('💥 The ' + NAMES[attacker].split(' ')[0] + ' section shatters! ' + left + ' sections left!');
@@ -11602,10 +11705,17 @@ var qrcode = function() {
       });
     }
   });
+  tappable(document.getElementById('rushBtn'), function () { startRushFight(); });
   tappable(document.getElementById('enter-mystery'), function () {
-    refreshWorldLocks();
-    var b = document.getElementById('worldlock-mystery');
-    if (b) b.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    var why = worldLocked('mystery');
+    if (why) {
+      refreshWorldLocks();
+      var b = document.getElementById('worldlock-mystery');
+      if (b) b.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    renderMystery();
+    goTo('screen-mystery');
   });
   function updateHomeStats() {
     var icons = { grassy: '🌄', forest: '🌲', skies: '☀️', underground: '⛏️', city: '🏙️', mystery: '❓' };
