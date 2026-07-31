@@ -7001,6 +7001,7 @@ var qrcode = function() {
     return document.querySelector('#pick-' + name + ' svg').outerHTML;
   }
   function myStar() { if (SANDBOX) return battleLevel > 40 ? 3 : (battleLevel > 15 ? 2 : 1); var mg = maxGold(); return mg >= 40 ? 3 : (mg >= 15 ? 2 : 1); }
+  function starOf(fam) { return Math.max(myStar(), teamStars[fam] || 1); }
   function enemyStar() { return battleLevel > 40 ? 3 : (battleLevel > 15 ? 2 : 1); }
   function formSvg(fam, star) {
     var st = document.querySelector('#formstore [data-form="' + fam + '-' + star + '"]');
@@ -7009,9 +7010,10 @@ var qrcode = function() {
   }
   function setFighters() {
     if (!team.length || !enemyTeam.length) return;
-    var ms = myStar(), es = enemyStar();
+    var es = enemyStar();
     var w = team.length === 1 ? 90 : (team.length === 2 ? 60 : 46);
     document.getElementById('yourBlob').innerHTML = team.map(function (n) {
+      var ms = starOf(n);
       return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '" style="width:' + w + '%">' + formSvg(n, ms) + accHtml(n, ms) + '</div>';
     }).join('');
     var we = enemyTeam.length === 1 ? 90 : (enemyTeam.length === 2 ? 60 : 46);
@@ -7021,7 +7023,7 @@ var qrcode = function() {
     var note = document.getElementById('matchNote');
     note.textContent = '👾 Enemy team: ' + enemyTeam.map(function (n) { return NAMES[n]; }).join(' + ') +
       (es > 1 ? ' — they are ' + es + ' star now!' : '') +
-      (ms > 1 ? ' (Your blobs are ' + ms + ' star!)' : '') +
+      '' +
       (enemyTeam.length > team.length ? ' 💡 Outnumbered? The Shop sells teammates for 5 coins!' : '');
   }
 
@@ -7048,6 +7050,7 @@ var qrcode = function() {
     curWorld = s.cur || 'grassy';
     var d = worldsData[curWorld];
     team = d.team || []; goldLevels = d.gold || []; chosenBlob = d.chosen || null; enemyTeam = d.enemyTeam || [];
+    teamStars = d.stars || {};
     coins = s.coins || 0; coinsF = s.coinsF || 0;
     ownedAccs = s.accs || []; equip = s.equip || {};
     if (s.name) playerName = s.name;
@@ -7231,14 +7234,16 @@ var qrcode = function() {
     forest: { name: 'Dark Forest', fams: ['dark','fairy','moss','tree'], screen: 'screen-levels-forest', chooser: 'screen-choose-forest', lockEl: 'lock-forest', arenaBg: '#3a3160', arenaSweep: '#2f4a38', bossName: 'TINY', winText: 'THE DARK FOREST IS COMPLETE', secs: ['tree','moss','fairy','dark'] }
   };
   var WORLD_OF = { earth:'grassy', fire:'grassy', water:'grassy', wind:'grassy', dark:'forest', fairy:'forest', moss:'forest', tree:'forest' };
-  var worldsData = { grassy: { team: [], gold: [], chosen: null, enemyTeam: [] }, forest: { team: [], gold: [], chosen: null, enemyTeam: [] } };
-  function stashWorld() { worldsData[curWorld] = { team: team, gold: goldLevels, chosen: chosenBlob, enemyTeam: enemyTeam }; }
+  var worldsData = { grassy: { team: [], gold: [], chosen: null, enemyTeam: [], stars: {} }, forest: { team: [], gold: [], chosen: null, enemyTeam: [], stars: {} } };
+  var teamStars = {};
+  function stashWorld() { worldsData[curWorld] = { team: team, gold: goldLevels, chosen: chosenBlob, enemyTeam: enemyTeam, stars: teamStars }; }
   function switchWorld(w) {
     if (w === curWorld) return;
     stashWorld();
     curWorld = w;
     var d = worldsData[w] || (worldsData[w] = { team: [], gold: [], chosen: null, enemyTeam: [] });
     team = d.team || []; goldLevels = d.gold || []; chosenBlob = d.chosen || null; enemyTeam = d.enemyTeam || [];
+    teamStars = d.stars || {};
     applyGold();
   }
   function worldBeaten(w) { var g = (w === curWorld) ? goldLevels : ((worldsData[w] || {}).gold || []); return g.indexOf(50) > -1; }
@@ -7318,9 +7323,9 @@ var qrcode = function() {
     enemySpan.style.visibility = 'visible';
     battleState = 'ready';
     if (bossMode) {
-      var ms = myStar();
       var w = team.length === 1 ? 90 : (team.length === 2 ? 60 : 46);
       yourSpan.innerHTML = team.map(function (n) {
+        var ms = starOf(n);
         return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '" style="width:' + w + '%">' + formSvg(n, ms) + accHtml(n, ms) + '</div>';
       }).join('');
       renderMomo();
