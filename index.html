@@ -13772,7 +13772,7 @@ var qrcode = function() {
   var coinsC = 0;
   var coinsSp = 0;
   var CEMOJI = { ghard: '🟢', grassy: '🟢', forest: '🟣', skies: '🔵', underground: '💎', city: '⚪', solar: '⚫' };
-  var CNAME = { ghard: 'Grassy Coins', grassy: 'Grassy Coins', forest: 'FOREST coins', skies: 'SKY coins', underground: 'GEM coins', city: 'CITY coins', solar: 'SPACE coins' };
+  var CNAME = { ghard: 'Grassy Coins', grassy: 'Grassy Coins', forest: 'Forest Coins', skies: 'Sky Coins', underground: 'Gem Coins', city: 'City Coins', solar: 'Space Coins' };
   function walletOf(w) { return w === 'forest' ? coinsF : (w === 'skies' ? coinsS : (w === 'underground' ? coinsU : (w === 'city' ? coinsC : (w === 'solar' ? coinsSp : coins)))); }
   function walletAdd(w, d) {
     if (w === 'forest') coinsF = Math.max(0, coinsF + d);
