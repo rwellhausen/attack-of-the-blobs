@@ -124,7 +124,7 @@
 
   .fighters span { cursor:pointer; }
   #yourBlob, #enemyBlob { display:flex; flex-direction:row; flex-wrap:wrap; align-items:flex-end; align-content:flex-end; justify-content:center; gap:4px; width:45% !important; }
-  .foe { cursor:pointer; }
+  .foe { cursor:pointer; position:relative; container-type: inline-size; }
   .foe svg { width:100%; height:auto; display:block; }
   .teammate { transition: transform .2s; }
   .teammate svg { width:100%; height:auto; display:block; }
@@ -7096,8 +7096,14 @@ var qrcode = function() {
       return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '" style="width:' + w + '%">' + formSvg(n, ms) + accHtml(n, ms) + '</div>';
     }).join('');
     var we = enemyTeam.length === 1 ? 90 : (enemyTeam.length === 2 ? 60 : 46);
-    document.getElementById('enemyBlob').innerHTML = enemyTeam.map(function (n) {
-      return '<div class="foe" data-name="' + n + '" data-star="' + es + '" style="width:' + we + '%">' + formSvg(n, es) + '</div>';
+    // William's rule: SOME enemy blobs dress up (top hat / sunglasses / cane)
+    var foeAcc = function (n, i) {
+      var h = (battleLevel * 37 + i * 11 + n.charCodeAt(0) * 7 + n.length * 3) % 10;
+      return h === 0 ? 'tophat' : (h === 1 ? 'shades' : (h === 2 ? 'cane' : null));
+    };
+    document.getElementById('enemyBlob').innerHTML = enemyTeam.map(function (n, i) {
+      var fa = foeAcc(n, i);
+      return '<div class="foe" data-name="' + n + '" data-star="' + es + '" style="width:' + we + '%">' + formSvg(n, es) + (fa ? accHtml(n, es, fa) : '') + '</div>';
     }).join('');
     var note = document.getElementById('matchNote');
     note.textContent = '👾 Enemy team: ' + enemyTeam.map(function (n) { return NAMES[n]; }).join(' + ') +
@@ -7337,8 +7343,8 @@ var qrcode = function() {
   var ownedAccs = [];
   var equip = {};
   var EYE = {"fire-1": [50.0, 48.3], "fire-2": [49.5, 50.0], "fire-3": [50.0, 55.0], "water-1": [50.0, 48.3], "water-2": [50.0, 44.2], "water-3": [35.6, 43.8], "earth-1": [50.0, 48.3], "earth-2": [50.0, 49.2], "earth-3": [50.0, 41.3], "wind-1": [50.0, 48.3], "wind-2": [50.2, 35.3], "wind-3": [48.1, 29.2], "dark-1": [50.0, 48.3], "dark-2": [50.0, 47.5], "dark-3": [23.1, 44.5], "fairy-1": [50.0, 48.3], "fairy-2": [50.2, 36.7], "fairy-3": [50.2, 35.5], "moss-1": [50.0, 48.3], "moss-2": [50.0, 55.0], "moss-3": [50.5, 50.0], "tree-1": [50.0, 54.2], "tree-2": [50.0, 42.5], "tree-3": [50.3, 35.8]};  // eye midpoint of every blob form, % of art box
-  function accHtml(fam, star) {
-    var a = equip[fam];
+  function accHtml(fam, star, forced) {
+    var a = forced || equip[fam];
     if (!a) return '';
     var e = EYE[fam + '-' + (star || 1)] || [50, 45];
     var x = e[0], y = e[1], pos;
