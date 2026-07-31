@@ -7080,7 +7080,7 @@ var qrcode = function() {
   function saveAll(all) { try { localStorage.setItem(PROFILES_KEY, JSON.stringify(all)); } catch (e) {} }
   function currentSaveObj() {
     stashWorld();
-    return { v: 2, cur: curWorld, worlds: worldsData, coins: coins, coinsF: coinsF, accs: ownedAccs, equip: equip, name: playerName };
+    return { v: 2, cur: curWorld, worlds: worldsData, coins: coins, coinsF: coinsF, accs: ownedAccs, equip: equip, name: playerName, pops: popped };
   }
   function saveGame() {
     if (!playerName) return;   // no ghost profiles — name first!
@@ -7101,6 +7101,9 @@ var qrcode = function() {
     coins = s.coins || 0; coinsF = s.coinsF || 0;
     ownedAccs = s.accs || []; equip = s.equip || {};
     if (s.name) playerName = s.name;
+    popped = s.pops || 0;
+    var pc = document.getElementById('popCount');
+    if (pc) { pc.style.display = popped > 0 ? 'block' : 'none'; document.getElementById('popN').textContent = popped; }
     applyGold(); refreshWorldLocks(); showCoins(); refreshAccBtns(); refreshProfile();
     if (team.length && enemyTeam.length) startBattle(); else setFighters();
   }
@@ -7276,6 +7279,7 @@ var qrcode = function() {
   var battleState = 'idle';   // ready -> selected -> busy -> over
   var SANDBOX = false;   // tester build: everything unlocked. The real build sets this false.
   var curWorld = 'grassy';
+  var popped = 0;
   var WCONF = {
     grassy: { name: 'Grassy Plains', fams: ['earth','fire','water','wind'], screen: 'screen-levels', chooser: 'screen-choose', lockEl: 'lockMsg', arenaBg: '#8fce7f', arenaSweep: '#57a05c', bossName: 'MOMO', winText: 'GRASSY PLAINS IS COMPLETE', secs: ['fire','water','earth','wind'] },
     forest: { name: 'Dark Forest', fams: ['dark','fairy','moss','tree'], screen: 'screen-levels-forest', chooser: 'screen-choose-forest', lockEl: 'lock-forest', arenaBg: '#3a3160', arenaSweep: '#2f4a38', bossName: 'TINY', winText: 'THE DARK FOREST IS COMPLETE', secs: ['tree','moss','fairy','dark'] }
@@ -8299,7 +8303,6 @@ var qrcode = function() {
   refreshProfile();
 
   // --- pop-a-blob! (cover mini-game) ---
-  var popped = 0;
   document.querySelectorAll('#screen-home .bgblob').forEach(function (b) {
     b.addEventListener('click', function () {
       if (b.classList.contains('popped')) return;
@@ -8307,7 +8310,8 @@ var qrcode = function() {
       popped += 1;
       document.getElementById('popCount').style.display = 'block';
       document.getElementById('popN').textContent = popped;
-      if (popped === 20) blobParty();
+      if (popped % 20 === 0) blobParty();
+      saveGame();
       try { playSound('moss'); } catch (e) {}
       setTimeout(function () {
         b.style.left = Math.floor(Math.random() * 92) + '%';
@@ -8318,6 +8322,7 @@ var qrcode = function() {
   });
 
   // --- the secret 20-pop BLOB PARTY ---
+  // (popped is declared with the pop-a-blob handler below)
   function blobParty() {
     if (document.getElementById('popParty')) return;
     var P = document.createElement('div');
@@ -8332,7 +8337,7 @@ var qrcode = function() {
         '<circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div>';
     }
     P.innerHTML = rain +
-      '<div class="partybanner">🎉 BLOB MASTER! 🎉<br><span style="font-size:1.1rem">You popped 20 blobs!</span></div>' +
+      '<div class="partybanner">🎉 BLOB MASTER! 🎉<br><span style="font-size:1.1rem">You popped ' + popped + ' blobs!</span></div>' +
       '<div class="partyboss" style="animation-delay:0.5s">' + MOMO_SVG + '</div>' +
       '<div class="partyboss" style="animation-delay:2.2s">' + TINY_SVG + '</div>';
     document.body.appendChild(P);
