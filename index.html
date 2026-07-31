@@ -11374,7 +11374,7 @@ var qrcode = function() {
     var order = chartCircle(WCONF[world].fams);
     var POS = [[350, 78], [588, 180], [350, 282], [112, 180]];   // top, right, bottom, left
     var R = 48;
-    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 372" style="width:100%;height:auto;display:block;background:#fffdf5;border:4px solid #2b2340;border-radius:16px">';
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 372" style="width:100%;max-width:560px;height:auto;display:block;margin:0 auto;background:#fffdf5;border:4px solid #2b2340;border-radius:16px">';
     // circle arrows along the diamond edges
     for (var k = 0; k < 4; k++) {
       var a = POS[k], b = POS[(k + 1) % 4];
@@ -11397,7 +11397,7 @@ var qrcode = function() {
       var f = order[n], p = POS[n];
       var lightFill = (f === 'cloud' || f === 'glass' || f === 'light' || f === 'gold');
       var eye = (f === 'dark' || f === 'coal') ? '#fff6e0' : '#2b2340';
-      svg += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + R + '" fill="' + FAMCOLOR[f] + '" stroke="#2b2340" stroke-width="8"/>' +
+      svg += '<path transform="translate(' + p[0] + ',' + (p[1] + 6) + ') scale(0.92)" d="M 0 -56 q 41 -5 52 33 q 10 34 -19 52 q -32 21 -62 2 q -28 -18 -18 -52 q 10 -34 47 -35 Z" fill="' + FAMCOLOR[f] + '" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/>' +
         '<circle cx="' + (p[0] - 15) + '" cy="' + (p[1] - 6) + '" r="7" fill="' + eye + '"/>' +
         '<circle cx="' + (p[0] + 15) + '" cy="' + (p[1] - 6) + '" r="7" fill="' + eye + '"/>' +
         '<text x="' + p[0] + '" y="' + (p[1] + 30) + '" text-anchor="middle" font-family="\'Baloo 2\',cursive" font-size="' + (NAMES[f].split(' ')[0].length > 6 ? 17 : 21) + '" font-weight="800" fill="' + eye + '">' + NAMES[f].split(' ')[0] + '</text>';
@@ -12244,6 +12244,19 @@ var qrcode = function() {
     });
     if (typeof updateHomeStats === 'function') updateHomeStats();
   }
+  // William's ruling: the new compact charts replace the old big posters everywhere
+  (function () {
+    var t2w = { 'GRASSY PLAINS': 'grassy', 'DARK FOREST': 'forest', 'SUNNY SKIES': 'skies', 'DEEP UNDERGROUND': 'underground', 'BUSTLING BUILDINGS': 'city' };
+    [].slice.call(document.querySelectorAll('svg text')).forEach(function (t) {
+      var m = /WHO BEATS WHO — (.+)/.exec(t.textContent || '');
+      if (!m || !t2w[m[1]]) return;
+      var svg = t.closest('svg');
+      if (!svg || svg.closest('#battlePoster')) return;
+      var wrap = svg.parentElement;
+      var w = t2w[m[1]];
+      wrap.innerHTML = '<p class="note" style="font-weight:bold">🧠 Who beats who in ' + WCONF[w].name + ' — follow the arrows! Orange arrows are the extra crossings.</p>' + chartSvg(w);
+    });
+  })();
   refreshWorldLocks();
   document.getElementById('coinBadge').style.display = 'none';
 
