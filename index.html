@@ -208,8 +208,8 @@
   @keyframes flyby { 0%, 62% { opacity: 0; transform: translateX(0) translateY(0) rotate(0deg); } 65% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; transform: translateX(115vw) translateY(-40px) rotate(360deg); } }
   @media (prefers-reduced-motion: reduce) { .bgblob circle, .hopper, .walker, .flyball { animation: none; } .flyball { display: none; } }
 
-  .pophint { text-align:center; font-weight:bold; color:var(--muted); font-size:1.02rem; margin:2px 0 0; animation: hintpulse 2.4s ease-in-out infinite; }
-  @keyframes hintpulse { 0%,100% { opacity:0.65; } 50% { opacity:1; } }
+  .pophint { text-align:center; font-weight:bold; color:#000; font-size:1.05rem; margin:2px 0 0; animation: hintpulse 2.4s ease-in-out infinite; }
+  @keyframes hintpulse { 0%,100% { opacity:0.85; } 50% { opacity:1; } }
   .bgblob svg { transition: transform 0.15s; }
   .bgblob:hover svg { transform: scale(1.18) rotate(4deg); }
   @media (prefers-reduced-motion: reduce) { .pophint { animation:none; } }
