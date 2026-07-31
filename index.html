@@ -8344,8 +8344,15 @@ var qrcode = function() {
       saveGame();
       try { playSound('moss'); } catch (e) {}
       setTimeout(function () {
-        b.style.left = Math.floor(Math.random() * 92) + '%';
-        b.style.top = Math.floor(Math.random() * 88) + '%';
+        // respawn AWAY from the title + PLAY zone so blobs never clump there
+        var rx, ry, tries = 0;
+        do {
+          rx = Math.random() * 92;
+          ry = Math.random() * 88;
+          tries++;
+        } while (tries < 15 && rx > 16 && rx < 80 && ry > 2 && ry < 46);
+        b.style.left = rx.toFixed(1) + '%';
+        b.style.top = ry.toFixed(1) + '%';
         b.classList.remove('popped');
       }, 1400);
     });
