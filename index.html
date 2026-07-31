@@ -99,7 +99,7 @@
   #introScene .imomo { position:absolute; bottom:30%; left:75%; width:26%; animation: istroll 4.5s ease-in-out forwards; }
   #introScene .iray { position:absolute; top:6%; right:-30%; width:24%; animation: irayin 1.2s ease-out forwards; }
   #introScene .iray svg { transform:scaleX(-1); }
-  #introScene .izap { position:absolute; top:17%; right:27%; width:34%; height:9px; background:#ff5fa2; border-radius:6px; transform-origin:right center; transform:rotate(26deg) scaleX(0); animation: izap 0.45s ease-out forwards; box-shadow:0 0 18px #ff5fa2; }
+  #introScene .iray .izap { position:absolute; left:0%; top:44%; width:46vw; height:9px; background:#ff5fa2; border-radius:6px; transform-origin:left center; transform:rotate(148deg) scaleX(0); animation: izap 0.45s ease-out forwards; box-shadow:0 0 18px #ff5fa2; }
   #introScene .icaption { position:absolute; top:7%; left:50%; transform:translateX(-50%); width:min(560px,92%); background:#fffdf5; border:4px solid #2b2340; border-radius:16px; padding:10px 16px; font-weight:800; font-size:clamp(1rem,3.6vw,1.3rem); text-align:center; box-shadow:0 4px 0 rgba(43,35,64,0.25); }
   #introScene .iskip { position:absolute; bottom:14px; right:14px; background:#ffe9a8; border:3px solid #2b2340; border-radius:12px; padding:6px 12px; font-weight:800; font-size:0.9rem; }
   #introScene.mad { animation: imadflash 0.6s ease-in-out 2; }
@@ -107,10 +107,9 @@
   @keyframes ibounce { from { transform:translateY(0); } to { transform:translateY(-4%); } }
   @keyframes istroll { from { transform:translateX(0); } to { transform:translateX(-150%); } }
   @keyframes irayin { to { right:6%; } }
-  @keyframes izap { to { transform:rotate(24deg) scaleX(1); } }
+  @keyframes izap { to { transform:rotate(148deg) scaleX(1); } }
   @keyframes imadflash { 0%,100% { background:#8fce7f; } 50% { background:#e08a63; } }
-  @keyframes iproj { from { transform:translate(0,0) scale(1); opacity:1; } to { transform:translate(-26vw,30vh) scale(1.4); opacity:0.9; } }
-  @keyframes iproj2 { from { transform:translate(0,0) scale(1); opacity:1; } to { transform:translate(-10vw,32vh) scale(1.4); opacity:0.9; } }
+  @keyframes iproj { from { transform:translate(0,0) scale(1); opacity:1; } to { transform:translate(var(--dx,-20vw),34vh) scale(1.4); opacity:0.9; } }
   @keyframes iflee { to { transform:translateX(-130vw); } }
   @media (prefers-reduced-motion: reduce) { #introScene * { animation:none !important; } }
   .pvpworld-h { text-align:center; font-weight:bold; font-size:1.2rem; margin:16px 0 4px; color:#2b2340; }
@@ -374,7 +373,7 @@
   </g>
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
   <div class="parade"><div class="walker" style="width:72px;animation-duration:16s;animation-delay:0s"><div class="hopper" style="animation-delay:0s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#e63946" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(180,88) scale(0.32)" stroke="#2b2340" stroke-width="14" fill="#ffd166"><path d="M 20 160 L 20 40 L 90 100 L 160 20 L 230 100 L 300 40 L 300 160 Z"/></g></svg></div></div><div class="walker" style="width:56px;animation-duration:14s;animation-delay:2.5s"><div class="hopper" style="animation-delay:2.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#3d6fb4" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:64px;animation-duration:17s;animation-delay:5s"><div class="hopper" style="animation-delay:5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#57a05c" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g stroke="#2b2340" stroke-width="8" fill="#141020"><circle cx="225" cy="290" r="26"/><circle cx="295" cy="290" r="26"/><path d="M 251 290 L 269 290 M 199 284 L 175 274 M 321 284 L 345 274" fill="none"/></g></svg></div></div><div class="walker" style="width:48px;animation-duration:13s;animation-delay:8s"><div class="hopper" style="animation-delay:8s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#c74fa3" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:60px;animation-duration:15s;animation-delay:10.5s"><div class="hopper" style="animation-delay:10.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#d0a97f" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(155,60) scale(1.6)"><rect x="20" y="30" width="90" height="14" rx="7" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="-28" width="54" height="60" rx="8" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="16" width="54" height="12" fill="#b8860b"/></g></svg></div></div><div class="walker" style="width:52px;animation-duration:16s;animation-delay:13s"><div class="hopper" style="animation-delay:13s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#8ecbf2" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div></div>
-  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-07-31 12:48</p>
+  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-07-31 12:50</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -15231,7 +15230,8 @@ var qrcode = function() {
       try { playSound('dark'); } catch (e) {}
     }, 3200));
     timers.push(setTimeout(function () {   // ZAP
-      I.insertAdjacentHTML('beforeend', '<div class="izap"></div>');
+      var rayEl = I.querySelector('.iray');
+      if (rayEl) rayEl.insertAdjacentHTML('beforeend', '<div class="izap"></div>');
       try { playSound('firework'); } catch (e) {}
     }, 4400));
     timers.push(setTimeout(function () {   // Momo goes MAD
@@ -15246,7 +15246,8 @@ var qrcode = function() {
       try { playSound('earth'); } catch (e) {}
       [0, 500, 1000, 1500].forEach(function (dt, i2) {
         timers.push(setTimeout(function () {
-          I.insertAdjacentHTML('beforeend', '<div class="iproj" style="left:34%;top:48%;animation-name:' + (i2 % 2 ? 'iproj2' : 'iproj') + '">' + ['🔥', '💧', '🪨', '🌪️'][i2] + '</div>');
+          var dx = (8 + i2 * 17 + 7) - 42;
+          I.insertAdjacentHTML('beforeend', '<div class="iproj" style="left:42%;top:46%;--dx:' + dx + 'vw">' + ['🔥', '💧', '🪨', '🌪️'][i2] + '</div>');
         }, dt));
       });
     }, 5600));
@@ -15265,8 +15266,6 @@ var qrcode = function() {
   }
   tappable(document.getElementById('playBtn'), function () {
     refreshProfile();
-    if (sessionStorage.getItem('aotb-intro-seen')) { goTo('screen-who'); return; }
-    sessionStorage.setItem('aotb-intro-seen', '1');
     playIntro(function () { goTo('screen-who'); });
   });
   tappable(document.getElementById('switchBtn'), function () { refreshProfile(); goTo('screen-who'); });
@@ -16024,7 +16023,8 @@ var qrcode = function() {
       '<div class="partyboss" style="animation-delay:1.6s">' + uniqueSvg(TINY_SVG) + '</div>' +
       '<div class="partyboss" style="animation-delay:2.8s">' + uniqueSvg(JERRY_SVG) + '</div>' +
       '<div class="partyboss" style="animation-delay:4.0s">' + uniqueSvg(BUB_SVG) + '</div>' +
-      '<div class="partyboss" style="animation-delay:5.2s">' + uniqueSvg(FATSO_SVG) + '</div>';
+      '<div class="partyboss" style="animation-delay:5.2s">' + uniqueSvg(FATSO_SVG) + '</div>' +
+      '<div class="partyboss" style="animation-delay:6.4s">' + uniqueSvg(DOOFUS_SVG) + '</div>';
     document.body.appendChild(P);
     try { playSound('fairy'); setTimeout(function () { playSound('wind'); }, 700); } catch (e) {}
     var out = function () { if (P.parentNode) P.remove(); };
@@ -16037,7 +16037,7 @@ var qrcode = function() {
       tip.textContent = '👆 tap anywhere to keep playing';
       P.appendChild(tip);
     }, 2500);
-    setTimeout(out, 12000);
+    setTimeout(out, 13500);
   }
 
   // --- restore saved games on startup (profile system) ---
