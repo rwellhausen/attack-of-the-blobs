@@ -198,6 +198,9 @@
   /* text lines are full-width invisible boxes — let pops pass through them */
   #screen-home h1, #screen-home p, #screen-home .authorrow { pointer-events: none; }
   #screen-home button, #screen-home input, #screen-home details { pointer-events: auto; }
+  /* generous invisible grab-zone so drifting blobs are easy to catch */
+  .bgblob { position: absolute; }
+  .bgblob::after { content: ''; position: absolute; inset: -22px; }
   .bgblob.popped { animation: popout 0.35s ease-out forwards !important; }
   @keyframes popout { 40% { transform: scale(1.25); opacity: 1; } 100% { transform: scale(1.8); opacity: 0; } }
   /* the parade */
