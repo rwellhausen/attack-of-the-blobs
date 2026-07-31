@@ -11363,57 +11363,88 @@ var qrcode = function() {
     }
     return fams;
   }
-  function fatArrow(x1, y1, x2, y2, color, wgt) {
-    var dx = x2 - x1, dy = y2 - y1, len = Math.sqrt(dx * dx + dy * dy);
-    var ux = dx / len, uy = dy / len, px = -uy, py = ux;
-    var hx = x2 - ux * 30, hy = y2 - uy * 30;   // head base
-    return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + hx + '" y2="' + hy + '" stroke="' + color + '" stroke-width="' + wgt + '" stroke-linecap="round"/>' +
-      '<path d="M ' + x2 + ' ' + y2 + ' L ' + (hx + px * 17) + ' ' + (hy + py * 17) + ' L ' + (hx - px * 17) + ' ' + (hy - py * 17) + ' Z" fill="' + color + '"/>';
+  function curveArrow(a, b, bow, color, wgt) {
+    // arc from a to b bowing by `bow` px away from the chart center
+    var cx = 350, cy = 180;
+    var mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2;
+    var ox = mx - cx, oy = my - cy, ol = Math.sqrt(ox * ox + oy * oy) || 1;
+    if (ol < 3) {   // a crossing through the center: keep it straight, just nudged off-center
+      var ddx = b[0] - a[0], ddy = b[1] - a[1];
+      if (Math.abs(ddx) > Math.abs(ddy)) { ox = 0; oy = 1; }
+      else { ox = 1; oy = 0; }
+      ol = 1; bow = 14;
+    }
+    var qx = mx + ox / ol * bow, qy = my + oy / ol * bow;
+    // shorten at the head end so the triangle caps the line
+    var tx = b[0] - qx, ty = b[1] - qy, tl = Math.sqrt(tx * tx + ty * ty);
+    var ux = tx / tl, uy = ty / tl, px = -uy, py = ux;
+    var hx = b[0] - ux * 26, hy = b[1] - uy * 26;
+    return '<path d="M ' + a[0] + ' ' + a[1] + ' Q ' + qx + ' ' + qy + ' ' + hx + ' ' + hy + '" fill="none" stroke="' + color + '" stroke-width="' + wgt + '" stroke-linecap="round"/>' +
+      '<path d="M ' + b[0] + ' ' + b[1] + ' L ' + (hx + px * 15) + ' ' + (hy + py * 15) + ' L ' + (hx - px * 15) + ' ' + (hy - py * 15) + ' Z" fill="' + color + '"/>';
+  }
+  function edgePoint(from, to, r) {
+    var dx = to[0] - from[0], dy = to[1] - from[1], L = Math.sqrt(dx * dx + dy * dy);
+    return [from[0] + dx / L * r, from[1] + dy / L * r];
   }
   function chartSvg(world) {
     var order = chartCircle(WCONF[world].fams);
-    var POS = [[350, 78], [588, 180], [350, 282], [112, 180]];   // top, right, bottom, left
-    var R = 48;
+    // consistent layout: rotate the circle so the TOP blob beats the BOTTOM one
+    for (var rot = 0; rot < 4; rot++) {
+      if ((BEATS[order[0]] || []).indexOf(order[2]) > -1) break;
+      order.push(order.shift());
+    }
+    var POS = [[350, 74], [586, 180], [350, 286], [114, 180]];   // top, right, bottom, left
+    var R = 50;
     var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 372" style="width:100%;max-width:560px;height:auto;display:block;margin:0 auto;background:#fffdf5;border:4px solid #2b2340;border-radius:16px">';
-    // circle arrows along the diamond edges
+    // circle arrows: arcs bowing outward
     for (var k = 0; k < 4; k++) {
       var a = POS[k], b = POS[(k + 1) % 4];
-      var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.sqrt(dx * dx + dy * dy);
-      var ux = dx / L, uy = dy / L;
-      svg += fatArrow(a[0] + ux * (R + 8), a[1] + uy * (R + 8), b[0] - ux * (R + 10), b[1] - uy * (R + 10), '#2b2340', 13);
+      svg += curveArrow(edgePoint(a, b, R + 12), edgePoint(b, a, R + 14), 34, '#2b2340', 11);
     }
-    // the two diagonal crossings, direction from BEATS
-    [[0, 2], [1, 3]].forEach(function (pair) {
+    // diagonal crossings: gentle offset bows so they don\u2019t make a plus sign
+    [[0, 2, 26], [1, 3, 26]].forEach(function (pair) {
       var f1 = order[pair[0]], f2 = order[pair[1]];
       var from = pair[0], to = pair[1];
       if ((BEATS[f2] || []).indexOf(f1) > -1) { from = pair[1]; to = pair[0]; }
       var a = POS[from], b = POS[to];
-      var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.sqrt(dx * dx + dy * dy);
-      var ux = dx / L, uy = dy / L;
-      svg += fatArrow(a[0] + ux * (R + 8), a[1] + uy * (R + 8), b[0] - ux * (R + 10), b[1] - uy * (R + 10), '#e76f51', 11);
+      svg += curveArrow(edgePoint(a, b, R + 10), edgePoint(b, a, R + 12), -pair[2], '#2b2340', 11);
     });
-    // blob nodes on top of the arrows
+    // blob nodes: shadow + jiggly body + shine + eyes + name badge
     for (var n = 0; n < 4; n++) {
       var f = order[n], p = POS[n];
-      var lightFill = (f === 'cloud' || f === 'glass' || f === 'light' || f === 'gold');
       var eye = (f === 'dark' || f === 'coal') ? '#fff6e0' : '#2b2340';
-      svg += '<path transform="translate(' + p[0] + ',' + (p[1] + 6) + ') scale(0.92)" d="M 0 -56 q 41 -5 52 33 q 10 34 -19 52 q -32 21 -62 2 q -28 -18 -18 -52 q 10 -34 47 -35 Z" fill="' + FAMCOLOR[f] + '" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/>' +
-        '<circle cx="' + (p[0] - 15) + '" cy="' + (p[1] - 6) + '" r="7" fill="' + eye + '"/>' +
-        '<circle cx="' + (p[0] + 15) + '" cy="' + (p[1] - 6) + '" r="7" fill="' + eye + '"/>' +
-        '<text x="' + p[0] + '" y="' + (p[1] + 30) + '" text-anchor="middle" font-family="\'Baloo 2\',cursive" font-size="' + (NAMES[f].split(' ')[0].length > 6 ? 17 : 21) + '" font-weight="800" fill="' + eye + '">' + NAMES[f].split(' ')[0] + '</text>';
+      var nm = NAMES[f].split(' ')[0];
+      var bw = Math.max(64, nm.length * 13 + 22);
+      svg += '<ellipse cx="' + p[0] + '" cy="' + (p[1] + R - 2) + '" rx="36" ry="8" fill="#2b2340" opacity="0.13"/>' +
+        '<path transform="translate(' + p[0] + ',' + (p[1] + 6) + ') scale(0.94)" d="M 0 -56 q 41 -5 52 33 q 10 34 -19 52 q -32 21 -62 2 q -28 -18 -18 -52 q 10 -34 47 -35 Z" fill="' + FAMCOLOR[f] + '" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/>' +
+        '<path d="M ' + (p[0] - 27) + ' ' + (p[1] - 22) + ' q 10 -14 28 -16" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" opacity="0.8"/>' +
+        '<circle cx="' + (p[0] - 14) + '" cy="' + (p[1] - 2) + '" r="7" fill="' + eye + '"/>' +
+        '<circle cx="' + (p[0] + 14) + '" cy="' + (p[1] - 2) + '" r="7" fill="' + eye + '"/>' +
+        '<rect x="' + (p[0] - bw / 2) + '" y="' + (p[1] + R + 2) + '" width="' + bw + '" height="27" rx="13" fill="#fffdf5" stroke="#2b2340" stroke-width="3.5"/>' +
+        '<text x="' + p[0] + '" y="' + (p[1] + R + 22) + '" text-anchor="middle" font-family="\'Baloo 2\',cursive" font-size="18" font-weight="800" fill="#2b2340">' + nm + '</text>';
     }
     svg += '</svg>';
     return svg;
   }
+  function miniFace(f) {
+    var eye = (f === 'dark' || f === 'coal') ? '#fff6e0' : '#2b2340';
+    return '<svg viewBox="0 0 124 124" style="width:36px;height:36px;vertical-align:-11px"><path transform="translate(62,66) scale(0.98)" d="M 0 -56 q 41 -5 52 33 q 10 34 -19 52 q -32 21 -62 2 q -28 -18 -18 -52 q 10 -34 47 -35 Z" fill="' + FAMCOLOR[f] + '" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><circle cx="47" cy="60" r="8" fill="' + eye + '"/><circle cx="77" cy="60" r="8" fill="' + eye + '"/></svg>';
+  }
   function showBattlePoster() {
     var bp = document.getElementById('battlePoster');
     if (!bp) return;
-    if (bossMode) { bp.style.display = 'none'; return; }
+    if (bossMode || !enemyTeam.length) { bp.style.display = 'none'; return; }
     bp.style.display = '';
-    if (bp.dataset.world === curWorld) return;
-    bp.innerHTML = '<p class="note" style="font-weight:bold;margin:2px 0 4px">🧠 Who beats who — follow the arrows!</p>' + chartSvg(curWorld);
-    bp.dataset.world = curWorld;
+    var seen = {};
+    var rows = enemyTeam.filter(function (f) { if (seen[f]) return false; seen[f] = 1; return true; }).map(function (f) {
+      var hitters = WCONF[curWorld].fams.filter(function (h) { return (BEATS[h] || []).indexOf(f) > -1; });
+      var use = hitters.length ? hitters.map(function (h) { return miniFace(h) + ' <b>' + NAMES[h].split(' ')[0] + '</b>'; }).join(' <span style="font-weight:400">or</span> ') : '<b>nobody — dodge!</b>';
+      return '<div style="margin:5px 0">' + miniFace(f) + ' <b>' + NAMES[f].split(' ')[0] + '</b> <span style="font-weight:400">→ hit it with</span> ' + use + '</div>';
+    }).join('');
+    bp.innerHTML = '<div style="background:#fffdf5;border:4px solid #2b2340;border-radius:16px;padding:8px 12px;text-align:center;font-size:1.02rem">' +
+      '<p style="margin:2px 0 4px;font-weight:800">🧠 Battle coach</p>' + rows + '</div>';
   }
+
   function startBattle() {
     bossMode = (battleLevel === 50);
     document.getElementById('againBtn').hidden = true;   // reroll only allowed after a loss or stalemate
@@ -12254,7 +12285,7 @@ var qrcode = function() {
       if (!svg || svg.closest('#battlePoster')) return;
       var wrap = svg.parentElement;
       var w = t2w[m[1]];
-      wrap.innerHTML = '<p class="note" style="font-weight:bold">🧠 Who beats who in ' + WCONF[w].name + ' — follow the arrows! Orange arrows are the extra crossings.</p>' + chartSvg(w);
+      wrap.innerHTML = '<p class="note" style="font-weight:bold">🧠 Who beats who in ' + WCONF[w].name + ' — every arrow means BEATS.</p>' + chartSvg(w);
     });
   })();
   refreshWorldLocks();
