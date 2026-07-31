@@ -8333,40 +8333,105 @@
 <p class="note" id="rushMsg" style="font-weight:bold"></p>
 <div style="text-align:center"><button class="back" id="rushBtn" style="position:static;font-size:1.15rem">⚔️ FIGHT!</button></div>
 <div style="text-align:center;margin-top:14px">
-<svg id="scientistArt" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 700" style="width:100%;max-width:340px;display:block;margin:0 auto;border:4px solid #2b2340;border-radius:18px;background:#8d8798">
-  <text x="260" y="56" text-anchor="middle" font-family="'Baloo 2','Comic Sans MS',cursive" font-size="34" font-weight="bold" fill="#fff6e0">THE SCIENTIST BLOB</text>
-  <!-- the giant shadow blob -->
-  <path d="M 260 110 q 175 -22 220 138 q 42 140 -80 220 q -136 88 -262 10 q -120 -80 -80 -218 q 40 -140 202 -150 Z" fill="#221a3e" stroke="#2b2340" stroke-width="10" stroke-linejoin="round"/>
-  <path d="M 150 195 q 30 -40 82 -48" fill="none" stroke="#4a3f70" stroke-width="13" stroke-linecap="round"/>
-  <!-- face -->
-  <circle cx="215" cy="250" r="13" fill="#b39ddb"/><circle cx="305" cy="250" r="13" fill="#b39ddb"/>
-  <path d="M 192 222 l 46 14 M 328 222 l -46 14" stroke="#8a7ab5" stroke-width="10" stroke-linecap="round"/>
-  <path d="M 234 306 q 26 15 52 0" fill="none" stroke="#8a7ab5" stroke-width="9" stroke-linecap="round"/>
+<svg id="scientistArt" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 700" style="width:100%;max-width:340px;display:block;margin:0 auto;border:4px solid #2b2340;border-radius:18px">
+  <defs>
+    <linearGradient id="labA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#160f2e"/><stop offset="0.55" stop-color="#31265a"/><stop offset="1" stop-color="#0d2b1e"/>
+    </linearGradient>
+    <radialGradient id="glowGreenA" cx="0.5" cy="0.95" r="0.9">
+      <stop offset="0" stop-color="#59e07a" stop-opacity="0.65"/><stop offset="1" stop-color="#59e07a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowPinkA" cx="0.78" cy="0.42" r="0.5">
+      <stop offset="0" stop-color="#ff5fa2" stop-opacity="0.5"/><stop offset="1" stop-color="#ff5fa2" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blurA" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="8"/></filter>
+    <linearGradient id="beamA" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="0.25" stop-color="#ff5fa2"/><stop offset="1" stop-color="#ff5fa2" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="520" height="700" fill="url(#labA)"/>
 
-  <!-- THE LAB COAT: one clean wrap around his lower half (like Fatso's tutu wraps him) -->
-  <path d="M 63 408 Q 260 358 457 408 L 464 588 Q 260 652 56 588 Z" fill="#f7f1e3" stroke="#2b2340" stroke-width="9" stroke-linejoin="round"/>
-  <!-- collar fold along the top edge -->
-  <path d="M 63 408 Q 260 358 457 408 L 452 436 Q 260 388 68 436 Z" fill="#fffdf5" stroke="#2b2340" stroke-width="7" stroke-linejoin="round"/>
-  <!-- center placket + buttons -->
-  <path d="M 260 392 L 260 636" stroke="#d8d2c2" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="276" cy="470" r="7" fill="#2b2340"/><circle cx="276" cy="524" r="7" fill="#2b2340"/><circle cx="276" cy="578" r="7" fill="#2b2340"/>
-  <!-- pocket with pens -->
-  <rect x="128" y="480" width="62" height="52" rx="9" fill="#fffdf5" stroke="#2b2340" stroke-width="6"/>
-  <path d="M 144 484 l 0 -22 M 160 484 l 0 -26" stroke="#c74fa3" stroke-width="7" stroke-linecap="round"/>
+  <!-- potion shelf: five glowing brews with bloom -->
+  <path d="M 0 152 l 520 0" stroke="#0d0a1c" stroke-width="16"/>
+  <g filter="url(#blurA)" opacity="0.9">
+    <rect x="34" y="90" width="38" height="60" rx="9" fill="#59e07a"/>
+    <rect x="440" y="96" width="34" height="54" rx="9" fill="#ff5fa2"/>
+    <rect x="388" y="106" width="26" height="44" rx="8" fill="#61d4ff"/>
+    <rect x="94" y="108" width="26" height="42" rx="8" fill="#ffd166"/>
+    <rect x="242" y="100" width="30" height="50" rx="8" fill="#c46fff"/>
+  </g>
+  <g stroke="#2b2340" stroke-width="5">
+    <rect x="34" y="90" width="38" height="60" rx="9" fill="#59e07a"/>
+    <rect x="440" y="96" width="34" height="54" rx="9" fill="#ff5fa2"/>
+    <rect x="388" y="106" width="26" height="44" rx="8" fill="#61d4ff"/>
+    <rect x="94" y="108" width="26" height="42" rx="8" fill="#ffd166"/>
+    <rect x="242" y="100" width="30" height="50" rx="8" fill="#c46fff"/>
+  </g>
 
-  <!-- THE MAD-RAY: floating at his side, blob-accessory style -->
-  <g transform="translate(366,258) rotate(-18)">
-    <rect x="14" y="30" width="30" height="54" rx="10" fill="#fffdf5" stroke="#2b2340" stroke-width="8"/>
-    <rect x="-10" y="-6" width="132" height="44" rx="18" fill="#fffdf5" stroke="#2b2340" stroke-width="8"/>
-    <rect x="110" y="0" width="22" height="32" rx="6" fill="#6f6a7d" stroke="#2b2340" stroke-width="7"/>
-    <rect x="128" y="5" width="14" height="22" rx="5" fill="#ff5fa2" stroke="#2b2340" stroke-width="6"/>
-    <circle cx="26" cy="16" r="8" fill="#ff5fa2" stroke="#2b2340" stroke-width="5"/>
-    <g stroke="#ff5fa2" stroke-width="9" fill="none" stroke-linecap="round">
-      <path d="M 150 -4 l 30 -20"/><path d="M 156 16 l 38 0"/><path d="M 150 36 l 30 20"/>
+  <!-- tesla pylons flanking him, arcing to his hair -->
+  <g stroke="#2b2340" stroke-width="7" fill="#6f6a7d">
+    <rect x="20" y="260" width="26" height="330" rx="10"/>
+    <rect x="474" y="260" width="26" height="330" rx="10"/>
+    <circle cx="33" cy="252" r="16" fill="#61d4ff" stroke-width="6"/>
+    <circle cx="487" cy="252" r="16" fill="#61d4ff" stroke-width="6"/>
+  </g>
+  <g fill="none" stroke="#61d4ff" stroke-width="6" stroke-linecap="round" opacity="0.95">
+    <path d="M 48 244 l 40 -20 l -12 26 l 44 -18 l -10 24 l 42 -12"/>
+    <path d="M 472 244 l -40 -20 l 12 26 l -44 -18 l 10 24 l -42 -12"/>
+  </g>
+  <circle cx="33" cy="252" r="26" fill="#61d4ff" opacity="0.5" filter="url(#blurA)"/>
+  <circle cx="487" cy="252" r="26" fill="#61d4ff" opacity="0.5" filter="url(#blurA)"/>
+
+  <rect width="520" height="700" fill="url(#glowGreenA)"/>
+  <rect width="520" height="700" fill="url(#glowPinkA)"/>
+
+  <!-- wild electric hair -->
+  <g fill="#e8e4f2" stroke="#2b2340" stroke-width="7" stroke-linejoin="round">
+    <path d="M 138 206 q -46 -70 0 -100 q 28 34 40 66 Z"/>
+    <path d="M 204 168 q -10 -84 44 -92 q 16 42 8 82 Z"/>
+    <path d="M 292 162 q 24 -74 76 -58 q -2 48 -28 76 Z"/>
+    <path d="M 364 204 q 58 -40 84 2 q -28 38 -66 38 Z"/>
+  </g>
+
+  <!-- the blob, rim-lit green below, pink at right -->
+  <path d="M 260 172 q 165 -20 205 130 q 38 128 -75 196 q -128 78 -246 8 q -112 -72 -74 -196 q 38 -126 190 -138 Z" fill="#221a3e" stroke="#2b2340" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M 112 500 q 145 78 300 -8" fill="none" stroke="#59e07a" stroke-width="12" stroke-linecap="round" opacity="0.65"/>
+  <path d="M 428 296 q 26 60 4 128" fill="none" stroke="#ff5fa2" stroke-width="10" stroke-linecap="round" opacity="0.5"/>
+  <path d="M 160 250 q 28 -36 76 -44" fill="none" stroke="#4a3f70" stroke-width="12" stroke-linecap="round"/>
+  <!-- gleeful mad face -->
+  <circle cx="215" cy="304" r="14" fill="#b39ddb"/><circle cx="305" cy="304" r="14" fill="#b39ddb"/>
+  <circle cx="220" cy="299" r="5" fill="#fff"/><circle cx="310" cy="299" r="5" fill="#fff"/>
+  <path d="M 190 274 l 48 16 M 330 274 l -48 16" stroke="#8a7ab5" stroke-width="10" stroke-linecap="round"/>
+  <path d="M 224 356 q 36 26 72 0" fill="none" stroke="#8a7ab5" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- harness + MEGA-RAY firing a full beam across the lab -->
+  <path d="M 82 392 Q 260 462 450 372" fill="none" stroke="#6f6a7d" stroke-width="22" stroke-linecap="round"/>
+  <path d="M 82 392 Q 260 462 450 372" fill="none" stroke="#c9c4d8" stroke-width="8" stroke-linecap="round"/>
+  <g transform="translate(232,396) rotate(-18)">
+    <rect x="-34" y="16" width="132" height="58" rx="20" fill="#9a94a8" stroke="#2b2340" stroke-width="9"/>
+    <rect x="-20" y="27" width="36" height="12" rx="6" fill="#e8e4f2"/>
+    <circle cx="44" cy="45" r="9" fill="#ffd166" stroke="#2b2340" stroke-width="5"/>
+    <rect x="6" y="-10" width="28" height="32" rx="9" fill="#6f6a7d" stroke="#2b2340" stroke-width="7"/>
+    <path d="M 98 -18 q 68 62 0 124 q -24 -62 0 -124 Z" fill="#c9c4d8" stroke="#2b2340" stroke-width="9" stroke-linejoin="round"/>
+    <circle cx="112" cy="44" r="26" fill="#ff5fa2" filter="url(#blurA)"/>
+    <circle cx="108" cy="44" r="14" fill="#ffffff" stroke="#2b2340" stroke-width="5"/>
+    <rect x="120" y="24" width="200" height="40" fill="url(#beamA)"/>
+    <g stroke="#ff5fa2" stroke-width="8" fill="none" stroke-linecap="round">
+      <path d="M 134 4 l 30 -22"/><path d="M 134 84 l 30 22"/>
     </g>
   </g>
-</svg>
-<p class="note" style="font-weight:bold">🧪 The Scientist Blob — a shadow-dark blob in a lab coat with his mad-ray, BIGGER than any boss. What he does in battle is still William’s secret… TO BE CONTINUED!</p>
+
+  <!-- bubbling mega-flask, fizzing over -->
+  <g stroke="#2b2340" stroke-linejoin="round">
+    <path d="M 96 540 l 0 44 l -40 70 q -8 18 14 18 l 72 0 q 22 0 14 -18 l -40 -70 l 0 -44 Z" fill="#cfe3f2" fill-opacity="0.75" stroke-width="8"/>
+    <path d="M 68 626 q 38 -20 80 0 l 10 18 q 4 12 -10 12 l -80 0 q -14 0 -10 -12 Z" fill="#59e07a" stroke-width="6"/>
+  </g>
+  <g fill="#59e07a">
+    <circle cx="86" cy="596" r="7"/><circle cx="116" cy="578" r="5"/><circle cx="100" cy="556" r="4"/><circle cx="128" cy="540" r="3"/>
+  </g>
+
+  <text x="260" y="48" text-anchor="middle" font-family="'Baloo 2','Comic Sans MS',cursive" font-size="32" font-weight="bold" fill="#fff6e0" style="paint-order:stroke" stroke="#160f2e" stroke-width="8">THE SCIENTIST BLOB</text></svg>
+<p class="note" style="font-weight:bold">🧪 THE SCIENTIST BLOB — the mad inventor in his lab: wild genius hair, tesla lightning, glowing brews, and the harness-mounted MEGA-RAY. What he does in battle is still William’s secret… TO BE CONTINUED!</p>
 </div>
 </div>
 <div id="screen-rules" class="screen" hidden>
