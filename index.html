@@ -8413,8 +8413,16 @@ var qrcode = function() {
     document.body.appendChild(P);
     try { playSound('fairy'); setTimeout(function () { playSound('wind'); }, 700); } catch (e) {}
     var out = function () { if (P.parentNode) P.remove(); };
-    P.addEventListener('click', out);
-    setTimeout(out, 8000);
+    // accidental-tap shield: clicks do nothing for the first 2.5 seconds
+    setTimeout(function () {
+      P.addEventListener('click', out);
+      var tip = document.createElement('div');
+      tip.className = 'battlebar';
+      tip.style.cssText = 'position:absolute;bottom:110px;left:50%;transform:translateX(-50%);max-width:80%';
+      tip.textContent = '👆 tap anywhere to keep playing';
+      P.appendChild(tip);
+    }, 2500);
+    setTimeout(out, 10000);
   }
 
   // --- restore saved games on startup (profile system) ---
