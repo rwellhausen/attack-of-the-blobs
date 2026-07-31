@@ -7096,10 +7096,11 @@ var qrcode = function() {
       return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '" style="width:' + w + '%">' + formSvg(n, ms) + accHtml(n, ms) + '</div>';
     }).join('');
     var we = enemyTeam.length === 1 ? 90 : (enemyTeam.length === 2 ? 60 : 46);
-    // William's rule: SOME enemy blobs dress up (top hat / sunglasses / cane)
+    // William's rule: SOME enemy blobs dress up — any shop accessory
+    var FOE_ACCS = ['tophat', 'shades', 'cane', 'bow', 'crown', 'wand'];
     var foeAcc = function (n, i) {
-      var h = (battleLevel * 37 + i * 11 + n.charCodeAt(0) * 7 + n.length * 3) % 10;
-      return h === 0 ? 'tophat' : (h === 1 ? 'shades' : (h === 2 ? 'cane' : null));
+      var h = (battleLevel * 37 + i * 11 + n.charCodeAt(0) * 7 + n.length * 3) % 20;
+      return h < FOE_ACCS.length ? FOE_ACCS[h] : null;
     };
     document.getElementById('enemyBlob').innerHTML = enemyTeam.map(function (n, i) {
       var fa = foeAcc(n, i);
