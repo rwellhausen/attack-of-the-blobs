@@ -9438,14 +9438,14 @@ var qrcode = function() {
 
   // ➕ dress-up buttons in the blob-dex
   function refreshAccBtns() {
-    ['fire','water','earth','wind','dark','fairy','moss','tree'].forEach(function (fam) {
+    ['fire','water','earth','wind','dark','fairy','moss','tree','cloud','light','firework','rain'].forEach(function (fam) {
       var b = document.getElementById('accbtn-' + fam);
       if (!b) return;
       b.textContent = equip[fam] ? '➕ ' + ACCS[equip[fam]].emoji : (ownedAccs.length ? '➕ dress up' : '➕');
     });
   }
   document.querySelectorAll('#screen-blobdex h3.element').forEach(function (h) {
-    ['fire','water','earth','wind','dark','fairy','moss','tree'].forEach(function (fam) {
+    ['fire','water','earth','wind','dark','fairy','moss','tree','cloud','light','firework','rain'].forEach(function (fam) {
       if (h.textContent.indexOf(NAMES[fam]) !== 0) return;
       var btn = document.createElement('button');
       btn.className = 'back accbtn';
