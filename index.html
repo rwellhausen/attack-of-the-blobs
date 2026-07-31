@@ -33,7 +33,7 @@
   .back { position:fixed; top:14px; left:14px; z-index:10; background:#ffe9a8; border:4px solid var(--ink); border-radius:14px; font:inherit; font-size:1.2rem; font-weight:bold; padding:8px 16px; cursor:pointer; box-shadow:0 3px 0 rgba(43,35,64,0.3); }
   .back:active { transform:translateY(2px); box-shadow:none; }
   #grassyScroll { overflow-x:auto; scroll-behavior:smooth; -webkit-overflow-scrolling:touch; border:4px solid var(--ink); border-radius:18px; max-width:760px; margin:0 auto 10px; }
-  .arena { position:relative; max-width:760px; margin:0 auto; border:4px solid var(--ink); border-radius:18px; overflow:hidden; background:#8fce7f; padding:26px 12px 18px; min-height:200px; }
+  .arena { position:relative; max-width:760px; margin:0 auto; border:4px solid var(--ink); border-radius:18px; overflow:hidden; background:#8fce7f; padding:18px 12px; min-height:240px; display:flex; align-items:center; justify-content:space-around; }
   .arena svg.bg { position:absolute; inset:0; width:100%; height:100%; z-index:0; }
   .fighters { position:relative; z-index:1; display:flex; align-items:flex-end; justify-content:space-between; gap:10px; }
   .battlebar { background:#ffe9a8; border:4px solid var(--ink); border-radius:14px; padding:9px 16px; font-size:1.15rem; font-weight:bold; text-align:center; max-width:760px; margin:0 auto 10px; }
@@ -104,6 +104,11 @@
   #coinBadge .coinSet.on { display: inline; }
   h2.world { margin-top: 58px; }
   @media (max-width: 560px) { h2.world { margin-top: 84px; max-width: 86%; } }
+  #battleTitle { font-size: 1.05rem; padding: 6px 12px; margin: 56px auto 8px; max-width: 380px; }
+  @media (max-width: 560px) { #battleTitle { margin-top: 76px; } }
+  #screen-battle .battlebar { font-size: 1.05rem; padding: 7px 12px; margin-bottom: 8px; }
+  #screen-battle #matchNote { margin: 6px 0 4px; }
+  #screen-battle p button.back { font-size: 1.02rem; padding: 7px 12px; }
   .tbblob { width:58px; text-align:center; background:#d9eecb; border:3px solid #2b2340; border-radius:12px; padding:4px 4px 2px; }
   .tbblob svg { width:100%; height:auto; display:block; }
   .tbblob span { font-size:0.66rem; letter-spacing:-1px; }
@@ -132,7 +137,8 @@
   .fighters span svg { width:100%; height:auto; display:block; }
 
   .fighters span { cursor:pointer; }
-  #yourBlob, #enemyBlob { display:flex; flex-direction:row; flex-wrap:wrap; align-items:flex-end; align-content:flex-end; justify-content:center; gap:4px; width:45% !important; }
+  #yourBlob, #enemyBlob { display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; align-content:center; justify-content:center; gap:4px; width:45% !important; }
+  .arena .fighters { width:100%; display:flex; justify-content:space-between; align-items:center; position:relative; z-index:1; }
   .foe { cursor:pointer; position:relative; container-type: inline-size; }
   .foe svg { width:100%; height:auto; display:block; }
   .teammate { transition: transform .2s; }
@@ -844,7 +850,8 @@
     
   </div>
   <p class="note" id="matchNote" style="font-weight:bold"></p>
-  <div id="battlePoster" style="max-width:400px;margin:8px auto 0"></div>
+  <p style="text-align:center;margin:4px 0"><button id="coachBtn" class="back" style="position:static;font-size:0.95rem;padding:5px 12px">🧠 Coach</button></p>
+  <div id="battlePoster" style="max-width:400px;margin:4px auto 0" hidden></div>
   <p style="text-align:center;margin:14px 0"><button id="nextBtn" class="back" style="position:static;background:#ffd166" hidden>➡️ Next level!</button> <button id="againBtn" class="back" style="position:static" hidden>🔄 Battle again</button> <button id="rechooseBtn" class="back" style="position:static" hidden>🔁 Choose a different blob</button></p>
 
 </div>
@@ -10806,12 +10813,12 @@ var qrcode = function() {
   function setFighters() {
     if (!team.length || !enemyTeam.length) return;
     var es = enemyStar();
-    var w = team.length === 1 ? 90 : (team.length === 2 ? 60 : (team.length === 3 ? 30 : 22));
+    var w = team.length === 1 ? 88 : (team.length === 2 ? 60 : (team.length === 3 ? 31 : 46));
     document.getElementById('yourBlob').innerHTML = team.map(function (n) {
       var ms = starOf(n);
       return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '" style="width:' + w + '%">' + formSvg(n, ms) + accHtml(n, ms) + '</div>';
     }).join('');
-    var we = enemyTeam.length === 1 ? 90 : (enemyTeam.length === 2 ? 60 : (enemyTeam.length === 3 ? 30 : 22));
+    var we = enemyTeam.length === 1 ? 88 : (enemyTeam.length === 2 ? 60 : (enemyTeam.length === 3 ? 31 : 46));
     // William's rule: SOME enemy blobs dress up — any shop accessory
     var FOE_ACCS = ['tophat', 'shades', 'cane', 'bow', 'crown', 'wand'];
     var foeAcc = function (n, i) {
@@ -11430,11 +11437,14 @@ var qrcode = function() {
     var eye = (f === 'dark' || f === 'coal') ? '#fff6e0' : '#2b2340';
     return '<svg viewBox="0 0 124 124" style="width:36px;height:36px;vertical-align:-11px"><path transform="translate(62,66) scale(0.98)" d="M 0 -56 q 41 -5 52 33 q 10 34 -19 52 q -32 21 -62 2 q -28 -18 -18 -52 q 10 -34 47 -35 Z" fill="' + FAMCOLOR[f] + '" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><circle cx="47" cy="60" r="8" fill="' + eye + '"/><circle cx="77" cy="60" r="8" fill="' + eye + '"/></svg>';
   }
+  var coachOpen = false;
   function showBattlePoster() {
     var bp = document.getElementById('battlePoster');
     if (!bp) return;
-    if (bossMode || !enemyTeam.length) { bp.style.display = 'none'; return; }
-    bp.style.display = '';
+    var cb = document.getElementById('coachBtn');
+    if (bossMode || !enemyTeam.length) { bp.hidden = true; if (cb) cb.parentElement.style.display = 'none'; return; }
+    if (cb) cb.parentElement.style.display = '';
+    bp.hidden = !coachOpen;
     var seen = {};
     var rows = enemyTeam.filter(function (f) { if (seen[f]) return false; seen[f] = 1; return true; }).map(function (f) {
       var hitters = WCONF[curWorld].fams.filter(function (h) { return (BEATS[h] || []).indexOf(f) > -1; });
@@ -11456,7 +11466,7 @@ var qrcode = function() {
     enemySpan.style.visibility = 'visible';
     battleState = 'ready';
     if (bossMode) {
-      var w = team.length === 1 ? 90 : (team.length === 2 ? 60 : (team.length === 3 ? 30 : 22));
+      var w = team.length === 1 ? 88 : (team.length === 2 ? 60 : (team.length === 3 ? 31 : 46));
       yourSpan.innerHTML = team.map(function (n) {
         var ms = starOf(n);
         return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '" style="width:' + w + '%">' + formSvg(n, ms) + accHtml(n, ms) + '</div>';
@@ -11808,6 +11818,11 @@ var qrcode = function() {
     }
   });
   tappable(document.getElementById('rushBtn'), function () { startRushFight(); });
+  tappable(document.getElementById('coachBtn'), function () {
+    coachOpen = !coachOpen;
+    document.getElementById('coachBtn').textContent = coachOpen ? '🧠 Coach (hide)' : '🧠 Coach';
+    showBattlePoster();
+  });
   tappable(document.getElementById('enter-mystery'), function () {
     var why = worldLocked('mystery');
     if (why) {
