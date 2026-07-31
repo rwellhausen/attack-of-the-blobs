@@ -137,6 +137,7 @@
   .whocard svg { width:80%; height:auto; display:block; margin:0 auto 6px; }
   .whocard.addcard { border-style:dashed; background:transparent; }
   .hubhi { text-align:center; font-weight:bold; font-size:1.7rem; margin:16px 0 10px; }
+  .pvpnames { display:flex; justify-content:space-between; max-width:760px; margin:0 auto 6px; padding:0 4%; font-weight:bold; font-size:1.15rem; }
   .profchip { font-size:1.05rem; }
   .actionchip { background:transparent; border-style:dashed; opacity:0.8; font-size:0.95rem; }
   .quietbtn { font-size:0.95rem; opacity:0.9; }
@@ -4053,6 +4054,7 @@
 <div id="screen-pvp" class="screen" hidden>
 <h2 class="world" id="pvpTitle">⚔️ Player vs Player</h2>
 <div class="battlebar" id="pvpMsg">Player 1 goes first!</div>
+<div class="pvpnames"><span id="p1NameTag">🟥 Player 1</span><span id="p2NameTag">🟦 Player 2</span></div>
 <div class="arena" id="pvpArena">
   <svg class="bg" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
     <rect x="0" y="0" width="900" height="420" fill="#8fce7f"/>
@@ -7822,6 +7824,8 @@ var qrcode = function() {
     pvp.turn = 1; pvp.sel = null; pvp.busy = false; pvp.over = false;
     pvp.mode = (WORLD_OF[pvp.p1[0].fam] === WORLD_OF[pvp.p2[0].fam]) ? 'type' : 'star';
     pvpRender();
+    document.getElementById('p1NameTag').textContent = '🟥 ' + pvpLabel(1);
+    document.getElementById('p2NameTag').textContent = '🟦 ' + pvpLabel(2);
     document.getElementById('pvpTitle').textContent = pvp.mode === 'star' ? '⭐ STAR BATTLE!' : '⚔️ Player vs Player';
     if (pvp.mode === 'star') {
       pvpSetMsg('⭐ STAR BATTLE — teams from different worlds, so STARS decide! 🟥 ' + pvpLabel(1) + ' goes first.');
