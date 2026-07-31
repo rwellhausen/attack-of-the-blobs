@@ -12619,8 +12619,11 @@ var qrcode = function() {
     }
     P.innerHTML = rain +
       '<div class="partybanner">🎉 BLOB MASTER! 🎉<br><span style="font-size:1.1rem">You popped ' + popped + ' blobs!</span></div>' +
-      '<div class="partyboss" style="animation-delay:0.5s">' + MOMO_SVG + '</div>' +
-      '<div class="partyboss" style="animation-delay:2.2s">' + TINY_SVG + '</div>';
+      '<div class="partyboss" style="animation-delay:0.4s">' + uniqueSvg(MOMO_SVG) + '</div>' +
+      '<div class="partyboss" style="animation-delay:1.6s">' + uniqueSvg(TINY_SVG) + '</div>' +
+      '<div class="partyboss" style="animation-delay:2.8s">' + uniqueSvg(JERRY_SVG) + '</div>' +
+      '<div class="partyboss" style="animation-delay:4.0s">' + uniqueSvg(BUB_SVG) + '</div>' +
+      '<div class="partyboss" style="animation-delay:5.2s">' + uniqueSvg(FATSO_SVG) + '</div>';
     document.body.appendChild(P);
     try { playSound('fairy'); setTimeout(function () { playSound('wind'); }, 700); } catch (e) {}
     var out = function () { if (P.parentNode) P.remove(); };
@@ -12633,7 +12636,7 @@ var qrcode = function() {
       tip.textContent = '👆 tap anywhere to keep playing';
       P.appendChild(tip);
     }, 2500);
-    setTimeout(out, 10000);
+    setTimeout(out, 12000);
   }
 
   // --- restore saved games on startup (profile system) ---
