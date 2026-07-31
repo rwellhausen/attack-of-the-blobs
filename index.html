@@ -137,7 +137,7 @@
   .fighters span svg { width:100%; height:auto; display:block; }
 
   .fighters span { cursor:pointer; }
-  #yourBlob, #enemyBlob { display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; align-content:center; justify-content:center; gap:4px; width:45% !important; }
+  #yourBlob, #enemyBlob { display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; align-content:center; justify-content:center; gap:16px 8px; width:45% !important; }
   .arena .fighters { width:100%; display:flex; justify-content:space-between; align-items:center; position:relative; z-index:1; }
   .foe { cursor:pointer; position:relative; container-type: inline-size; }
   .foe svg { width:100%; height:auto; display:block; }
@@ -10813,12 +10813,12 @@ var qrcode = function() {
   function setFighters() {
     if (!team.length || !enemyTeam.length) return;
     var es = enemyStar();
-    var w = team.length === 1 ? 88 : (team.length === 2 ? 60 : (team.length === 3 ? 31 : 46));
+    var w = team.length === 1 ? 88 : (team.length === 2 ? 58 : (team.length === 3 ? 30 : 43));
     document.getElementById('yourBlob').innerHTML = team.map(function (n) {
       var ms = starOf(n);
       return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '" style="width:' + w + '%">' + formSvg(n, ms) + accHtml(n, ms) + '</div>';
     }).join('');
-    var we = enemyTeam.length === 1 ? 88 : (enemyTeam.length === 2 ? 60 : (enemyTeam.length === 3 ? 31 : 46));
+    var we = enemyTeam.length === 1 ? 88 : (enemyTeam.length === 2 ? 58 : (enemyTeam.length === 3 ? 30 : 43));
     // William's rule: SOME enemy blobs dress up — any shop accessory
     var FOE_ACCS = ['tophat', 'shades', 'cane', 'bow', 'crown', 'wand'];
     var foeAcc = function (n, i) {
@@ -10830,10 +10830,7 @@ var qrcode = function() {
       return '<div class="foe" data-name="' + n + '" data-star="' + es + '" style="width:' + we + '%">' + formSvg(n, es) + (fa ? accHtml(n, es, fa) : '') + '</div>';
     }).join('');
     var note = document.getElementById('matchNote');
-    note.textContent = '👾 Enemy team: ' + enemyTeam.map(function (n) { return NAMES[n]; }).join(' + ') +
-      (es > 1 ? ' — they are ' + es + ' star now!' : '') +
-      '' +
-      (enemyTeam.length > team.length ? ' 💡 Outnumbered? The Shop sells teammates for 5 coins!' : '');
+    note.textContent = '';   // the fighters speak for themselves (boss fights still use this line)
   }
 
   // --- saving (architecture: all progress lives in one save object) ---
@@ -11435,7 +11432,7 @@ var qrcode = function() {
   }
   function miniFace(f) {
     var eye = (f === 'dark' || f === 'coal') ? '#fff6e0' : '#2b2340';
-    return '<svg viewBox="0 0 124 124" style="width:36px;height:36px;vertical-align:-11px"><path transform="translate(62,66) scale(0.98)" d="M 0 -56 q 41 -5 52 33 q 10 34 -19 52 q -32 21 -62 2 q -28 -18 -18 -52 q 10 -34 47 -35 Z" fill="' + FAMCOLOR[f] + '" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><circle cx="47" cy="60" r="8" fill="' + eye + '"/><circle cx="77" cy="60" r="8" fill="' + eye + '"/></svg>';
+    return '<svg viewBox="0 0 124 124" style="width:30px;height:30px;flex:none;vertical-align:-9px"><path transform="translate(62,66) scale(0.98)" d="M 0 -56 q 41 -5 52 33 q 10 34 -19 52 q -32 21 -62 2 q -28 -18 -18 -52 q 10 -34 47 -35 Z" fill="' + FAMCOLOR[f] + '" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><circle cx="47" cy="60" r="8" fill="' + eye + '"/><circle cx="77" cy="60" r="8" fill="' + eye + '"/></svg>';
   }
   var coachOpen = false;
   function showBattlePoster() {
@@ -11448,10 +11445,10 @@ var qrcode = function() {
     var seen = {};
     var rows = enemyTeam.filter(function (f) { if (seen[f]) return false; seen[f] = 1; return true; }).map(function (f) {
       var hitters = WCONF[curWorld].fams.filter(function (h) { return (BEATS[h] || []).indexOf(f) > -1; });
-      var use = hitters.length ? hitters.map(function (h) { return miniFace(h) + ' <b>' + NAMES[h].split(' ')[0] + '</b>'; }).join(' <span style="font-weight:400">or</span> ') : '<b>nobody — dodge!</b>';
-      return '<div style="margin:5px 0">' + miniFace(f) + ' <b>' + NAMES[f].split(' ')[0] + '</b> <span style="font-weight:400">→ hit it with</span> ' + use + '</div>';
+      var use = hitters.length ? hitters.map(function (h) { return miniFace(h) + '<b>' + NAMES[h].split(' ')[0] + '</b>'; }).join('<span style="font-weight:400">or</span>') : '<b>nobody — dodge!</b>';
+      return '<div style="display:flex;align-items:center;justify-content:center;gap:5px;margin:4px 0;white-space:nowrap">' + miniFace(f) + '<b>' + NAMES[f].split(' ')[0] + '</b><span style="font-weight:400">→ hit it with</span>' + use + '</div>';
     }).join('');
-    bp.innerHTML = '<div style="background:#fffdf5;border:4px solid #2b2340;border-radius:16px;padding:8px 12px;text-align:center;font-size:1.02rem">' +
+    bp.innerHTML = '<div style="background:#fffdf5;border:4px solid #2b2340;border-radius:16px;padding:6px 10px;text-align:center;font-size:clamp(0.78rem, 3.4vw, 0.98rem)">' +
       '<p style="margin:2px 0 4px;font-weight:800">🧠 Battle coach</p>' + rows + '</div>';
   }
 
@@ -11466,7 +11463,7 @@ var qrcode = function() {
     enemySpan.style.visibility = 'visible';
     battleState = 'ready';
     if (bossMode) {
-      var w = team.length === 1 ? 88 : (team.length === 2 ? 60 : (team.length === 3 ? 31 : 46));
+      var w = team.length === 1 ? 88 : (team.length === 2 ? 58 : (team.length === 3 ? 30 : 43));
       yourSpan.innerHTML = team.map(function (n) {
         var ms = starOf(n);
         return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '" style="width:' + w + '%">' + formSvg(n, ms) + accHtml(n, ms) + '</div>';
