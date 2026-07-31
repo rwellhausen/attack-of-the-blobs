@@ -9999,13 +9999,13 @@ var qrcode = function() {
     var mates = aliveMates();
     if (!mates.length) return;
     if (!Object.keys(bossAlive).some(function (s) { return bossAlive[s]; })) return;
-    var wins = [];
-    secs.forEach(function (s) { mates.forEach(function (mm) {
-      if ((BEATS[s] || []).indexOf(mm.dataset.name) > -1) wins.push({ f: s, mEl: mm });
-    }); });
-    var pick = wins.length ? wins[Math.floor(Math.random() * wins.length)]
-                           : { f: secs[Math.floor(Math.random() * secs.length)], mEl: mates[Math.floor(Math.random() * mates.length)] };
-    var f = pick.f, mEl = pick.mEl;
+    // scrambled brain: pick a random TARGET first (so attacks spread around),
+    // then the meanest section against that target
+    var mEl = mates[Math.floor(Math.random() * mates.length)];
+    var tname = mEl.dataset.name;
+    var winSecs = secs.filter(function (sc) { return (BEATS[sc] || []).indexOf(tname) > -1; });
+    var f = winSecs.length ? winSecs[Math.floor(Math.random() * winSecs.length)]
+                           : secs[Math.floor(Math.random() * secs.length)];
     var m = mEl.dataset.name;
     setMsg('👑 ' + WCONF[curWorld].bossName + '\u2019s ' + NAMES[f].split(' ')[0] + ' section attacks your ' + NAMES[m] + '!');
     playSound(f);
