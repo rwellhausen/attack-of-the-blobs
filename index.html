@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f1e3">
+<meta property="og:title" content="Attack of the Blobs">
+<meta property="og:description" content="A blob battle game — every blob invented by William.">
   <meta name="color-scheme" content="only light">
   <meta name="supported-color-schemes" content="light">
 <title>Attack of the Blobs</title>
@@ -14,7 +17,7 @@
     font-display: swap;
   }
   
-  :root { --ink:#2b2340; --paper:#f7f1e3; --muted:#7a7190; --card-edge:#2b2340; }
+  :root { --ink:#2b2340; --paper:#f7f1e3; --muted:#565070; --card-edge:#2b2340; }
   * { box-sizing:border-box; }
   body { margin:0; background:var(--paper); color:var(--ink);
     font-family: "Baloo 2", ui-rounded, "Comic Sans MS", system-ui, sans-serif; }
@@ -31,7 +34,7 @@
   .note { text-align:center; color:var(--muted); font-size:1.02rem; margin:8px 0; }
   h2 { font-size:1.05rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); text-align:center; margin:30px 0 6px; }
   h2.world { font-size:1.4rem; color:var(--ink); background:#ffe9a8; border:4px solid var(--ink); border-radius:18px; padding:10px 16px; margin:34px auto 14px; max-width:560px; box-shadow:0 4px 0 rgba(43,35,64,0.25); }
-  .back { position:fixed; top:14px; left:14px; z-index:10; background:#ffe9a8; border:4px solid var(--ink); border-radius:14px; font:inherit; font-size:1.2rem; font-weight:bold; padding:8px 16px; cursor:pointer; box-shadow:0 3px 0 rgba(43,35,64,0.3); }
+  .back { position:fixed; top:calc(14px + env(safe-area-inset-top, 0px)); left:calc(14px + env(safe-area-inset-left, 0px)); z-index:10; background:#ffe9a8; border:4px solid var(--ink); border-radius:14px; font:inherit; font-size:1.2rem; font-weight:bold; padding:8px 16px; cursor:pointer; box-shadow:0 3px 0 rgba(43,35,64,0.3); }
   .back:active { transform:translateY(2px); box-shadow:none; }
   #grassyScroll { overflow-x:auto; scroll-behavior:smooth; -webkit-overflow-scrolling:touch; border:4px solid var(--ink); border-radius:18px; max-width:760px; margin:0 auto 10px; }
   .arena { position:relative; max-width:760px; margin:0 auto; border:4px solid var(--ink); border-radius:18px; overflow:hidden; background:#8fce7f; padding:18px 12px; min-height:240px; display:flex; align-items:center; justify-content:space-around; }
@@ -44,14 +47,14 @@
     --paper: #f7f1e3;
     --card: #fffdf7;
     --accent: #e63946;
-    --muted: #6f6786;
+    --muted: #565070;
     --card-edge: #2b2340;
   }
   @media (prefers-color-scheme: dark) {
     :root { --paper: #221c33; --card: #2e2745; --muted: #b3abc9; --ink-text: #f2edff; }
   }
   :root[data-theme="dark"] { --paper: #221c33; --card: #2e2745; --muted: #b3abc9; --ink-text: #f2edff; }
-  :root[data-theme="light"] { --paper: #f7f1e3; --card: #fffdf7; --muted: #6f6786; --ink-text: #2b2340; }
+  :root[data-theme="light"] { --paper: #f7f1e3; --card: #fffdf7; --muted: #565070; --ink-text: #2b2340; }
   :root { --ink-text: #2b2340; }
 
   body {
@@ -276,6 +279,11 @@
   }
 
   html, body { overflow-x:hidden; max-width:100%; }
+  :focus-visible { outline: 4px solid #e63946; outline-offset: 3px; }
+  .bigplay:hover, .bigplay:focus-visible { animation: none; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01s !important; animation-iteration-count: 1 !important; transition-duration: 0.01s !important; }
+  }
   #screen-home { overflow:hidden; }
   .bgblob { position:absolute; z-index:0; opacity:0.35; pointer-events:none; animation: blobbob 5s ease-in-out infinite alternate; }
   #screen-home > *:not(.bgblob) { position:relative; z-index:1; }
@@ -405,7 +413,7 @@
   </g>
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
   <div class="parade"><div class="walker" style="width:72px;animation-duration:16s;animation-delay:0s"><div class="hopper" style="animation-delay:0s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#e63946" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(180,88) scale(0.32)" stroke="#2b2340" stroke-width="14" fill="#ffd166"><path d="M 20 160 L 20 40 L 90 100 L 160 20 L 230 100 L 300 40 L 300 160 Z"/></g></svg></div></div><div class="walker" style="width:56px;animation-duration:14s;animation-delay:2.5s"><div class="hopper" style="animation-delay:2.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#3d6fb4" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:64px;animation-duration:17s;animation-delay:5s"><div class="hopper" style="animation-delay:5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#57a05c" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g stroke="#2b2340" stroke-width="8" fill="#141020"><circle cx="225" cy="290" r="26"/><circle cx="295" cy="290" r="26"/><path d="M 251 290 L 269 290 M 199 284 L 175 274 M 321 284 L 345 274" fill="none"/></g></svg></div></div><div class="walker" style="width:48px;animation-duration:13s;animation-delay:8s"><div class="hopper" style="animation-delay:8s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#c74fa3" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:60px;animation-duration:15s;animation-delay:10.5s"><div class="hopper" style="animation-delay:10.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#d0a97f" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(155,60) scale(1.6)"><rect x="20" y="30" width="90" height="14" rx="7" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="-28" width="54" height="60" rx="8" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="16" width="54" height="12" fill="#b8860b"/></g></svg></div></div><div class="walker" style="width:52px;animation-duration:16s;animation-delay:13s"><div class="hopper" style="animation-delay:13s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#8ecbf2" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div></div>
-  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-07-31 15:43</p>
+  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-07-31 15:48</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -553,6 +561,7 @@
       
     </details>
     </div>
+<button id="muteBtn" class="back" style="position:static;display:block;margin:18px auto 8px;font-size:1rem"></button>
 </div>
 
 <!-- ============ SCREEN 2 : WORLD MAP ============ -->
@@ -852,7 +861,7 @@
 <!-- ============ SCREEN 4 : BATTLE ============ -->
 <div id="screen-battle" class="screen" hidden>
   <h2 class="world" id="battleTitle">⚔️ Grassy Plains — Level 1</h2>
-  <div class="battlebar" id="battleMsg">Tap YOUR blob!</div>
+  <div class="battlebar" id="battleMsg" aria-live="polite" role="status">Tap YOUR blob!</div>
   <div class="arena">
     <div class="sidetag left">🫵 YOU</div><div class="sidetag right">👾 ENEMY</div>
     <svg class="bg" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
@@ -13040,6 +13049,7 @@ var qrcode = function() {
   var backBtn = document.getElementById('backBtn');
   function current() { return screens.filter(function (s) { return !document.getElementById(s).hidden; })[0]; }
   function show(id) {
+    try { if (!fromPop && id !== 'screen-home' && typeof history.pushState === 'function') history.pushState({ s: id }, ''); } catch (e) {}
     screens.forEach(function (s) { document.getElementById(s).hidden = (s !== id); });
     backBtn.hidden = (id === 'screen-home');
     if (id === 'screen-levels') { try { applyHardUI(); } catch (e) {} }
@@ -13052,11 +13062,28 @@ var qrcode = function() {
   }
   function goTo(id) { show(id); }
   var shopReturn = null;
-  backBtn.addEventListener('click', function () {
+  function goBack() {
     var c = current();
     if (c === 'screen-shop' && shopReturn) { var r = shopReturn; shopReturn = null; show(r); return; }
     if (c === 'screen-battle') { if (madRush || sciFight) { renderMystery(); show('screen-mystery'); } else { show(WCONF[curWorld].screen); scrollToFrontier(curWorld); } return; }
     show(PARENT[c] || 'screen-home');
+  }
+  backBtn.addEventListener('click', goBack);
+  var muteBtn = document.getElementById('muteBtn');
+  function muteLabel() { if (muteBtn) muteBtn.textContent = soundOff ? '🔇 Sound: OFF' : '🔊 Sound: ON'; }
+  muteLabel();
+  if (muteBtn) muteBtn.addEventListener('click', function () {
+    soundOff = !soundOff;
+    try { localStorage.setItem('aotb-mute', soundOff ? '1' : '0'); } catch (e) {}
+    muteLabel();
+    if (!soundOff) { try { playSound('fairy'); } catch (e) {} }
+  });
+  var fromPop = false;
+  window.addEventListener('popstate', function () {
+    if (current() === 'screen-home') return;
+    fromPop = true;
+    goBack();
+    fromPop = false;
   });
   tappable(document.getElementById('coinBadge'), function () {
     var c = current();
@@ -13227,7 +13254,7 @@ var qrcode = function() {
     lv.addEventListener('click', function () { if (!dragMoved) levelTap('grassy', +lv.dataset.n); });
   });
   document.querySelectorAll('#screen-levels-forest .lvl').forEach(function (lv) {
-    lv.addEventListener('click', function () { levelTap('forest', +lv.dataset.n); });
+    lv.addEventListener('click', function () { if (window.__lvlDragMoved) return; levelTap('forest', +lv.dataset.n); });
   });
   // --- game rules ---
   var BEATS = { water: ['fire'], fire: ['earth'], earth: ['wind', 'water'], wind: ['water', 'fire'], tree: ['moss', 'dark'], moss: ['dark'], dark: ['fairy'], fairy: ['tree', 'moss'], rain: ['firework', 'cloud'], firework: ['cloud', 'light'], cloud: ['light'], light: ['rain'], coal: ['copper', 'gem'], copper: ['gem'], gem: ['gold'], gold: ['coal', 'copper'], brick: ['cloth', 'glass'], cloth: ['glass'], glass: ['heart'], heart: ['brick', 'cloth'], saturn: ['jupiter', 'mars'], jupiter: ['mars', 'venus'], mars: ['venus'], venus: ['saturn'], river: ['heat'], heat: ['cactus'], cactus: ['tumbleweed', 'river'], tumbleweed: ['river', 'heat'] };  // William's charts (corrected 2026-07-30: TREE beats DARK)
@@ -13422,7 +13449,10 @@ var qrcode = function() {
     src.buffer = buf;
     return src;
   }
+  var soundOff = false;
+  try { soundOff = localStorage.getItem('aotb-mute') === '1'; } catch (e) {}
   function playSound(fam) {
+    if (soundOff) return;
     if (fam === 'river' || fam === 'riverminion') fam = 'water';
     else if (fam === 'heat' || fam === 'heatminion') fam = 'fire';
     else if (fam === 'cactus' || fam === 'cactusminion') fam = 'earth';
@@ -15133,7 +15163,7 @@ var qrcode = function() {
   });
   var scroller = document.getElementById('grassyScroll');
   var dragging = false, dragMoved = false, startX = 0, startScroll = 0;
-  scroller.addEventListener('pointerdown', function (e) { dragging = true; dragMoved = false; startX = e.clientX; startScroll = scroller.scrollLeft; });
+  scroller.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') return; dragging = true; dragMoved = false; startX = e.clientX; startScroll = scroller.scrollLeft; });
   window.addEventListener('pointermove', function (e) {
     if (!dragging) return;
     if (Math.abs(e.clientX - startX) > 6) dragMoved = true;
@@ -15474,7 +15504,7 @@ var qrcode = function() {
     scrollToFrontier('skies');
   });
   document.querySelectorAll('#screen-levels-skies .lvl').forEach(function (lv) {
-    lv.addEventListener('click', function () { levelTap('skies', +lv.dataset.n); });
+    lv.addEventListener('click', function () { if (window.__lvlDragMoved) return; levelTap('skies', +lv.dataset.n); });
   });
   tappable(document.getElementById('enter-underground'), function () {
     var why = worldLocked('underground');
@@ -15484,7 +15514,7 @@ var qrcode = function() {
     scrollToFrontier('underground');
   });
   document.querySelectorAll('#screen-levels-underground .lvl').forEach(function (lv) {
-    lv.addEventListener('click', function () { levelTap('underground', +lv.dataset.n); });
+    lv.addEventListener('click', function () { if (window.__lvlDragMoved) return; levelTap('underground', +lv.dataset.n); });
   });
   tappable(document.getElementById('enter-city'), function () {
     var why = worldLocked('city');
@@ -15494,10 +15524,10 @@ var qrcode = function() {
     scrollToFrontier('city');
   });
   document.querySelectorAll('#screen-levels-city .lvl').forEach(function (lv) {
-    lv.addEventListener('click', function () { levelTap('city', +lv.dataset.n); });
+    lv.addEventListener('click', function () { if (window.__lvlDragMoved) return; levelTap('city', +lv.dataset.n); });
   });
   document.querySelectorAll('#screen-levels-solar .lvl').forEach(function (lv) {
-    lv.addEventListener('click', function () { levelTap('solar', +lv.dataset.n); });
+    lv.addEventListener('click', function () { if (window.__lvlDragMoved) return; levelTap('solar', +lv.dataset.n); });
   });
   tappable(document.getElementById('enter-solar'), function () {
     var why = worldLocked('solar');
@@ -15506,10 +15536,16 @@ var qrcode = function() {
     goTo('screen-levels-solar');
     scrollToFrontier('solar');
   });
+  document.addEventListener('keydown', function (e) {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target && e.target.classList && e.target.classList.contains('lvl')) {
+      e.preventDefault();
+      e.target.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    }
+  });
   document.querySelectorAll('.lvlscroll').forEach(function (sc) {
     var drag = false, sx = 0, ss = 0;
-    sc.addEventListener('pointerdown', function (e) { drag = true; sx = e.clientX; ss = sc.scrollLeft; });
-    window.addEventListener('pointermove', function (e) { if (drag) sc.scrollLeft = ss - (e.clientX - sx); });
+    sc.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') return; drag = true; window.__lvlDragMoved = false; sx = e.clientX; ss = sc.scrollLeft; });
+    window.addEventListener('pointermove', function (e) { if (!drag) return; if (Math.abs(e.clientX - sx) > 6) window.__lvlDragMoved = true; sc.scrollLeft = ss - (e.clientX - sx); });
     window.addEventListener('pointerup', function () { drag = false; });
   });
 
@@ -15678,7 +15714,7 @@ var qrcode = function() {
         // respawn AWAY from the title + PLAY zone so blobs never clump there
         var rx, ry, tries = 0;
         do {
-          rx = Math.random() * 92;
+          rx = Math.random() * 78;
           ry = Math.random() * 88;
           tries++;
         } while (tries < 15 && rx > 16 && rx < 80 && ry > 2 && ry < 46);
