@@ -14354,8 +14354,8 @@ var qrcode = function() {
       return mini(50, 26) + mini(33, 53) + mini(67, 53) +
         '<div class="accessory armorbit" style="left:50%;top:76%;transform:translate(-50%,-50%);width:26cqw;font-size:0"><svg viewBox="0 0 120 56" style="width:100%;display:block">' + chest + '</svg></div>';
     }
-    var CHEST_POS = { root: [50, 54], heat: [50, 74] };
-    var CHEST_W = { heat: 28 };   // small plate for the melted puddle          // the melted puddle wears its plate low
+    var CHEST_POS = { root: [50, 54], heat: [50, 74], tornado: [50, 58] };
+    var CHEST_W = { heat: 28, lightning: 38 };   // fitted plates          // the melted puddle wears its plate low
     var NO_CHEST = { fairy: 1 };                  // fairy: helm only — the plate just floated
     var cp = CHEST_POS[fam] || [x, Math.min(y + 22, 88)];
     var pieces = '<div class="accessory armorbit" style="left:' + hp[0] + '%;top:' + hp[1] + '%;transform:translate(-50%,-90%);width:52cqw;font-size:0"><svg viewBox="0 0 120 50" style="width:100%;display:block">' + helm + '</svg></div>' +
