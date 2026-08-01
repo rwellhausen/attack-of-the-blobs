@@ -216,6 +216,9 @@
   .worldlock { background:#2b2340; color:#ffe9a8; border-radius:12px; padding:8px 14px; text-align:center; font-weight:bold; margin:6px auto 0; max-width:420px; }
   .profrow { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:6px 0; }
   .profrow button.current { background:#ffd166; }
+  .whocard.current { background:#ffd166; }
+  #screen-pvp-pick.noname .pvpworld-h, #screen-pvp-pick.noname .chooser,
+  #screen-pvp-pick.noname #pvpPickMsg { display:none; }
   .accbtn { font-size:0.85rem !important; padding:4px 12px !important; margin-left:10px; vertical-align:middle; }
   .pvpcard.chosen { outline:5px solid #ffb703; transform:translateY(-4px); background:#ffe9a8 !important; }
   .pvpcard { position:relative; }
@@ -444,7 +447,7 @@
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
   <div class="parade"><div class="walker" style="width:72px;animation-duration:16s;animation-delay:0s"><div class="hopper" style="animation-delay:0s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#e63946" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(180,88) scale(0.32)" stroke="#2b2340" stroke-width="14" fill="#ffd166"><path d="M 20 160 L 20 40 L 90 100 L 160 20 L 230 100 L 300 40 L 300 160 Z"/></g></svg></div></div><div class="walker" style="width:56px;animation-duration:14s;animation-delay:2.5s"><div class="hopper" style="animation-delay:2.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#3d6fb4" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:64px;animation-duration:17s;animation-delay:5s"><div class="hopper" style="animation-delay:5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#57a05c" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g stroke="#2b2340" stroke-width="8" fill="#141020"><circle cx="225" cy="290" r="26"/><circle cx="295" cy="290" r="26"/><path d="M 251 290 L 269 290 M 199 284 L 175 274 M 321 284 L 345 274" fill="none"/></g></svg></div></div><div class="walker" style="width:48px;animation-duration:13s;animation-delay:8s"><div class="hopper" style="animation-delay:8s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#c74fa3" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:60px;animation-duration:15s;animation-delay:10.5s"><div class="hopper" style="animation-delay:10.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#d0a97f" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(155,60) scale(1.6)"><rect x="20" y="30" width="90" height="14" rx="7" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="-28" width="54" height="60" rx="8" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="16" width="54" height="12" fill="#b8860b"/></g></svg></div></div><div class="walker" style="width:52px;animation-duration:16s;animation-delay:13s"><div class="hopper" style="animation-delay:13s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#8ecbf2" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div></div>
-  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-08-01 10:55</p>
+  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-08-01 10:58</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -5588,14 +5591,14 @@
 <div id="screen-pvp-pick" class="screen" hidden>
 <h2 class="world" id="pvpPickTitle">🟥 PLAYER 1</h2>
 <p class="note" style="font-weight:bold;font-size:1.15rem" id="pvpWhoLine">Who are you? Tap your name:</p>
-<div class="profrow" id="pvpProfRow"></div>
-<details style="text-align:center;margin:2px 0"><summary class="note" style="cursor:pointer;display:inline-block">📱 Friend’s game on another device?</summary>
+<div class="whocards" id="pvpProfRow"></div>
+<div id="pvpPortPanel" hidden style="margin-top:14px">
+<p class="note" style="font-weight:bold">📱 Bring a friend’s game from another device — 3 steps:</p>
 <p class="note">1️⃣ On THEIR device: tap PLAY, tap their name, then “💾 Move my game” → “📱 Show my QR code”.</p>
-<p class="note">2️⃣ Point THIS device’s camera at the square and tap the link that pops up.</p>
-<p class="note">3️⃣ Their name appears here — ready to battle!</p>
-</details>
-<p class="note" style="font-weight:bold" id="pvpPickMsg">Then tap up to 3 blobs for your team!</p>
-<p class="note">🔒 Faded blobs aren’t earned yet — tap one to see why.</p>
+<p class="note">2️⃣ Point THIS device’s camera at the square.</p>
+<p class="note">3️⃣ Tap the link that pops up — their name appears here, ready to battle! ✨</p>
+</div>
+<p class="note" style="font-weight:bold" id="pvpPickMsg">Tap up to 3 blobs for your team!</p>
 <p class="pvpworld-h">🌄 Grassy Plains</p>
 <div class="chooser"><div class="pick pvpcard" data-fam="fire" data-star="1" role="button" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 600" style="width:100%;height:auto;display:block">
   <defs>
@@ -16052,11 +16055,12 @@ var qrcode = function() {
 
   function pvpStartPick(player) {
     pvp.stage = player;
-    if (player === 1) { saveGame(); pvp.prof1 = pvp.prof1 || playerName || 'Player 1'; }
-    else { pvp.prof2 = pvp.prof2 || playerName || 'Player 2'; }
+    if (player === 1) { saveGame(); pvp.prof1 = null; } else { pvp.prof2 = null; }
     refreshPvpProfRow();
-    document.getElementById('pvpPickTitle').textContent = (player === 1 ? '🟥 ' : '🟦 ') + (player === 1 ? pvp.prof1 : pvp.prof2).toUpperCase();
-    document.getElementById('pvpPickMsg').textContent = 'Then tap up to 3 blobs for your team!';
+    document.getElementById('pvpPickTitle').textContent = player === 1 ? '🟥 PLAYER 1' : '🟦 PLAYER 2';
+    document.getElementById('screen-pvp-pick').classList.add('noname');
+    document.getElementById('pvpPortPanel').hidden = true;
+    document.getElementById('pvpPickMsg').textContent = 'Tap up to 3 blobs for your team!';
     document.querySelectorAll('.pvpcard').forEach(function (c) { c.classList.remove('chosen'); });
     refreshPvpCards();
     (player === 1 ? pvp.p1 : pvp.p2).length = 0;
@@ -16086,12 +16090,11 @@ var qrcode = function() {
     var names = Object.keys(all.profiles);
     if (!names.length) names = [playerName || 'Player 1'];
     row.innerHTML = '';
-    var active = pvpProfName();
+    var active = pvp.stage === 1 ? pvp.prof1 : pvp.prof2;
     names.forEach(function (nm) {
       var b = document.createElement('button');
-      b.className = 'back' + (nm === active ? ' current' : '');
-      b.style.position = 'static';
-      b.textContent = '👤 ' + nm;
+      b.className = 'whocard' + (nm === active ? ' current' : '');
+      b.innerHTML = avatarSvg(nm) + nm;
       b.addEventListener('click', function () {
         if (pvp.stage === 1) pvp.prof1 = nm; else pvp.prof2 = nm;
         (pvp.stage === 1 ? pvp.p1 : pvp.p2).length = 0;
@@ -16099,9 +16102,19 @@ var qrcode = function() {
         refreshPvpProfRow();
         refreshPvpCards();
         document.getElementById('pvpPickTitle').textContent = (pvp.stage === 1 ? '🟥 ' : '🟦 ') + nm.toUpperCase();
+        document.getElementById('screen-pvp-pick').classList.remove('noname');
+        document.getElementById('pvpPortPanel').hidden = true;
       });
       row.appendChild(b);
     });
+    var bring = document.createElement('button');
+    bring.className = 'whocard addcard';
+    bring.innerHTML = '<div style="font-size:2.6rem;line-height:1.4">📱</div>Friend on another device?';
+    bring.addEventListener('click', function () {
+      var p = document.getElementById('pvpPortPanel');
+      p.hidden = !p.hidden;
+    });
+    row.appendChild(bring);
   }
   function pvpWhy(fam, star) {
     var why = pvpAllowed(fam, star);
