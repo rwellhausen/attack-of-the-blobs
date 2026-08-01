@@ -16179,10 +16179,10 @@ var qrcode = function() {
     document.getElementById('pvpTitle').textContent = pvp.mode === 'star' ? '⭐ STAR BATTLE!' : '⚔️ Player vs Player';
     if (pvp.mode === 'star') {
       pvpSetMsg('⭐ STAR BATTLE — teams from different worlds, so STARS decide! 🟥 ' + pvpLabel(1) + ' goes first.');
-      document.getElementById('pvpNote').textContent = '⭐ How to fight: tap one of YOUR blobs, then tap an enemy blob. The one with MORE STARS wins the hit! Same stars? Every hit lands. Big blobs shrink one star at a time before they finally POOF.';
+      document.getElementById('pvpNote').textContent = '⭐ How to fight: tap one of your blobs, then tap an enemy blob. The one with MORE STARS wins the hit! Same stars? Every hit lands. Big blobs shrink one star at a time before they finally POOF.';
     } else {
       pvpSetMsg('🟥 ' + pvpLabel(1) + ' goes first! Tap one of your blobs.');
-      document.getElementById('pvpNote').textContent = '⚔️ How to fight: tap one of YOUR blobs, then tap an enemy blob. If yours is STRONG against theirs (follow the arrows on the poster!), the enemy shrinks or POOFS. If it\u2019s weak, nothing happens — try a different blob!';
+      document.getElementById('pvpNote').textContent = '⚔️ How to fight: tap one of your blobs, then tap an enemy blob. If yours is STRONG against theirs (follow the arrows on the poster!), the enemy shrinks or POOFS. If it\u2019s weak, nothing happens — try a different blob!';
     }
     goTo('screen-pvp');
   }
