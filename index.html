@@ -450,7 +450,7 @@
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
   <div class="parade"><div class="walker" style="width:72px;animation-duration:16s;animation-delay:0s"><div class="hopper" style="animation-delay:0s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#e63946" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(180,88) scale(0.32)" stroke="#2b2340" stroke-width="14" fill="#ffd166"><path d="M 20 160 L 20 40 L 90 100 L 160 20 L 230 100 L 300 40 L 300 160 Z"/></g></svg></div></div><div class="walker" style="width:56px;animation-duration:14s;animation-delay:2.5s"><div class="hopper" style="animation-delay:2.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#3d6fb4" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:64px;animation-duration:17s;animation-delay:5s"><div class="hopper" style="animation-delay:5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#57a05c" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g stroke="#2b2340" stroke-width="8" fill="#141020"><circle cx="225" cy="290" r="26"/><circle cx="295" cy="290" r="26"/><path d="M 251 290 L 269 290 M 199 284 L 175 274 M 321 284 L 345 274" fill="none"/></g></svg></div></div><div class="walker" style="width:48px;animation-duration:13s;animation-delay:8s"><div class="hopper" style="animation-delay:8s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#c74fa3" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:60px;animation-duration:15s;animation-delay:10.5s"><div class="hopper" style="animation-delay:10.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#d0a97f" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(155,60) scale(1.6)"><rect x="20" y="30" width="90" height="14" rx="7" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="-28" width="54" height="60" rx="8" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="16" width="54" height="12" fill="#b8860b"/></g></svg></div></div><div class="walker" style="width:52px;animation-duration:16s;animation-delay:13s"><div class="hopper" style="animation-delay:13s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#8ecbf2" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div></div>
-  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-08-01 11:49</p>
+  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-08-01 12:07</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -14025,7 +14025,7 @@ var qrcode = function() {
     var w = team.length === 1 ? (pv ? 88 : 86) : (team.length === 2 ? (pv ? 72 : 58) : (team.length === 3 ? (pv ? 60 : 32) : (pv ? 52 : 44)));
     document.getElementById('yourBlob').innerHTML = team.map(function (n) {
       var ms = starOf(n);
-      return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '"' + (ms === 3 && ownedArmor.indexOf(n) > -1 ? ' data-armored="1"' : '') + ' style="width:' + w + '%">' + formSvg(n, ms) + (ms === 3 && ownedArmor.indexOf(n) > -1 ? armorHtml(n) : '') + accHtml(n, ms) + '<span class="bstars">' + '⭐'.repeat(ms) + '</span></div>';
+      return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '"' + (ms === 3 && ownedArmor.indexOf(n) > -1 ? ' data-armored="1"' : '') + ' style="width:' + fitW(team.length, w) + '">' + formSvg(n, ms) + (ms === 3 && ownedArmor.indexOf(n) > -1 ? armorHtml(n) : '') + accHtml(n, ms) + '<span class="bstars">' + '⭐'.repeat(ms) + '</span></div>';
     }).join('');
     var we = enemyTeam.length === 1 ? (pv ? 88 : 86) : (enemyTeam.length === 2 ? (pv ? 72 : 58) : (enemyTeam.length === 3 ? (pv ? 60 : 32) : (pv ? 52 : 44)));
     // William's rule: SOME enemy blobs dress up — any shop accessory
@@ -14037,7 +14037,7 @@ var qrcode = function() {
     document.getElementById('enemyBlob').innerHTML = enemyTeam.map(function (n, i) {
       var HARDW = { ghard: 1, fhard: 1, shard: 1, uhard: 1 };
       var fa = HARDW[curWorld] ? null : foeAcc(n, i);
-      return '<div class="foe" data-name="' + n + '" data-star="' + es + '" style="width:' + we + '%">' + formSvg(HARDW[curWorld] ? n + 'minion' : n, es) + (fa ? accHtml(n, es, fa) : '') + '<span class="bstars">' + '⭐'.repeat(es) + '</span></div>';
+      return '<div class="foe" data-name="' + n + '" data-star="' + es + '" style="width:' + fitW(enemyTeam.length, we) + '">' + formSvg(HARDW[curWorld] ? n + 'minion' : n, es) + (fa ? accHtml(n, es, fa) : '') + '<span class="bstars">' + '⭐'.repeat(es) + '</span></div>';
     }).join('');
     var note = document.getElementById('matchNote');
     note.textContent = '';   // the fighters speak for themselves (boss fights still use this line)
@@ -14964,7 +14964,7 @@ var qrcode = function() {
     var w = team.length === 1 ? (pv ? 88 : 86) : (team.length === 2 ? (pv ? 72 : 58) : (team.length === 3 ? (pv ? 60 : 32) : (pv ? 52 : 44)));
       yourSpan.innerHTML = team.map(function (n) {
         var ms = starOf(n);
-        return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '"' + (ms === 3 && ownedArmor.indexOf(n) > -1 ? ' data-armored="1"' : '') + ' style="width:' + w + '%">' + formSvg(n, ms) + (ms === 3 && ownedArmor.indexOf(n) > -1 ? armorHtml(n) : '') + accHtml(n, ms) + '<span class="bstars">' + '⭐'.repeat(ms) + '</span></div>';
+        return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '"' + (ms === 3 && ownedArmor.indexOf(n) > -1 ? ' data-armored="1"' : '') + ' style="width:' + fitW(team.length, w) + '">' + formSvg(n, ms) + (ms === 3 && ownedArmor.indexOf(n) > -1 ? armorHtml(n) : '') + accHtml(n, ms) + '<span class="bstars">' + '⭐'.repeat(ms) + '</span></div>';
       }).join('');
       renderMomo();
       var bn = WCONF[curWorld].bossName;
@@ -16211,7 +16211,7 @@ var qrcode = function() {
       var teamArr = p === 1 ? pvp.p1 : pvp.p2;
       side.innerHTML = teamArr.map(function (b, i) {
         var w = teamArr.length === 1 ? 88 : (teamArr.length === 2 ? 72 : 60);
-        return '<div class="pvpblob" data-player="' + p + '" data-idx="' + i + '" style="width:' + w + '%;' + (b.alive ? '' : 'visibility:hidden') + '">' + pvpFormSvg(pvpCardFor(b.fam, b.star)) + '<span class="bstars">' + '⭐'.repeat(b.star) + '</span></div>';
+        return '<div class="pvpblob" data-player="' + p + '" data-idx="' + i + '" style="width:' + fitW(teamArr.length, w) + ';' + (b.alive ? '' : 'visibility:hidden') + '">' + pvpFormSvg(pvpCardFor(b.fam, b.star)) + '<span class="bstars">' + '⭐'.repeat(b.star) + '</span></div>';
       }).join('');
     });
   }
@@ -16236,6 +16236,11 @@ var qrcode = function() {
     goTo('screen-pvp');
   }
   function pvpAlive(p) { return (p === 1 ? pvp.p1 : pvp.p2).filter(function (b) { return b.alive; }); }
+  function fitW(count, pct) {
+    // width %, but never taller than the stack's share of the screen (blob svg aspect ≈ 1.15 h/w)
+    var capDvh = { 1: 55, 2: 28, 3: 19, 4: 14 }[Math.min(count, 4)] || 14;
+    return 'min(' + pct + '%, ' + capDvh + 'dvh)';
+  }
   function storyCanHit(a, d) {
     // story battles: arrows first, then stars — deterministic, always.
     if ((BEATS[a.fam] || []).indexOf(d.fam) > -1) return true;
