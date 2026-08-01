@@ -43,10 +43,10 @@
   .arena svg.bg { position:absolute; inset:0; width:100%; height:100%; z-index:0; }
   .fighters { position:relative; z-index:1; display:flex; align-items:flex-end; justify-content:space-between; gap:10px; }
   .battlebar { background:#ffe9a8; border:4px solid var(--ink); border-radius:14px; padding:7px 12px; font-size:1rem; font-weight:bold; text-align:center; max-width:760px; margin:0 auto 10px; }
-  #screen-battle { max-width:none; }
-  #screen-battle .arena { max-width:96vw !important; }
-  #screen-battle .battlebar { padding:3px 10px; font-size:0.82rem; margin:0 auto 3px; border-width:3px; }
-  #screen-battle h2.world { margin:1px auto 3px; padding:3px 10px; font-size:0.82rem; border-width:3px; }
+  #screen-battle, #screen-pvp { max-width:none; }
+  #screen-battle .arena, #screen-pvp .arena { max-width:96vw !important; }
+  #screen-battle .battlebar, #screen-pvp .battlebar { padding:3px 10px; font-size:0.82rem; margin:0 auto 3px; border-width:3px; }
+  #screen-battle h2.world, #screen-pvp h2.world { margin:1px auto 3px; padding:3px 10px; font-size:0.82rem; border-width:3px; }
   #screen-battle p { margin:2px 0; }
   #screen-battle .back, #screen-battle button.back { font-size:0.82rem; padding:4px 10px; }
 
@@ -224,8 +224,8 @@
   .pvpcard { position:relative; }
   .pvpcard.owned { background:#efece2 !important; border-color:#8a8798; opacity:0.55; }
   .lockbadge { position:absolute; top:6px; right:8px; font-size:1.25rem; }
-  #p1Side, #p2Side { display:flex; flex-direction:row; flex-wrap:wrap; align-items:flex-end; align-content:flex-end; justify-content:center; gap:4px; width:45%; }
-  .pvpblob { transition: transform .2s; cursor:pointer; }
+  #p1Side, #p2Side { display:flex; flex-direction:column; flex-wrap:nowrap; align-items:center; justify-content:center; gap:10px; width:45%; }
+  .pvpblob { position:relative; transition: transform .2s; cursor:pointer; }
   .pvpblob svg { width:100%; height:auto; display:block; }
   .pvpblob.selected { transform:translateY(-8px); }
   .pvpblob.selected svg { filter: drop-shadow(0 0 12px #ffd166); }
@@ -447,7 +447,7 @@
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
   <div class="parade"><div class="walker" style="width:72px;animation-duration:16s;animation-delay:0s"><div class="hopper" style="animation-delay:0s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#e63946" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(180,88) scale(0.32)" stroke="#2b2340" stroke-width="14" fill="#ffd166"><path d="M 20 160 L 20 40 L 90 100 L 160 20 L 230 100 L 300 40 L 300 160 Z"/></g></svg></div></div><div class="walker" style="width:56px;animation-duration:14s;animation-delay:2.5s"><div class="hopper" style="animation-delay:2.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#3d6fb4" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:64px;animation-duration:17s;animation-delay:5s"><div class="hopper" style="animation-delay:5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#57a05c" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g stroke="#2b2340" stroke-width="8" fill="#141020"><circle cx="225" cy="290" r="26"/><circle cx="295" cy="290" r="26"/><path d="M 251 290 L 269 290 M 199 284 L 175 274 M 321 284 L 345 274" fill="none"/></g></svg></div></div><div class="walker" style="width:48px;animation-duration:13s;animation-delay:8s"><div class="hopper" style="animation-delay:8s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#c74fa3" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:60px;animation-duration:15s;animation-delay:10.5s"><div class="hopper" style="animation-delay:10.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#d0a97f" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(155,60) scale(1.6)"><rect x="20" y="30" width="90" height="14" rx="7" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="-28" width="54" height="60" rx="8" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="16" width="54" height="12" fill="#b8860b"/></g></svg></div></div><div class="walker" style="width:52px;animation-duration:16s;animation-delay:13s"><div class="hopper" style="animation-delay:13s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#8ecbf2" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div></div>
-  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-08-01 11:00</p>
+  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-08-01 11:04</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -7984,7 +7984,8 @@
   <div class="fighters"><span id="p1Side"></span><span id="p2Side"></span></div>
   
 </div>
-<p class="note" id="pvpNote" style="font-weight:bold"></p>
+<p style="text-align:center;margin:4px 0"><button id="pvpCoachBtn" class="back" style="position:static;font-size:0.95rem;padding:5px 12px">🧠 Coach</button></p>
+<div id="pvpPoster" hidden style="max-width:430px;margin:6px auto"></div>
 <p style="text-align:center;margin:14px 0"><button id="pvpRematchBtn" class="back" style="position:static">🔄 New PvP battle</button></p>
 </div>
 
@@ -16173,8 +16174,8 @@ var qrcode = function() {
       var side = document.getElementById('p' + p + 'Side');
       var teamArr = p === 1 ? pvp.p1 : pvp.p2;
       side.innerHTML = teamArr.map(function (b, i) {
-        var w = teamArr.length === 1 ? 90 : (teamArr.length === 2 ? 60 : 46);
-        return '<div class="pvpblob" data-player="' + p + '" data-idx="' + i + '" style="width:' + w + '%;' + (b.alive ? '' : 'visibility:hidden') + '">' + pvpFormSvg(pvpCardFor(b.fam, b.star)) + '</div>';
+        var w = teamArr.length === 1 ? 88 : (teamArr.length === 2 ? 72 : 60);
+        return '<div class="pvpblob" data-player="' + p + '" data-idx="' + i + '" style="width:' + w + '%;' + (b.alive ? '' : 'visibility:hidden') + '">' + pvpFormSvg(pvpCardFor(b.fam, b.star)) + '<span class="bstars">' + '⭐'.repeat(b.star) + '</span></div>';
       }).join('');
     });
   }
@@ -16190,13 +16191,11 @@ var qrcode = function() {
     document.getElementById('p1NameTag').textContent = '🟥 ' + pvpLabel(1);
     document.getElementById('p2NameTag').textContent = '🟦 ' + pvpLabel(2);
     document.getElementById('pvpTitle').textContent = pvp.mode === 'star' ? '⭐ STAR BATTLE!' : '⚔️ Player vs Player';
-    if (pvp.mode === 'star') {
-      pvpSetMsg('⭐ STAR BATTLE — blobs from different worlds! 🟥 ' + pvpLabel(1) + ' goes first.');
-      document.getElementById('pvpNote').textContent = '⭐ How to fight: tap one of your blobs, then tap an enemy blob. Same rules as every battle: follow the arrows on the poster, and more stars beats fewer stars. Blobs from different worlds have no arrows — so stars decide!';
-    } else {
-      pvpSetMsg('🟥 ' + pvpLabel(1) + ' goes first! Tap one of your blobs.');
-      document.getElementById('pvpNote').textContent = '⚔️ How to fight: tap one of your blobs, then tap an enemy blob. If yours is STRONG against theirs (follow the arrows on the poster!), the enemy shrinks or POOFS. If it\u2019s weak, nothing happens — try a different blob!';
-    }
+    pvpSetMsg((pvp.mode === 'star' ? '⭐ ' : '🟥 ') + pvpLabel(1) + ': Tap one of your blobs!');
+    pvpCoachOpen = false;
+    var pcb0 = document.getElementById('pvpCoachBtn');
+    if (pcb0) pcb0.textContent = '🧠 Coach';
+    showPvpPoster();
     goTo('screen-pvp');
   }
   function pvpAlive(p) { return (p === 1 ? pvp.p1 : pvp.p2).filter(function (b) { return b.alive; }); }
@@ -16219,8 +16218,32 @@ var qrcode = function() {
     if (pvpStalemate()) { pvpSetMsg('🤝 STALEMATE! No one can win — this battle is done. Tap "New PvP battle"!'); pvp.over = true; return; }
     pvp.turn = pvp.turn === 1 ? 2 : 1;
     pvp.sel = null; pvp.busy = false;
-    pvpSetMsg((pvp.turn === 1 ? '🟥 ' + pvpLabel(1) : '🟦 ' + pvpLabel(2)) + '\u2019s turn! Tap one of your blobs.');
+    pvpSetMsg((pvp.turn === 1 ? '🟥 ' + pvpLabel(1) : '🟦 ' + pvpLabel(2)) + ': Tap one of your blobs!');
   }
+  var pvpCoachOpen = false;
+  function showPvpPoster() {
+    var bp = document.getElementById('pvpPoster');
+    if (!bp) return;
+    bp.hidden = !pvpCoachOpen;
+    if (!pvpCoachOpen) return;
+    var fams = [];
+    pvp.p1.concat(pvp.p2).forEach(function (b) { if (fams.indexOf(b.fam) < 0) fams.push(b.fam); });
+    var rows = fams.map(function (f) {
+      var hitters = fams.filter(function (h) { return (BEATS[h] || []).indexOf(f) > -1; });
+      if (!hitters.length) return '';
+      var use = hitters.map(function (h) { return miniFace(h) + '<b>' + NAMES[h].split(' ')[0] + '</b>'; }).join('<span style="font-weight:400">or</span>');
+      return '<div style="display:flex;align-items:center;justify-content:center;gap:5px;margin:4px 0;white-space:nowrap">' + use + '<span style="font-weight:400">→ beats</span>' + miniFace(f) + '<b>' + NAMES[f].split(' ')[0] + '</b></div>';
+    }).join('');
+    rows += '<div style="margin:5px 0 2px;font-weight:400"><b>Same family?</b> More stars <span style="font-weight:400">→ beats</span> fewer stars</div>';
+    if (pvp.mode === 'star') rows += '<div style="margin:2px 0;font-weight:400"><b>Different worlds?</b> No arrows — stars decide!</div>';
+    bp.innerHTML = '<div style="background:#fffdf5;border:4px solid #2b2340;border-radius:16px;padding:6px 10px;text-align:center;font-size:clamp(0.78rem, 3.4vw, 0.98rem)">' +
+      '<p style="margin:2px 0 4px;font-weight:800">🧠 Battle coach</p>' + rows + '</div>';
+  }
+  tappable(document.getElementById('pvpCoachBtn'), function () {
+    pvpCoachOpen = !pvpCoachOpen;
+    document.getElementById('pvpCoachBtn').textContent = pvpCoachOpen ? '🧠 Coach (hide)' : '🧠 Coach';
+    showPvpPoster();
+  });
   function pvpBlobEl(p, i) { return document.querySelector('.pvpblob[data-player="' + p + '"][data-idx="' + i + '"]'); }
   function pvpHit(att, def, defEl, done) {
     if (def.star > 1) {
@@ -16231,7 +16254,7 @@ var qrcode = function() {
       cloud.style.left = (c.x - 32) + 'px'; cloud.style.top = (c.y - 32) + 'px';
       pvpArena.appendChild(cloud);
       setTimeout(function () { cloud.remove(); }, 900);
-      defEl.innerHTML = pvpFormSvg(pvpCardFor(def.fam, def.star));
+      defEl.innerHTML = pvpFormSvg(pvpCardFor(def.fam, def.star)) + '<span class="bstars">' + '⭐'.repeat(def.star) + '</span>';
       pvpSetMsg('💥 ' + NAMES[def.fam] + ' DEVOLVED to ' + def.star + ' star!');
       setTimeout(done, 900);
     } else {
