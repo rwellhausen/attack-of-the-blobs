@@ -43,6 +43,9 @@
   .arena svg.bg { position:absolute; inset:0; width:100%; height:100%; z-index:0; }
   .fighters { position:relative; z-index:1; display:flex; align-items:flex-end; justify-content:space-between; gap:10px; }
   .battlebar { background:#ffe9a8; border:4px solid var(--ink); border-radius:14px; padding:9px 16px; font-size:1.15rem; font-weight:bold; text-align:center; max-width:760px; margin:0 auto 10px; }
+  #screen-battle .battlebar { padding:5px 10px; font-size:0.98rem; margin:0 auto 4px; }
+  #screen-battle h2.world { margin:2px auto 4px; padding:5px 12px; font-size:1.05rem; }
+  #screen-battle p { margin:3px 0; }
 
   :root {
     --ink: #2b2340;
@@ -436,7 +439,7 @@
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
   <div class="parade"><div class="walker" style="width:72px;animation-duration:16s;animation-delay:0s"><div class="hopper" style="animation-delay:0s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#e63946" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(180,88) scale(0.32)" stroke="#2b2340" stroke-width="14" fill="#ffd166"><path d="M 20 160 L 20 40 L 90 100 L 160 20 L 230 100 L 300 40 L 300 160 Z"/></g></svg></div></div><div class="walker" style="width:56px;animation-duration:14s;animation-delay:2.5s"><div class="hopper" style="animation-delay:2.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#3d6fb4" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:64px;animation-duration:17s;animation-delay:5s"><div class="hopper" style="animation-delay:5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#57a05c" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g stroke="#2b2340" stroke-width="8" fill="#141020"><circle cx="225" cy="290" r="26"/><circle cx="295" cy="290" r="26"/><path d="M 251 290 L 269 290 M 199 284 L 175 274 M 321 284 L 345 274" fill="none"/></g></svg></div></div><div class="walker" style="width:48px;animation-duration:13s;animation-delay:8s"><div class="hopper" style="animation-delay:8s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#c74fa3" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div><div class="walker" style="width:60px;animation-duration:15s;animation-delay:10.5s"><div class="hopper" style="animation-delay:10.5s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#d0a97f" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/><g transform="translate(155,60) scale(1.6)"><rect x="20" y="30" width="90" height="14" rx="7" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="-28" width="54" height="60" rx="8" fill="#141020" stroke="#2b2340" stroke-width="6"/><rect x="38" y="16" width="54" height="12" fill="#b8860b"/></g></svg></div></div><div class="walker" style="width:52px;animation-duration:16s;animation-delay:13s"><div class="hopper" style="animation-delay:13s"><svg viewBox="0 0 520 600" style="width:100%;height:auto"><path d="M 260 148 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="#8ecbf2" stroke="#2b2340" stroke-width="10"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg></div></div></div>
-  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-08-01 08:36</p>
+  <p class="note" id="buildStamp" style="font-size:0.75rem;opacity:0.65;margin-top:26px">version 2026-08-01 08:46</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -13945,12 +13948,12 @@ var qrcode = function() {
     if (!team.length || !enemyTeam.length) return;
     var es = enemyStar();
     var pv = window.innerWidth <= 700;
-    var w = team.length === 1 ? (pv ? 82 : 88) : (team.length === 2 ? (pv ? 64 : 58) : (team.length === 3 ? (pv ? 54 : 30) : (pv ? 46 : 43)));
+    var w = team.length === 1 ? (pv ? 88 : 92) : (team.length === 2 ? (pv ? 72 : 62) : (team.length === 3 ? (pv ? 60 : 34) : (pv ? 52 : 47)));
     document.getElementById('yourBlob').innerHTML = team.map(function (n) {
       var ms = starOf(n);
       return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '"' + (ms === 3 && ownedArmor.indexOf(n) > -1 ? ' data-armored="1"' : '') + ' style="width:' + w + '%">' + formSvg(n, ms) + (ms === 3 && ownedArmor.indexOf(n) > -1 ? armorHtml(n) : '') + accHtml(n, ms) + '<span class="bstars">' + '⭐'.repeat(ms) + '</span></div>';
     }).join('');
-    var we = enemyTeam.length === 1 ? (pv ? 82 : 88) : (enemyTeam.length === 2 ? (pv ? 64 : 58) : (enemyTeam.length === 3 ? (pv ? 54 : 30) : (pv ? 46 : 43)));
+    var we = enemyTeam.length === 1 ? (pv ? 88 : 92) : (enemyTeam.length === 2 ? (pv ? 72 : 62) : (enemyTeam.length === 3 ? (pv ? 60 : 34) : (pv ? 52 : 47)));
     // William's rule: SOME enemy blobs dress up — any shop accessory
     var FOE_ACCS = ['tophat', 'shades', 'cane', 'bow', 'crown', 'wand'];
     var foeAcc = function (n, i) {
@@ -14488,9 +14491,9 @@ var qrcode = function() {
     } else if (w === 'forest') {
       helm = '<path d="M 22 42 Q 8 16 28 4 Q 40 20 38 40 Z M 98 42 Q 112 16 92 4 Q 80 20 82 40 Z M 40 42 Q 60 30 80 42 L 74 46 Q 60 38 46 46 Z" fill="' + col + '" stroke="#2b2340" stroke-width="4" stroke-linejoin="round"/>';
       if (fam === 'dark') {
-        // the CHEST is the long leaf — bottom stretched along the crescent's curve
-        chest = '<path d="M 14 8 Q 60 -6 106 8 Q 100 28 78 36 Q 60 56 42 36 Q 20 28 14 8 Z" fill="' + col + '" stroke="#2b2340" stroke-width="5" stroke-linejoin="round"/>' +
-          '<path d="M 60 4 Q 60 30 60 48 M 38 16 Q 60 26 82 16" fill="none" stroke="#2b2340" stroke-width="3" stroke-linecap="round"/>';
+        // a banana-leaf that bends WITH the crescent's curve
+        chest = '<path d="M 10 44 Q 0 16 26 6 Q 56 -4 88 8 Q 108 16 112 34 Q 88 26 66 30 Q 36 36 22 52 Q 12 50 10 44 Z" fill="' + col + '" stroke="#2b2340" stroke-width="5" stroke-linejoin="round"/>' +
+          '<path d="M 18 42 Q 44 18 96 20" fill="none" stroke="#2b2340" stroke-width="3" stroke-linecap="round"/>';
       }
       chest = '<path d="M 60 2 Q 100 16 96 40 Q 90 52 60 54 Q 30 52 24 40 Q 20 16 60 2 Z" fill="' + col + '" stroke="#2b2340" stroke-width="5" stroke-linejoin="round"/><path d="M 60 8 L 60 48 M 44 20 Q 60 26 76 20 M 42 34 Q 60 40 78 34" fill="none" stroke="#2b2340" stroke-width="3" stroke-linecap="round"/>';
     } else if (w === 'skies') {
@@ -14844,7 +14847,7 @@ var qrcode = function() {
     battleState = 'ready';
     if (bossMode) {
       var pv = window.innerWidth <= 700;
-    var w = team.length === 1 ? (pv ? 82 : 88) : (team.length === 2 ? (pv ? 64 : 58) : (team.length === 3 ? (pv ? 54 : 30) : (pv ? 46 : 43)));
+    var w = team.length === 1 ? (pv ? 88 : 92) : (team.length === 2 ? (pv ? 72 : 62) : (team.length === 3 ? (pv ? 60 : 34) : (pv ? 52 : 47)));
       yourSpan.innerHTML = team.map(function (n) {
         var ms = starOf(n);
         return '<div class="teammate" data-name="' + n + '" data-star="' + ms + '"' + (ms === 3 && ownedArmor.indexOf(n) > -1 ? ' data-armored="1"' : '') + ' style="width:' + w + '%">' + formSvg(n, ms) + (ms === 3 && ownedArmor.indexOf(n) > -1 ? armorHtml(n) : '') + accHtml(n, ms) + '<span class="bstars">' + '⭐'.repeat(ms) + '</span></div>';
