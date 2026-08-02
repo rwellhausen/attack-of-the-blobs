@@ -428,7 +428,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-02 08:46</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-02 08:50</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -963,7 +963,7 @@
   <p class="note" id="matchNote" style="font-weight:bold"></p>
   <p style="text-align:center;margin:4px 0"><button id="coachBtn" class="back" style="position:static;font-size:0.95rem;padding:5px 12px">🧠 Coach</button></p>
   <div id="battlePoster" style="max-width:400px;margin:4px auto 0" hidden></div>
-  <p style="text-align:center;margin:14px 0"><button id="nextBtn" class="back" style="position:static;background:#ffd166" hidden>➡️ Next level!</button> <button id="againBtn" class="back" style="position:static" hidden>🔄 Battle again</button> <button id="rechooseBtn" class="back" style="position:static">🔄 Choose a different blob</button></p>
+  <p style="text-align:center;margin:14px 0"><button id="nextBtn" class="back" style="position:static;background:#ffd166" hidden>➡️ Next level!</button> <button id="againBtn" class="back" style="position:static" hidden>🔄 Battle again</button></p>
 
 </div>
 <div id="screen-blobdex" class="screen" hidden>
@@ -15390,7 +15390,7 @@ var qrcode = function() {
   tappable(document.getElementById('rushBtn'), function () { startRushFight(); });
   (function () {
     var cbp = document.getElementById('coachBtn');
-    var row = document.getElementById('rechooseBtn') && document.getElementById('rechooseBtn').parentElement;
+    var row = document.getElementById('nextBtn') && document.getElementById('nextBtn').parentElement;
     if (cbp && row) { var oldP = cbp.parentElement; row.insertBefore(cbp, row.firstChild); if (oldP && !oldP.children.length) oldP.remove(); }
   })();
   tappable(document.getElementById('coachBtn'), function () {
@@ -15836,7 +15836,6 @@ var qrcode = function() {
   });
   tappable(document.getElementById('switchBtn'), function () { refreshProfile(); goTo('screen-who'); });
   tappable(document.getElementById('rulesBtn'), function () { goTo('screen-rules'); });
-  tappable(document.getElementById('rechooseBtn'), function () { goTo(WCONF[curWorld].chooser); });
   // ----- shop -----
   function updateShop() {
     renderTeamBars();
