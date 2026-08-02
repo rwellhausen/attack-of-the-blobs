@@ -428,7 +428,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-02 08:59</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-02 09:05</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -14701,7 +14701,6 @@ var qrcode = function() {
   }
   var curShopTab = 'gold';
   var HARDLOCK = '🔒 Advance to unlock';
-  var HARDLOCKWHY = '🔒 Beat the ❓ ??? world to unlock the 🔥 hard blobs!';
   function hardGoodsOpen() { return SANDBOX || sciDone || sciProgress >= 6; }
   function hardLocked(item) { return item.classList.contains('hardgood') && !hardGoodsOpen(); }
   function addCoins(d) {
@@ -15886,7 +15885,7 @@ var qrcode = function() {
   document.querySelectorAll('.shopevo').forEach(function (item) {
     tappable(item, function () {
       var msg = document.getElementById('shopMsg');
-      if (hardLocked(item)) { msg.textContent = HARDLOCKWHY; return; }
+      if (hardLocked(item)) return;
       var fam = item.dataset.name, star = +item.dataset.star;
       var w = WORLD_OF[fam];
       var teamArr = teamOfWorld(w), stars = starsOfWorld(w);
@@ -15907,7 +15906,7 @@ var qrcode = function() {
   document.querySelectorAll('.armoritem').forEach(function (item) {
     tappable(item, function () {
       var msg = document.getElementById('shopMsg');
-      if (hardLocked(item)) { msg.textContent = HARDLOCKWHY; return; }
+      if (hardLocked(item)) return;
       var fam = item.dataset.name;
       var w = WORLD_OF[fam];
       if (ownedArmor.indexOf(fam) > -1) { msg.textContent = NAMES[fam] + ' already has armor!'; return; }
@@ -16055,7 +16054,7 @@ var qrcode = function() {
   document.querySelectorAll('.shopitem').forEach(function (item) {
     tappable(item, function () {
       var msg = document.getElementById('shopMsg');
-      if (hardLocked(item)) { msg.textContent = HARDLOCKWHY; return; }
+      if (hardLocked(item)) return;
       var name = item.dataset.name;
       var w = WORLD_OF[name];
       var teamArr = teamOfWorld(w);
