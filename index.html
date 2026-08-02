@@ -71,7 +71,7 @@
   .chooser { display:flex; flex-wrap:wrap; gap:16px; justify-content:center; max-width:700px; margin:0 auto; }
   .pick { background:var(--card); border:3px solid var(--ink); border-radius:18px; padding:10px 10px 0; width:150px; cursor:pointer; box-shadow:0 2px 0 rgba(43,35,64,0.25); }
   .pick:hover { transform:translateY(-4px); }
-  .pick p { text-align:center; font-weight:bold; margin:4px 0 6px; font-size:0.95rem; overflow-wrap:break-word; hyphens:auto; }
+  .pick p { text-align:center; font-weight:bold; margin:4px 0 6px; font-size:0.95rem; overflow-wrap:break-word; -webkit-hyphens:auto; hyphens:auto; }
   .pick.owned { background:var(--owned-light) !important; border-color:var(--owned); opacity:1; }
   .pick.owned .match { color:#2e6d38; font-weight:bold; }
   .rules { max-width:640px; margin:0 auto; display:flex; flex-direction:column; gap:10px; }
@@ -428,7 +428,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-02 09:07</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-02 09:25</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -1014,7 +1014,7 @@
     <path d="M 720 385 q 4 -14 12 -18 M 732 385 q 2 -10 10 -14"/>
   </g>
 </svg></div>
-<p class="note">Grassy Plains — three sunny hills where the very first blobs live.</p>
+<p class="note">Grassy Plains — sunny green hills where the very first blobs live.</p>
 <div style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" style="width:100%;max-width:520px;display:block;margin:0 auto 10px;border:4px solid #2b2340;border-radius:18px">
   <defs>
     <style>
@@ -4242,7 +4242,7 @@
   </div>
 </div>
 
-<h2 class="world" id="dexHardStart" style="margin-top:96px;background:#ff8f7e">🔥 The Hard Worlds</h2>
+<h2 class="world" id="dexHardStart" style="margin-top:96px;background:#ff8f7e">🔥 Hard Worlds</h2>
 <p class="note" style="font-weight:bold">Every world has a HARD twin — and the Cyborg King’s minions are waiting!</p>
 <h2 class="world" id="worldHardGrassy">🔥 Grassy Plains HARD</h2>
 <div style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" preserveAspectRatio="xMidYMid slice" class="dexbanner">
@@ -11168,7 +11168,7 @@
 <div id="solarChooserChartSlot"></div>
 </div>
 <div id="screen-mystery" class="screen" hidden>
-<h2 class="world">❓ The Secret World</h2>
+<h2 class="world">❓ ???</h2>
 <p class="note" style="font-weight:bold;max-width:640px;margin:0 auto 6px">🧪 THE TRUTH: an evil SCIENTIST BLOB has a mad-ray — HIS ray is what made all the blobs go bad! The bosses you beat were his victims. Now they are MADDER THAN EVER. Free all SIX… then face HIM.</p>
 <div class="chooser" id="rushCards"></div>
 <p class="note" id="rushMsg" style="font-weight:bold"></p>
@@ -11288,6 +11288,7 @@
 </div>
 </div>
 
+<p id="saveWarn" class="note" hidden style="position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:50;max-width:88%;margin:0;background:var(--card);border:3px solid var(--ink);border-radius:14px;padding:8px 14px;font-weight:bold;box-shadow:0 2px 0 rgba(43,35,64,0.3)"></p>
 <div id="coinBadge" style="position:fixed;top:14px;right:14px;z-index:10;background:#ffe9a8;border:3px solid #2b2340;border-radius:14px;padding:4px 10px;font-weight:bold;font-size:0.95rem;box-shadow:0 2px 0 rgba(43,35,64,0.3)"><span class="coinSet" data-w="grassy"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#7fbf6f" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#b5e0a5" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#7fbf6f" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCount">0</span></span><span class="coinSet" data-w="forest"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#5d4a8a" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#8f7cc0" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#5d4a8a" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCountF">0</span></span><span class="coinSet" data-w="skies"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#8fc7ef" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#d4eafc" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#8fc7ef" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCountS">0</span></span><span class="coinSet" data-w="underground"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#5c7fd6" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#a8c1f0" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#5c7fd6" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/><path d="M 120 150 q 30 -40 85 -48" fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round" opacity="0.95"/></svg> <span id="coinCountU">0</span></span><span class="coinSet" data-w="city"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#9a9aa5" stroke="#2b2340" stroke-width="24"/><circle cx="260" cy="260" r="185" fill="#cfcfd8" stroke="#2b2340" stroke-width="16"/><circle cx="260" cy="275" r="115" fill="#9a9aa5" stroke="#2b2340" stroke-width="24"/><circle cx="225" cy="260" r="16" fill="#2b2340"/><circle cx="295" cy="260" r="16" fill="#2b2340"/></svg> <span id="coinCountC">0</span></span> <span class="coinSet" data-w="solar"><svg viewBox="0 0 520 520" style="width:26px;height:26px;vertical-align:-6px"><circle cx="260" cy="260" r="230" fill="#1b1533" stroke="#fff6e0" stroke-width="26"/><circle cx="260" cy="260" r="180" fill="#3a3160" stroke="#fff6e0" stroke-width="14"/><g fill="#fff6e0"><circle cx="150" cy="150" r="12"/><circle cx="380" cy="180" r="9"/><circle cx="350" cy="380" r="11"/><circle cx="140" cy="350" r="8"/></g><circle cx="260" cy="275" r="112" fill="#1b1533" stroke="#fff6e0" stroke-width="18"/><circle cx="225" cy="260" r="16" fill="#fff6e0"/><circle cx="295" cy="260" r="16" fill="#fff6e0"/></svg> <span id="coinCountSp">0</span></span> <span style="font-size:0.9em">🏪</span></div>
 <button id="backBtn" class="back" hidden>⬅ Back</button>
 
@@ -14003,8 +14004,29 @@ var qrcode = function() {
 
   // --- saving (architecture: all progress lives in one save object) ---
   var PROFILES_KEY = 'aotb-profiles';
-  function loadAll() { try { return JSON.parse(localStorage.getItem(PROFILES_KEY)); } catch (e) { return null; } }
-  function saveAll(all) { try { localStorage.setItem(PROFILES_KEY, JSON.stringify(all)); } catch (e) {} }
+  var DAMAGED_KEY = 'aotb-profiles-damaged';
+  var saveBroken = false;   // the save exists but will not parse — never overwrite it silently
+  function loadAll() {
+    var raw = null;
+    try { raw = localStorage.getItem(PROFILES_KEY); } catch (e) { return null; }
+    if (raw === null || raw === '') return null;          // no save yet: a genuinely new player
+    try { return JSON.parse(raw); } catch (e) {
+      saveBroken = true;
+      // keep the damaged text so it can be recovered by hand; never clobber an earlier rescue copy
+      try { if (!localStorage.getItem(DAMAGED_KEY)) localStorage.setItem(DAMAGED_KEY, raw); } catch (e2) {}
+      return null;
+    }
+  }
+  function saveAll(all) {
+    try { localStorage.setItem(PROFILES_KEY, JSON.stringify(all)); return true; }
+    catch (e) { showSaveWarn('😟 Could not save! This device is out of room — ask a grown-up.'); return false; }
+  }
+  function showSaveWarn(text) {
+    var el = document.getElementById('saveWarn');
+    if (!el) return;
+    el.textContent = text;
+    el.hidden = false;
+  }
   function currentSaveObj() {
     stashWorld();
     return { v: 2, cur: curWorld, worlds: worldsData, coins: coins, coinsF: coinsF, coinsS: coinsS, coinsU: coinsU, coinsC: coinsC, coinsSp: coinsSp, sci: sciProgress, rush: rushProgress, hardG: hardGrassy ? 1 : 0, hardF: hardForest ? 1 : 0, hardS: hardSkies ? 1 : 0, hardU: hardUnder ? 1 : 0, king: kingSeen ? 1 : 0, sciDone: (sciDone || sciProgress >= 6) ? 1 : 0, rushDone: (rushDone || rushProgress >= 6) ? 1 : 0, accs: ownedAccs, armor: ownedArmor, equip: equip, name: playerName, pops: popped };
@@ -16653,6 +16675,7 @@ var qrcode = function() {
           e.stopPropagation();
           if (deleteArmed !== nm) { deleteArmed = nm; refreshProfile(); return; }
           var a2 = loadAll();
+          if (!a2 || !a2.profiles) { showSaveWarn('😟 Could not read the saved games — ask a grown-up.'); return; }
           delete a2.profiles[nm];
           if (a2.current === nm) a2.current = Object.keys(a2.profiles)[0] || '';
           saveAll(a2);
@@ -16698,6 +16721,8 @@ var qrcode = function() {
     document.getElementById('nameInput').value = '';
     if (renameTarget && v !== renameTarget) {
       var all = loadAll();
+      if (!all || !all.profiles) { showSaveWarn('😟 Could not read the saved games — ask a grown-up.'); return; }
+      if (all.profiles[v]) { document.getElementById('nameInput').placeholder = 'There is already a player called ' + v + '!'; return; }
       all.profiles[v] = all.profiles[renameTarget];
       all.profiles[v].name = v;
       delete all.profiles[renameTarget];
@@ -16763,6 +16788,12 @@ var qrcode = function() {
       if (!imp || imp.v !== 2) throw new Error('bad');
       var all = loadAll() || { profiles: {} };
       var iname = imp.name || 'Player 1';
+      if (all.profiles[iname]) {                 // same name already here: keep both
+        var n2 = 2;
+        while (all.profiles[iname + ' ' + n2]) n2++;
+        iname = iname + ' ' + n2;
+        imp.name = iname;
+      }
       all.profiles[iname] = imp;
       all.current = iname;
       saveAll(all);
@@ -17051,7 +17082,9 @@ var qrcode = function() {
         all.profiles[k] = legacy;
         all.current = k;
       }
-      saveAll(all);
+      // a damaged save was rescued to DAMAGED_KEY — say so, and do not write over it here
+      if (saveBroken) showSaveWarn('😟 The saved games on this device could not be read. The old file was kept — ask a grown-up.');
+      else saveAll(all);
     }
     // sweep ghost profiles (no progress, no coins, placeholder names)
     Object.keys(all.profiles).forEach(function (nm) {
