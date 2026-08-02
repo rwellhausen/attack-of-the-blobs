@@ -421,7 +421,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-01 22:15</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-01 22:28</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -16806,6 +16806,78 @@ var qrcode = function() {
     }, 2500);
     setTimeout(out, 13500);
   }
+  // 🎬 SCENE THEATER (sandbox build only — SANDBOX gate below): every
+  // cutscene in story order, tap to watch. Calls the real scene
+  // functions; nothing is duplicated. Scenes remove their own overlays,
+  // so theaterDone polls the known overlay ids to learn when one ends
+  // (chained scenes hand off synchronously, so no false "done" gap).
+  var THEATER_LIST = [
+    { label: '🌄 The beginning — the Scientist’s ray', start: function () { playIntro(function () {}); } },
+    { label: '🌄 MOMO IS FREE!', start: function () { momoOutro(); } },
+    { label: '🌲 TINY IS FREE!', start: function () { tinyOutro(); } },
+    { label: '☀️ JERRY IS FREE!', start: function () { jerryOutro(); } },
+    { label: '⛏️ BUB IS FREE!', start: function () { bubOutro(); } },
+    { label: '🏙️ FATSO IS FREE!', start: function () { fatsoOutro(); } },
+    { label: '🪐 DOOFUS IS FREE!', start: function () { doofusOutro(); } },
+    { label: '🧪 The Scientist is DEFEATED! (then the throne room and the party)', start: function () { sciDefeatOutro(); } },
+    { label: '🏰 The throne room', start: function () { throneScene(); } },
+    { label: '⚙️ THE CYBORG KING!', start: function () { cyborgKingScene(function () {}); } },
+    { label: '🎉 The victory party', start: function () { blobParty('<div class="partybanner">🏆 YOU SAVED THE BLOB WORLD! 🏆<br><span style="font-size:1.1rem">THE END… for now!</span></div>'); } }
+  ];
+  function theaterDone(cb) {
+    var clear = 0;
+    var iv = setInterval(function () {
+      var busy = ['introScene', 'outroScene', 'throneScene', 'kingScene', 'popParty'].some(function (id) { return document.getElementById(id); });
+      if (busy) { clear = 0; return; }
+      clear += 1;
+      if (clear >= 2) { clearInterval(iv); cb(); }
+    }, 400);
+  }
+  function sceneTheater() {
+    if (document.getElementById('sceneTheater')) return;
+    var BS = 'min-height:44px;font-size:0.95rem;font-weight:800;border:4px solid #2b2340;border-radius:14px;background:#fdf7e8;color:#2b2340;padding:8px 14px;cursor:pointer;text-align:left;';
+    var T = document.createElement('div');
+    T.id = 'sceneTheater';
+    T.style.cssText = 'position:fixed;inset:0;z-index:70;background:rgba(13,10,28,0.94);overflow:auto;padding:24px 14px 44px;';
+    T.innerHTML = '<div style="max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:10px">' +
+      '<div style="font-size:1.5rem;font-weight:800;color:#fdf7e8;text-align:center">🎬 SCENE THEATER</div>' +
+      '<div style="font-size:0.95rem;font-weight:800;color:#d8cfae;text-align:center">The whole story, in order! Tap a scene to watch it.</div>' +
+      '<button id="thAll" style="' + BS + 'background:#ffe9a8;text-align:center">▶️ PLAY THE WHOLE STORY</button>' +
+      THEATER_LIST.map(function (s, i) {
+        return '<button data-th="' + i + '" style="' + BS + '">' + s.label + '</button>';
+      }).join('') +
+      '<button id="thClose" style="' + BS + 'text-align:center">⬅️ Back to the game</button></div>';
+    document.body.appendChild(T);
+    function playOne(i, cb) { THEATER_LIST[i].start(); theaterDone(cb); }
+    [].forEach.call(T.querySelectorAll('button[data-th]'), function (b) {
+      tappable(b, function () {
+        var i = +b.getAttribute('data-th');
+        T.remove();
+        playOne(i, sceneTheater);
+      });
+    });
+    tappable(T.querySelector('#thAll'), function () {
+      T.remove();
+      // The whole show: sciDefeat (7) already chains the throne room and
+      // the party, so 8 and 10 are skipped; the King reveal (9) closes it.
+      var order = [0, 1, 2, 3, 4, 5, 6, 7, 9];
+      (function step(k) {
+        if (k >= order.length) { sceneTheater(); return; }
+        playOne(order[k], function () { step(k + 1); });
+      })(0);
+    });
+    tappable(T.querySelector('#thClose'), function () { T.remove(); });
+  }
+  if (SANDBOX) (function () {
+    var home = document.getElementById('screen-home');
+    if (!home) return;
+    var b = document.createElement('button');
+    b.id = 'theaterBtn';
+    b.textContent = '🎬 Scenes';
+    b.style.cssText = 'min-height:44px;font-size:0.95rem;font-weight:800;border:4px solid #2b2340;border-radius:14px;background:#fdf7e8;color:#2b2340;padding:8px 14px;cursor:pointer;margin-top:10px;';
+    home.appendChild(b);
+    tappable(b, sceneTheater);
+  })();
 
   // --- restore saved games on startup (profile system) ---
   (function () {
