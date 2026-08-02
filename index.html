@@ -352,9 +352,9 @@
   #screen-blobdex .card.owned-dex { background:var(--owned-light); border-color:var(--owned); }
   .dexbanner { width:100%; max-width:440px; height:auto; display:block; margin:0 auto 10px; border:3px solid var(--ink); border-radius:18px; }
   .dextoc { position:sticky; top:4px; z-index:6; background:var(--paper); max-width:760px; margin:0 auto 10px; padding:6px 0 4px; text-align:center; box-shadow:0 6px 8px -6px rgba(43,35,64,0.25); border-radius:14px; }
-  #screen-blobdex h2.world { margin: 40px auto 12px; }
+  #screen-blobdex h2.world { margin: 72px auto 12px; }
   #screen-blobdex .grid { gap: 12px; }
-  #hills, #world2, #world3, #world4, #world5, #world6solar, #worldHardGrassy, #worldHardForest, #worldHardSkies, #worldHardUnder { scroll-margin-top: 76px; }
+  #hills, #world2, #world3, #world4, #world5, #world6solar, #dexHardStart, #worldHardGrassy, #worldHardForest, #worldHardSkies, #worldHardUnder { scroll-margin-top: 76px; }
   #minionsGrassy, #minionsForest, #minionsSkies, #minionsUnder { scroll-margin-top: 76px; }
   .dextoc p { margin:4px 0; }
   .dextoc button { font:inherit; font-size:0.95rem; font-weight:bold; background:var(--card); border:3px solid #2b2340; border-radius:12px; padding:2px 10px; margin:2px 3px; cursor:pointer; box-shadow:0 2px 0 rgba(43,35,64,0.2); min-height:0; position:relative; }
@@ -429,7 +429,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-01 22:47</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-01 22:55</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -972,7 +972,7 @@
 <h2 class="world">📖 The Blobdex</h2>
 <p class="note">Every blob has three evolutions. Green cards are blobs you own!</p>
 <div class="dextoc">
-<p><button data-goto="hills">🌍 Worlds</button><button data-goto="worldHardGrassy">🔥 Hard Worlds</button></p>
+<p><button data-goto="hills">🌍 Worlds</button><button data-goto="dexHardStart">🔥 Hard Worlds</button></p>
 </div>
 <h2 class="world" id="hills">🌄 Grassy Plains</h2>
 <div style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" preserveAspectRatio="xMidYMid slice" class="dexbanner">
@@ -1956,7 +1956,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>An old boulder totally overgrown with moss curtains.</p>
+    <p>An old boulder wearing moss curtains.</p>
   </div>
 </div>
 <h3 class="element">Tree Blob</h3>
@@ -2526,7 +2526,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A jiggly rain-blue blob, always a little drippy, with its own tiny puddle.</p>
+    <p>A drippy rain-blue blob with its own puddle.</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="2 54.2 520 600" >
@@ -2576,7 +2576,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>It grew its very own raincloud and wears it like a hat — it rains on itself!</p>
+    <p>Wears a raincloud hat — it rains on itself!</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2.5 60.4 520 600" >
@@ -2630,7 +2630,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE GIANT RAINDROP — the whole blob became one enormous raindrop with rain pouring all around.</p>
+    <p>THE GIANT RAINDROP — rain pours all around it.</p>
   </div>
 </div>
 
@@ -3224,7 +3224,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>The Gold King — the bars below strain to hold him up.</p>
+    <p>The Gold King — heavy on his gold bars.</p>
   </div>
 </div>
 
@@ -3631,7 +3631,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A jiggly brick-red blob with little mortar seams.</p>
+    <p>A brick-red blob with mortar seams.</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="2 -20.2 520 600" >
@@ -3730,7 +3730,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE BRICK TOWER — a castle turret with battlements, a door, and a proud flag.</p>
+    <p>THE BRICK TOWER — a castle turret with a flag.</p>
   </div>
 </div>
 
@@ -3773,7 +3773,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A whitish-clear frosted glass blob — you can almost see through it.</p>
+    <p>A frosted glass blob — almost see-through.</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="1 -2.6 520 600" >
@@ -3816,7 +3816,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A tall drinking glass with a fizzy blue drink and bubbles inside.</p>
+    <p>A tall glass of fizzy blue drink.</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 36.8 527.1 608.2" >
@@ -3861,7 +3861,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE GLASS SKYSCRAPER — glowing windows, a rooftop spire, and one big shine.</p>
+    <p>THE GLASS SKYSCRAPER — all glowing windows.</p>
   </div>
 </div>
 
@@ -3894,7 +3894,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A jiggly rusty-red blob with little crater dents.</p>
+    <p>A rusty-red blob with crater dents.</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 -18.1 520 600" >
@@ -3922,7 +3922,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Growing into a real planet — ice cap on top, bigger craters.</p>
+    <p>A real planet now — ice cap and big craters.</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-4.6 -0.5 520 600" >
@@ -3953,7 +3953,7 @@
   <g stroke="#2b2340" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.85"><path d="M 90 100 l 0 -26 M 90 87 l -13 0 l 26 0"/><path d="M 440 140 l 0 -22 M 440 129 l -11 0 l 22 0"/></g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>MIGHTY MARS — his two little moons race around him on an orbit track!</p>
+    <p>MIGHTY MARS — his two moons race around him!</p>
   </div>
 </div>
 
@@ -4015,7 +4015,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>The clouds thicken into big golden swirl bands.</p>
+    <p>Big golden swirl bands of cloud.</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 73.9 520 600" >
@@ -4050,7 +4050,7 @@
   <path d="M 260 240 q 118 -14 148 96 q 26 96 -56 150 q -94 58 -178 4 q -80 -54 -54 -148 q 26 -96 140 -102 Z" fill="none" class="outline thick"/>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>GLOWING VENUS — the brightest thing in the sky, shining rays everywhere.</p>
+    <p>GLOWING VENUS — brightest thing in the sky.</p>
   </div>
 </div>
 
@@ -4080,7 +4080,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A stripy tan blob — just two little bands so far.</p>
+    <p>A stripy tan blob — two little bands.</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 -18.1 520 600" >
@@ -4114,7 +4114,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>More bands — and his little RED SPOT mouth appeared!</p>
+    <p>More bands — and a little RED SPOT mouth!</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="5.1 11.9 520 600" >
@@ -4148,7 +4148,7 @@
   <g stroke="#2b2340" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.85"><path d="M 90 100 l 0 -26 M 90 87 l -13 0 l 26 0"/><path d="M 440 140 l 0 -22 M 440 129 l -11 0 l 22 0"/></g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>KING JUPITER — full storm bands, and the GREAT RED SPOT is his mouth.</p>
+    <p>KING JUPITER — the GREAT RED SPOT is his mouth.</p>
   </div>
 </div>
 
@@ -4178,7 +4178,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A golden blob with a little ring like a hula hoop.</p>
+    <p>A golden blob with a hula-hoop ring.</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="2.5 -18.1 520 600" >
@@ -4239,10 +4239,12 @@
   <g fill="#2b2340" opacity="0.85"><path d="M 90 100 l 0 -26 M 90 87 l -13 0 l 26 0" stroke="#2b2340" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M 440 140 l 0 -22 M 440 129 l -11 0 l 22 0" stroke="#2b2340" stroke-width="5" fill="none" stroke-linecap="round"/></g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>LORD OF THE RINGS — glorious rings wrapping all the way around.</p>
+    <p>LORD OF THE RINGS — rings all the way around.</p>
   </div>
 </div>
 
+<h2 class="world" id="dexHardStart" style="margin-top:96px;background:#ff8f7e">🔥 The Hard Worlds</h2>
+<p class="note" style="font-weight:bold">Every world has a HARD twin — and the Cyborg King’s minions are waiting!</p>
 <h2 class="world" id="worldHardGrassy">🔥 Grassy Plains HARD</h2>
 <div style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" preserveAspectRatio="xMidYMid slice" class="dexbanner">
   <defs>
@@ -4339,7 +4341,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A splashy river-blue blob with little waves rippling across it.</p>
+    <p>A splashy blue blob with rippling waves.</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0.5 -89.4 520 600" >
@@ -4365,7 +4367,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A winding river flows right across its face, with splash drops flying.</p>
+    <p>A winding river flows across its face.</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="1 -31.5 520 600" >
@@ -4392,7 +4394,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE RIVER — a mighty waterfall pours down its front into big foamy bubbles.</p>
+    <p>THE RIVER — a waterfall pours down its front.</p>
   </div>
 </div>
 <h3 class="element">Cactus Blob</h3>
@@ -4428,7 +4430,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A prickly green blob with baby spines and one tiny bud on top.</p>
+    <p>A prickly green blob with one tiny bud.</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -100.8 520 600" >
@@ -4463,7 +4465,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Grew two stubby cactus arms and a pink desert flower!</p>
+    <p>Two stubby arms and a pink desert flower!</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 6.7 520 600" >
@@ -4509,7 +4511,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE GIANT SAGUARO — huge curling arms, flowers everywhere, king of the desert.</p>
+    <p>THE GIANT SAGUARO — king of the desert.</p>
   </div>
 </div>
 <h3 class="element">Heat Blob</h3>
@@ -4542,7 +4544,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A warm, sun-baked blob — pure heat, no fire. It even has a little sweat drop.</p>
+    <p>A sun-baked blob with one little sweat drop.</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="2 -11.9 520 600" >
@@ -4571,7 +4573,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>SO hot it’s starting to MELT — droopy sides, a drip, and a little puddle forming.</p>
+    <p>SO hot it’s MELTING — droopy and drippy.</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="1 50.1 520 600" >
@@ -4603,7 +4605,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE HEATWAVE — fully melted into a glowing puddle, barely keeping its blob shape.</p>
+    <p>THE HEATWAVE — melted into a glowing puddle.</p>
   </div>
 </div>
 <h3 class="element">Tumbleweed Blob</h3>
@@ -4635,7 +4637,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A loose airy tangle of twigs — you can see right through the gaps!</p>
+    <p>A loose tangle of twigs — see right through it!</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-19.3 -98.7 520 600" >
@@ -4663,7 +4665,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Rolling! The tangle grows thicker, but it’s still mostly air.</p>
+    <p>Rolling! A thicker tangle, still mostly air.</p>
   </div>
   <div class="card">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-26.9 36.7 520 600" >
@@ -4697,7 +4699,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE GREAT TUMBLEWEED — a huge criss-cross tangle, all twigs and air, kicking up a dust storm.</p>
+    <p>THE GREAT TUMBLEWEED — kicking up a dust storm.</p>
   </div>
 </div>
 
@@ -4728,7 +4730,7 @@
   <circle cx="540" cy="334" r="19" fill="#39424e"/><circle cx="540" cy="334" r="11" fill="#7fd4ff"/><circle cx="544" cy="330" r="4" fill="#ffffff"/>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Flooded from below, with rivets and a periscope antenna.</p>
+    <p>Flooded from below, with a periscope.</p>
   </div>
   <div class="card">
     <svg viewBox="310 82.9 390 410">
@@ -4750,7 +4752,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Water to the neck with waves inside, periscope AND radar dish.</p>
+    <p>Water to the neck — periscope AND radar dish.</p>
   </div>
 </div>
 <h3 class="element">Heat Minion</h3>
@@ -4779,7 +4781,7 @@
   <circle cx="556" cy="328" r="19" fill="#39424e"/><circle cx="556" cy="328" r="11" fill="#7fd4ff"/><circle cx="560" cy="324" r="4" fill="#ffffff"/>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A wiggly melt-line — the heat side is taking over, with glowing vents.</p>
+    <p>A wiggly melt-line and glowing vents.</p>
   </div>
   <div class="card">
     <svg viewBox="310 82.9 390 410">
@@ -4799,7 +4801,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Almost fully machine — glowing reactor core, heat vents, steam pipe.</p>
+    <p>Almost all machine — a glowing reactor core.</p>
   </div>
 </div>
 <h3 class="element">Cactus Minion</h3>
@@ -4826,7 +4828,7 @@
     <circle cx="540" cy="334" r="19" fill="#39424e"/><circle cx="540" cy="334" r="11" fill="#7fd4ff"/><circle cx="544" cy="330" r="4" fill="#ffffff"/>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Green armor in two chunks and robot spikes like cactus spines.</p>
+    <p>Green armor with robot cactus spikes.</p>
   </div>
   <div class="card">
     <svg viewBox="319.9 141.7 390 410">
@@ -4846,7 +4848,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Full green armor, spikes all around, robot flower dish on top.</p>
+    <p>Full armor, spikes, a robot flower on top.</p>
   </div>
 </div>
 <h3 class="element">Tumbleweed Minion</h3>
@@ -4874,7 +4876,7 @@
     <circle cx="532" cy="344" r="19" fill="#39424e"/><circle cx="532" cy="344" r="11" fill="#7fd4ff"/><circle cx="536" cy="340" r="4" fill="#ffffff"/>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A twig-covered body wrapped around a gray rolling wheel core.</p>
+    <p>Twigs wrapped around a rolling wheel core.</p>
   </div>
   <div class="card">
     <svg viewBox="320.8 170.1 390.5 410.5">
@@ -4903,7 +4905,7 @@
   </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A toothed gear core, tank treads, a twig antenna, and puffs of exhaust.</p>
+    <p>A gear core with tank treads, puffing exhaust.</p>
   </div>
 </div>
 
@@ -4931,17 +4933,17 @@
   <div class="card">
     <svg viewBox="0 -34.7 520 600" style="width:100%"><g transform="translate(72,84) scale(0.72)"><path d="M 260 150 q 112 -18 150 90 q 30 92 -50 152 q -90 62 -176 8 q -84 -52 -58 -146 q 24 -92 134 -104 Z" fill="#c9a672" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><g fill="none" stroke="#c9a672" stroke-width="16" stroke-linecap="round"><path d="M 195 440 q -10 40 -34 54"/><path d="M 262 455 q 2 42 -10 60"/><path d="M 330 440 q 12 38 34 52"/></g><g fill="none" stroke="#2b2340" stroke-width="6" stroke-linecap="round"><path d="M 195 440 q -10 40 -34 54" transform="translate(0,3)" stroke-opacity="0"/></g><path d="M 205 300 q 55 24 110 0" fill="none" stroke="#9b7a48" stroke-width="8" stroke-linecap="round"/><path d="M 168 205 q 25 -30 66 -36" fill="none" stroke="#e6cfa4" stroke-width="12" stroke-linecap="round"/><g fill="#6d543a"><circle cx="150" cy="520" r="7"/><circle cx="360" cy="520" r="6"/><circle cx="262" cy="555" r="5"/></g><circle cx="225" cy="265" r="13" fill="#2b2340"/><circle cx="295" cy="265" r="13" fill="#2b2340"/><g fill="none" class="outline thin" stroke="#2b2340" stroke-width="5" stroke-linecap="round"><path d="M 92 190 q 14 -14 34 -16"/><path d="M 430 400 q -12 14 -30 18"/></g></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A proper jiggly blob in root-brown — with three little root tails peeking out the bottom and dirt crumbs falling.</p>
+    <p>A root-brown blob with three little root tails.</p>
   </div>
   <div class="card">
     <svg viewBox="5.6 7.7 520 600" style="width:100%"><g transform="translate(26,20) scale(0.9)"><path d="M 260 100 q 105 -12 128 82 q 16 66 -20 106 q 40 4 38 34 q -2 28 -44 26 l 26 106 q 6 28 -22 32 q -26 4 -32 -24 l -20 -84 -8 108 q -2 28 -30 26 q -26 -2 -24 -30 l 8 -100 -44 70 q -16 24 -38 8 q -20 -16 -4 -38 l 56 -76 q -34 6 -52 -16 q -18 -24 4 -42 q 20 -16 48 -2 q -34 -44 -20 -104 q 16 -74 114 -82 Z" fill="#bd9860" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 195 235 q 65 28 130 0 M 205 290 q 55 24 110 0 M 220 345 q 42 18 84 0" fill="none" stroke="#8f6d3e" stroke-width="8" stroke-linecap="round"/><path d="M 172 160 q 25 -28 64 -34" fill="none" stroke="#e6cfa4" stroke-width="12" stroke-linecap="round"/><path d="M 372 430 l 26 8 M 340 500 l 22 16 M 150 480 l -24 10 M 268 520 l 2 26" fill="none" stroke="#2b2340" stroke-width="5" stroke-linecap="round"/><g fill="#6d543a"><circle cx="130" cy="520" r="8"/><circle cx="390" cy="545" r="7"/><circle cx="205" cy="560" r="6"/><circle cx="330" cy="300" r="6"/></g><circle cx="228" cy="205" r="14" fill="#2b2340"/><circle cx="294" cy="205" r="14" fill="#2b2340"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Gnarlier! Root arms and root legs twisting in every direction, with woody rings.</p>
+    <p>Gnarly root arms and legs, twisting everywhere.</p>
   </div>
   <div class="card">
     <svg viewBox="-49.1 8.9 585.8 675.9" style="width:100%"><path d="M 262 60 q 96 -8 118 78 q 16 64 -18 104 q 36 30 22 72 q -10 30 -44 36 l 60 160 q 10 28 -20 36 q -28 8 -38 -22 l -46 -128 -10 148 q -2 30 -32 28 q -28 -2 -26 -32 l 10 -142 -60 104 q -16 26 -42 10 q -24 -16 -8 -42 l 70 -114 q -40 -8 -48 -46 q -8 -38 28 -56 q -36 -42 -24 -104 q 16 -80 108 -90 Z" fill="#a9834e" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 190 210 q 70 30 140 0 M 200 270 q 60 26 120 0 M 214 330 q 46 20 92 0 M 235 390 q 25 12 50 0" fill="none" stroke="#7c5c32" stroke-width="9" stroke-linecap="round"/><path d="M 262 60 q 4 -28 -18 -40 M 262 60 q 20 -20 12 -44" fill="none" stroke="#57a05c" stroke-width="9" stroke-linecap="round"/><path d="M 244 20 q -20 -14 -38 -2 q 14 20 38 2 Z M 274 16 q 22 -10 36 6 q -18 16 -36 -6 Z" fill="#8fce7f" stroke="#2b2340" stroke-width="6" stroke-linejoin="round"/><path d="M 400 480 l 28 10 M 372 545 l 24 14 M 122 500 l -26 12 M 262 555 l 0 28" fill="none" stroke="#2b2340" stroke-width="6" stroke-linecap="round"/><path d="M 60 585 l 70 -16 46 14 70 -16 66 16 48 -14 66 16" fill="none" stroke="#3d2f1f" stroke-width="8" stroke-linecap="round"/><g fill="#6d543a"><circle cx="110" cy="560" r="8"/><circle cx="415" cy="565" r="8"/><circle cx="180" cy="590" r="6"/></g><path d="M 175 130 q 26 -30 66 -36" fill="none" stroke="#dcc294" stroke-width="12" stroke-linecap="round"/><circle cx="230" cy="175" r="14" fill="#2b2340"/><circle cx="296" cy="175" r="14" fill="#2b2340"/></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE GREAT ROOT — a giant twisted root striding over the crack, with a tiny green sprout growing on its head.</p>
+    <p>THE GREAT ROOT — a sprout grows on his head.</p>
   </div>
 </div>
 <h3 class="element">Mud Blob</h3>
@@ -4949,17 +4951,17 @@
   <div class="card">
     <svg viewBox="6.6 -92.5 520 600" style="width:100%"><g transform="translate(73,84) scale(0.72)"><path d="M 260 150 q 112 -18 150 90 q 30 92 -50 152 q -90 62 -176 8 q -84 -52 -58 -146 q 24 -92 134 -104 Z" fill="#b3a08a" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 200 430 q 8 30 -6 44 M 320 430 q -8 30 6 44" fill="none" stroke="#7c6a55" stroke-width="11" stroke-linecap="round"/><circle cx="200" cy="350" r="10" fill="#7c6a55"/><circle cx="330" cy="330" r="8" fill="#7c6a55"/><path d="M 168 205 q 25 -30 66 -36" fill="none" stroke="#d8c9b4" stroke-width="12" stroke-linecap="round"/><circle cx="225" cy="280" r="13" fill="#2b2340"/><circle cx="295" cy="280" r="13" fill="#2b2340"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>The shaken forest floor turned to pale gloop — drippy, with mud spots.</p>
+    <p>Pale forest gloop — drippy, with mud spots.</p>
   </div>
   <div class="card">
     <svg viewBox="17.8 -23.3 520 600" style="width:100%"><g transform="translate(26,30) scale(0.9)"><path d="M 260 170 q 100 -14 140 70 q 40 84 -20 140 q 16 26 -8 40 q -20 12 -36 -6 q -50 24 -104 4 q -20 22 -42 6 q -20 -16 -6 -40 q -56 -50 -34 -128 q 24 -74 110 -86 Z" fill="#a5917a" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><g fill="#71604c"><circle cx="195" cy="360" r="12"/><circle cx="330" cy="340" r="10"/><circle cx="265" cy="415" r="8"/></g><g fill="none" stroke="#71604c" stroke-width="9" stroke-linecap="round"><path d="M 185 445 q 6 32 -8 48"/><path d="M 335 445 q -6 32 8 48"/><path d="M 262 465 q 2 34 -6 50"/></g><path d="M 170 215 q 30 -30 70 -34" fill="none" stroke="#cfbfa8" stroke-width="12" stroke-linecap="round"/><circle cx="225" cy="285" r="13" fill="#2b2340"/><circle cx="295" cy="285" r="13" fill="#2b2340"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Gloopier! Bubbles popping and mud dripping off its sides.</p>
+    <p>Gloopier! Popping bubbles, dripping mud.</p>
   </div>
   <div class="card">
     <svg viewBox="2 35.6 520 600" style="width:100%"><ellipse cx="260" cy="520" rx="200" ry="26" fill="#66553f" stroke="#2b2340" stroke-width="8"/><path d="M 90 520 q -14 -60 40 -80 q -20 -60 40 -90 q 10 -60 80 -66 q 70 -6 92 40 q 66 6 74 66 q 50 30 30 88 q 30 30 6 42 l -362 0 Z" fill="#96826a" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 150 520 q 4 22 -6 30 q 22 6 26 -30 Z M 250 520 q 2 26 -8 34 q 24 4 28 -34 Z M 355 520 q 4 22 -6 30 q 22 6 26 -30 Z" fill="#96826a" stroke="#2b2340" stroke-width="6" stroke-linejoin="round"/><g fill="#66553f"><circle cx="180" cy="380" r="14"/><circle cx="345" cy="350" r="12"/><circle cx="270" cy="300" r="9"/><circle cx="225" cy="450" r="10"/></g><circle cx="215" cy="240" r="7" fill="#cfbfa8"/><circle cx="300" cy="225" r="9" fill="#cfbfa8"/><circle cx="225" cy="330" r="13" fill="#2b2340"/><circle cx="295" cy="330" r="13" fill="#2b2340"/></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE MUD MOUNTAIN — a huge gloopy mound planted right IN its puddle, with mud oozing down into it.</p>
+    <p>THE MUD MOUNTAIN — oozing into its own puddle.</p>
   </div>
 </div>
 <h3 class="element">Cave Blob</h3>
@@ -4967,17 +4969,17 @@
   <div class="card">
     <svg viewBox="6.6 -124.5 520 600" style="width:100%"><g transform="translate(73,84) scale(0.72)"><path d="M 260 150 q 112 -18 150 90 q 30 92 -50 152 q -90 62 -176 8 q -84 -52 -58 -146 q 24 -92 134 -104 Z" fill="#37474f" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 205 330 q 55 -50 110 0 l 0 90 q -55 30 -110 0 Z" fill="#141b1f"/><path d="M 225 335 l 0 22 M 260 322 l 0 30 M 295 335 l 0 22" fill="none" stroke="#37474f" stroke-width="9" stroke-linecap="round"/><path d="M 168 205 q 25 -30 66 -36" fill="none" stroke="#5c7482" stroke-width="12" stroke-linecap="round"/><circle cx="225" cy="260" r="13" fill="#e8f4f8"/><circle cx="295" cy="260" r="13" fill="#e8f4f8"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>The earthquake opened a little cave right in its belly.</p>
+    <p>A little cave opened right in its belly.</p>
   </div>
   <div class="card">
     <svg viewBox="8.6 -66.7 520 600" style="width:100%"><g transform="translate(5,6) scale(0.98)"><path d="M 260 150 q 112 -18 150 90 q 30 92 -50 152 q -90 62 -176 8 q -84 -52 -58 -146 q 24 -92 134 -104 Z" fill="#2e3c43" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 160 305 q 100 -85 200 0 l 0 130 q -100 45 -200 0 Z" fill="#0d1214"/><path d="M 190 318 l 0 34 M 235 300 l 0 48 M 285 300 l 0 48 M 330 318 l 0 34" fill="none" stroke="#2e3c43" stroke-width="10" stroke-linecap="round"/><circle cx="240" cy="405" r="7" fill="#ffd166"/><circle cx="280" cy="405" r="7" fill="#ffd166"/><path d="M 168 205 q 25 -30 66 -36" fill="none" stroke="#54707e" stroke-width="12" stroke-linecap="round"/><circle cx="225" cy="250" r="13" fill="#e8f4f8"/><circle cx="295" cy="250" r="13" fill="#e8f4f8"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>The cave grew — stalactite teeth, and TWO glowing eyes peeking from inside.</p>
+    <p>Stalactite teeth — and TWO eyes peeking out.</p>
   </div>
   <div class="card">
     <svg viewBox="0 44.9 520 600" style="width:100%"><path d="M 40 560 L 120 300 q 20 -60 60 -90 L 240 130 q 20 -18 40 0 l 70 90 q 36 34 54 92 L 480 560 Z" fill="#26333a" stroke="#2b2340" stroke-width="10" stroke-linejoin="round"/><path d="M 200 180 l 30 -34 M 300 190 l -24 -30" fill="none" stroke="#4a626e" stroke-width="8" stroke-linecap="round"/><path d="M 130 560 q -10 -150 130 -160 q 140 10 130 160 Z" fill="#07090b"/><path d="M 165 470 l 0 48 M 215 435 l 0 66 M 262 425 l 0 76 M 308 435 l 0 66 M 355 470 l 0 48" fill="none" stroke="#26333a" stroke-width="12" stroke-linecap="round"/><path d="M 190 560 l 0 -30 M 262 560 l 0 -38 M 335 560 l 0 -30" fill="none" stroke="#26333a" stroke-width="12" stroke-linecap="round"/><g fill="#ffd166"><circle cx="228" cy="490" r="7"/><circle cx="250" cy="490" r="7"/><circle cx="288" cy="505" r="6"/><circle cx="306" cy="505" r="6"/></g><path d="M 234 472 q 12 -12 24 0 M 292 490 q 10 -10 20 0" fill="none" stroke="#07090b" stroke-width="5"/><path d="M 150 300 q 30 -35 75 -42" fill="none" stroke="#4a626e" stroke-width="12" stroke-linecap="round"/><circle cx="225" cy="255" r="14" fill="#e8f4f8"/><circle cx="295" cy="255" r="14" fill="#e8f4f8"/><circle cx="225" cy="255" r="7" fill="#2b2340"/><circle cx="295" cy="255" r="7" fill="#2b2340"/><path d="M 40 560 l 440 0" fill="none" stroke="#0d1214" stroke-width="10" stroke-linecap="round"/></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE CAVERN — a whole mountain now! A giant cave mouth full of stone teeth, with bats hiding deep inside.</p>
+    <p>THE CAVERN — a mountain cave full of bats.</p>
   </div>
 </div>
 <h3 class="element">Firefly Blob</h3>
@@ -4985,17 +4987,17 @@
   <div class="card">
     <svg viewBox="5.6 -61.5 520 600" style="width:100%"><g transform="translate(72,84) scale(0.72)"><circle cx="260" cy="470" r="52" fill="#fff3ae"/><circle cx="260" cy="478" r="30" fill="#ffe94d"/><path d="M 260 150 q 112 -18 150 90 q 30 92 -50 152 q -90 62 -176 8 q -84 -52 -58 -146 q 24 -92 134 -104 Z" fill="#b8d94a" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 168 205 q 25 -30 66 -36" fill="none" stroke="#e2f09a" stroke-width="12" stroke-linecap="round"/><circle cx="225" cy="270" r="13" fill="#2b2340"/><circle cx="295" cy="270" r="13" fill="#2b2340"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A little green glow-bug — its tail light shines in the dark.</p>
+    <p>A green glow-bug with a shining tail light.</p>
   </div>
   <div class="card">
     <svg viewBox="1.5 1.5 520 600" style="width:100%"><g transform="translate(26,30) scale(0.9)"><path d="M 150 240 q -55 -35 -45 -90 q 45 10 75 55 Z" fill="#e8f4c8" stroke="#2b2340" stroke-width="7" stroke-linejoin="round"/><path d="M 370 240 q 55 -35 45 -90 q -45 10 -75 55 Z" fill="#e8f4c8" stroke="#2b2340" stroke-width="7" stroke-linejoin="round"/><circle cx="260" cy="480" r="68" fill="#fff3ae"/><circle cx="260" cy="492" r="40" fill="#ffe94d"/><path d="M 260 150 q 112 -18 150 90 q 30 92 -50 152 q -90 62 -176 8 q -84 -52 -58 -146 q 24 -92 134 -104 Z" fill="#a5cc35" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 150 520 q 30 14 60 4 M 310 524 q 30 10 60 -4" fill="none" stroke="#ffe94d" stroke-width="8" stroke-linecap="round" opacity="0.8"/><path d="M 200 160 l -10 -30 M 320 160 l 10 -30" fill="none" stroke="#2b2340" stroke-width="5" stroke-linecap="round"/><path d="M 172 200 q 25 -28 64 -34" fill="none" stroke="#cbe28a" stroke-width="11" stroke-linecap="round"/><circle cx="225" cy="265" r="13" fill="#2b2340"/><circle cx="295" cy="265" r="13" fill="#2b2340"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Grew wings! Its lantern is brighter and leaves light trails.</p>
+    <p>Grew wings — and leaves little light trails!</p>
   </div>
   <div class="card">
     <svg viewBox="0 60.4 520 600" style="width:100%"><path d="M 120 230 q -85 -45 -75 -130 q 70 18 112 82 Z" fill="#f2f8dd" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><path d="M 400 230 q 85 -45 75 -130 q -70 18 -112 82 Z" fill="#f2f8dd" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><path d="M 135 300 q -75 -12 -95 -68 q 60 -10 102 30 Z" fill="#e2eec2" stroke="#2b2340" stroke-width="7" stroke-linejoin="round"/><path d="M 385 300 q 75 -12 95 -68 q -60 -10 -102 30 Z" fill="#e2eec2" stroke="#2b2340" stroke-width="7" stroke-linejoin="round"/><circle cx="260" cy="440" r="95" fill="#fff3ae"/><circle cx="260" cy="455" r="62" fill="#ffe94d"/><circle cx="260" cy="470" r="30" fill="#fffce0"/><path d="M 260 300 q 62 0 74 48 q 10 42 -24 66 q -40 26 -100 0 q -34 -24 -24 -66 q 12 -48 74 -48 Z" fill="#93bd22" stroke="#2b2340" stroke-width="9" stroke-linejoin="round" opacity="0.96"/><path d="M 260 130 q 88 -8 108 74 q 16 70 -44 102 q -66 34 -128 0 q -60 -32 -44 -102 q 20 -82 108 -74 Z" fill="#93bd22" stroke="#2b2340" stroke-width="10" stroke-linejoin="round"/><path d="M 190 168 q 25 -26 62 -30" fill="none" stroke="#c5dd77" stroke-width="11" stroke-linecap="round"/><path d="M 215 128 l -16 -36 M 305 128 l 16 -36" fill="none" stroke="#2b2340" stroke-width="5" stroke-linecap="round"/><circle cx="199" cy="88" r="7" fill="#ffe94d"/><circle cx="321" cy="88" r="7" fill="#ffe94d"/><circle cx="228" cy="225" r="13" fill="#2b2340"/><circle cx="292" cy="225" r="13" fill="#2b2340"/><g fill="#ffe94d" opacity="0.9"><circle cx="110" cy="500" r="8"/><circle cx="75" cy="455" r="6"/><circle cx="415" cy="495" r="8"/><circle cx="450" cy="450" r="6"/><circle cx="260" cy="575" r="7"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE LANTERN — a real glow-bug now: round head, four wings, antennae with light-tips, its giant glow shines out from BEHIND its body!</p>
+    <p>THE LANTERN — a giant glow shines from behind.</p>
   </div>
 </div>
 
@@ -5015,14 +5017,14 @@
 <defs><clipPath id="rm2f"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs>
 <path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#a8adb8" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g clip-path="url(#rm2f)"><path d="M 380 400 l 240 0 l 0 80 l -240 0 Z" fill="#b08d5e"/><path d="M 380 400 l 240 0" stroke="#2b2340" stroke-width="6"/></g><path d="M 468 432 L 500 505 L 532 432 Z" fill="#8a6d43" stroke="#2b2340" stroke-width="6" stroke-linejoin="round"/><path d="M 428 415 q -28 22 -26 52 M 572 415 q 28 22 26 52" fill="none" stroke="#8a6d43" stroke-width="8" stroke-linecap="round"/><circle cx="468" cy="332" r="11" fill="#08060f"/><circle cx="540" cy="334" r="19" fill="#39424e"/><circle cx="540" cy="334" r="11" fill="#7fd4ff"/><circle cx="544" cy="330" r="4" fill="#ffffff"/></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A root-DRILL! Drill nose and root cables for digging through the broken ground.</p>
+    <p>A root-DRILL with a drill nose and cables.</p>
   </div>
   <div class="card">
     <svg viewBox="305.4 177.6 390 410" >
 <defs><clipPath id="rm3f"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs>
 <g transform="translate(500 340) scale(1.13) translate(-500 -340)"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#a8adb8" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g clip-path="url(#rm3f)"><path d="M 380 380 l 240 0 l 0 100 l -240 0 Z" fill="#b08d5e"/><path d="M 380 380 l 240 0" stroke="#2b2340" stroke-width="6"/><path d="M 420 420 q 40 20 80 0 M 500 430 q 40 -16 80 0" stroke="#8a6d43" stroke-width="7" fill="none"/></g><path d="M 450 425 L 478 500 L 506 425 Z M 518 425 L 546 500 L 574 425 Z" fill="#8a6d43" stroke="#2b2340" stroke-width="6" stroke-linejoin="round"/><path d="M 420 405 q -36 28 -32 64 M 580 405 q 36 28 32 64" fill="none" stroke="#8a6d43" stroke-width="9" stroke-linecap="round"/><g fill="#6d543a"><circle cx="392" cy="500" r="7"/><circle cx="612" cy="495" r="6"/></g><circle cx="468" cy="332" r="11" fill="#08060f"/><circle cx="540" cy="334" r="19" fill="#39424e"/><circle cx="540" cy="334" r="11" fill="#7fd4ff"/><circle cx="544" cy="330" r="4" fill="#ffffff"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>TWO drills now, bigger root cables, and dirt flying off it.</p>
+    <p>TWO drills now, with dirt flying off.</p>
   </div>
 </div>
 <h3 class="element">Mud Minion</h3>
@@ -5039,14 +5041,14 @@
 <defs><clipPath id="mm2f"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs>
 <path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#a8adb8" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g clip-path="url(#mm2f)"><g fill="#a5917a"><circle cx="450" cy="300" r="34"/><circle cx="560" cy="290" r="26"/><circle cx="520" cy="400" r="40"/><circle cx="430" cy="410" r="22"/></g></g><path d="M 560 305 l 0 -83 q 0 -14 16 -14" fill="none" stroke="#2b2340" stroke-width="6"/><path d="M 590 208 q 14 6 10 20 q -12 4 -16 -8 q -2 -10 6 -12 Z" fill="#a5917a" stroke="#2b2340" stroke-width="5"/><circle cx="455" cy="330" r="11" fill="#08060f"/><circle cx="545" cy="340" r="19" fill="#39424e"/><circle cx="545" cy="340" r="11" fill="#7fd4ff"/><circle cx="549" cy="336" r="4" fill="#ffffff"/></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Mud splats all over its plating, and a mud pipe on top.</p>
+    <p>Mud splats everywhere and a pipe on top.</p>
   </div>
   <div class="card">
     <svg viewBox="305 117.3 390 410" >
 <defs><clipPath id="mm3f"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs>
 <g transform="translate(500 340) scale(1.13) translate(-500 -340)"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#a8adb8" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g clip-path="url(#mm3f)"><g fill="#a5917a"><circle cx="440" cy="300" r="38"/><circle cx="565" cy="285" r="30"/><circle cx="525" cy="405" r="48"/><circle cx="420" cy="415" r="26"/><circle cx="500" cy="330" r="16"/></g></g><circle cx="500" cy="420" r="34" fill="#39424e"/><circle cx="500" cy="420" r="22" fill="#a5917a"/><path d="M 500 400 l 0 40 M 480 420 l 40 0" stroke="#39424e" stroke-width="6"/><path d="M 560 305 l 0 -94 q 0 -16 18 -16 M 440 305 l 0 -94 q 0 -16 -18 -16" fill="none" stroke="#2b2340" stroke-width="6"/><g fill="#a5917a" stroke="#2b2340" stroke-width="5"><circle cx="596" cy="196" r="10"/><circle cx="404" cy="196" r="10"/></g><circle cx="452" cy="328" r="11" fill="#08060f"/><circle cx="550" cy="336" r="19" fill="#39424e"/><circle cx="550" cy="336" r="11" fill="#7fd4ff"/><circle cx="554" cy="332" r="4" fill="#ffffff"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A mud MIXER — spinning mixer drum in its belly and two pipes up top.</p>
+    <p>A mud MIXER — a spinning drum in its belly.</p>
   </div>
 </div>
 <h3 class="element">Cave Minion</h3>
@@ -5063,14 +5065,14 @@
 <defs><clipPath id="cm2f"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs>
 <path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#39434b" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g clip-path="url(#cm2f)"><path d="M 440 340 q 60 -50 120 0 l 0 120 q -60 30 -120 0 Z" fill="#0d1214"/><path d="M 462 348 l 0 22 M 500 336 l 0 30 M 538 348 l 0 22" stroke="#39434b" stroke-width="9" stroke-linecap="round"/></g><path d="M 500 305 l 0 -69" stroke="#2b2340" stroke-width="6"/><circle cx="500" cy="226" r="12" fill="#ffd166" stroke="#2b2340" stroke-width="5"/><path d="M 488 226 q -30 10 -40 30 M 512 226 q 30 10 40 30" fill="none" stroke="#ffd166" stroke-width="4" opacity="0.7"/><circle cx="455" cy="300" r="11" fill="#08060f"/><circle cx="548" cy="302" r="19" fill="#39424e"/><circle cx="548" cy="302" r="11" fill="#7fd4ff"/><circle cx="552" cy="298" r="4" fill="#ffffff"/></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A cave hatch opened in its belly — and it grew a headlamp.</p>
+    <p>A belly hatch — and it grew a headlamp.</p>
   </div>
   <div class="card">
     <svg viewBox="306.5 81.4 390 410" >
 <defs><clipPath id="cm3f"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs>
 <g transform="translate(500 340) scale(1.13) translate(-500 -340)"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#2e3840" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g clip-path="url(#cm3f)"><path d="M 410 330 q 90 -70 180 0 l 0 150 q -90 40 -180 0 Z" fill="#07090b"/><path d="M 435 340 l 0 30 M 470 322 l 0 44 M 500 315 l 0 50 M 530 322 l 0 44 M 565 340 l 0 30" stroke="#2e3840" stroke-width="10" stroke-linecap="round"/><path d="M 455 462 l 0 -26 M 500 470 l 0 -30 M 545 462 l 0 -26" stroke="#2e3840" stroke-width="10" stroke-linecap="round"/></g><g fill="#ffd166"><circle cx="470" cy="395" r="6"/><circle cx="488" cy="395" r="6"/><circle cx="520" cy="410" r="5"/><circle cx="534" cy="410" r="5"/></g><path d="M 482 300 q -22 -44 -14 -82 M 518 300 q 22 -44 14 -82" fill="none" stroke="#2b2340" stroke-width="6"/><g fill="#ffd166" stroke="#2b2340" stroke-width="5"><circle cx="466" cy="212" r="10"/><circle cx="534" cy="212" r="10"/></g><path d="M 454 208 q -30 -8 -44 -30 M 546 208 q 30 -8 44 -30" fill="none" stroke="#ffd166" stroke-width="4" opacity="0.7"/><circle cx="452" cy="296" r="11" fill="#08060f"/><circle cx="552" cy="298" r="19" fill="#39424e"/><circle cx="552" cy="298" r="11" fill="#7fd4ff"/><circle cx="556" cy="294" r="4" fill="#ffffff"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A giant cave hatch full of bat-drones, with TWO searchlights.</p>
+    <p>A hatch full of bat-drones, TWO searchlights.</p>
   </div>
 </div>
 <h3 class="element">Firefly Minion</h3>
@@ -5087,14 +5089,14 @@
 <defs><clipPath id="fm2f"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs>
 <circle cx="500" cy="430" r="46" fill="#fff3ae"/><circle cx="500" cy="438" r="26" fill="#ffe94d"/><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#a8adb8" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g clip-path="url(#fm2f)"><path d="M 380 380 l 240 0 l 0 100 l -240 0 Z" fill="#a5cc35"/><path d="M 380 380 l 240 0" stroke="#2b2340" stroke-width="6"/></g><path d="M 448 298 q -54 -66 -48 -100 M 552 298 q 54 -66 48 -100" fill="none" stroke="#2b2340" stroke-width="6"/><circle cx="398" cy="194" r="8" fill="#ffe94d" stroke="#2b2340" stroke-width="4"/><circle cx="602" cy="194" r="8" fill="#ffe94d" stroke="#2b2340" stroke-width="4"/><circle cx="468" cy="332" r="11" fill="#08060f"/><circle cx="540" cy="334" r="19" fill="#39424e"/><circle cx="540" cy="334" r="11" fill="#7fd4ff"/><circle cx="544" cy="330" r="4" fill="#ffffff"/></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A glow bulb hums behind it, with antenna lights and wing wires.</p>
+    <p>A glow bulb hums behind it, wings of wire.</p>
   </div>
   <div class="card">
     <svg viewBox="287 145.1 426 447.8" >
 <defs><clipPath id="fm3f"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs>
 <g transform="translate(500 340) scale(1.13) translate(-500 -340)"><circle cx="500" cy="435" r="72" fill="#fff3ae"/><circle cx="500" cy="448" r="44" fill="#ffe94d"/><circle cx="500" cy="458" r="20" fill="#fffce0"/><path d="M 405 300 q -55 -30 -50 -85 q 45 12 68 55 Z M 595 300 q 55 -30 50 -85 q -45 12 -68 55 Z" fill="#e2eec2" stroke="#2b2340" stroke-width="6" stroke-linejoin="round"/><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#a8adb8" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g clip-path="url(#fm3f)"><path d="M 380 370 l 240 0 l 0 110 l -240 0 Z" fill="#a5cc35"/><path d="M 380 370 l 240 0" stroke="#2b2340" stroke-width="6"/><g fill="#ffe94d"><circle cx="430" cy="410" r="7"/><circle cx="500" cy="418" r="7"/><circle cx="570" cy="410" r="7"/></g></g><path d="M 452 295 q -57 -71 -51 -111 M 548 295 q 57 -71 51 -111" fill="none" stroke="#2b2340" stroke-width="6"/><g fill="#ffe94d" stroke="#2b2340" stroke-width="5"><circle cx="398" cy="180" r="10"/><circle cx="602" cy="180" r="10"/></g><g fill="#ffe94d" opacity="0.9"><circle cx="380" cy="470" r="7"/><circle cx="620" cy="465" r="7"/></g><circle cx="468" cy="332" r="11" fill="#08060f"/><circle cx="540" cy="334" r="19" fill="#39424e"/><circle cx="540" cy="334" r="11" fill="#7fd4ff"/><circle cx="544" cy="330" r="4" fill="#ffffff"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A LANTERN-BOT — huge glow shining from behind, wing fins, and lights everywhere.</p>
+    <p>A LANTERN-BOT — lights everywhere.</p>
   </div>
 </div>
 
@@ -5115,17 +5117,17 @@
   <div class="card">
     <svg viewBox="6.6 -127.7 520 600" ><g transform="translate(73,84) scale(0.72)"><path d="M 260 150 q 112 -18 150 90 q 30 92 -50 152 q -90 62 -176 8 q -84 -52 -58 -146 q 24 -92 134 -104 Z" fill="#93a8b0" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 190 320 q 70 -40 140 0 q -55 30 -110 12 q 40 16 80 6" fill="none" stroke="#c3d2d8" stroke-width="11" stroke-linecap="round"/><path d="M 168 205 q 25 -30 66 -36" fill="none" stroke="#c3d2d8" stroke-width="12" stroke-linecap="round"/><circle cx="225" cy="255" r="13" fill="#2b2340"/><circle cx="295" cy="255" r="13" fill="#2b2340"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A swirly storm-gray blob with a little wind curl on its belly.</p>
+    <p>A storm-gray blob with a little wind curl.</p>
   </div>
   <div class="card">
     <svg viewBox="27.9 -83.2 520 600" ><g transform="translate(26,30) scale(0.9)"><path d="M 260 130 q 118 -16 150 84 q 24 78 -34 128 q 30 20 12 48 q -16 24 -46 12 q 10 30 -18 42 q -26 10 -40 -16 l -14 -28 q -34 -6 -36 -40 q -60 -40 -50 -122 q 12 -88 76 -108 Z" fill="#8a9fa8" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><g fill="none" stroke="#c3d2d8" stroke-width="10" stroke-linecap="round"><path d="M 165 250 q 95 -44 190 0"/><path d="M 190 320 q 70 32 140 0"/><path d="M 225 390 q 38 18 76 0"/><path d="M 252 445 q 12 8 24 0"/></g><circle cx="225" cy="230" r="13" fill="#2b2340"/><circle cx="295" cy="230" r="13" fill="#2b2340"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>The bottom is twisting into a funnel tail — it can barely hold still!</p>
+    <p>A funnel tail — it can barely hold still!</p>
   </div>
   <div class="card">
     <svg viewBox="-3.6 -24.3 520 600" ><path d="M 90 165 q 170 -70 340 0 q 20 10 8 30 q -60 80 -138 116 q 30 40 -10 70 q 24 34 -12 58 q 20 30 -12 48 q -26 14 -42 -12 l -28 -44 q -48 -20 -40 -68 q -70 -30 -84 -110 q -6 -40 18 -88 Z" fill="#7e939c" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><g fill="none" stroke="#c3d2d8" stroke-width="12" stroke-linecap="round"><path d="M 110 200 q 150 -56 300 0"/><path d="M 150 265 q 110 -40 220 0"/><path d="M 195 330 q 65 -26 130 0"/><path d="M 225 395 q 35 -16 70 0"/><path d="M 240 455 q 20 -10 40 0"/></g><g fill="#5d6e76"><circle cx="120" cy="330" r="9"/><circle cx="400" cy="300" r="8"/><circle cx="360" cy="420" r="7"/></g><path d="M 100 130 q 20 -26 52 -28 M 420 135 q -16 -24 -44 -28" fill="none" stroke="#c3d2d8" stroke-width="9" stroke-linecap="round"/><circle cx="225" cy="235" r="13" fill="#2b2340"/><circle cx="295" cy="235" r="13" fill="#2b2340"/></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE TWISTER — a full tornado funnel, wide at the top, spinning down to a point, with bits flying off.</p>
+    <p>THE TWISTER — a full funnel, bits flying off.</p>
   </div>
 </div>
 <h3 class="element">Lightning Blob</h3>
@@ -5133,17 +5135,17 @@
   <div class="card">
     <svg viewBox="6.6 -120.4 520 600" ><g transform="translate(73,84) scale(0.72)"><path d="M 260 150 q 112 -18 150 90 q 30 92 -50 152 q -90 62 -176 8 q -84 -52 -58 -146 q 24 -92 134 -104 Z" fill="#e8dc55" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 270 330 l -34 60 l 30 -8 l -22 56 l 56 -74 l -30 8 l 24 -42 Z" fill="#fffce0" stroke="#2b2340" stroke-width="5" stroke-linejoin="round"/><path d="M 168 205 q 25 -30 66 -36" fill="none" stroke="#f6efa2" stroke-width="12" stroke-linecap="round"/><circle cx="225" cy="260" r="13" fill="#2b2340"/><circle cx="295" cy="260" r="13" fill="#2b2340"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>An electric-yellow blob with one bolt mark on its belly.</p>
+    <p>Electric yellow, with one bolt mark.</p>
   </div>
   <div class="card">
     <svg viewBox="4.6 -99.7 520 600" ><g transform="translate(26,30) scale(0.9)"><path d="M 250 148 l 26 -48 l 20 34 l 30 -26 l 2 44 q 66 22 78 96 q 12 84 -62 128 q -80 46 -160 0 q -74 -44 -60 -130 q 12 -72 82 -92 Z" fill="#ddd041" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 262 300 l -42 74 l 36 -10 l -26 68 l 68 -90 l -36 10 l 30 -52 Z" fill="#fffce0" stroke="#2b2340" stroke-width="6" stroke-linejoin="round"/><path d="M 165 250 l -28 -18 M 355 250 l 28 -18" stroke="#fffce0" stroke-width="8" stroke-linecap="round"/><circle cx="225" cy="245" r="13" fill="#2b2340"/><circle cx="295" cy="245" r="13" fill="#2b2340"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Crackling! Spiky bolt hair and a bigger zigzag on its front.</p>
+    <p>Crackling! Spiky bolt hair and a big zigzag.</p>
   </div>
   <div class="card">
     <svg viewBox="20.8 23.2 520 600" ><path d="M 300 60 l -110 210 l 74 -20 l -60 160 l 84 -24 l -52 154 l 176 -240 l -80 22 l 62 -152 l -76 20 l 54 -130 Z" fill="#d9c916" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 285 120 l -60 118 l 52 -14" fill="none" stroke="#fffce0" stroke-width="10" stroke-linecap="round"/><g fill="#fffce0"><circle cx="150" cy="140" r="8"/><circle cx="420" cy="180" r="7"/><circle cx="130" cy="420" r="7"/><circle cx="430" cy="440" r="8"/></g><circle cx="262" cy="205" r="13" fill="#2b2340"/><circle cx="318" cy="190" r="13" fill="#2b2340"/></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE BOLT — its whole body IS a giant lightning bolt, zigzagging down the sky.</p>
+    <p>THE BOLT — its whole body IS a lightning bolt.</p>
   </div>
 </div>
 <h3 class="element">Thunder Blob</h3>
@@ -5151,17 +5153,17 @@
   <div class="card">
     <svg viewBox="0.5 -127.7 520 600" ><g transform="translate(73,84) scale(0.72)"><path d="M 260 150 q 112 -18 150 90 q 30 92 -50 152 q -90 62 -176 8 q -84 -52 -58 -146 q 24 -92 134 -104 Z" fill="#565a6e" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><g fill="none" stroke="#8a8fa8" stroke-width="9" stroke-linecap="round"><path d="M 128 300 q -26 20 -30 50"/><path d="M 392 300 q 26 20 30 50"/></g><path d="M 168 205 q 25 -30 66 -36" fill="none" stroke="#8a8fa8" stroke-width="12" stroke-linecap="round"/><circle cx="225" cy="275" r="13" fill="#f3ead9"/><circle cx="295" cy="275" r="13" fill="#f3ead9"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A deep storm-gray blob with rumble lines across its belly.</p>
+    <p>Storm-gray, with rumble lines on its belly.</p>
   </div>
   <div class="card">
     <svg viewBox="4.1 -71.9 520 600" ><g transform="translate(26,30) scale(0.9)"><path d="M 145 280 q -10 -55 45 -70 q 5 -55 70 -60 q 65 -5 85 40 q 60 -5 75 50 q 55 15 40 70 q 25 45 -20 75 q -5 50 -65 55 q -55 40 -115 5 q -60 10 -85 -35 q -50 -15 -40 -70 q -15 -35 10 -60 Z" fill="#4c5064" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><g fill="none" stroke="#8a8fa8" stroke-width="9" stroke-linecap="round"><path d="M 100 250 q -34 26 -40 66"/><path d="M 420 250 q 34 26 40 66"/><path d="M 130 200 q -22 16 -28 42"/><path d="M 390 200 q 22 16 28 42"/></g><path d="M 262 380 l -22 44 l 20 -6 l -14 40 l 42 -56 l -20 6 l 16 -28 Z" fill="#f2e14c" stroke="#2b2340" stroke-width="5" stroke-linejoin="round"/><path d="M 185 225 q 28 -26 66 -30" fill="none" stroke="#8a8fa8" stroke-width="11" stroke-linecap="round"/><circle cx="225" cy="280" r="13" fill="#f3ead9"/><circle cx="295" cy="280" r="13" fill="#f3ead9"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>BOOM! Its edges are bursting outward with shock spikes.</p>
+    <p>BOOM! Its edges burst into shock spikes.</p>
   </div>
   <div class="card">
     <svg viewBox="4.6 -23.3 520 600" ><g fill="none" stroke="#8a8fa8" stroke-linecap="round"><path d="M 85 240 q -45 34 -52 88" stroke-width="9"/><path d="M 435 240 q 45 34 52 88" stroke-width="9"/><path d="M 110 190 q -30 22 -38 56" stroke-width="7"/><path d="M 410 190 q 30 22 38 56" stroke-width="7"/><path d="M 62 310 q -24 20 -28 50" stroke-width="6" opacity="0.6"/><path d="M 458 310 q 24 20 28 50" stroke-width="6" opacity="0.6"/></g><path d="M 130 300 q -15 -60 50 -80 q 0 -60 75 -70 q 75 -10 100 40 q 70 -10 85 55 q 60 15 45 80 q 30 50 -25 85 q -10 55 -75 58 q -60 45 -130 8 q -70 12 -95 -40 q -55 -18 -42 -78 q -18 -35 12 -58 Z" fill="#3f4356" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 268 380 l -34 62 l 30 -8 l -22 60 l 62 -82 l -30 8 l 24 -40 Z" fill="#f2e14c" stroke="#2b2340" stroke-width="6" stroke-linejoin="round"/><path d="M 160 230 q 30 -28 72 -32" fill="none" stroke="#8a8fa8" stroke-width="12" stroke-linecap="round"/><circle cx="225" cy="285" r="13" fill="#f3ead9"/><circle cx="295" cy="285" r="13" fill="#f3ead9"/></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE BOOM — a huge exploding storm-star, shock rings rippling out of it.</p>
+    <p>THE BOOM — a storm-star with shock rings.</p>
   </div>
 </div>
 <h3 class="element">Hail Blob</h3>
@@ -5169,17 +5171,17 @@
   <div class="card">
     <svg viewBox="6.6 -125.5 520 600" ><g transform="translate(73,84) scale(0.72)"><path d="M 260 150 q 112 -18 150 90 q 30 92 -50 152 q -90 62 -176 8 q -84 -52 -58 -146 q 24 -92 134 -104 Z" fill="#a8d8e8" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><g fill="#e6f5fa" stroke="#2b2340" stroke-width="4"><circle cx="195" cy="360" r="14"/><circle cx="320" cy="340" r="11"/><circle cx="260" cy="420" r="12"/></g><path d="M 168 205 q 25 -30 66 -36" fill="none" stroke="#e6f5fa" stroke-width="12" stroke-linecap="round"/><circle cx="225" cy="265" r="13" fill="#2b2340"/><circle cx="295" cy="265" r="13" fill="#2b2340"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>An icy-blue blob with little hailstones stuck to it.</p>
+    <p>Icy blue, with little hailstones stuck on.</p>
   </div>
   <div class="card">
     <svg viewBox="13.7 -102.9 520 600" ><g transform="translate(26,30) scale(0.9)"><path d="M 260 145 q 100 -14 140 70 l 34 20 l -26 26 q 10 66 -44 110 l -6 40 l -36 -16 q -50 18 -98 -2 l -38 16 l -4 -42 q -52 -44 -40 -110 l -26 -24 l 36 -20 q 42 -82 108 -68 Z" fill="#93cbdf" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><g fill="#e6f5fa" stroke="#2b2340" stroke-width="4"><circle cx="185" cy="330" r="16"/><circle cx="330" cy="310" r="13"/><circle cx="250" cy="400" r="15"/><circle cx="315" cy="420" r="10"/></g><path d="M 190 205 q 28 -26 66 -30" fill="none" stroke="#e6f5fa" stroke-width="11" stroke-linecap="round"/><circle cx="225" cy="255" r="13" fill="#2b2340"/><circle cx="295" cy="255" r="13" fill="#2b2340"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Freezing harder — chunky ice lumps and frosty edges.</p>
+    <p>Freezing harder — chunky lumps of ice.</p>
   </div>
   <div class="card">
     <svg viewBox="0 -21.2 520 600" ><path d="M 260 80 L 420 165 L 455 340 L 345 495 L 175 495 L 65 340 L 100 165 Z" fill="#7fbdd4" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 260 80 L 260 190 M 100 165 L 205 235 M 420 165 L 315 235 M 65 340 L 190 330 M 455 340 L 330 330 M 175 495 L 235 385 M 345 495 L 285 385" fill="none" stroke="#e6f5fa" stroke-width="8" stroke-linecap="round"/><path d="M 205 235 L 315 235 L 330 330 L 235 385 L 190 330 Z" fill="#a8d8e8" stroke="#2b2340" stroke-width="6" stroke-linejoin="round"/><path d="M 130 180 q 20 -24 50 -28" fill="none" stroke="#e6f5fa" stroke-width="10" stroke-linecap="round"/><circle cx="225" cy="290" r="13" fill="#2b2340"/><circle cx="295" cy="290" r="13" fill="#2b2340"/></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE HAILSTONE — a giant six-sided ice crystal with a frozen heart.</p>
+    <p>THE HAILSTONE — a giant crystal, frozen heart.</p>
   </div>
 </div>
 <h3 class="element"><span id="minionsSkies"></span>⚙️ The Sky Minions</h3>
@@ -5199,7 +5201,7 @@
   <div class="card">
     <svg viewBox="305 107 390 410" ><defs><clipPath id="tn3c"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs><g transform="translate(500 340) scale(1.13) translate(-500 -340)"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#a8adb8" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g clip-path="url(#tn3c)"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -22 14 -44 16 l -6 -150 Z" fill="#93a8b0"/><path d="M 500 262 l 8 158" stroke="#2b2340" stroke-width="6"/></g><path d="M 500 300 l 0 -80" stroke="#2b2340" stroke-width="8"/><path d="M 500 220 q -70 -26 -126 8 q 58 20 126 -8 Z M 500 220 q 70 -26 126 8 q -58 20 -126 -8 Z" fill="#c3d2d8" stroke="#2b2340" stroke-width="5" stroke-linejoin="round"/><circle cx="500" cy="220" r="12" fill="#39424e" stroke="#2b2340" stroke-width="4"/><path d="M 428 320 l -60 -14 M 428 350 l -56 8" stroke="#c3d2d8" stroke-width="7" stroke-linecap="round"/><path d="M 572 320 l 60 -14 M 572 350 l 56 8" stroke="#c3d2d8" stroke-width="7" stroke-linecap="round"/><g fill="none" stroke="#93a8b0" stroke-width="6" stroke-linecap="round" opacity="0.8"><path d="M 385 430 q 30 18 60 8"/><path d="M 615 430 q -30 18 -60 8"/></g><circle cx="468" cy="332" r="11" fill="#08060f"/><circle cx="540" cy="334" r="19" fill="#39424e"/><circle cx="540" cy="334" r="11" fill="#7fd4ff"/><circle cx="544" cy="330" r="4" fill="#ffffff"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A giant turbine fan with swirl wings on its shoulders.</p>
+    <p>A giant turbine fan with swirl wings.</p>
   </div>
 </div>
 <h3 class="element">Lightning Minion</h3>
@@ -5217,7 +5219,7 @@
   <div class="card">
     <svg viewBox="310 81.4 390 410" ><defs><clipPath id="ln3c"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs><g transform="translate(500 340) scale(1.13) translate(-500 -340)"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#a8adb8" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g clip-path="url(#ln3c)"><path d="M 380 360 l 240 0 l 0 120 l -240 0 Z" fill="#d9c916"/><path d="M 380 360 l 240 0" stroke="#2b2340" stroke-width="6"/><path d="M 470 380 l -20 40 l 18 -4 l -14 38 l 40 -52 l -20 4 l 16 -26 Z" fill="#fffce0"/></g><path d="M 462 295 l 0 -60 M 462 235 q 0 -20 -20 -20 M 538 295 l 0 -60 M 538 235 q 0 -20 20 -20" fill="none" stroke="#2b2340" stroke-width="6"/><g fill="#fffce0" stroke="#2b2340" stroke-width="5"><circle cx="430" cy="215" r="12"/><circle cx="570" cy="215" r="12"/></g><path d="M 418 203 l 24 24 M 442 203 l -24 24 M 558 203 l 24 24 M 582 203 l -24 24" stroke="#d9c916" stroke-width="4"/><circle cx="468" cy="332" r="11" fill="#08060f"/><circle cx="540" cy="334" r="19" fill="#39424e"/><circle cx="540" cy="334" r="11" fill="#7fd4ff"/><circle cx="544" cy="330" r="4" fill="#ffffff"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>TWO zapper coils and a lightning bolt charged up inside.</p>
+    <p>TWO zapper coils, a bolt charged inside.</p>
   </div>
 </div>
 <h3 class="element">Thunder Minion</h3>
@@ -5235,7 +5237,7 @@
   <div class="card">
     <svg viewBox="305 108.5 390 410" ><defs><clipPath id="th3c"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs><g transform="translate(500 340) scale(1.13) translate(-500 -340)"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#a8adb8" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><circle cx="455" cy="395" r="48" fill="#565a6e" stroke="#2b2340" stroke-width="6"/><circle cx="455" cy="395" r="33" fill="#f3ead9" stroke="#2b2340" stroke-width="5"/><circle cx="553" cy="395" r="48" fill="#565a6e" stroke="#2b2340" stroke-width="6"/><circle cx="553" cy="395" r="33" fill="#f3ead9" stroke="#2b2340" stroke-width="5"/><path d="M 432 372 l 46 46 M 478 372 l -46 46 M 530 372 l 46 46 M 576 372 l -46 46" stroke="#c9707a" stroke-width="4" stroke-linecap="round"/><path d="M 448 300 q -26 -30 -8 -58 M 552 300 q 26 -30 8 -58" fill="none" stroke="#2b2340" stroke-width="6"/><g fill="#8a6d43" stroke="#2b2340" stroke-width="4"><circle cx="436" cy="238" r="10"/><circle cx="564" cy="238" r="10"/></g><g fill="none" stroke="#8a8fa8" stroke-width="6" stroke-linecap="round" opacity="0.8"><path d="M 385 395 q -22 0 -34 -16"/><path d="M 615 395 q 22 0 34 -16"/></g><circle cx="455" cy="300" r="11" fill="#08060f"/><circle cx="548" cy="300" r="19" fill="#39424e"/><circle cx="548" cy="300" r="11" fill="#7fd4ff"/><circle cx="552" cy="296" r="4" fill="#ffffff"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>DOUBLE speakers with boom rings shaking the air.</p>
+    <p>DOUBLE speakers shaking the air.</p>
   </div>
 </div>
 <h3 class="element">Hail Minion</h3>
@@ -5253,7 +5255,7 @@
   <div class="card">
     <svg viewBox="307.3 182.8 390 410" ><defs><clipPath id="ha3c"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs><g transform="translate(500 340) scale(1.13) translate(-500 -340)"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#a8adb8" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g clip-path="url(#ha3c)"><path d="M 380 350 l 240 0 l 0 130 l -240 0 Z" fill="#a8d8e8"/><path d="M 380 350 l 240 0" stroke="#2b2340" stroke-width="6"/><path d="M 420 380 l 160 0 M 420 415 l 160 0 M 420 450 l 160 0 M 460 350 l 0 130 M 500 350 l 0 130 M 540 350 l 0 130" stroke="#2b2340" stroke-width="4" opacity="0.55"/></g><path d="M 500 295 l 0 -55" stroke="#2b2340" stroke-width="7"/><path d="M 470 240 l 60 0 l -10 -26 l -40 0 Z" fill="#a8d8e8" stroke="#2b2340" stroke-width="5" stroke-linejoin="round"/><g fill="#e6f5fa" stroke="#2b2340" stroke-width="4"><circle cx="415" cy="500" r="10"/><circle cx="590" cy="495" r="9"/></g><circle cx="468" cy="332" r="11" fill="#08060f"/><circle cx="540" cy="334" r="19" fill="#39424e"/><circle cx="540" cy="334" r="11" fill="#7fd4ff"/><circle cx="544" cy="330" r="4" fill="#ffffff"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A full freezer window with an ice-pour spout on top.</p>
+    <p>A freezer window with an ice-pour spout.</p>
   </div>
 </div>
 
@@ -5275,17 +5277,17 @@
   <div class="card">
     <svg viewBox="6.6 -127.7 520 600" ><g transform="translate(73,84) scale(0.72)"><path d="M 260 150 q 112 -18 150 90 q 30 92 -50 152 q -90 62 -176 8 q -84 -52 -58 -146 q 24 -92 134 -104 Z" fill="#6e6a63" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><g fill="#ff8c42"><circle cx="200" cy="360" r="7"/><circle cx="320" cy="340" r="6"/><circle cx="265" cy="420" r="6"/></g><path d="M 300 140 q 14 -18 4 -36" fill="none" stroke="#9a958c" stroke-width="9" stroke-linecap="round"/><path d="M 168 205 q 25 -30 66 -36" fill="none" stroke="#9a958c" stroke-width="12" stroke-linecap="round"/><circle cx="225" cy="275" r="16" fill="#fffdf5" stroke="#2b2340" stroke-width="4"/><circle cx="295" cy="275" r="16" fill="#fffdf5" stroke="#2b2340" stroke-width="4"/><circle cx="225" cy="275" r="7" fill="#2b2340"/><circle cx="295" cy="275" r="7" fill="#2b2340"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A soft gray blob of warm ash with tiny embers still glowing.</p>
+    <p>Soft warm ash with tiny glowing embers.</p>
   </div>
   <div class="card">
     <svg viewBox="24.9 -111.1 520 600" ><g transform="translate(26,30) scale(0.9)"><path d="M 260 190 q 95 -14 135 62 q 60 6 55 60 q -4 44 -55 48 q 20 30 -12 44 q -28 12 -44 -14 q -48 20 -98 2 q -20 24 -46 8 q -24 -16 -8 -40 q -60 -14 -60 -66 q 0 -50 58 -58 q 26 -40 75 -46 Z" fill="#615d55" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><g fill="#8f8a80"><circle cx="130" cy="180" r="11"/><circle cx="385" cy="160" r="9"/><circle cx="330" cy="110" r="8"/><circle cx="180" cy="120" r="7"/></g><g fill="#ff8c42"><circle cx="190" cy="350" r="9"/><circle cx="330" cy="330" r="8"/><circle cx="260" cy="415" r="8"/></g><path d="M 175 265 q 28 -26 66 -30" fill="none" stroke="#9a958c" stroke-width="11" stroke-linecap="round"/><circle cx="225" cy="315" r="16" fill="#fffdf5" stroke="#2b2340" stroke-width="4"/><circle cx="295" cy="315" r="16" fill="#fffdf5" stroke="#2b2340" stroke-width="4"/><circle cx="225" cy="315" r="7" fill="#2b2340"/><circle cx="295" cy="315" r="7" fill="#2b2340"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Crumbly! Ash flakes drift off and more embers glow inside.</p>
+    <p>Crumbly! Flakes drift off, embers glow.</p>
   </div>
   <div class="card">
     <svg viewBox="42.7 38.7 520 600" ><path d="M 175 555 q -18 -60 18 -95 q -50 -18 -44 -70 q 6 -50 55 -58 q -20 -60 35 -95 q -30 -45 10 -85 q 42 -40 90 -12 q 55 -30 95 15 q 42 45 8 92 q 45 30 28 85 q -14 44 -62 48 q 18 50 -22 82 q 30 32 12 68 q -10 25 -223 25 Z" fill="#57534b" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><g fill="#ff8c42"><circle cx="195" cy="300" r="10"/><circle cx="340" cy="270" r="9"/><circle cx="250" cy="400" r="9"/><circle cx="320" cy="440" r="8"/><circle cx="170" cy="450" r="7"/></g><g fill="#8f8a80"><circle cx="150" cy="200" r="12"/><circle cx="380" cy="200" r="11"/><circle cx="260" cy="130" r="10"/></g><path d="M 130 555 l 260 0" stroke="#3d3a34" stroke-width="10" stroke-linecap="round"/><circle cx="225" cy="250" r="16" fill="#fffdf5" stroke="#2b2340" stroke-width="4"/><circle cx="295" cy="250" r="16" fill="#fffdf5" stroke="#2b2340" stroke-width="4"/><circle cx="225" cy="250" r="7" fill="#2b2340"/><circle cx="295" cy="250" r="7" fill="#2b2340"/></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE ASH CLOUD — a huge billowing plume full of glowing embers.</p>
+    <p>THE ASH CLOUD — a plume full of embers.</p>
   </div>
 </div>
 <h3 class="element">Obsidian Blob</h3>
@@ -5293,7 +5295,7 @@
   <div class="card">
     <svg viewBox="6.6 -127.7 520 600" ><g transform="translate(73,84) scale(0.72)"><path d="M 260 150 q 112 -18 150 90 q 30 92 -50 152 q -90 62 -176 8 q -84 -52 -58 -146 q 24 -92 134 -104 Z" fill="#1f1a2e" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 175 220 L 240 180 L 220 250 Z" fill="#4a3f70" opacity="0.8"/><path d="M 168 205 q 25 -30 66 -36" fill="none" stroke="#8a7ab5" stroke-width="12" stroke-linecap="round"/><circle cx="225" cy="290" r="13" fill="#e8dfff"/><circle cx="295" cy="290" r="13" fill="#e8dfff"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A glossy black glass blob with one sharp purple shine.</p>
+    <p>Glossy black glass with a purple shine.</p>
   </div>
   <div class="card">
     <svg viewBox="1 -95.6 520 600" ><g transform="translate(26,30) scale(0.9)"><path d="M 260 140 L 360 175 L 405 260 L 390 355 L 320 430 L 215 435 L 135 370 L 118 265 L 165 180 Z" fill="#171321" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 200 230 L 285 185 L 255 280 Z" fill="#4a3f70" opacity="0.8"/><path d="M 330 320 L 370 290 L 355 350 Z" fill="#3b3157" opacity="0.8"/><path d="M 165 180 L 138 150 M 360 175 L 390 148" stroke="#8a7ab5" stroke-width="6" stroke-linecap="round"/><circle cx="225" cy="300" r="13" fill="#e8dfff"/><circle cx="295" cy="300" r="13" fill="#e8dfff"/></g></svg>
@@ -5303,7 +5305,7 @@
   <div class="card">
     <svg viewBox="0 -16.1 520 600" ><path d="M 260 60 L 330 190 L 460 210 L 370 310 L 420 470 L 285 400 L 175 500 L 185 350 L 60 300 L 190 240 L 150 100 Z" fill="#100d18" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 235 200 L 300 160 L 275 260 Z" fill="#4a3f70" opacity="0.85"/><path d="M 300 330 L 355 300 L 335 370 Z" fill="#3b3157" opacity="0.8"/><path d="M 200 300 L 230 280 L 220 330 Z" fill="#2e2647" opacity="0.8"/><g fill="#e8dfff"><circle cx="130" cy="140" r="6"/><circle cx="430" cy="250" r="5"/></g><circle cx="225" cy="300" r="13" fill="#e8dfff"/><circle cx="295" cy="300" r="13" fill="#e8dfff"/></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE OBSIDIAN SHARD — a jagged star of pure black volcano glass.</p>
+    <p>THE OBSIDIAN SHARD — a jagged glass star.</p>
   </div>
 </div>
 <h3 class="element">Magma Blob</h3>
@@ -5316,12 +5318,12 @@
   <div class="card">
     <svg viewBox="12.7 -87.3 520 600" ><g transform="translate(26,30) scale(0.9)"><path d="M 260 150 q 110 -16 148 86 q 30 90 -44 146 q 12 32 -18 44 q -26 10 -42 -14 q -50 16 -96 -8 q -30 20 -50 -6 q -16 -22 6 -44 q -46 -54 -28 -122 q 22 -74 124 -82 Z" fill="#b3260c" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><g fill="#2b2340" opacity="0.85"><path d="M 160 250 q 40 -20 80 -4 l -12 40 q -40 12 -72 -8 Z"/><path d="M 320 350 q 36 -10 60 8 l -10 34 q -30 8 -54 -10 Z"/></g><path d="M 185 380 q 40 26 90 12 M 265 440 q 30 10 56 -8" fill="none" stroke="#ffb347" stroke-width="10" stroke-linecap="round"/><circle cx="225" cy="265" r="13" fill="#fff3d1"/><circle cx="295" cy="265" r="13" fill="#fff3d1"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>The surface is crusting over in black plates — but it glows between the cracks.</p>
+    <p>Black crust plates — glowing between cracks.</p>
   </div>
   <div class="card">
     <svg viewBox="8.6 18.1 520 600" ><path d="M 60 470 q -10 -50 55 -65 q -5 -60 65 -80 q 15 -55 85 -55 q 70 0 90 50 q 65 5 80 60 q 55 20 40 75 q 15 40 -30 55 l -355 0 q -35 -10 -30 -40 Z" fill="#a02008" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><g fill="#2b2340" opacity="0.9"><path d="M 120 350 q 50 -25 100 -5 l -15 50 q -50 15 -90 -10 Z"/><path d="M 300 300 q 45 -12 75 10 l -12 42 q -38 10 -68 -12 Z"/><path d="M 250 430 q 40 -10 70 8 l -10 34 q -32 8 -60 -10 Z"/></g><path d="M 90 480 q 60 24 130 14 M 300 490 q 60 12 110 -10" fill="none" stroke="#ffb347" stroke-width="11" stroke-linecap="round"/><ellipse cx="260" cy="520" rx="205" ry="20" fill="#ff8c42"/><circle cx="225" cy="360" r="13" fill="#fff3d1"/><circle cx="295" cy="360" r="13" fill="#fff3d1"/></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE MAGMA FLOW — a wide glowing flow with black crust islands floating on top.</p>
+    <p>THE MAGMA FLOW — crust islands float on top.</p>
   </div>
 </div>
 <h3 class="element">Geyser Blob</h3>
@@ -5329,17 +5331,17 @@
   <div class="card">
     <svg viewBox="6.6 -127.7 520 600" ><g transform="translate(73,84) scale(0.72)"><path d="M 260 150 q 112 -18 150 90 q 30 92 -50 152 q -90 62 -176 8 q -84 -52 -58 -146 q 24 -92 134 -104 Z" fill="#3a9484" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 260 140 q 8 -22 0 -40 M 240 145 q -6 -16 0 -30 M 282 145 q 6 -16 0 -30" fill="none" stroke="#bfe6de" stroke-width="8" stroke-linecap="round"/><path d="M 168 205 q 25 -30 66 -36" fill="none" stroke="#bfe6de" stroke-width="12" stroke-linecap="round"/><g fill="#57cc99" opacity="0.7"><circle cx="200" cy="390" r="10"/><circle cx="320" cy="410" r="8"/></g><circle cx="225" cy="270" r="13" fill="#2b2340"/><circle cx="295" cy="270" r="13" fill="#2b2340"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A minerally teal blob with little steam puffs rising off its head.</p>
+    <p>A teal blob with steam puffs on its head.</p>
   </div>
   <div class="card">
     <svg viewBox="-74.1 -86.3 520 600" ><g transform="translate(26,30) scale(0.9)"><path d="M 232 190 l 56 0 l 2 -82 q 0 -30 -30 -30 q -30 0 -30 30 l 2 82 q 66 24 76 100 q 10 92 -70 134 q -84 44 -160 -2 q -72 -44 -62 -132 q 10 -76 76 -100 Z" fill="#348a7b" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><path d="M 260 60 q 0 -20 0 -34 M 236 68 q -10 -16 -6 -32 M 284 68 q 10 -16 6 -32" fill="none" stroke="#bfe6de" stroke-width="8" stroke-linecap="round"/><g fill="#e6f5f1"><circle cx="238" cy="30" r="7"/><circle cx="284" cy="28" r="6"/><circle cx="260" cy="14" r="6"/></g><g fill="#57cc99" opacity="0.7"><circle cx="185" cy="410" r="12"/><circle cx="335" cy="425" r="10"/></g><path d="M 178 290 q 28 -26 66 -30" fill="none" stroke="#bfe6de" stroke-width="11" stroke-linecap="round"/><circle cx="225" cy="340" r="13" fill="#2b2340"/><circle cx="295" cy="340" r="13" fill="#2b2340"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>Pressure building! A water spout bursts up from its head.</p>
+    <p>Pressure building! A spout bursts up.</p>
   </div>
   <div class="card">
     <svg viewBox="-13.2 9.9 546.3 630.4" ><path d="M 218 320 l -10 -210 q -2 -40 24 -52 q -18 -22 6 -38 q 22 -14 40 6 q 26 -16 40 8 q 26 12 8 42 q 20 16 12 46 l -34 198 Z" fill="#bfe6de" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g fill="#e6f5f1"><circle cx="238" cy="60" r="10"/><circle cx="292" cy="48" r="9"/><circle cx="265" cy="25" r="8"/><circle cx="215" cy="95" r="7"/><circle cx="310" cy="90" r="7"/></g><path d="M 120 460 q -8 -70 60 -95 q 15 -55 80 -55 q 65 0 80 55 q 68 25 60 95 q 30 25 5 45 l -290 0 q -25 -20 5 -45 Z" fill="#348a7b" stroke="#2b2340" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><g fill="#57cc99" opacity="0.75"><circle cx="165" cy="470" r="14"/><circle cx="355" cy="475" r="12"/><circle cx="260" cy="500" r="10"/></g><path d="M 145 400 q 30 -24 68 -28" fill="none" stroke="#bfe6de" stroke-width="11" stroke-linecap="round"/><ellipse cx="260" cy="540" rx="185" ry="18" fill="#57cc99" opacity="0.5"/><circle cx="225" cy="430" r="13" fill="#2b2340"/><circle cx="295" cy="430" r="13" fill="#2b2340"/></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>THE GEYSER — a huge steam-water column blasting out of a mineral mound.</p>
+    <p>THE GEYSER — a steam column blasting up.</p>
   </div>
 </div>
 <h3 class="element"><span id="minionsUnder"></span>⚙️ The Lava Minions</h3>
@@ -5359,7 +5361,7 @@
   <div class="card">
     <svg viewBox="310 109.3 390 410" ><defs><clipPath id="as3c"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs><g transform="translate(500 340) scale(1.13) translate(-500 -340)"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#a8adb8" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g clip-path="url(#as3c)"><path d="M 380 360 l 240 0 l 0 120 l -240 0 Z" fill="#6e6a63"/><path d="M 380 360 l 240 0" stroke="#2b2340" stroke-width="6"/></g><rect x="448" y="345" width="104" height="60" rx="9" fill="#39424e" stroke="#2b2340" stroke-width="5"/><path d="M 458 375 l 84 0" stroke="#ff8c42" stroke-width="6" stroke-linecap="round"/><path d="M 452 418 q 48 22 96 0 q -16 26 -48 26 q -32 0 -48 -26 Z" fill="#8f8a80" stroke="#2b2340" stroke-width="5" stroke-linejoin="round"/><g fill="#ff8c42"><circle cx="472" cy="432" r="4"/><circle cx="500" cy="438" r="4"/><circle cx="528" cy="432" r="4"/></g><path d="M 462 300 l 0 -60 M 538 300 l 0 -60" stroke="#2b2340" stroke-width="7"/><path d="M 448 240 l 28 0 l -4 -30 l -20 0 Z M 524 240 l 28 0 l -4 -30 l -20 0 Z" fill="#6e6a63" stroke="#2b2340" stroke-width="5" stroke-linejoin="round"/><path d="M 462 206 q 10 -14 4 -30 M 538 206 q 10 -14 4 -30" fill="none" stroke="#9a958c" stroke-width="6" stroke-linecap="round"/><circle cx="455" cy="315" r="11" fill="#08060f"/><circle cx="548" cy="315" r="19" fill="#39424e"/><circle cx="548" cy="315" r="11" fill="#7fd4ff"/><circle cx="552" cy="311" r="4" fill="#ffffff"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>TWO chimneys and a belly full of glowing embers.</p>
+    <p>TWO chimneys, a belly full of embers.</p>
   </div>
 </div>
 <h3 class="element">Obsidian Minion</h3>
@@ -5377,7 +5379,7 @@
   <div class="card">
     <svg viewBox="283.3 140.9 390 410" ><defs><clipPath id="ob3c"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs><g transform="translate(500 340) scale(1.13) translate(-500 -340)"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#a8adb8" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g clip-path="url(#ob3c)"><path d="M 500 180 L 650 240 L 630 480 L 500 480 Z" fill="#1f1a2e"/><path d="M 500 180 L 500 480" stroke="#2b2340" stroke-width="6"/></g><path d="M 540 290 L 585 262 L 570 330 Z" fill="#4a3f70" opacity="0.85"/><path d="M 555 400 L 590 380 L 578 430 Z" fill="#3b3157" opacity="0.8"/><path d="M 430 290 q -46 -6 -60 -44 l 38 6 q -10 -26 10 -44 q 20 26 22 56 Z" fill="#171321" stroke="#2b2340" stroke-width="5" stroke-linejoin="round"/><path d="M 430 390 q -46 6 -60 44 l 38 -6 q -10 26 10 44 q 20 -26 22 -56 Z" fill="#171321" stroke="#2b2340" stroke-width="5" stroke-linejoin="round"/><circle cx="468" cy="332" r="11" fill="#08060f"/><circle cx="548" cy="300" r="19" fill="#39424e"/><circle cx="548" cy="300" r="11" fill="#7fd4ff"/><circle cx="552" cy="296" r="4" fill="#ffffff"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>TWO blade-arms and glass facets flashing purple.</p>
+    <p>TWO blade-arms, flashing purple.</p>
   </div>
 </div>
 <h3 class="element">Magma Minion</h3>
@@ -5395,7 +5397,7 @@
   <div class="card">
     <svg viewBox="310 121.8 390 410" ><defs><clipPath id="ma3c"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs><g transform="translate(500 340) scale(1.13) translate(-500 -340)"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#a8adb8" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g clip-path="url(#ma3c)"><circle cx="500" cy="385" r="70" fill="#39424e"/></g><circle cx="500" cy="385" r="70" fill="none" stroke="#2b2340" stroke-width="6"/><rect x="450" y="350" width="100" height="70" rx="10" fill="#c62b0e"/><path d="M 460 372 l 80 0 M 460 396 l 80 0" stroke="#2b2340" stroke-width="6"/><path d="M 468 362 l 10 10 M 520 388 l 10 10 M 490 406 l 8 8" stroke="#ffb347" stroke-width="4" stroke-linecap="round"/><path d="M 452 300 q -20 -34 -4 -62 M 548 300 q 20 -34 4 -62" fill="none" stroke="#2b2340" stroke-width="6"/><g fill="#ff8c42" stroke="#2b2340" stroke-width="4"><circle cx="444" cy="234" r="9"/><circle cx="556" cy="234" r="9"/></g><circle cx="455" cy="300" r="11" fill="#08060f"/><circle cx="548" cy="300" r="19" fill="#39424e"/><circle cx="548" cy="300" r="11" fill="#7fd4ff"/><circle cx="552" cy="296" r="4" fill="#ffffff"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A BIG furnace with two heat pipes and lava lights.</p>
+    <p>A BIG furnace with two heat pipes.</p>
   </div>
 </div>
 <h3 class="element">Geyser Minion</h3>
@@ -5413,7 +5415,7 @@
   <div class="card">
     <svg viewBox="305 81.4 390 410" ><defs><clipPath id="vo3c"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z"/></clipPath></defs><g transform="translate(500 340) scale(1.13) translate(-500 -340)"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -52 34 -104 4 q -46 -30 -32 -78 q 14 -50 78 -58 Z" fill="#a8adb8" stroke="#2b2340" stroke-width="8" stroke-linejoin="round"/><g clip-path="url(#vo3c)"><path d="M 500 268 q 62 -8 84 48 q 20 52 -26 84 q -22 14 -44 16 l -6 -150 Z" fill="#3a9484"/><path d="M 500 262 l 8 158" stroke="#2b2340" stroke-width="6"/></g><path d="M 500 300 l 0 -68" stroke="#2b2340" stroke-width="8"/><path d="M 468 234 l 64 0 l -14 -38 l -36 0 Z" fill="#524740" stroke="#2b2340" stroke-width="5" stroke-linejoin="round"/><path d="M 500 196 l 0 -34 M 482 200 q -6 -24 4 -40 M 518 200 q 6 -24 -4 -40" fill="none" stroke="#bfe6de" stroke-width="6" stroke-linecap="round"/><g fill="#e6f5f1"><circle cx="500" cy="152" r="7"/><circle cx="482" cy="150" r="5"/><circle cx="518" cy="150" r="5"/></g><path d="M 428 320 l -54 -20 M 572 320 l 54 -20" stroke="#524740" stroke-width="8" stroke-linecap="round"/><circle cx="468" cy="332" r="11" fill="#08060f"/><circle cx="540" cy="334" r="19" fill="#39424e"/><circle cx="540" cy="334" r="11" fill="#7fd4ff"/><circle cx="544" cy="330" r="4" fill="#ffffff"/></g></svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
-    <p>A full geyser cannon blasting a steam jet with water drops.</p>
+    <p>A geyser cannon blasting a steam jet.</p>
   </div>
 </div>
 
@@ -13837,7 +13839,13 @@ var qrcode = function() {
       var sh = document.getElementById('kshadow');
       var rv = document.getElementById('kreveal');
       if (sh) sh.style.opacity = '0';
-      if (rv) rv.style.opacity = '1';
+      if (rv) {
+        rv.style.opacity = '1';
+        // the caption says he RISES — make the picture rise too
+        rv.style.transition = 'transform 0.9s ease-out';
+        rv.style.transformOrigin = '500px 350px';
+        setTimeout(function () { rv.style.transform = 'translateY(-38px) scale(1.12)'; }, 60);
+      }
       var c = document.getElementById('kcap');
       if (c) c.textContent = '⚙️ THE CYBORG KING!';
       try { playSound('spark'); } catch (er) {}
@@ -16865,6 +16873,13 @@ var qrcode = function() {
       THEATER_LIST.map(function (s, i) {
         return '<button data-th="' + i + '" style="' + BS + '">' + s.label + '</button>';
       }).join('') +
+      '<div style="font-size:0.95rem;font-weight:800;color:#d8cfae;text-align:center;margin-top:10px">✏️ FILL THE BUBBLES — the bubbles are EMPTY. What do they say?</div>' +
+      HANDOFFS.map(function (h, i) {
+        return '<button data-bh="' + i + '" style="' + BS + '">✏️ ' + h.name + '</button>';
+      }).join('') +
+      '<button data-bx="doofus" style="' + BS + '">✏️ 🧪 The Scientist shows himself</button>' +
+      '<button data-bx="throne" style="' + BS + '">✏️ 🏰 The throne room</button>' +
+      '<button data-bx="king" style="' + BS + '">✏️ ⚙️ THE CYBORG KING</button>' +
       '<button id="thClose" style="' + BS + 'text-align:center">⬅️ Back to the game</button></div>';
     document.body.appendChild(T);
     function playOne(i, cb) { THEATER_LIST[i].start(); theaterDone(cb); }
@@ -16885,6 +16900,24 @@ var qrcode = function() {
         playOne(order[k], function () { step(k + 1); });
       })(0);
     });
+    [].forEach.call(T.querySelectorAll('button[data-bh]'), function (b) {
+      tappable(b, function () {
+        var i = +b.getAttribute('data-bh');
+        T.remove();
+        handoffBlank(HANDOFFS[i]);
+        theaterDone(sceneTheater);
+      });
+    });
+    [].forEach.call(T.querySelectorAll('button[data-bx]'), function (b) {
+      tappable(b, function () {
+        var k = b.getAttribute('data-bx');
+        T.remove();
+        if (k === 'doofus') blankify(function () { doofusOutro(); }, 'outroScene', blankBubble('right:6%;bottom:56%', 'right'), 5400);
+        if (k === 'throne') blankify(function () { throneScene(); }, 'throneScene', blankBubble('left:6%;bottom:34%', 'left') + blankBubble('left:38%;bottom:66%', 'left'), 3000);
+        if (k === 'king') blankify(function () { cyborgKingScene(function () {}); }, 'kingScene', blankBubble('left:34%;bottom:64%', 'left'), 5600);
+        theaterDone(sceneTheater);
+      });
+    });
     tappable(T.querySelector('#thClose'), function () { T.remove(); });
   }
   if (SANDBOX) (function () {
@@ -16897,6 +16930,78 @@ var qrcode = function() {
     home.appendChild(b);
     tappable(b, sceneTheater);
   })();
+  // ✏️ BLANK-BUBBLE SCENES (theater-only). Council-staged handoff
+  // tableaus + caption-stripped versions of the reveal scenes, all with
+  // EMPTY speech bubbles — William writes every word. Real scenes are
+  // untouched; these run only from the Scene Theater (sandbox build).
+  // Staging is deliberately neutral: loose clusters (no blocking wall),
+  // mixed spacing, mad-eye swirls on the not-yet-freed guardian (the
+  // established "still zapped" motif), bubbles anchored to ONE clear
+  // speaker per side, no captions and no placeholder punctuation.
+  var SWIRL_EYES = '<g fill="none" stroke="#c74fa3" stroke-width="6" stroke-linecap="round"><path d="M 215 245 m 10 0 a 10 10 0 1 1 -10 -10 a 16 16 0 1 1 16 16"/><path d="M 305 245 m 10 0 a 10 10 0 1 1 -10 -10 a 16 16 0 1 1 16 16"/></g>';
+  function madden(svg) { return svg.replace('</svg>', SWIRL_EYES + '</svg>'); }
+  function blankBubble(pos, tail) {
+    return '<div style="position:absolute;' + pos + ';min-width:26%;min-height:48px;background:#fdf7e8;border:4px solid #2b2340;border-radius:14px;box-shadow:0 4px 0 rgba(43,35,64,0.25);z-index:6">' +
+      '<div style="position:absolute;bottom:-13px;' + (tail === 'right' ? 'right:24px' : 'left:24px') + ';width:18px;height:18px;background:#fdf7e8;border-right:4px solid #2b2340;border-bottom:4px solid #2b2340;transform:rotate(45deg)"></div></div>';
+  }
+  var HANDOFFS = [
+    { name: '🌄 After MOMO — the Dark Forest four arrive', prevFams: ['fire', 'water', 'earth', 'wind'], freedSvg: MOMO_SVG, nextFams: ['dark', 'fairy', 'moss', 'tree'], nextBossSvg: TINY_SVG, arrive: 'owalker', bg: '' },
+    { name: '🌲 After TINY — the Sunny Skies four arrive', prevFams: ['dark', 'fairy', 'moss', 'tree'], freedSvg: TINY_SVG, nextFams: ['cloud', 'light', 'rain', 'firework'], nextBossSvg: JERRY_SVG, arrive: 'odropper', bg: '#3a3160' },
+    { name: '☀️ After JERRY — the Underground four arrive', prevFams: ['cloud', 'light', 'rain', 'firework'], freedSvg: JERRY_SVG, nextFams: ['coal', 'gem', 'gold', 'copper'], nextBossSvg: BUB_SVG, arrive: 'oriser', bg: '#8ecbf2' },
+    { name: '⛏️ After BUB — the City four arrive', prevFams: ['coal', 'gem', 'gold', 'copper'], freedSvg: BUB_SVG, nextFams: ['cloth', 'heart', 'brick', 'glass'], nextBossSvg: FATSO_SVG, arrive: 'owalker', bg: '#6b4f35' },
+    { name: '🏙️ After FATSO — the Solar four arrive', prevFams: ['cloth', 'heart', 'brick', 'glass'], freedSvg: FATSO_SVG, nextFams: ['mars', 'venus', 'jupiter', 'saturn'], nextBossSvg: DOOFUS_SVG, arrive: 'odropper', bg: '#9fb4c8' }
+  ];
+  function handoffBlank(cfg) {
+    if (document.getElementById('outroScene')) return;
+    var O = document.createElement('div');
+    O.id = 'outroScene';
+    if (cfg.bg) O.style.background = cfg.bg;
+    var bots = [8, 11, 9, 12];
+    O.innerHTML = cfg.prevFams.map(function (f, i) {
+      return '<div class="oblob" style="left:' + (3 + i * 11) + '%;bottom:' + bots[i] + '%;width:15%;animation-delay:' + (i * 0.12) + 's">' + uniqueSvg(formSvg(f, 3)) + '</div>';
+    }).join('') +
+      '<div class="oblob" style="left:24%;bottom:16%;width:28%">' + uniqueSvg(cfg.freedSvg) + '</div>' +
+      '<div class="iskip">⏭️ tap to skip</div>';
+    document.body.appendChild(O);
+    var timers = [];
+    var done = false;
+    function finish() { if (done) return; done = true; timers.forEach(clearTimeout); if (O.parentNode) O.remove(); }
+    var armed = false;
+    setTimeout(function () { armed = true; }, 800);
+    O.addEventListener('click', function () { if (armed) finish(); });
+    try { playSound('fairy'); } catch (e) {}
+    timers.push(setTimeout(function () {
+      O.classList.add('thump');
+      try { playSound('earth'); } catch (e) {}
+    }, 4600));
+    timers.push(setTimeout(function () {
+      cfg.nextFams.forEach(function (f, i) {
+        O.insertAdjacentHTML('beforeend', '<div class="' + cfg.arrive + '" style="bottom:8%;right:' + (4 + i * 10) + '%;width:10%;animation-delay:' + (0.15 * i) + 's">' + uniqueSvg(formSvg(f, 1)) + '</div>');
+      });
+      try { playSound('dark'); } catch (e) {}
+    }, 6400));
+    timers.push(setTimeout(function () {
+      O.insertAdjacentHTML('beforeend', '<div class="' + cfg.arrive + '" style="bottom:26%;right:-4%;width:38%;animation-duration:1.7s">' + uniqueSvg(madden(cfg.nextBossSvg)) + '</div>');
+    }, 7100));
+    timers.push(setTimeout(function () {
+      O.insertAdjacentHTML('beforeend',
+        blankBubble('left:26%;bottom:52%', 'left') +
+        blankBubble('right:22%;bottom:30%', 'right'));
+    }, 8000));
+    timers.push(setTimeout(finish, 14000));
+  }
+  function blankify(startScene, sceneId, bubbles, bubbleDelay) {
+    startScene();
+    var iv = setInterval(function () {
+      var S = document.getElementById(sceneId);
+      if (!S) { clearInterval(iv); return; }
+      [].forEach.call(S.querySelectorAll('.ocaption'), function (c) { c.remove(); });
+    }, 100);
+    setTimeout(function () {
+      var S = document.getElementById(sceneId);
+      if (S && !S.querySelector('[data-bbl]')) S.insertAdjacentHTML('beforeend', '<div data-bbl="1">' + bubbles + '</div>');
+    }, bubbleDelay);
+  }
 
   // --- restore saved games on startup (profile system) ---
   (function () {
