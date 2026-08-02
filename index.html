@@ -431,7 +431,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-01 23:56</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-02 00:02</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -15941,7 +15941,11 @@ var qrcode = function() {
   function accWearPicker(acc, msg) {
     var pickRow = document.createElement('div');
     pickRow.id = 'accPickRow';
-    pickRow.style.cssText = 'display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:8px 0';
+    pickRow.style.cssText = 'display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:8px 0;overflow-y:auto';
+    // the picker lives inside the sticky shop bar: cap it to the space the
+    // viewport has left so the bar (and every wearer button) stays reachable
+    var stickyBox = msg.parentElement ? msg.parentElement.getBoundingClientRect() : { height: 0 };
+    pickRow.style.maxHeight = Math.max(88, window.innerHeight - stickyBox.height - 16) + 'px';
     var wearers = [];
     Object.keys(WCONF).forEach(function (w2) {
       teamOfWorld(w2).forEach(function (f) { if (wearers.indexOf(f) < 0) wearers.push(f); });
