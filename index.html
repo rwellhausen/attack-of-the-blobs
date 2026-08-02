@@ -140,6 +140,10 @@
   @media (prefers-reduced-motion: reduce) { #outroScene * { animation:none !important; } }
   .pvpworld-h { text-align:center; font-weight:bold; font-size:0.95rem; margin:16px 0 4px; color:#2b2340; }
   .accitem .emoji { font-size:56px; text-align:center; padding:12px 0 0; }
+  .shopsticky.pinned { padding-top:calc(52px + env(safe-area-inset-top, 0px)); }
+  .pick.locked { background:var(--paper); border-color:#8a8798; }
+  .pick.locked .shopstamp, .pick.locked .emoji { opacity:0.5; }
+  .pick.locked .match { color:#565070; font-weight:bold; }
   .teammate { position:relative; container-type: inline-size; transition: transform .2s; }
   svg.wstar { width:1em !important; height:1em !important; display:inline-block !important; vertical-align:-0.12em; margin:0 1px; }
   .bstars svg.wstar { width:0.95em !important; height:0.95em !important; vertical-align:-0.35em; }
@@ -272,7 +276,7 @@
     h2.world { margin: 10px auto 8px; max-width: 86%; }
     .pick { width: 108px; }
     .pvpcard { width: 96px; }
-    .shoptabs { gap:8px; }
+    .shoptabs { display:grid; grid-template-columns:repeat(3, 1fr); gap:6px; overflow-x:visible; padding:0; }
     .shoptab { padding:5px 3px; }
     .teambar { transform: scale(0.82); transform-origin: top center; margin: 0 auto -6px; }
     #battleTitle { margin-top: 50px; }
@@ -424,7 +428,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-02 08:24</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-02 08:46</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -5574,7 +5578,7 @@
 </div>
 
 <div id="screen-shop" class="screen" hidden>
-<h2 class="world" style="margin:4px auto 6px;padding:6px 14px">🏪 The Shop</h2>
+<h2 class="world">🏪 The Shop</h2>
 <div class="shopsticky">
 <div class="shoptabs"><button id="tab-gold" class="back shoptab" style="position:static">🟢 Grassy</button><button id="tab-forest" class="back shoptab" style="position:static">🟣 Forest</button><button id="tab-skies" class="back shoptab" style="position:static">🔵 Sky</button><button id="tab-underground" class="back shoptab" style="position:static">💎 Gem</button><button id="tab-city" class="back shoptab" style="position:static">⚪ City</button><button id="tab-solar" class="back shoptab" style="position:static">⚫ Space</button></div>
 <p class="note" style="font-weight:bold;margin:2px 0" id="shopMsg"></p>
@@ -14696,6 +14700,10 @@ var qrcode = function() {
     document.querySelectorAll('#coinBadge .coinSet').forEach(function (cs) { cs.classList.toggle('on', cs.dataset.w === showW); });
   }
   var curShopTab = 'gold';
+  var HARDLOCK = '🔒 Advance to unlock';
+  var HARDLOCKWHY = '🔒 Beat the ❓ ??? world to unlock the 🔥 hard blobs!';
+  function hardGoodsOpen() { return SANDBOX || sciDone || sciProgress >= 6; }
+  function hardLocked(item) { return item.classList.contains('hardgood') && !hardGoodsOpen(); }
   function addCoins(d) {
     walletAdd(curWorld, d);
     showCoins();
@@ -15838,7 +15846,7 @@ var qrcode = function() {
       if (stamp && !stamp.innerHTML) stamp.innerHTML = svgOf(name);
       var owned = teamOfWorld(WORLD_OF[name]).indexOf(name) > -1;
       item.classList.toggle('owned', owned);
-      item.querySelector('.match').textContent = owned ? '✅ on your team!' : CEMOJI[WORLD_OF[name]] + ' 5 coins';
+      item.querySelector('.match').textContent = hardLocked(item) ? HARDLOCK : (owned ? '✅ on your team!' : CEMOJI[WORLD_OF[name]] + ' 5 coins');
     });
     var TABCUR = { gold: 'grassy', forest: 'forest', skies: 'skies', underground: 'underground', city: 'city', solar: 'solar' };
     Object.keys(TABCUR).forEach(function (t) {
@@ -15848,8 +15856,8 @@ var qrcode = function() {
       if (!b) { b = document.createElement('b'); b.className = 'tabbal'; el.appendChild(b); }
       b.textContent = walletOf(TABCUR[t]);
     });
-    var hardOk = SANDBOX || sciDone || sciProgress >= 6;
-    document.querySelectorAll('.hardgood').forEach(function (el) { el.style.display = hardOk ? '' : 'none'; });
+    var hardOk = hardGoodsOpen();
+    document.querySelectorAll('.hardgood').forEach(function (el) { el.style.display = ''; el.classList.toggle('locked', !hardOk && el.classList.contains('pick')); });
     document.querySelectorAll('.shopevo').forEach(function (item) {
       var fam = item.dataset.name, star = +item.dataset.star;
       var stamp = item.querySelector('.shopstamp');
@@ -15858,7 +15866,7 @@ var qrcode = function() {
       var have = Math.max(progressStarOfWorld(w), starsOfWorld(w)[fam] || 1);
       item.classList.toggle('owned', have >= star);
       var price = star === 2 ? 15 : 40;
-      item.querySelector('.match').textContent = have >= star ? '✅ evolved!' : CEMOJI[w] + ' ' + price + ' coins';
+      item.querySelector('.match').textContent = hardLocked(item) ? HARDLOCK : (have >= star ? '✅ evolved!' : CEMOJI[w] + ' ' + price + ' coins');
     });
     document.querySelectorAll('.armoritem').forEach(function (item) {
       var fam = item.dataset.name;
@@ -15868,7 +15876,7 @@ var qrcode = function() {
       var owned = ownedArmor.indexOf(fam) > -1;
       var have = Math.max(progressStarOfWorld(w), starsOfWorld(w)[fam] || 1);
       item.classList.toggle('owned', owned);
-      item.querySelector('.match').textContent = owned ? '🛡️ armored!' : (have < 3 ? '🔒 needs 3★' : CEMOJI[w] + ' 100 coins');
+      item.querySelector('.match').textContent = hardLocked(item) ? HARDLOCK : (owned ? '🛡️ armored!' : (have < 3 ? '🔒 needs 3★' : CEMOJI[w] + ' 100 coins'));
     });
     document.querySelectorAll('.accitem').forEach(function (item) {
       var owned = ownedAccs.indexOf(item.dataset.acc) > -1;
@@ -15878,9 +15886,10 @@ var qrcode = function() {
   }
   document.querySelectorAll('.shopevo').forEach(function (item) {
     tappable(item, function () {
+      var msg = document.getElementById('shopMsg');
+      if (hardLocked(item)) { msg.textContent = HARDLOCKWHY; return; }
       var fam = item.dataset.name, star = +item.dataset.star;
       var w = WORLD_OF[fam];
-      var msg = document.getElementById('shopMsg');
       var teamArr = teamOfWorld(w), stars = starsOfWorld(w);
       var have = Math.max(progressStarOfWorld(w), stars[fam] || 1);
       var price = star === 2 ? 15 : 40;
@@ -15898,9 +15907,10 @@ var qrcode = function() {
   });
   document.querySelectorAll('.armoritem').forEach(function (item) {
     tappable(item, function () {
+      var msg = document.getElementById('shopMsg');
+      if (hardLocked(item)) { msg.textContent = HARDLOCKWHY; return; }
       var fam = item.dataset.name;
       var w = WORLD_OF[fam];
-      var msg = document.getElementById('shopMsg');
       if (ownedArmor.indexOf(fam) > -1) { msg.textContent = NAMES[fam] + ' already has armor!'; return; }
       var teamArr = teamOfWorld(w), stars = starsOfWorld(w);
       var have = Math.max(progressStarOfWorld(w), stars[fam] || 1);
@@ -15963,6 +15973,21 @@ var qrcode = function() {
     if (old) old.remove();
     if (wearers.length) msg.insertAdjacentElement('afterend', pickRow);
   }
+  (function () {
+    var ss = document.querySelector('.shopsticky');
+    if (!ss) return;
+    var queued = false;
+    function sync() {
+      queued = false;
+      ss.classList.toggle('pinned', ss.getBoundingClientRect().top <= 6);
+    }
+    window.addEventListener('scroll', function () {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(sync);
+    }, { passive: true });
+    sync();
+  })();
   var lastPurchase = null;
   function showUndo(p) { lastPurchase = p; document.getElementById('undoBtn').hidden = false; }
   tappable(document.getElementById('undoBtn'), function () {
@@ -16030,10 +16055,11 @@ var qrcode = function() {
   }
   document.querySelectorAll('.shopitem').forEach(function (item) {
     tappable(item, function () {
+      var msg = document.getElementById('shopMsg');
+      if (hardLocked(item)) { msg.textContent = HARDLOCKWHY; return; }
       var name = item.dataset.name;
       var w = WORLD_OF[name];
       var teamArr = teamOfWorld(w);
-      var msg = document.getElementById('shopMsg');
       if (!teamArr.length) { msg.textContent = '⚠️ First pick your starting blob! Tap 🌍 Worlds → ' + WCONF[w].name + ' → level 1.'; return; }
       if (teamArr.indexOf(name) > -1) { msg.textContent = NAMES[name] + ' is already on your ' + WCONF[w].name + ' team!'; return; }
       if (walletOf(w) < 5) { msg.textContent = CEMOJI[w] + ' You need 5 ' + CNAME[w] + ' — you have ' + walletOf(w) + '. Win battles in that world to earn more!'; return; }
