@@ -431,7 +431,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-01 23:12</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-01 23:15</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -16093,12 +16093,12 @@ var qrcode = function() {
     var w = WORLD_OF[fam];
     var d = (s.worlds || {})[w] || {};
     var t = d.team || [], g = d.gold || [];
-    if (t.indexOf(fam) < 0) return '🔒 ' + pname + ' doesn\u2019t own ' + NAMES[fam] + ' yet — earn it in ' + WCONF[w].name + '!';
+    if (t.indexOf(fam) < 0) return '🔒 ' + pname + ' — earn ' + NAMES[fam] + ' in ' + WCONF[w].name + ' first!';
     var mg = g.length ? Math.max.apply(null, g) : 0;
     var bought = ((d.stars || {})[fam]) || 1;
     var have = Math.max(mg >= 40 ? 3 : (mg >= 15 ? 2 : 1), bought);
-    if (star === 2 && have < 2) return '🔒 ' + pname + ' must beat level 15 in ' + WCONF[w].name + ' (or buy the evolution!) for two-star blobs!';
-    if (star === 3 && have < 3) return '🔒 ' + pname + ' must beat level 40 in ' + WCONF[w].name + ' (or buy the evolution!) for three-star blobs!';
+    if (star === 2 && have < 2) return '🔒 ' + pname + ' — earn or buy ⭐⭐ in ' + WCONF[w].name + ' first!';
+    if (star === 3 && have < 3) return '🔒 ' + pname + ' — earn or buy ⭐⭐⭐ in ' + WCONF[w].name + ' first!';
     return null;
   }
   function refreshPvpProfRow() {
