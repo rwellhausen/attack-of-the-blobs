@@ -428,7 +428,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-02 09:25</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-02 21:02</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -14066,6 +14066,16 @@ var qrcode = function() {
     sciFight = false;
     var pc = document.getElementById('popCount');
     if (pc) { pc.style.display = popped > 0 ? 'block' : 'none'; document.getElementById('popN').textContent = popped; }
+    if (SANDBOX) {
+      // tester build: William owns EVERYTHING — every evolution that exists
+      // and every blob's armor, no buying needed (his ask, 2026-08-02)
+      Object.keys(WORLD_OF).forEach(function (f) {
+        var top = EYE[f + '-3'] ? 3 : (EYE[f + '-2'] ? 2 : 1);
+        var st = starsOfWorld(WORLD_OF[f]);
+        if ((st[f] || 1) < top) st[f] = top;
+        if (ownedArmor.indexOf(f) < 0) ownedArmor.push(f);
+      });
+    }
     applyGold(); refreshWorldLocks(); showCoins(); refreshAccBtns(); refreshProfile();
     if (team.length && enemyTeam.length) startBattle(); else setFighters();
   }
@@ -14172,10 +14182,12 @@ var qrcode = function() {
   try { soundOff = localStorage.getItem('aotb-mute') === '1'; } catch (e) {}
   function playSound(fam) {
     if (soundOff) return;
-    if (fam === 'ash' || fam === 'ashminion') fam = 'coal';
+    // Q101 (William): underground-hard sounds were "all sheens" — now ash
+    // coughs, magma erupts, geyser erupts; obsidian KEEPS its sheen.
+    if (fam === 'ashminion') fam = 'ash';
     else if (fam === 'obsidian' || fam === 'obsidianminion') fam = 'gem';
-    else if (fam === 'magma' || fam === 'magmaminion') fam = 'gold';
-    else if (fam === 'geyser' || fam === 'geyserminion') fam = 'copper';
+    else if (fam === 'magmaminion') fam = 'magma';
+    else if (fam === 'geyserminion') fam = 'geyser';
     else if (fam === 'tornado' || fam === 'tornadominion') fam = 'cloud';
     else if (fam === 'lightning' || fam === 'lightningminion') fam = 'light';
     else if (fam === 'thunder' || fam === 'thunderminion') fam = 'firework';
@@ -14248,6 +14260,52 @@ var qrcode = function() {
         w.type = 'sine'; w.frequency.setValueAtTime(700, t); w.frequency.linearRampToValueAtTime(1600, t + 0.8); w.frequency.linearRampToValueAtTime(600, t + 2.0);
         wg.gain.setValueAtTime(0.0001, t); wg.gain.exponentialRampToValueAtTime(0.12, t + 0.4); wg.gain.exponentialRampToValueAtTime(0.0001, t + 2.2);
         w.connect(wg); wg.connect(ctx.destination); w.start(t); w.stop(t + 2.25);
+      }
+      else if (fam === 'ash') {       // William (Q101): smoke = a COUGH — kuh… KUH!
+        [0, 0.3].forEach(function (dt, i) {
+          var src = noiseSource(ctx, 0.16), f = ctx.createBiquadFilter(), g = ctx.createGain();
+          f.type = 'bandpass'; f.Q.value = 1.2;
+          f.frequency.setValueAtTime(700, t + dt); f.frequency.exponentialRampToValueAtTime(300, t + dt + 0.14);
+          g.gain.setValueAtTime(0.0001, t + dt); g.gain.exponentialRampToValueAtTime(i ? 1.2 : 0.9, t + dt + 0.02);
+          g.gain.exponentialRampToValueAtTime(0.0001, t + dt + 0.16);
+          src.connect(f); f.connect(g); g.connect(ctx.destination); src.start(t + dt);
+          var o = ctx.createOscillator(), og = ctx.createGain();
+          o.type = 'sine'; o.frequency.setValueAtTime(180, t + dt); o.frequency.exponentialRampToValueAtTime(90, t + dt + 0.12);
+          og.gain.setValueAtTime(0.0001, t + dt); og.gain.exponentialRampToValueAtTime(0.35, t + dt + 0.02); og.gain.exponentialRampToValueAtTime(0.0001, t + dt + 0.14);
+          o.connect(og); og.connect(ctx.destination); o.start(t + dt); o.stop(t + dt + 0.16);
+        });
+      } else if (fam === 'magma') {   // William (Q101): magma = a VOLCANO erupting — rumble… BOOM! lava crackle
+        var vo = ctx.createOscillator(), vof = ctx.createBiquadFilter(), vg = ctx.createGain();
+        vo.type = 'sawtooth'; vo.frequency.setValueAtTime(90, t); vo.frequency.linearRampToValueAtTime(45, t + 1.6);
+        vof.type = 'lowpass'; vof.frequency.value = 250;
+        vg.gain.setValueAtTime(0.0001, t); vg.gain.exponentialRampToValueAtTime(0.9, t + 0.5);
+        vg.gain.exponentialRampToValueAtTime(0.0001, t + 1.7);
+        vo.connect(vof); vof.connect(vg); vg.connect(ctx.destination); vo.start(t); vo.stop(t + 1.75);
+        var boom = noiseSource(ctx, 0.9), bf2 = ctx.createBiquadFilter(), bg2 = ctx.createGain();
+        bf2.type = 'lowpass'; bf2.frequency.setValueAtTime(1800, t + 0.55); bf2.frequency.exponentialRampToValueAtTime(300, t + 1.3);
+        bg2.gain.setValueAtTime(0.0001, t); bg2.gain.setValueAtTime(0.0001, t + 0.5); bg2.gain.exponentialRampToValueAtTime(1.3, t + 0.6);
+        bg2.gain.exponentialRampToValueAtTime(0.0001, t + 1.4);
+        boom.connect(bf2); bf2.connect(bg2); bg2.connect(ctx.destination); boom.start(t + 0.5);
+        var cr = noiseSource(ctx, 1.0), crf = ctx.createBiquadFilter(), crg = ctx.createGain();
+        crf.type = 'highpass'; crf.frequency.value = 1600;
+        crg.gain.setValueAtTime(0.0001, t + 0.6);
+        for (var ci = 0; ci < 8; ci++) crg.gain.exponentialRampToValueAtTime(0.05 + Math.random() * 0.3, t + 0.65 + 0.09 * ci);
+        crg.gain.exponentialRampToValueAtTime(0.0001, t + 1.6);
+        cr.connect(crf); crf.connect(crg); crg.connect(ctx.destination); cr.start(t + 0.6);
+      } else if (fam === 'geyser') {  // William (Q101): a GEYSER erupting — hisss… WHOOSH up! splashy fizz
+        var hz = noiseSource(ctx, 0.6), hzf = ctx.createBiquadFilter(), hzg = ctx.createGain();
+        hzf.type = 'highpass'; hzf.frequency.setValueAtTime(2500, t);
+        hzg.gain.setValueAtTime(0.0001, t); hzg.gain.exponentialRampToValueAtTime(0.5, t + 0.45); hzg.gain.exponentialRampToValueAtTime(0.2, t + 0.55);
+        hz.connect(hzf); hzf.connect(hzg); hzg.connect(ctx.destination); hz.start(t);
+        var wh = noiseSource(ctx, 1.2), whf = ctx.createBiquadFilter(), whg = ctx.createGain();
+        whf.type = 'bandpass'; whf.Q.value = 2;
+        whf.frequency.setValueAtTime(300, t + 0.5); whf.frequency.exponentialRampToValueAtTime(2600, t + 1.1);
+        whg.gain.setValueAtTime(0.0001, t + 0.5); whg.gain.exponentialRampToValueAtTime(1.2, t + 0.62); whg.gain.exponentialRampToValueAtTime(0.0001, t + 1.5);
+        wh.connect(whf); whf.connect(whg); whg.connect(ctx.destination); wh.start(t + 0.5);
+        var sp = noiseSource(ctx, 1.1), spf = ctx.createBiquadFilter(), spg = ctx.createGain();
+        spf.type = 'highpass'; spf.frequency.value = 1200;
+        spg.gain.setValueAtTime(0.0001, t + 1.0); spg.gain.exponentialRampToValueAtTime(0.5, t + 1.15); spg.gain.exponentialRampToValueAtTime(0.0001, t + 2.0);
+        sp.connect(spf); spf.connect(spg); spg.connect(ctx.destination); sp.start(t + 1.0);
       }
       else if (fam === 'dark') {      // spooky whoosh
         var src = noiseSource(ctx, 1.4), f = ctx.createBiquadFilter(), g = ctx.createGain();
@@ -14516,6 +14574,7 @@ var qrcode = function() {
     var x = e[0], y = e[1];
     // per-blob tweaks: some 3-star shapes wear the helm somewhere special
     var HELM_POS = { lightning: [52, 10], root: [53.1, 10], mud: [49.6, 40.1], heat: [49.8, 47.6],      // down onto the melted puddle's mound
+      ash: [41.8, 24],       // a little lower (William's fit ruling, Q101)
       dark: [62.3, 13],      // the crescent moon's helm rides its top tip
       coal: [50, 32],                      // a little lower onto the furnace's brow
       copper: [50.9, 25.1],                    // right ON the patina hair, covering it
@@ -14587,9 +14646,10 @@ var qrcode = function() {
       };
       return mini(50, 26) + mini(33, 53) + mini(67, 53);
     }
-    var CHEST_POS = { root: [53.1, 47], heat: [49.8, 65.7], tornado: [50.7, 61.9] };
-    var CHEST_W = { heat: 28, lightning: 38 };   // fitted plates          // the melted puddle wears its plate low
-    var NO_CHEST = {};
+    var CHEST_POS = { root: [53.1, 47], heat: [49.8, 65.7], tornado: [50.7, 61.9],
+      obsidian: [50, 66], magma: [48.4, 70] };   // both up (William's fit rulings, Q101)
+    var CHEST_W = { heat: 28, lightning: 38, obsidian: 36 };   // fitted plates; obsidian shrunk (Q101)
+    var NO_CHEST = { geyser: 1 };   // William: no geyser chest plate (Q101)
     var cp = CHEST_POS[fam] || [x, Math.min(y + 22, 88)];
     var pieces = '<div class="accessory armorbit" style="left:' + hp[0] + '%;top:' + hp[1] + '%;transform:translate(-50%,-90%);width:52cqw;font-size:0"><svg viewBox="0 0 120 50" style="width:100%;display:block">' + helm + '</svg></div>' +
       (NO_CHEST[fam] ? '' : '<div class="accessory armorbit" style="left:' + cp[0] + '%;top:' + cp[1] + '%;transform:translate(-50%,-50%);width:' + (CHEST_W[fam] || 46) + 'cqw;font-size:0"><svg viewBox="0 0 120 56" style="width:100%;display:block">' + chest + '</svg></div>');
@@ -15529,7 +15589,7 @@ var qrcode = function() {
     if (document.getElementById('outroScene')) return;
     var O = document.createElement('div');
     O.id = 'outroScene';
-    var fams = team.length ? team : ['fire', 'water', 'earth', 'wind'];
+    var fams = ['fire', 'water', 'earth', 'wind'];  // always Grassy's own (Q102)
     var party = fams.map(function (f, i) {
       return '<div class="oblob" style="left:' + (5 + i * 13) + '%;animation-delay:' + (i * 0.12) + 's">' + uniqueSvg(formSvg(f, 3)) + '</div>' +
         '<div class="ohooray" style="left:' + (5 + i * 13) + '%;animation-delay:' + (i * 0.12) + 's">🎉</div>';
@@ -15577,7 +15637,7 @@ var qrcode = function() {
     var O = document.createElement('div');
     O.id = 'outroScene';
     O.style.background = '#3a3160';
-    var fams = team.length ? team : ['dark', 'fairy', 'moss', 'tree'];
+    var fams = ['dark', 'fairy', 'moss', 'tree'];  // always the Forest's own (Q102)
     var party = fams.map(function (f, i) {
       return '<div class="oblob" style="left:' + (5 + i * 13) + '%;animation-delay:' + (i * 0.12) + 's">' + uniqueSvg(formSvg(f, 3)) + '</div>' +
         '<div class="ohooray" style="left:' + (5 + i * 13) + '%;animation-delay:' + (i * 0.12) + 's">🎉</div>';
@@ -15625,7 +15685,10 @@ var qrcode = function() {
     var O = document.createElement('div');
     O.id = 'outroScene';
     O.style.background = opts.bg;
-    var fams = team.length ? team : WCONF[opts.world].fams;
+    // ALWAYS party with that world's own blobs — William's ruling (Q102):
+    // "the three star forms from that world", never the traveling team
+    // (Grassy 3★ forms were crashing every world's party)
+    var fams = WCONF[opts.world].fams;
     var party = fams.map(function (f, i) {
       return '<div class="oblob" style="left:' + (5 + i * 13) + '%;animation-delay:' + (i * 0.12) + 's">' + uniqueSvg(formSvg(f, 3)) + '</div>' +
         '<div class="ohooray" style="left:' + (5 + i * 13) + '%;animation-delay:' + (i * 0.12) + 's">🎉</div>';
@@ -15736,38 +15799,51 @@ var qrcode = function() {
       '<svg viewBox="0 0 520 560" style="width:100%"><path d="M 260 80 q 175 -22 220 138 q 42 140 -80 214 q -132 84 -262 10 q -116 -78 -78 -212 q 40 -140 200 -150 Z" fill="#221a3e" stroke="#2b2340" stroke-width="10" stroke-linejoin="round"/><circle cx="215" cy="218" r="13" fill="#b39ddb"/><circle cx="305" cy="218" r="13" fill="#b39ddb"/><circle cx="220" cy="213" r="5" fill="#fff"/><circle cx="310" cy="213" r="5" fill="#fff"/><path d="M 200 214 l 34 10 M 320 214 l -34 10" stroke="#8a7ab5" stroke-width="9" stroke-linecap="round"/><path d="M 224 292 q 36 -14 72 0" fill="none" stroke="#8a7ab5" stroke-width="9" stroke-linecap="round"/><path d="M 78 342 Q 260 296 442 342 L 448 468 Q 260 530 72 468 Z" fill="#f7f1e3" stroke="#2b2340" stroke-width="9" stroke-linejoin="round"/><path d="M 78 342 Q 260 296 442 342 L 437 366 Q 260 322 83 366 Z" fill="#fffdf5" stroke="#2b2340" stroke-width="7" stroke-linejoin="round"/><path d="M 260 328 L 260 512" stroke="#d8d2c2" stroke-width="7" stroke-linecap="round"/><circle cx="274" cy="392" r="6" fill="#2b2340"/><circle cx="274" cy="432" r="6" fill="#2b2340"/><circle cx="274" cy="472" r="6" fill="#2b2340"/><rect x="140" y="400" width="52" height="44" rx="8" fill="#fffdf5" stroke="#2b2340" stroke-width="6"/><path d="M 154 404 l 0 -18 M 168 404 l 0 -22" stroke="#c74fa3" stroke-width="6" stroke-linecap="round"/></svg>' +
       '</div>' +
       '<div class="ocaption" id="tcap">🏰 Far away… in a shadowy kingdom…</div>' +
-      '<div class="iskip">⏭️ tap to skip</div>';
+      '<div class="iskip">⏭️ tap for next</div>';
     document.body.appendChild(O);
-    var timers = [];
     var done = false;
+    var beatTimer = null;
     function finish() {
       if (done) return;
       done = true;
-      timers.forEach(clearTimeout);
+      if (beatTimer) clearTimeout(beatTimer);
       if (O.parentNode) O.remove();
       try { blobParty('<div class="partybanner">🏆 YOU SAVED THE BLOB WORLD! 🏆<br><span style="font-size:1.1rem">THE END… for now!</span></div>'); } catch (e) {}
     }
+    // one beat at a time — a tap moves to the NEXT line, it never skips
+    // the whole scene (William caught the King getting zipped past, Q100)
+    var BEATS = [
+      { hold: 5000, fn: function () {
+        var c = document.getElementById('tcap');
+        if (c) c.textContent = '🧪 THE SCIENTIST: “The blobs have a very good claim on their kingdom, sir. I could not defeat it.”';
+      } },
+      { hold: 3400, fn: function () {
+        var e = document.getElementById('tkeyes');
+        if (e) e.style.cssText = 'animation: tglow 0.8s ease-out both;';
+        var c = document.getElementById('tcap');
+        if (c) c.textContent = '👑 ???: “What if… I go.”';
+        try { playSound('coal'); } catch (er) {}
+      } },
+      { hold: 2600, fn: function () {
+        var c = document.getElementById('tcap');
+        if (c) c.textContent = '⚡ TO BE CONTINUED… ⚡';
+        try { playSound('spark'); } catch (er) {}
+      } }
+    ];
+    var bi = 0;
+    function runBeat() {
+      if (done) return;
+      if (beatTimer) { clearTimeout(beatTimer); beatTimer = null; }
+      if (bi >= BEATS.length) { finish(); return; }
+      var b = BEATS[bi++];
+      b.fn();
+      beatTimer = setTimeout(runBeat, b.hold);
+    }
     var armed = false;
     setTimeout(function () { armed = true; }, 800);
-    O.addEventListener('click', function () { if (armed) finish(); });
+    O.addEventListener('click', function () { if (armed) runBeat(); });
     try { playSound('dark'); } catch (e) {}
-    timers.push(setTimeout(function () {
-      var c = document.getElementById('tcap');
-      if (c) c.textContent = '🧪 THE SCIENTIST: “The blobs have a very good claim on their kingdom, sir. I could not defeat it.”';
-    }, 2600));
-    timers.push(setTimeout(function () {
-      var e = document.getElementById('tkeyes');
-      if (e) e.style.cssText = 'animation: tglow 0.8s ease-out both;';
-      var c = document.getElementById('tcap');
-      if (c) c.textContent = '👑 ???: “What if… I go.”';
-      try { playSound('coal'); } catch (er) {}
-    }, 7600));
-    timers.push(setTimeout(function () {
-      var c = document.getElementById('tcap');
-      if (c) c.textContent = '⚡ TO BE CONTINUED… ⚡';
-      try { playSound('spark'); } catch (er) {}
-    }, 11000));
-    timers.push(setTimeout(finish, 13600));
+    beatTimer = setTimeout(runBeat, 2600);
   }
   function jerryOutro() {
     worldOutro({ world: 'skies', bg: '#8ecbf2', freedSvg: JERRY_SVG, freedName: 'JERRY',
@@ -15796,7 +15872,7 @@ var qrcode = function() {
     O.id = 'outroScene';
     O.className = 'darken';
     O.style.background = '#1b1533';
-    var fams = team.length ? team : ['mars', 'venus', 'jupiter', 'saturn'];
+    var fams = ['mars', 'venus', 'jupiter', 'saturn'];  // always Solar's own (Q102)
     var party = fams.map(function (f, i) {
       return '<div class="oblob" style="left:' + (5 + i * 13) + '%;animation-delay:' + (i * 0.12) + 's">' + uniqueSvg(formSvg(f, 3)) + '</div>' +
         '<div class="ohooray" style="left:' + (5 + i * 13) + '%;animation-delay:' + (i * 0.12) + 's">🎉</div>';
@@ -15982,6 +16058,14 @@ var qrcode = function() {
       if (equip[f] === acc) b.style.background = '#8fce7f';
       b.innerHTML = miniFace(f) + '<br>' + NAMES[f].split(' ')[0];
       b.addEventListener('click', function () {
+        if (equip[f] === acc) {
+          // tap again to take it off (Rachel, 2026-08-02)
+          delete equip[f];
+          saveGame(); refreshDexOwnership();
+          b.style.background = '';
+          msg.textContent = '👋 ' + NAMES[f] + ' took off the ' + ACCS[acc].name + ' ' + ACCS[acc].emoji + '. Tap a blob to put it on — tap again to take it off!';
+          return;
+        }
         equip[f] = acc;
         saveGame(); refreshDexOwnership();
         b.style.background = '#8fce7f';
@@ -15989,6 +16073,17 @@ var qrcode = function() {
       });
       pickRow.appendChild(b);
     });
+    // ✅ Done — closes the dress-up row so the shop is easy to browse again
+    // (William's ask, 2026-08-02)
+    var doneB = document.createElement('button');
+    doneB.className = 'back';
+    doneB.style.cssText = 'position:static;padding:6px 10px;font-size:0.95rem;background:#ffe9a8';
+    doneB.textContent = '✅ Done!';
+    doneB.addEventListener('click', function () {
+      pickRow.remove();
+      msg.textContent = '';
+    });
+    pickRow.appendChild(doneB);
     var old = document.getElementById('accPickRow');
     if (old) old.remove();
     if (wearers.length) msg.insertAdjacentElement('afterend', pickRow);
