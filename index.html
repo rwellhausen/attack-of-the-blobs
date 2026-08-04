@@ -440,7 +440,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-04 13:30</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-04 13:33</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -14799,7 +14799,14 @@ var qrcode = function() {
   var curShopTab = 'gold';
   var HARDLOCK = '🔒 Advance to unlock';
   function hardGoodsOpen() { return SANDBOX || sciDone || sciProgress >= 6; }
-  function hardLocked(item) { return item.classList.contains('hardgood') && !hardGoodsOpen(); }
+  // A hard world's goods open exactly when that hard world opens — the same way
+  // an easy world's goods are only reachable once you can play there (Q111).
+  function hardLocked(item) {
+    if (SANDBOX) return false;
+    if (!item.classList.contains('hardgood')) return false;
+    var w = WORLD_OF[item.dataset.name];
+    return w ? !!worldLocked(w) : !hardGoodsOpen();
+  }
   function addCoins(d) {
     walletAdd(curWorld, d);
     showCoins();
@@ -15978,8 +15985,7 @@ var qrcode = function() {
       if (!b) { b = document.createElement('b'); b.className = 'tabbal'; el.appendChild(b); }
       b.textContent = walletOf(TABCUR[t]);
     });
-    var hardOk = hardGoodsOpen();
-    document.querySelectorAll('.hardgood').forEach(function (el) { el.style.display = ''; el.classList.toggle('locked', !hardOk && el.classList.contains('pick')); });
+    document.querySelectorAll('.hardgood').forEach(function (el) { el.style.display = ''; el.classList.toggle('locked', el.classList.contains('pick') && hardLocked(el)); });
     document.querySelectorAll('.shopevo').forEach(function (item) {
       var fam = item.dataset.name, star = +item.dataset.star;
       var stamp = item.querySelector('.shopstamp');
