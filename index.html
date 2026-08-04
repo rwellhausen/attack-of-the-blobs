@@ -98,7 +98,7 @@
   #introScene .iray svg { transform:scaleX(-1); }
   #introScene .iray .izap { position:absolute; left:0%; top:44%; width:46vw; height:9px; background:#ff5fa2; border-radius:6px; transform-origin:left center; transform:rotate(var(--zang,148deg)) scaleX(0); animation: izap 0.45s ease-out forwards; box-shadow:0 0 18px #ff5fa2; }
   #introScene .icaption { position:absolute; top:7%; left:50%; transform:translateX(-50%); width:min(560px,92%); background:var(--card); border:4px solid #2b2340; border-radius:16px; padding:10px 16px; font-weight:800; font-size:clamp(1rem,3.6vw,1.3rem); text-align:center; box-shadow:0 4px 0 rgba(43,35,64,0.25); }
-  #introScene .iskip { position:absolute; bottom:14px; right:14px; background:#ffe9a8; border:3px solid #2b2340; border-radius:12px; padding:6px 12px; font-weight:800; font-size:0.95rem; }
+  #introScene .iskip, #transformScene .iskip, #outroScene .iskip, #throneScene .iskip, #kingScene .iskip { position:absolute; bottom:14px; right:14px; background:#ffe9a8; border:3px solid #2b2340; border-radius:12px; padding:6px 12px; font-weight:800; font-size:0.95rem; }
   #introScene.mad { animation: imadflash 0.6s ease-in-out 2; }
   #introScene .iproj { position:absolute; font-size:40px; animation: iproj 0.9s linear forwards; }
   @keyframes ibounce { from { transform:translateY(0); } to { transform:translateY(-4%); } }
@@ -115,12 +115,12 @@
   #outroScene .omomo { position:absolute; bottom:26%; left:58%; width:26%; animation: owalkoff 3.2s ease-in 0.8s forwards; }
   #outroScene .otiny { position:absolute; bottom:24%; right:-45%; width:30%; animation: otinyin 1.4s ease-out forwards; }
   #outroScene .oguard { position:absolute; bottom:8%; width:13%; right:-20%; animation: oguardin 1.2s ease-out forwards; }
-  #outroScene.thump { animation: othump 0.45s ease-in-out 2; }
+  #outroScene.thump, #transformScene.thump { animation: othump 0.45s ease-in-out 2; }
   #screen-levels.hardmode #grassyScroll svg > :is(rect, g:not(.lvl):not(.nextmark)) { filter: hue-rotate(265deg) saturate(1.3) brightness(0.8); }
   #screen-levels-forest.hardmode svg > :is(rect, g:not(.lvl):not(.nextmark)) { filter: saturate(0.6) brightness(0.75) contrast(1.15); }
   #screen-levels-skies.hardmode svg > :is(rect, g:not(.lvl):not(.nextmark)) { filter: saturate(0.5) brightness(0.6) hue-rotate(20deg); }
   #screen-levels-underground.hardmode svg > :is(rect, g:not(.lvl):not(.nextmark)) { filter: sepia(0.5) hue-rotate(-30deg) brightness(0.75) saturate(1.6); }
-  #outroScene .ocaption, #throneScene .ocaption, #kingScene .ocaption { position:absolute; top:7%; left:50%; transform:translateX(-50%); width:min(560px,92%); background:var(--card); border:4px solid #2b2340; border-radius:16px; padding:10px 16px; font-weight:800; font-size:clamp(1rem,3.6vw,1.3rem); text-align:center; box-shadow:0 4px 0 rgba(43,35,64,0.25); }
+  #outroScene .ocaption, #throneScene .ocaption, #kingScene .ocaption, #transformScene .ocaption { position:absolute; top:7%; left:50%; transform:translateX(-50%); width:min(560px,92%); background:var(--card); border:4px solid #2b2340; border-radius:16px; padding:10px 16px; font-weight:800; font-size:clamp(1rem,3.6vw,1.3rem); text-align:center; box-shadow:0 4px 0 rgba(43,35,64,0.25); }
   @keyframes ojump { from { transform:translateY(0); } to { transform:translateY(-16%); } }
   @keyframes owalkoff { to { transform:translateX(70vw); } }
   @keyframes otinyin { to { right:4%; } }
@@ -440,7 +440,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-04 14:16</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-04 14:22</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -13784,6 +13784,60 @@ var qrcode = function() {
     '<path d="M 448 262 l 8 -34 l 22 22 l 18 -32 l 18 32 l 22 -22 l 8 34 Z" fill="#c9a227" stroke="#2b2340" stroke-width="6" stroke-linejoin="round"/>' +
     '<circle cx="470" cy="248" r="7" fill="#e63946"/><circle cx="500" cy="242" r="7" fill="#3d6fb4"/><circle cx="530" cy="248" r="7" fill="#57cc99"/>' +
     '</g>';
+  // The world TRANSFORMS: the King's ray hits the world you know, and it turns
+  // into its hard version in front of you. Plays once per hard world, the first
+  // time you walk in (Q114). Same tap-to-skip grammar as the other scenes.
+  var HARD_HIT = {
+    ghard: { was: '#8fce7f', now: '#c96a4f', name: 'GRASSY PLAINS',
+             blast: 'The rivers dry up. The ground CRACKS and burns\u2026', sound: 'fire' },
+    fhard: { was: '#b5abd6', now: '#c3b7e0', name: 'THE DARK FOREST',
+             blast: 'The trees SINK. Mud and roots swallow the paths\u2026', sound: 'earth' },
+    shard: { was: '#b9e2fb', now: '#ece0c4', name: 'SUNNY SKIES',
+             blast: 'The blue sky TURNS. Thunder rolls in\u2026', sound: 'wind' },
+    uhard: { was: '#6b4f35', now: '#efe2c8', name: 'DEEP UNDERGROUND',
+             blast: 'The rock MELTS. Ash and magma pour through\u2026', sound: 'earth' }
+  };
+  // CYBORG_KING_SVG is a bare <g> drawn in the throne scene's 1000x620 space;
+  // this frames it to his own bounds so he can stand anywhere.
+  function kingSvg() { return '<svg viewBox="399 198 211 240" style="width:100%;height:auto;display:block">' + CYBORG_KING_SVG + '</svg>'; }
+  function worldTransformScene(wid, cb) {
+    var H = HARD_HIT[wid];
+    if (!H || document.getElementById('transformScene')) { cb(); return; }
+    var O = document.createElement('div');
+    O.id = 'transformScene';
+    O.style.cssText = 'position:fixed;inset:0;z-index:65;overflow:hidden;cursor:pointer;background:' + H.was + ';transition:background 1.1s ease;';
+    O.innerHTML =
+      '<div id="tking" style="position:absolute;top:12%;right:8%;width:30%;max-width:200px;opacity:0;transition:opacity .6s ease">' +
+        kingSvg() + '</div>' +
+      '<div id="tray" style="position:absolute;top:30%;right:30%;width:0;height:14px;border-radius:8px;background:#ff5fa2;box-shadow:0 0 18px #ff5fa2;transform:rotate(24deg);transform-origin:right center;transition:width .5s ease"></div>' +
+      '<div class="ocaption" id="tcap">' + H.name + ' \u2026</div>' +
+      '<div class="iskip">\u23ed\ufe0f tap to skip</div>';
+    document.body.appendChild(O);
+    var timers = [], done = false;
+    function finish() { if (done) return; done = true; timers.forEach(clearTimeout); if (O.parentNode) O.remove(); cb(); }
+    var armed = false;
+    setTimeout(function () { armed = true; }, 700);
+    O.addEventListener('click', function () { if (armed) finish(); });
+    var cap = function (t) { var c = document.getElementById('tcap'); if (c) c.textContent = t; };
+    timers.push(setTimeout(function () {
+      var k = document.getElementById('tking'); if (k) k.style.opacity = '1';
+      cap('\ud83d\udc51 THE CYBORG KING found it.');
+      try { playSound('dark'); } catch (e) {}
+    }, 900));
+    timers.push(setTimeout(function () {
+      var r = document.getElementById('tray'); if (r) r.style.width = '70%';
+      try { playSound(H.sound); } catch (e) {}
+    }, 2300));
+    timers.push(setTimeout(function () {
+      O.style.background = H.now;
+      O.classList.add('thump');
+      cap(H.blast);
+    }, 3000));
+    timers.push(setTimeout(function () {
+      cap('\ud83d\udd25 ' + H.name + ' HARD MODE!');
+    }, 5000));
+    timers.push(setTimeout(finish, 7000));
+  }
   function cyborgKingScene(cb) {
     if (document.getElementById('kingScene')) return;
     var O = document.createElement('div');
@@ -15923,7 +15977,7 @@ var qrcode = function() {
       openText: 'THE LAST GIANT MINION IS SMASHED! 🎉',
       alarmText: '\u2026something HUGE is watching\u2026 👂', alarmSound: 'dark',
       arrive: 'walk', nextFams: null,
-      nextBossSvg: CYBORG_KING_SVG, arriveSound: 'dark',
+      nextBossSvg: kingSvg(), arriveSound: 'dark',
       line: '👑 THE CYBORG KING: \u201cYou beat my minions\u2026 but you have not beaten ME.\u201d',
       nextText: '👑 The Cyborg King is still out there\u2026 for now!' });
   }
@@ -16786,7 +16840,17 @@ var qrcode = function() {
       goTo(screen);
       scrollToFrontier(easyWorld);
     };
-    if (wid === 'ghard' && !kingSeen) { kingSeen = true; saveGame(); cyborgKingScene(go); } else go();
+    var transformed = (worldsData[wid] || {}).hit;
+    var afterKing = function () {
+      // enter the world FIRST, then play the transform over it — you watch the
+      // world you are standing in turn hard, and nothing blocks navigation
+      go();
+      if (!transformed) {
+        worldsData[wid] = worldsData[wid] || {}; worldsData[wid].hit = 1; saveGame();
+        worldTransformScene(wid, function () {});
+      }
+    };
+    if (wid === 'ghard' && !kingSeen) { kingSeen = true; saveGame(); cyborgKingScene(afterKing); } else afterKing();
   }
   tappable(document.getElementById('enter-ghard'), function () { enterHardWorld('ghard', function (v) { hardGrassy = v; }, 'grassy', 'screen-levels'); });
   tappable(document.getElementById('enter-fhard'), function () { enterHardWorld('fhard', function (v) { hardForest = v; }, 'forest', 'screen-levels-forest'); });
