@@ -440,7 +440,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-03 20:46</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-04 10:43</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -1732,12 +1732,6 @@
   <circle cx="88" cy="262" r="13" fill="#2b2340"/>
   <circle cx="152" cy="272" r="13" fill="#2b2340"/>
 
-  <!-- stars -->
-  <g fill="none" class="outline thin">
-    <path d="M 400 160 l 0 -28 M 400 146 l -14 0 l 28 0"/>
-    <path d="M 440 320 l 0 -22 M 440 309 l -11 0 l 22 0"/>
-    <path d="M 380 450 l 0 -24 M 380 438 l -12 0 l 24 0"/>
-  </g>
 </svg>
     <h4><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></h4>
     <p>A crescent moon with craters.</p>
@@ -6081,12 +6075,6 @@
   <circle cx="88" cy="262" r="13" fill="#2b2340"/>
   <circle cx="152" cy="272" r="13" fill="#2b2340"/>
 
-  <!-- stars -->
-  <g fill="none" class="outline thin">
-    <path d="M 400 160 l 0 -28 M 400 146 l -14 0 l 28 0"/>
-    <path d="M 440 320 l 0 -22 M 440 309 l -11 0 l 22 0"/>
-    <path d="M 380 450 l 0 -24 M 380 438 l -12 0 l 24 0"/>
-  </g>
 </svg><p>Dark <svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg><svg class="wstar"><use href="#wstar"/></svg></p></div><div class="pick pvpcard" data-fam="fairy" data-star="1" role="button" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="1 -92.5 520 600" style="width:100%;height:auto;display:block">
   <defs>
     <style>
@@ -10198,12 +10186,6 @@
   <circle cx="88" cy="262" r="13" fill="#2b2340"/>
   <circle cx="152" cy="272" r="13" fill="#2b2340"/>
 
-  <!-- stars -->
-  <g fill="none" class="outline thin">
-    <path d="M 400 160 l 0 -28 M 400 146 l -14 0 l 28 0"/>
-    <path d="M 440 320 l 0 -22 M 440 309 l -11 0 l 22 0"/>
-    <path d="M 380 450 l 0 -24 M 380 438 l -12 0 l 24 0"/>
-  </g>
 </svg></div><div data-form="fairy-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="1 -92.5 520 600" style="width:100%;height:auto;display:block">
   <defs>
     <style>
@@ -14630,9 +14612,26 @@ var qrcode = function() {
       helm = '<path d="M 22 42 Q 8 16 28 4 Q 40 20 38 40 Z M 98 42 Q 112 16 92 4 Q 80 20 82 40 Z M 40 42 Q 60 30 80 42 L 74 46 Q 60 38 46 46 Z" fill="' + col + '" stroke="#2b2340" stroke-width="4" stroke-linejoin="round"/>';
       chest = '<path d="M 60 2 Q 100 16 96 40 Q 90 52 60 54 Q 30 52 24 40 Q 20 16 60 2 Z" fill="' + col + '" stroke="#2b2340" stroke-width="5" stroke-linejoin="round"/><path d="M 60 8 L 60 48 M 44 20 Q 60 26 76 20 M 42 34 Q 60 40 78 34" fill="none" stroke="#2b2340" stroke-width="3" stroke-linecap="round"/>';
       if (fam === 'dark') {
-        // a banana-leaf that bends WITH the crescent's curve
-        chest = '<path d="M 4 34 Q 6 8 34 3 Q 70 -4 106 6 Q 118 10 116 22 Q 88 40 58 46 Q 26 52 8 44 Q 2 40 4 34 Z" fill="' + col + '" stroke="#2b2340" stroke-width="5" stroke-linejoin="round"/>' +
-          '<path d="M 10 38 Q 58 30 110 14" fill="none" stroke="#2b2340" stroke-width="3.5" stroke-linecap="round"/>';
+        // Q99 FINAL (2026-08-04, Rachel-blessed; built line-by-line from William's
+        // sketch): the hat with ears riding the moon's top curve, and the moon's
+        // lower third colored in as the leaf — straight midrib + four vein
+        // branches in shadow purple, all clipped to the moon so nothing colors
+        // outside the lines. Same viewBox as the dark-3 art so every path
+        // registers exactly on the body; overflow lets the ears rise above it.
+        // Record: dark_armor_denovo.html.
+        var dk = '#332a4d';
+        return '<div class="accessory armorbit" style="left:50%;top:50%;transform:translate(-50%,-50%);width:100cqw;font-size:0"><svg viewBox="-17.3 18.1 520 600" style="width:100%;display:block;overflow:visible">' +
+          '<defs><clipPath id="q99moon"><path d="M 320 70 A 235 235 0 1 0 320 530 A 260 260 0 0 1 320 70 Z"/></clipPath></defs>' +
+          // the leaf: lower third of the moon colored in, domed top line
+          '<path d="M 82 462 Q 92 408 162 400 Q 238 416 300 482 Q 322 506 334 528 L 344 560 L 20 560 Z" fill="' + dk + '" clip-path="url(#q99moon)"/>' +
+          // veins, placed per Rachel's markup
+          '<g fill="none" stroke="#5a4d85" stroke-width="7" stroke-linecap="round" clip-path="url(#q99moon)">' +
+          '<path d="M 121 352 L 251 532"/><path d="M 170 420 L 233 441"/><path d="M 159 409 L 136 493"/><path d="M 190 447 L 168 512"/><path d="M 218 486 L 311 509"/></g>' +
+          // the hat: twin ears (one shape, stamped twice), cap riding the top curve
+          '<path transform="translate(246,52) rotate(-24)" d="M -20 0 Q -26 -60 -12 -96 Q 0 -112 14 -94 Q 24 -56 20 4 Z" fill="' + dk + '" stroke="#2b2340" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>' +
+          '<path transform="translate(316,36) rotate(14)" d="M -20 0 Q -26 -60 -12 -96 Q 0 -112 14 -94 Q 24 -56 20 4 Z" fill="' + dk + '" stroke="#2b2340" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>' +
+          '<path d="M 172 90 Q 186 60 224 44 Q 276 18 322 26 Q 338 32 340 48 Q 340 64 330 76 Q 322 84 310 86 Q 250 72 216 76 Q 190 80 172 90 Z" fill="' + dk + '" stroke="#2b2340" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>' +
+          '</svg></div>';
       }
     } else if (w === 'skies') {
       helm = '<path d="M 30 40 Q 60 22 90 40 L 84 46 Q 60 32 36 46 Z" fill="' + col + '" stroke="#2b2340" stroke-width="4" stroke-linejoin="round"/><path d="M 60 20 q -4 -14 8 -18 q 10 12 -2 18 Z" fill="#fffdf5" stroke="#2b2340" stroke-width="3.5" stroke-linejoin="round"/>' +
