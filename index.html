@@ -440,7 +440,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-04 11:37</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-04 12:38</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -14682,7 +14682,7 @@ var qrcode = function() {
     if (!a) return '';
     var e = EYE[fam + '-' + (star || 1)] || [50, 45];
     var x = e[0], y = e[1], pos;
-    if (a === 'shades') pos = 'left:' + x + '%;top:' + y + '%;transform:translate(-50%,-55%);';
+    if (a === 'shades') pos = 'left:' + x + '%;top:' + y + '%;transform:translate(-50%,-44%);';   // sits ON the eyes, not above them (RW, 2026-08-04)
     else if (a === 'wand') pos = 'left:' + Math.min(x + 26, 86) + '%;top:' + (y + 8) + '%;transform:translate(-50%,-50%);';
     else if (a === 'cane') pos = 'left:' + Math.max(x - 26, 14) + '%;top:' + (y + 8) + '%;transform:translate(-50%,-50%);';
     else {
