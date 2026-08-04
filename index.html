@@ -440,7 +440,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-04 13:33</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-04 14:16</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -15447,6 +15447,10 @@ var qrcode = function() {
             if (curWorld === 'underground') setTimeout(bubOutro, 1300);
             if (curWorld === 'city') setTimeout(fatsoOutro, 1300);
             if (curWorld === 'solar') setTimeout(doofusOutro, 1300);
+            if (curWorld === 'ghard') setTimeout(ghardOutro, 1300);
+            if (curWorld === 'fhard') setTimeout(fhardOutro, 1300);
+            if (curWorld === 'shard') setTimeout(shardOutro, 1300);
+            if (curWorld === 'uhard') setTimeout(uhardOutro, 1300);
           }
           battleState = 'over';
         } else {
@@ -15728,7 +15732,7 @@ var qrcode = function() {
     }).join('');
     O.innerHTML = party +
       '<div class="omomo">' + uniqueSvg(opts.freedSvg) + '</div>' +
-      '<div class="ocaption" id="ocap">' + opts.freedName + ' IS FREE! HOORAY! 🎉</div>' +
+      '<div class="ocaption" id="ocap">' + (opts.openText || (opts.freedName + ' IS FREE! HOORAY! 🎉')) + '</div>' +
       '<div class="iskip">⏭️ tap to skip</div>';
     document.body.appendChild(O);
     var timers = [];
@@ -15748,10 +15752,10 @@ var qrcode = function() {
     timers.push(setTimeout(function () {
       cap(opts.line);
       var cls = opts.arrive === 'rise' ? 'oriser' : (opts.arrive === 'walk' ? 'owalker' : 'odropper');
-      opts.nextFams.forEach(function (f, i) {
+      (opts.nextFams || []).forEach(function (f, i) {
         O.insertAdjacentHTML('beforeend', '<div class="' + cls + '" style="bottom:8%;right:' + (18 + i * 10) + '%;width:13%;animation-delay:' + (0.15 * i) + 's">' + uniqueSvg(formSvg(f, 1)) + '</div>');
       });
-      O.insertAdjacentHTML('beforeend', '<div class="' + cls + '" style="bottom:24%;right:2%;width:30%;animation-delay:0.7s">' + uniqueSvg(opts.nextBossSvg) + '</div>');
+      if (opts.nextBossSvg) O.insertAdjacentHTML('beforeend', '<div class="' + cls + '" style="bottom:24%;right:2%;width:30%;animation-delay:0.7s">' + uniqueSvg(opts.nextBossSvg) + '</div>');
       try { playSound(opts.arriveSound); } catch (e) {}
     }, 6400));
     timers.push(setTimeout(function () {
@@ -15877,6 +15881,51 @@ var qrcode = function() {
     O.addEventListener('click', function () { if (armed) runBeat(); });
     try { playSound('dark'); } catch (e) {}
     beatTimer = setTimeout(runBeat, 2600);
+  }
+  // ---- HARD-WORLD victory scenes, built on the same worldOutro template as the
+  // story worlds: you win, the minion is smashed, an alarm, then the NEXT hard
+  // world's blobs arrive to face their own Giant Minion. The hard worlds now
+  // unlock in sequence, so each victory hands off exactly like the story ones.
+  function ghardOutro() {
+    worldOutro({ world: 'ghard', bg: WCONF.ghard.arenaBg,
+      freedSvg: GIANT_MINION_SVG, freedName: 'THE GIANT MINION',
+      openText: 'THE GIANT MINION IS SMASHED! 🎉',
+      alarmText: '\u2026something CREAKS in the dark trees! 👂', alarmSound: 'dark',
+      arrive: 'walk', nextFams: ['root', 'mud', 'cave', 'firefly'],
+      nextBossSvg: GIANT_MINION_F_SVG, arriveSound: 'dark',
+      line: 'THE DARK FOREST HARD BLOBS: \u201cYou\u2019re not getting past us, Giant Minion!\u201d',
+      nextText: '🌲 DARK FOREST HARD is OPEN! Tap to continue!' });
+  }
+  function fhardOutro() {
+    worldOutro({ world: 'fhard', bg: WCONF.fhard.arenaBg,
+      freedSvg: GIANT_MINION_F_SVG, freedName: 'THE GIANT MINION',
+      openText: 'THE GIANT MINION IS SMASHED! 🎉',
+      alarmText: '\u2026a STORM cracks overhead! 👂', alarmSound: 'wind',
+      arrive: 'drop', nextFams: ['tornado', 'lightning', 'thunder', 'hail'],
+      nextBossSvg: GIANT_MINION_S_SVG, arriveSound: 'wind',
+      line: 'THE SUNNY SKIES HARD BLOBS: \u201cYou\u2019re not getting past us, Giant Minion!\u201d',
+      nextText: '\u2600\ufe0f SUNNY SKIES HARD is OPEN! Tap to continue!' });
+  }
+  function shardOutro() {
+    worldOutro({ world: 'shard', bg: WCONF.shard.arenaBg,
+      freedSvg: GIANT_MINION_S_SVG, freedName: 'THE GIANT MINION',
+      openText: 'THE GIANT MINION IS SMASHED! 🎉',
+      alarmText: '\u2026the ground SPLITS open below! 👂', alarmSound: 'earth',
+      arrive: 'rise', nextFams: ['ash', 'obsidian', 'magma', 'geyser'],
+      nextBossSvg: GIANT_MINION_U_SVG, arriveSound: 'earth',
+      line: 'THE DEEP UNDERGROUND HARD BLOBS: \u201cYou\u2019re not getting past us, Giant Minion!\u201d',
+      nextText: '⛏️ DEEP UNDERGROUND HARD is OPEN! Tap to continue!' });
+  }
+  function uhardOutro() {
+    // last hard world built - nothing to hand off to yet, so the King himself shows up
+    worldOutro({ world: 'uhard', bg: WCONF.uhard.arenaBg,
+      freedSvg: GIANT_MINION_U_SVG, freedName: 'THE GIANT MINION',
+      openText: 'THE LAST GIANT MINION IS SMASHED! 🎉',
+      alarmText: '\u2026something HUGE is watching\u2026 👂', alarmSound: 'dark',
+      arrive: 'walk', nextFams: null,
+      nextBossSvg: CYBORG_KING_SVG, arriveSound: 'dark',
+      line: '👑 THE CYBORG KING: \u201cYou beat my minions\u2026 but you have not beaten ME.\u201d',
+      nextText: '👑 The Cyborg King is still out there\u2026 for now!' });
   }
   function jerryOutro() {
     worldOutro({ world: 'skies', bg: '#8ecbf2', freedSvg: JERRY_SVG, freedName: 'JERRY',
