@@ -293,7 +293,6 @@
     #screen-battle .arena.duel #yourBlob { position: absolute; bottom: 6px; left: 4px; width: 62% !important; }
     #screen-battle .arena.duel .teammate, #screen-battle .arena.duel .foe { width: min(100%, 42cqh) !important; }
     #screen-battle .arena.bossfight #enemyBlob { width: 54% !important; }
-    #momoEl { max-width: min(380px, 58cqh) !important; }
   }
   @media (orientation: landscape) and (max-height: 500px) {
     h2.world { margin: 6px 0; }
@@ -441,7 +440,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-03 20:04</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-03 20:46</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -14896,7 +14895,7 @@ var qrcode = function() {
       svg = svg.replace('</svg>', overlay + '</svg>');
       sciHelpers = RUSH_ORDER.map(function (w) { return WCONF[w].bossName; });
     }
-    enemySpan.innerHTML = '<div id="momoEl" style="width:100%;max-width:300px;cursor:pointer">' + svg + '</div>';
+    enemySpan.innerHTML = '<div id="momoEl" style="width:100%;max-width:min(420px, 68cqh);cursor:pointer">' + svg + '</div>';   // Q106: the boss scales with the arena — never smaller than a regular lone enemy
     bossAlive = {};
     WCONF[curWorld].secs.forEach(function (s) { bossAlive[s] = sciFight ? 6 : (madRush ? 4 : 3); });  // mad bosses wear FOUR-hit armor
     if (madRush) {
