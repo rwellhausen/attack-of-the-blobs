@@ -161,11 +161,11 @@
   #screen-pvp h2.world, #screen-pvp .battlebar, #screen-pvp > p { flex: none; }
   #screen-pvp h2.world { margin: 2px auto 4px; }
   #screen-pvp > p { margin: 4px 0; }
-  #screen-pvp .arena { flex: 1 1 auto; min-height: 0; width: 100%; margin: 0 auto; }
+  #screen-pvp .arena { flex: 1 1 auto; min-height: 0; width: 100%; margin: 0 auto; container-type: size; }
   #pvpPoster { position: absolute; bottom: 64px; left: 50%; transform: translateX(-50%); z-index: 20; width: min(400px, 92%); margin: 0; box-shadow: 0 6px 24px rgba(43,35,64,0.35); border-radius: 16px; }
   #battleTitle { font-size: 0.95rem; padding: 3px 10px; margin: 2px auto 6px; max-width: 360px; flex: none; }
   #screen-battle .battlebar { flex: none; margin: 0 auto 4px; transition: transform .35s ease; max-width: 560px; }
-  #screen-battle .arena { flex: 1 1 auto; min-height: 0; width: 100%; margin: 0 auto; }
+  #screen-battle .arena { flex: 1 1 auto; min-height: 0; width: 100%; margin: 0 auto; container-type: size; }
   #screen-battle #matchNote { flex: none; margin: 6px 0 4px; }
   #screen-battle p[style*="text-align"] { margin: 6px 0 0 !important; }
   #battlePoster { position: absolute; bottom: 64px; left: 50%; transform: translateX(-50%); z-index: 20; width: min(400px, 92%); margin: 0; box-shadow: 0 6px 24px rgba(43,35,64,0.35); border-radius: 16px; }
@@ -274,13 +274,22 @@
     .screen { padding: calc(48px + env(safe-area-inset-top, 0px)) 8px 40px; }
     h1 { font-size: 1.5rem; }
     h2.world { margin: 10px auto 8px; max-width: 86%; }
-    .pick { width: 108px; }
+    .chooser { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; max-width:430px; }
+    .chooser .pvpworld-h { grid-column: 1 / -1; }
+    .pick { width: auto; }
     .pvpcard { width: 96px; }
     .shoptabs { display:grid; grid-template-columns:repeat(3, 1fr); gap:6px; overflow-x:visible; padding:0; }
     .shoptab { padding:5px 3px; }
     .teambar { transform: scale(0.82); transform-origin: top center; margin: 0 auto -6px; }
-    #battleTitle { margin-top: 50px; }
+    #battleTitle { display: none; }
+    #screen-battle { padding-top: calc(56px + env(safe-area-inset-top, 0px)); }
+    #screen-battle .battlebar { min-height: 39px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; }
     #battleMsg.side-left, #battleMsg.side-right { transform: none; }
+    #screen-battle .arena.duel .fighters { display: block; height: 100%; }
+    #screen-battle .arena.duel #enemyBlob { position: absolute; top: 40px; right: 4px; width: 62% !important; }
+    #screen-battle .arena.duel #yourBlob { position: absolute; bottom: 6px; left: 4px; width: 62% !important; }
+    #screen-battle .arena.duel .teammate, #screen-battle .arena.duel .foe { width: min(100%, 42cqh) !important; }
+    #battlePoster, #pvpPoster { position: static; transform: none; margin: 6px auto 0; }
   }
   @media (orientation: landscape) and (max-height: 500px) {
     h2.world { margin: 6px 0; }
@@ -428,7 +437,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-02 21:02</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-03 19:43</p>
 </div>
 
 <div id="screen-who" class="screen" hidden>
@@ -13979,6 +13988,8 @@ var qrcode = function() {
   }
   function setFighters() {
     if (!team.length || !enemyTeam.length) return;
+    // duel = one blob per side: Pokémon-style stagger on phones so the blobs own the screen (Q104)
+    document.querySelector('#screen-battle .arena').classList.toggle('duel', team.length === 1 && enemyTeam.length === 1);
     var es = enemyStar();
     var pv = true;   // four-stacked columns at every size — William's law
     var w = team.length === 1 ? (pv ? 88 : 86) : (team.length === 2 ? (pv ? 72 : 58) : (team.length === 3 ? (pv ? 60 : 32) : (pv ? 52 : 44)));
@@ -14987,7 +14998,7 @@ var qrcode = function() {
       var showList = mine.length ? mine : hitters;
       var use = showList.length ? showList.map(function (h) { return miniFace(h) + '<b>' + NAMES[h].split(' ')[0] + '</b>'; }).join('<span style="font-weight:400">or</span>') : '<b>nobody</b>';
       if (!mine.length && showList.length) use += '<span style="font-weight:400">(in the Shop!)</span>';
-      return '<div style="display:flex;align-items:center;justify-content:center;gap:5px;margin:4px 0;white-space:nowrap">' + use + '<span style="font-weight:400">→ beats</span>' + miniFace(f) + '<b>' + NAMES[f].split(' ')[0] + '</b></div>';
+      return '<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:5px;margin:4px 0">' + use + '<span style="font-weight:400">→ beats</span>' + miniFace(f) + '<b>' + NAMES[f].split(' ')[0] + '</b></div>';
     }).join('');
     rows += '<div style="margin:5px 0 2px;font-weight:400"><b>Same family?</b> More stars <span style="font-weight:400">→ beats</span> fewer stars</div>';
     bp.innerHTML = '<div style="background:#fffdf5;border:4px solid #2b2340;border-radius:16px;padding:6px 10px;text-align:center;font-size:clamp(0.78rem, 3.4vw, 0.98rem)">' +
@@ -15005,6 +15016,7 @@ var qrcode = function() {
     enemySpan.style.visibility = 'visible';
     battleState = 'ready';
     if (bossMode) {
+      document.querySelector('#screen-battle .arena').classList.remove('duel');
       var pv = true;   // four-stacked columns at every size — William's law
     var w = team.length === 1 ? (pv ? 88 : 86) : (team.length === 2 ? (pv ? 72 : 58) : (team.length === 3 ? (pv ? 60 : 32) : (pv ? 52 : 44)));
       yourSpan.innerHTML = team.map(function (n) {
@@ -15016,8 +15028,8 @@ var qrcode = function() {
       document.getElementById('battleTitle').textContent = sciFight ? '🧪 THE SCIENTIST — ' + bn + ' SKIN!' : (madRush ? '😡 MAD ' + bn + '!' : '👑 BOSS BATTLE — ' + bn + '!');
       document.getElementById('matchNote').textContent = '👑 Destroy all FOUR of ' + (sciFight ? 'SCIENTIST ' : '') + bn + '\u2019s sections — each one only falls to its MATCHING blob!';
       var missing = WCONF[curWorld].secs.filter(function (f) { return team.indexOf(f) < 0; });
-      if (missing.length) setMsg('⚠️ You are missing ' + missing.map(function (m) { return NAMES[m]; }).join(', ') + ' — visit the Shop, or this fight can\u2019t be won!');
-      else setMsg(sciFight ? (sciProgress === 0 ? '🧪 THE SCIENTIST: “You may have beaten the guardians I zapped with my ray — but you won\u2019t beat ME!”' : '🧪 THE SCIENTIST SHAPESHIFTS INTO ' + bn + '! Tap one of your blobs!') : '👑 ' + bn + ' RISES! Tap one of your blobs!', 'right');
+      if (missing.length) setMsg(missing.length > 3 ? '⚠️ ' + missing.length + ' blobs missing — visit the Shop!' : '⚠️ Missing: ' + missing.map(function (m) { return NAMES[m].split(' ')[0]; }).join(', ') + '!');
+      else setMsg(sciFight ? (sciProgress === 0 ? '🧪 THE SCIENTIST: “You may have beaten the guardians I zapped with my ray — but you won\u2019t beat ME!”' : '🧪 SHAPESHIFT! ' + bn + '! Tap YOUR blob!') : '👑 ' + bn + ' RISES! Tap YOUR blob!', 'right');
       showBattlePoster();
       return;
     }
@@ -15026,11 +15038,11 @@ var qrcode = function() {
     yourSpan.querySelectorAll('.teammate').forEach(function (m) { m.style.visibility = 'visible'; });
     document.getElementById('battleTitle').textContent = '⚔️ ' + WCONF[curWorld].name + ' — Level ' + battleLevel;
     if (isStalemate()) {
-      setMsg('🤝 STALEMATE! No one can win. Tap "Battle again" for a new enemy!');
+      setMsg('🤝 STALEMATE! Tap "Battle again"!');
       battleState = 'over';
       document.getElementById('againBtn').hidden = false;
     } else {
-      setMsg('🫵 Your team goes first! Tap ' + (team.length > 1 ? 'one of YOUR blobs!' : 'YOUR blob!'), 'left');
+      setMsg('🫵 Tap YOUR blob!', 'left');
     }
   }
   function center(el, container) {
@@ -15172,7 +15184,7 @@ var qrcode = function() {
     attacker = t.dataset.name;
     attackerEl = t;
     battleState = 'selected';
-    setMsg(NAMES[attacker] + ' is ready — now tap the enemy!', 'left');
+    setMsg(NAMES[attacker].split(' ')[0] + ' is ready — tap the enemy!', 'left');
   });
   function aliveFoes() { return Array.prototype.filter.call(enemySpan.querySelectorAll('.foe'), function (x) { return !x.dataset.dead; }); }
   function aliveMates() { return Array.prototype.filter.call(yourSpan.querySelectorAll('.teammate'), function (m) { return m.style.visibility !== 'hidden'; }); }
@@ -15180,13 +15192,13 @@ var qrcode = function() {
   function canHitEls(aEl, dEl) { return storyCanHit(elBlob(aEl), elBlob(dEl)); }
   function youWin() {
     var first = winLevel(battleLevel);
-    setMsg('💥 POOF! Level ' + battleLevel + ' is GOLD! +' + ((curWorld === 'ghard' || curWorld === 'fhard' || curWorld === 'shard' || curWorld === 'uhard') ? (first ? 5 : 2) : (first ? 3 : 1)) + ' ' + CNAME[curWorld] + ' ' + CEMOJI[curWorld]);
+    setMsg('💥 POOF! Level ' + battleLevel + ' is GOLD! +' + ((curWorld === 'ghard' || curWorld === 'fhard' || curWorld === 'shard' || curWorld === 'uhard') ? (first ? 5 : 2) : (first ? 3 : 1)) + ' ' + CEMOJI[curWorld]);
     battleState = 'over';
     if (battleLevel < 50) document.getElementById('nextBtn').hidden = false;
   }
   function youLose() {
     addCoins(-1); saveGame();
-    setMsg('😵 Your whole team is out! You lose 1 ' + CNAME[curWorld].replace(/s$/, '') + ' ' + CEMOJI[curWorld] + ' — tap "Battle again"!');
+    setMsg('😵 Team out! −1 ' + CEMOJI[curWorld] + ' — tap "Battle again"!');
     battleState = 'over';
     document.getElementById('againBtn').hidden = false;
   }
@@ -15202,13 +15214,13 @@ var qrcode = function() {
   function backToYou() {
     if (battleState === 'over') return;
     if (isStalemate()) {
-      setMsg('🤝 STALEMATE! No one can win. Tap "Battle again" for a new enemy!');
+      setMsg('🤝 STALEMATE! Tap "Battle again"!');
       battleState = 'over';
       document.getElementById('againBtn').hidden = false;
       return;
     }
     battleState = 'ready';
-    setMsg('🫵 Your turn! Tap one of your blobs!', 'left');
+    setMsg('🫵 Tap YOUR blob!', 'left');
   }
   function cancelClash(aEl, bEl, aFam, bFam, done) {
     shoot(aEl, bEl, PROJ[aFam], true, function () {});
@@ -15230,7 +15242,7 @@ var qrcode = function() {
       clang.className = 'poof-cloud'; clang.textContent = '🛡️💥';
       clang.style.left = (c0.x - 32) + 'px'; clang.style.top = (c0.y - 32) + 'px';
       arena.appendChild(clang); setTimeout(function () { clang.remove(); }, 900);
-      setMsg('🛡️ CLANG! ' + NAMES[el.dataset.name] + '\u2019s armor takes the hit for you! It comes back next battle!', 'left');
+      setMsg('🛡️ CLANG! The armor takes the hit!', 'left');
       try { playSound('earth'); } catch (e) {}
       setTimeout(done, 900);
       return;
@@ -15251,7 +15263,7 @@ var qrcode = function() {
       cloud.className = 'poof-cloud'; cloud.textContent = '💨';
       cloud.style.left = (c.x - 32) + 'px'; cloud.style.top = (c.y - 32) + 'px';
       arena.appendChild(cloud); setTimeout(function () { cloud.remove(); }, 900);
-      setMsg('💥 ' + (minionFoe ? NAMES[el.dataset.name].replace(' Blob', ' Minion') : NAMES[el.dataset.name]) + ' DEVOLVED to ' + '⭐'.repeat(st - 1) + '!');
+      setMsg('💥 ' + NAMES[el.dataset.name].split(' ')[0] + (minionFoe ? ' Minion' : '') + ' DEVOLVED to ' + '⭐'.repeat(st - 1) + '!');
       setTimeout(done, 900);
     } else {
       if (isFoe) el.dataset.dead = '1';
@@ -15271,7 +15283,7 @@ var qrcode = function() {
              : (weakFoes.length ? { fEl: weakFoes[Math.floor(Math.random() * weakFoes.length)], mEl: tEl, kind: 'weak' }
              : { fEl: foes[Math.floor(Math.random() * foes.length)], mEl: tEl, kind: 'mirror' });
     var f = pick.fEl.dataset.name, m = pick.mEl.dataset.name;
-    setMsg('⚔️ Enemy turn: ' + NAMES[f] + ' attacks your ' + NAMES[m] + '!', 'right');
+    setMsg('⚔️ ' + NAMES[f].split(' ')[0] + ' attacks ' + NAMES[m].split(' ')[0] + '!', 'right');
     playSound(f);
     if (pick.kind === 'win') {
       shoot(pick.fEl, pick.mEl, PROJ[f], false, function () {
@@ -15284,7 +15296,7 @@ var qrcode = function() {
       cancelClash(pick.fEl, pick.mEl, f, m, function () { setMsg('💥 The attacks cancel out!'); setTimeout(backToYou, 700); });
     } else {
       shoot(pick.fEl, pick.mEl, PROJ[f], true, function () {
-        setMsg(NAMES[f] + '\u2019s attack does nothing to your ' + NAMES[m] + '!');
+        setMsg('It does nothing to ' + NAMES[m].split(' ')[0] + '!');
         setTimeout(backToYou, 700);
       });
     }
@@ -15300,7 +15312,7 @@ var qrcode = function() {
       var srect = document.getElementById('sec-' + smash);
       if (bossAlive[smash] > 0) {
         if (srect) srect.setAttribute('fill-opacity', ({ 5: '0.92', 4: '0.86', 3: '0.78', 2: '0.65', 1: '0.4' })[bossAlive[smash]] || '0.4');
-        setMsg('💚 ' + blocker + ' blocks the ray and smashes the ' + NAMES[smash].split(' ')[0] + ' section! ' + sciHelpers.length + ' left!', 'left');
+        setMsg('💚 ' + blocker + ' SMASHES ' + NAMES[smash].split(' ')[0] + '! ' + sciHelpers.length + ' left!', 'left');
         setTimeout(bossBackToYou, 1000);
       } else {
         if (srect) { srect.setAttribute('fill', '#bdb5a8'); srect.setAttribute('fill-opacity', '1'); }
@@ -15315,11 +15327,11 @@ var qrcode = function() {
             setTimeout(sciDefeatOutro, 1400);
             try { blobParty(); } catch (e) {}
           } else {
-            setMsg('💥 ' + blocker + ' SHATTERS his last section — but he SHAPESHIFTS! Skin ' + (sciProgress + 1) + ' of 6! Tap Back!');
+            setMsg('💥 SHAPESHIFT! Skin ' + (sciProgress + 1) + ' of 6! Tap Back!');
           }
           battleState = 'over';
         } else {
-          setMsg('💚 ' + blocker + ' blocks the ray and smashes the ' + NAMES[smash].split(' ')[0] + ' section! ' + leftS + ' left!', 'left');
+          setMsg('💚 ' + blocker + ' SMASHES ' + NAMES[smash].split(' ')[0] + '! ' + leftS + ' left!', 'left');
           setTimeout(bossBackToYou, 1000);
         }
       }
@@ -15327,7 +15339,7 @@ var qrcode = function() {
     }
     if (madRush && Math.random() < 0.18) {
       var bn0 = WCONF[curWorld].bossName;
-      setMsg('🌀 MAD ' + bn0 + ' goes TOTALLY BONKERS and attacks the sky! The mad-ray scrambled the aim!', 'right');
+      setMsg('🌀 BONKERS! MAD ' + bn0 + ' hits the sky!', 'right');
       setTimeout(bossBackToYou, 900);
       return;
     }
@@ -15343,7 +15355,7 @@ var qrcode = function() {
     var f = winSecs.length ? winSecs[Math.floor(Math.random() * winSecs.length)]
                            : secs[Math.floor(Math.random() * secs.length)];
     var m = mEl.dataset.name;
-    setMsg('👑 ' + WCONF[curWorld].bossName + '\u2019s ' + NAMES[f].split(' ')[0] + ' section attacks your ' + NAMES[m] + '!', 'right');
+    setMsg('👑 ' + NAMES[f].split(' ')[0] + ' section attacks ' + NAMES[m].split(' ')[0] + '!', 'right');
     playSound(f);
     var momoEl = document.getElementById('momoEl');
     if ((BEATS[f] || []).indexOf(m) > -1) {
@@ -15355,7 +15367,7 @@ var qrcode = function() {
       });
     } else {
       shoot(momoEl, mEl, PROJ[f], true, function () {
-        setMsg('The attack does nothing to your ' + NAMES[m] + '!');
+        setMsg('It does nothing to ' + NAMES[m].split(' ')[0] + '!');
         setTimeout(bossBackToYou, 700);
       });
     }
@@ -15365,31 +15377,29 @@ var qrcode = function() {
     var secs = Object.keys(bossAlive).filter(function (s) { return bossAlive[s]; });
     var fams = aliveMates().map(function (m) { return m.dataset.name; });
     if (!secs.some(function (s) { return fams.indexOf(s) > -1; })) {
-      setMsg('🤝 Your team can\u2019t hurt the boss\u2019s last sections — you need ' + secs.map(function (s) { return NAMES[s]; }).join(', ') + '! Battle over.');
+      setMsg(secs.length > 2 ? '🤝 STALEMATE! ' + secs.length + ' blobs missing!' : '🤝 STALEMATE! Missing: ' + secs.map(function (s) { return NAMES[s].split(' ')[0]; }).join(', ') + '!');
       battleState = 'over';
       document.getElementById('againBtn').hidden = false;
       return;
     }
     battleState = 'ready';
-    setMsg('🫵 Your turn! Tap one of your blobs!', 'left');
+    setMsg('🫵 Tap YOUR blob!', 'left');
   }
   enemySpan.addEventListener('click', function (e) {
     if (bossMode) {
       var mo = e.target.closest ? e.target.closest('#momoEl') : null;
       if (!mo || battleState !== 'selected' || !attacker) return;
-      if (!bossAlive[attacker]) { setMsg('The ' + NAMES[attacker].split(' ')[0] + ' section is already destroyed — pick a different blob!'); battleState = 'ready'; attackerEl.classList.remove('selected'); return; }
+      if (!bossAlive[attacker]) { setMsg('Section gone — pick another blob!'); battleState = 'ready'; attackerEl.classList.remove('selected'); return; }
       battleState = 'busy';
       attackerEl.classList.remove('selected');
       playSound(attacker);
-      setMsg(NAMES[attacker] + ' attacks ' + WCONF[curWorld].bossName + '\u2019s ' + NAMES[attacker].split(' ')[0] + ' section!');
+      setMsg(NAMES[attacker].split(' ')[0] + ' attacks!');
       shoot(attackerEl, mo, PROJ[attacker], false, function () {
         bossAlive[attacker] -= 1;
         var rect = document.getElementById('sec-' + attacker);
         if (bossAlive[attacker] > 0) {
           if (rect) rect.setAttribute('fill-opacity', ({ 5: '0.92', 4: '0.86', 3: '0.78', 2: '0.65', 1: '0.4' })[bossAlive[attacker]] || '0.4');
-          setMsg(bossAlive[attacker] === 1
-            ? '💥 The ' + NAMES[attacker].split(' ')[0] + ' section is CRUMBLING — one more hit!'
-            : '💥 The ' + NAMES[attacker].split(' ')[0] + ' section CRACKS! (' + bossAlive[attacker] + ' more hits)');
+          setMsg('💥 ' + NAMES[attacker].split(' ')[0] + ' section CRACKS! ' + bossAlive[attacker] + ' more hit' + (bossAlive[attacker] > 1 ? 's' : '') + '!');
           setTimeout(momoTurn, 900);
           return;
         }
@@ -15428,7 +15438,7 @@ var qrcode = function() {
           }
           battleState = 'over';
         } else {
-          setMsg('💥 The ' + NAMES[attacker].split(' ')[0] + ' section shatters! ' + left + ' sections left!');
+          setMsg('💥 ' + NAMES[attacker].split(' ')[0] + ' section SHATTERS! ' + left + ' left!');
           setTimeout(momoTurn, 900);
         }
       });
@@ -15445,13 +15455,13 @@ var qrcode = function() {
       setMsg('Both blobs attack at the same time!');
       playSound(foe);
       cancelClash(attackerEl, fEl, attacker, foe, function () {
-        setMsg('💥 The attacks counter each other — nothing happens!');
+        setMsg('💥 The attacks cancel out!');
         setTimeout(enemyTurn, 800);
       });
       return;
     }
     if (canHitEls(attackerEl, fEl)) {
-      setMsg(NAMES[attacker] + ' attacks!');
+      setMsg(NAMES[attacker].split(' ')[0] + ' attacks!');
       shoot(attackerEl, fEl, PROJ[attacker], false, function () {
         hitBlob(fEl, true, function () {
           if (!aliveFoes().length) youWin();
@@ -15460,8 +15470,8 @@ var qrcode = function() {
       });
     } else {
       var whyNot = (BEATS[foe] || []).indexOf(attacker) > -1
-        ? NAMES[attacker] + '\u2019s attack does NOTHING \u2014 ' + NAMES[foe].split(' ')[0] + ' beats ' + NAMES[attacker].split(' ')[0] + '!'
-        : NAMES[attacker] + '\u2019s attack bounces off \u2014 ' + NAMES[foe] + ' has more stars!';
+        ? 'NOTHING! ' + NAMES[foe].split(' ')[0] + ' beats ' + NAMES[attacker].split(' ')[0] + '!'
+        : 'Bounces off! ' + NAMES[foe].split(' ')[0] + ' has more stars!';
       setMsg(whyNot);
       shoot(attackerEl, fEl, PROJ[attacker], true, function () {
         setTimeout(enemyTurn, 600);
@@ -16375,7 +16385,7 @@ var qrcode = function() {
     pvpSetMsg('🪙 Coin flip\u2026');
     pvpCoinFlip(function () {
       pvp.busy = false;
-      pvpSetMsg((pvp.turn === 1 ? '🟥 ' + pvpLabel(1) : '🟦 ' + pvpLabel(2)) + ': Tap one of your blobs!');
+      pvpSetMsg((pvp.turn === 1 ? '🟥 ' + pvpLabel(1) : '🟦 ' + pvpLabel(2)) + ': Tap YOUR blob!');
     });
     pvpCoachOpen = false;
     var pcb0 = document.getElementById('pvpCoachBtn');
@@ -16386,9 +16396,11 @@ var qrcode = function() {
   function pvpAlive(p) { return (p === 1 ? pvp.p1 : pvp.p2).filter(function (b) { return b.alive; }); }
   function wstars(n) { var o = ''; for (var k = 0; k < n; k++) o += '<svg class="wstar"><use href="#wstar"/></svg>'; return o; }
   function fitW(count, pct) {
-    // width %, but never taller than the stack's share of the screen (blob svg aspect ≈ 1.15 h/w)
-    var capDvh = { 1: 55, 2: 28, 3: 19, 4: 14 }[Math.min(count, 4)] || 14;
-    return 'min(' + pct + '%, ' + capDvh + 'dvh)';
+    // width %, but never taller than the stack's share of the ARENA (blob svg aspect ≈ 1.15 h/w).
+    // cqh = the arena box itself (both battle arenas are size containers), so blobs
+    // shrink to fit when the Coach poster takes arena space instead of being covered (Q104)
+    var capCqh = { 1: 70, 2: 35, 3: 24, 4: 18 }[Math.min(count, 4)] || 18;
+    return 'min(' + pct + '%, ' + capCqh + 'cqh)';
   }
   function storyCanHit(a, d) {
     // story battles: arrows first, then stars — deterministic, always.
@@ -16406,7 +16418,7 @@ var qrcode = function() {
     if (!pvpAlive(1).length) { pvpSetMsg('🏆 ' + pvpLabel(2).toUpperCase() + ' WINS!! All of ' + pvpLabel(1) + '\u2019s blobs went poof!'); pvp.over = true; document.getElementById('pvpEndRow').hidden = false; return; }
     pvp.turn = pvp.turn === 1 ? 2 : 1;
     pvp.sel = null; pvp.busy = false;
-    pvpSetMsg((pvp.turn === 1 ? '🟥 ' + pvpLabel(1) : '🟦 ' + pvpLabel(2)) + ': Tap one of your blobs!');
+    pvpSetMsg((pvp.turn === 1 ? '🟥 ' + pvpLabel(1) : '🟦 ' + pvpLabel(2)) + ': Tap YOUR blob!');
   }
   var pvpCoachOpen = false;
   function showPvpPoster() {
@@ -16481,22 +16493,22 @@ var qrcode = function() {
   pvpArena.addEventListener('click', function (e) {
     var el = e.target.closest ? e.target.closest('.pvpblob') : null;
     if (!el) return;
-    if (pvp.over) { pvpSetMsg('This battle is finished! Tap "🔄 New battle" to play again!'); return; }
+    if (pvp.over) { pvpSetMsg('Battle over! Tap "🔄 New battle"!'); return; }
     if (pvp.busy) return;
     var p = +el.dataset.player, i = +el.dataset.idx;
     var teamArr = p === 1 ? pvp.p1 : pvp.p2;
     if (!teamArr[i].alive) return;
     if (p !== pvp.turn && !pvp.sel) {
-      pvpSetMsg('It\u2019s ' + (pvp.turn === 1 ? '🟥 ' + pvpLabel(1) : '🟦 ' + pvpLabel(2)) + '\u2019s turn — they tap one of THEIR blobs first!');
+      pvpSetMsg('Wait — it\u2019s ' + (pvp.turn === 1 ? '🟥 ' + pvpLabel(1) : '🟦 ' + pvpLabel(2)) + '\u2019s turn!');
       return;
     }
     if (p === pvp.turn) {          // selecting your attacker
       document.querySelectorAll('.pvpblob').forEach(function (b) { b.classList.remove('selected'); });
       el.classList.add('selected');
       pvp.sel = { b: teamArr[i], el: el };
-      pvpSetMsg(NAMES[teamArr[i].fam] + ' ' + teamArr[i].star + '★ is ready — tap an enemy blob!');
+      pvpSetMsg(NAMES[teamArr[i].fam].split(' ')[0] + ' is ready — tap the enemy!');
     } else {                        // attacking an enemy blob
-      if (!pvp.sel) { pvpSetMsg('First tap one of your blobs!'); return; }
+      if (!pvp.sel) { pvpSetMsg('Tap YOUR blob first!'); return; }
       pvp.busy = true;
       pvp.sel.el.classList.remove('selected');
       var att = pvp.sel.b, def = teamArr[i], attEl = pvp.sel.el, defEl = el;
