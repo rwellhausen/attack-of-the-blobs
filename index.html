@@ -438,7 +438,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-11 14:04</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-11 14:28</p>
     <p class="note" style="font-size:0.95rem;opacity:0.65;margin-top:4px">© 2026 William · <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener" style="color:inherit">CC BY-NC 4.0</a></p>
 </div>
 
@@ -16051,20 +16051,27 @@ var qrcode = function() {
   var GAME_URL = 'https://rwellhausen.github.io/attack-of-the-blobs/';
   var shareBtn = document.getElementById('shareBtn');
   if (shareBtn) tappable(shareBtn, function () {
+    function done() { shareBtn.textContent = '\u2705 Copied! Now paste it to a friend!'; setTimeout(function () { shareBtn.textContent = '\ud83d\udce4 Send the game to a friend'; }, 2200); }
+    function copyLink() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(GAME_URL).then(done, function () { fallback(); });
+      } else { fallback(); }
+      function fallback() {
+        var t = document.createElement('textarea');
+        t.value = GAME_URL; document.body.appendChild(t); t.select();
+        try { document.execCommand('copy'); done(); } catch (e) {}
+        document.body.removeChild(t);
+      }
+    }
     if (navigator.share) {
-      navigator.share({ title: 'Attack of the Blobs', url: GAME_URL }).catch(function () {});
+      // Desktop Chrome has navigator.share but the OS share sheet can refuse
+      // (NotAllowedError); AbortError means the player cancelled on purpose.
+      navigator.share({ title: 'Attack of the Blobs', url: GAME_URL }).then(null, function (err) {
+        if (!err || err.name !== 'AbortError') copyLink();
+      });
       return;
     }
-    function done() { shareBtn.textContent = '\u2705 Copied! Now paste it to a friend!'; setTimeout(function () { shareBtn.textContent = '\ud83d\udce4 Send the game to a friend'; }, 2200); }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(GAME_URL).then(done, function () { fallback(); });
-    } else { fallback(); }
-    function fallback() {
-      var t = document.createElement('textarea');
-      t.value = GAME_URL; document.body.appendChild(t); t.select();
-      try { document.execCommand('copy'); done(); } catch (e) {}
-      document.body.removeChild(t);
-    }
+    copyLink();
   });
   tappable(document.getElementById('playBtn'), function () {
     refreshProfile();
