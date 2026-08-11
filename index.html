@@ -438,7 +438,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-11 14:46</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-11 14:54</p>
     <p class="note" style="font-size:0.95rem;opacity:0.65;margin-top:4px">© 2026 William · <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener" style="color:inherit">CC BY-NC 4.0</a></p>
 </div>
 
@@ -16072,9 +16072,10 @@ var qrcode = function() {
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
       copyLink(function () { flash('\ud83d\udce7 Email opened \u2014 link copied too!'); });
     }
-    if (navigator.share) {
-      // Desktop Chrome has navigator.share but the OS share sheet can refuse
-      // (NotAllowedError); AbortError means the player cancelled on purpose.
+    // Share sheet only on touch devices (phones/tablets). Desktop share sheets
+    // either refuse (Chrome: NotAllowedError) or, worse, hand Mail a draft with
+    // no subject line — computers always get the mailto draft instead.
+    if (navigator.share && navigator.maxTouchPoints > 0) {
       navigator.share({ title: 'Attack of the Blobs!', text: SHARE_MSG + '\n\n' + GAME_URL + '\n\n' + SHARE_TAIL }).then(null, function (err) {
         if (!err || err.name !== 'AbortError') emailFallback();
       });
