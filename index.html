@@ -438,7 +438,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-11 14:28</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-11 14:46</p>
     <p class="note" style="font-size:0.95rem;opacity:0.65;margin-top:4px">© 2026 William · <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener" style="color:inherit">CC BY-NC 4.0</a></p>
 </div>
 
@@ -16050,28 +16050,37 @@ var qrcode = function() {
   }
   var GAME_URL = 'https://rwellhausen.github.io/attack-of-the-blobs/';
   var shareBtn = document.getElementById('shareBtn');
+  var SHARE_MSG = 'William created this game, and I think you\u2019d love to play it!';
+  var SHARE_TAIL = 'It\u2019s free, and it works on a phone, a tablet, or a computer.';
   if (shareBtn) tappable(shareBtn, function () {
-    function done() { shareBtn.textContent = '\u2705 Copied! Now paste it to a friend!'; setTimeout(function () { shareBtn.textContent = '\ud83d\udce4 Send the game to a friend'; }, 2200); }
-    function copyLink() {
+    function flash(msg) { shareBtn.textContent = msg; setTimeout(function () { shareBtn.textContent = '\ud83d\udce4 Send the game to a friend'; }, 2200); }
+    function copyLink(after) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(GAME_URL).then(done, function () { fallback(); });
+        navigator.clipboard.writeText(GAME_URL).then(after, function () { fallback(); });
       } else { fallback(); }
       function fallback() {
         var t = document.createElement('textarea');
         t.value = GAME_URL; document.body.appendChild(t); t.select();
-        try { document.execCommand('copy'); done(); } catch (e) {}
+        try { document.execCommand('copy'); after(); } catch (e) {}
         document.body.removeChild(t);
       }
+    }
+    function emailFallback() {
+      var a = document.createElement('a');
+      a.href = 'mailto:?subject=' + encodeURIComponent('Attack of the Blobs!') +
+        '&body=' + encodeURIComponent(SHARE_MSG + '\r\n\r\n' + GAME_URL + '\r\n\r\n' + SHARE_TAIL);
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      copyLink(function () { flash('\ud83d\udce7 Email opened \u2014 link copied too!'); });
     }
     if (navigator.share) {
       // Desktop Chrome has navigator.share but the OS share sheet can refuse
       // (NotAllowedError); AbortError means the player cancelled on purpose.
-      navigator.share({ title: 'Attack of the Blobs', url: GAME_URL }).then(null, function (err) {
-        if (!err || err.name !== 'AbortError') copyLink();
+      navigator.share({ title: 'Attack of the Blobs!', text: SHARE_MSG + '\n\n' + GAME_URL + '\n\n' + SHARE_TAIL }).then(null, function (err) {
+        if (!err || err.name !== 'AbortError') emailFallback();
       });
       return;
     }
-    copyLink();
+    emailFallback();
   });
   tappable(document.getElementById('playBtn'), function () {
     refreshProfile();
