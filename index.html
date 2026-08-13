@@ -386,7 +386,7 @@
   <h1>Attack of the Blobs<span class="dot">!</span></h1>
   <p class="byline">The game · by William</p>
   <div id="shareRow" style="text-align:center;margin-top:10px">
-    <p style="margin:0"><button id="shareBtn" class="back" style="position:static;font-size:0.95rem">📤 Send the game to a friend</button></p>
+    <p style="margin:0"><button id="shareBtn" class="back" style="position:static;font-size:0.95rem">📤 Send attackoftheblobs.com to a friend</button></p>
   </div>
   <p style="text-align:center;margin:60px 0 10px"><button id="playBtn" class="bigplay">▶ PLAY!</button></p>
   <p class="pophint">🫧 psst… the blobs are poppable — tap one!</p>
@@ -438,7 +438,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-11 14:54</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-13 12:01</p>
     <p class="note" style="font-size:0.95rem;opacity:0.65;margin-top:4px">© 2026 William · <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener" style="color:inherit">CC BY-NC 4.0</a></p>
 </div>
 
@@ -16048,12 +16048,12 @@ var qrcode = function() {
     }, 10400));
     timers.push(setTimeout(finish, 16000));
   }
-  var GAME_URL = 'https://rwellhausen.github.io/attack-of-the-blobs/';
+  var GAME_URL = 'https://attackoftheblobs.com/';
   var shareBtn = document.getElementById('shareBtn');
   var SHARE_MSG = 'William created this game, and I think you\u2019d love to play it!';
   var SHARE_TAIL = 'It\u2019s free, and it works on a phone, a tablet, or a computer.';
   if (shareBtn) tappable(shareBtn, function () {
-    function flash(msg) { shareBtn.textContent = msg; setTimeout(function () { shareBtn.textContent = '\ud83d\udce4 Send the game to a friend'; }, 2200); }
+    function flash(msg) { shareBtn.textContent = msg; setTimeout(function () { shareBtn.textContent = '\ud83d\udce4 Send attackoftheblobs.com to a friend'; }, 2200); }
     function copyLink(after) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(GAME_URL).then(after, function () { fallback(); });
