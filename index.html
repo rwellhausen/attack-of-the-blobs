@@ -439,7 +439,7 @@
   <path d="M 205 295 q 55 52 110 0 q -12 40 -55 40 q -43 0 -55 -40 Z" fill="#ffffff" class="outline mid"/>
 
 </svg></div><p class="inventor-caption">William <span>the inventor of every blob</span></p></div>
-    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-27 19:08</p>
+    <p class="note" id="buildStamp" style="font-size:0.95rem;opacity:0.65;margin-top:26px">version 2026-08-27 19:50</p>
     <p class="note" style="font-size:0.95rem;opacity:0.65;margin-top:4px">© 2026 William · <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener" style="color:inherit">CC BY-NC 4.0</a></p>
 </div>
 
@@ -13625,7 +13625,7 @@ var qrcode = function() {
     var ub = document.getElementById('undoBtn');
     if (ub && id !== 'screen-shop') { ub.hidden = true; lastPurchase = null; }
     var cb = document.getElementById('coinBadge');
-    if (cb) cb.style.display = (id === 'screen-hub' || id === 'screen-worlds' || id.indexOf('screen-levels') === 0) ? '' : 'none';   // coin badge lives only on the earn/spend loop (Q83 council)
+    if (cb) cb.style.display = (id === 'screen-hub' || id === 'screen-worlds' || id.indexOf('screen-levels') === 0 || (id === 'screen-battle' && battleState === 'over' && !madRush && !sciFight)) ? '' : 'none';   // coin badge lives on the earn/spend loop, plus an ENDED story/hard fight (fight-over wallet)
     if (typeof showCoins === 'function') try { showCoins(); } catch (e) {}
     window.scrollTo(0, 0);
   }
@@ -15080,6 +15080,7 @@ var qrcode = function() {
     yourSpan.style.visibility = 'visible';
     enemySpan.style.visibility = 'visible';
     battleState = 'ready';
+    var cb0 = document.getElementById('coinBadge'); if (cb0) cb0.style.display = 'none';   // wallet hides while the fight is live
     if (bossMode) {
       var bArena = document.querySelector('#screen-battle .arena');
       bArena.classList.remove('duel'); bArena.classList.add('bossfight');
@@ -15106,6 +15107,7 @@ var qrcode = function() {
     if (isStalemate()) {
       setMsg('🤝 STALEMATE! Tap "Battle again"!');
       battleState = 'over';
+      fightOverBadge();
       document.getElementById('againBtn').hidden = false;
     } else {
       setMsg('🫵 Tap YOUR blob!', 'left');
@@ -15256,16 +15258,26 @@ var qrcode = function() {
   function aliveMates() { return Array.prototype.filter.call(yourSpan.querySelectorAll('.teammate'), function (m) { return m.style.visibility !== 'hidden'; }); }
   function elBlob(el) { return { fam: el.dataset.name, star: +el.dataset.star || 1 }; }
   function canHitEls(aEl, dEl) { return storyCanHit(elBlob(aEl), elBlob(dEl)); }
+  // Fight-over wallet: the coin badge stays hidden while a fight is live and comes back
+  // the moment the fight ends, so the coins the message just announced can be spent right
+  // away (tap = Shop, Back returns here). Story and hard worlds only — never the mad rush
+  // or the Scientist, and 2-Player has no coins at all.
+  function fightOverBadge() {
+    var cb = document.getElementById('coinBadge');
+    if (cb && battleState === 'over' && !madRush && !sciFight && current() === 'screen-battle') cb.style.display = '';
+  }
   function youWin() {
     var first = winLevel(battleLevel);
     setMsg('💥 POOF! Level ' + battleLevel + ' is GOLD! +' + ((curWorld === 'ghard' || curWorld === 'fhard' || curWorld === 'shard' || curWorld === 'uhard') ? (first ? 5 : 2) : (first ? 3 : 1)) + ' ' + CEMOJI[curWorld]);
     battleState = 'over';
+    fightOverBadge();
     if (battleLevel < 50) document.getElementById('nextBtn').hidden = false;
   }
   function youLose() {
     addCoins(-1); saveGame();
     setMsg('😵 Team out! −1 ' + CEMOJI[curWorld] + ' — tap "Battle again"!');
     battleState = 'over';
+    fightOverBadge();
     document.getElementById('againBtn').hidden = false;
   }
   function isStalemate() {
@@ -15282,6 +15294,7 @@ var qrcode = function() {
     if (isStalemate()) {
       setMsg('🤝 STALEMATE! Tap "Battle again"!');
       battleState = 'over';
+      fightOverBadge();
       document.getElementById('againBtn').hidden = false;
       return;
     }
@@ -15445,6 +15458,7 @@ var qrcode = function() {
     if (!secs.some(function (s) { return fams.indexOf(s) > -1; })) {
       setMsg(secs.length > 2 ? '🤝 STALEMATE! ' + secs.length + ' blobs missing!' : '🤝 STALEMATE! Missing: ' + secs.map(function (s) { return NAMES[s].split(' ')[0]; }).join(', ') + '!');
       battleState = 'over';
+      fightOverBadge();
       document.getElementById('againBtn').hidden = false;
       return;
     }
@@ -15507,6 +15521,7 @@ var qrcode = function() {
             if (curWorld === 'uhard') setTimeout(uhardOutro, 1300);
           }
           battleState = 'over';
+          fightOverBadge();
         } else {
           setMsg('💥 ' + NAMES[attacker].split(' ')[0] + ' section SHATTERS! ' + left + ' left!');
           setTimeout(momoTurn, 900);
